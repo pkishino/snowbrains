@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
+#import "PullToRefreshView.h"
+@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 
 @end
