@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CD4F3E1217153337008A250D"
                BuildableName = "webapp.app"
-               BlueprintName = "webapp"
-               ReferencedContainer = "container:webapp.xcodeproj">
+               BlueprintName = "snowBrains"
+               ReferencedContainer = "container:snowBrains.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD4F3E1217153337008A250D"
             BuildableName = "webapp.app"
-            BlueprintName = "webapp"
-            ReferencedContainer = "container:webapp.xcodeproj">
+            BlueprintName = "snowBrains"
+            ReferencedContainer = "container:snowBrains.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,8 +53,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD4F3E1217153337008A250D"
             BuildableName = "webapp.app"
-            BlueprintName = "webapp"
-            ReferencedContainer = "container:webapp.xcodeproj">
+            BlueprintName = "snowBrains"
+            ReferencedContainer = "container:snowBrains.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -71,8 +71,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD4F3E1217153337008A250D"
             BuildableName = "webapp.app"
-            BlueprintName = "webapp"
-            ReferencedContainer = "container:webapp.xcodeproj">
+            BlueprintName = "snowBrains"
+            ReferencedContainer = "container:snowBrains.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

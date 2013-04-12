@@ -35,14 +35,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CD4F3E1317153337008A250D /* webapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = webapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD4F3E1317153337008A250D /* snowBrains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snowBrains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4F3E1617153337008A250D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD4F3E1817153337008A250D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CD4F3E1A17153337008A250D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		CD4F3E1E17153337008A250D /* webapp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "webapp-Info.plist"; sourceTree = "<group>"; };
+		CD4F3E1E17153337008A250D /* snowBrains-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "snowBrains-Info.plist"; sourceTree = "<group>"; };
 		CD4F3E2017153337008A250D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CD4F3E2217153337008A250D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CD4F3E2417153337008A250D /* webapp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "webapp-Prefix.pch"; sourceTree = "<group>"; };
+		CD4F3E2417153337008A250D /* snowBrains-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "snowBrains-Prefix.pch"; sourceTree = "<group>"; };
 		CD4F3E2517153337008A250D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CD4F3E2617153337008A250D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CD4F3E2F17153337008A250D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		CD4F3E1417153337008A250D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CD4F3E1317153337008A250D /* webapp.app */,
+				CD4F3E1317153337008A250D /* snowBrains.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,10 +144,10 @@
 				CD4F3E6A171696B0008A250D /* SnowBrains.png */,
 				CD4F3E48171686A6008A250D /* SnowBrains_114x114.png */,
 				CD4F3E461716869F008A250D /* SnowBrains_57x57.png */,
-				CD4F3E1E17153337008A250D /* webapp-Info.plist */,
+				CD4F3E1E17153337008A250D /* snowBrains-Info.plist */,
 				CD4F3E1F17153337008A250D /* InfoPlist.strings */,
 				CD4F3E2217153337008A250D /* main.m */,
-				CD4F3E2417153337008A250D /* webapp-Prefix.pch */,
+				CD4F3E2417153337008A250D /* snowBrains-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -155,9 +155,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CD4F3E1217153337008A250D /* webapp */ = {
+		CD4F3E1217153337008A250D /* snowBrains */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD4F3E3917153337008A250D /* Build configuration list for PBXNativeTarget "webapp" */;
+			buildConfigurationList = CD4F3E3917153337008A250D /* Build configuration list for PBXNativeTarget "snowBrains" */;
 			buildPhases = (
 				CD4F3E0F17153337008A250D /* Sources */,
 				CD4F3E1017153337008A250D /* Frameworks */,
@@ -167,9 +167,9 @@
 			);
 			dependencies = (
 			);
-			name = webapp;
+			name = snowBrains;
 			productName = webapp;
-			productReference = CD4F3E1317153337008A250D /* webapp.app */;
+			productReference = CD4F3E1317153337008A250D /* snowBrains.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -181,7 +181,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Patrick;
 			};
-			buildConfigurationList = CD4F3E0E17153337008A250D /* Build configuration list for PBXProject "webapp" */;
+			buildConfigurationList = CD4F3E0E17153337008A250D /* Build configuration list for PBXProject "snowBrains" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -193,7 +193,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CD4F3E1217153337008A250D /* webapp */,
+				CD4F3E1217153337008A250D /* snowBrains */,
 			);
 		};
 /* End PBXProject section */
@@ -329,10 +329,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "webapp/webapp-Prefix.pch";
-				INFOPLIST_FILE = "webapp/webapp-Info.plist";
+				GCC_PREFIX_HEADER = "webapp/snowBrains-Prefix.pch";
+				INFOPLIST_FILE = "webapp/snowBrains-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = snowBrains;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -342,10 +342,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "webapp/webapp-Prefix.pch";
-				INFOPLIST_FILE = "webapp/webapp-Info.plist";
+				GCC_PREFIX_HEADER = "webapp/snowBrains-Prefix.pch";
+				INFOPLIST_FILE = "webapp/snowBrains-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = snowBrains;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -354,7 +354,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CD4F3E0E17153337008A250D /* Build configuration list for PBXProject "webapp" */ = {
+		CD4F3E0E17153337008A250D /* Build configuration list for PBXProject "snowBrains" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD4F3E3717153337008A250D /* Debug */,
@@ -363,7 +363,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD4F3E3917153337008A250D /* Build configuration list for PBXNativeTarget "webapp" */ = {
+		CD4F3E3917153337008A250D /* Build configuration list for PBXNativeTarget "snowBrains" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD4F3E3A17153337008A250D /* Debug */,

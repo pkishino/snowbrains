@@ -17,7 +17,7 @@
                BlueprintIdentifier = "CD4F3E501716878D008A250D"
                BuildableName = "webapp copy.app"
                BlueprintName = "webapp copy"
-               ReferencedContainer = "container:webapp.xcodeproj">
+               ReferencedContainer = "container:snowBrains.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "CD4F3E501716878D008A250D"
             BuildableName = "webapp copy.app"
             BlueprintName = "webapp copy"
-            ReferencedContainer = "container:webapp.xcodeproj">
+            ReferencedContainer = "container:snowBrains.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -54,7 +54,7 @@
             BlueprintIdentifier = "CD4F3E501716878D008A250D"
             BuildableName = "webapp copy.app"
             BlueprintName = "webapp copy"
-            ReferencedContainer = "container:webapp.xcodeproj">
+            ReferencedContainer = "container:snowBrains.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -72,7 +72,7 @@
             BlueprintIdentifier = "CD4F3E501716878D008A250D"
             BuildableName = "webapp copy.app"
             BlueprintName = "webapp copy"
-            ReferencedContainer = "container:webapp.xcodeproj">
+            ReferencedContainer = "container:snowBrains.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
