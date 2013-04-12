@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CD4F3E501716878D008A250D"
-               BuildableName = "webapp copy.app"
-               BlueprintName = "webapp copy"
+               BlueprintIdentifier = "CD4F3E1217153337008A250D"
+               BuildableName = "snowBrains.app"
+               BlueprintName = "snowBrains"
                ReferencedContainer = "container:snowBrains.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CD4F3E501716878D008A250D"
-            BuildableName = "webapp copy.app"
-            BlueprintName = "webapp copy"
+            BlueprintIdentifier = "CD4F3E1217153337008A250D"
+            BuildableName = "snowBrains.app"
+            BlueprintName = "snowBrains"
             ReferencedContainer = "container:snowBrains.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CD4F3E501716878D008A250D"
-            BuildableName = "webapp copy.app"
-            BlueprintName = "webapp copy"
+            BlueprintIdentifier = "CD4F3E1217153337008A250D"
+            BuildableName = "snowBrains.app"
+            BlueprintName = "snowBrains"
             ReferencedContainer = "container:snowBrains.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -69,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CD4F3E501716878D008A250D"
-            BuildableName = "webapp copy.app"
-            BlueprintName = "webapp copy"
+            BlueprintIdentifier = "CD4F3E1217153337008A250D"
+            BuildableName = "snowBrains.app"
+            BlueprintName = "snowBrains"
             ReferencedContainer = "container:snowBrains.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
