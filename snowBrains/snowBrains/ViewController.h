@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PullToRefreshView.h"
+#import "LocationViewController.h"
 @interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIPopoverControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 @property (strong, nonatomic) UIPopoverController *pop;
 - (IBAction)locationTap:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *locationButton;
 
 @end

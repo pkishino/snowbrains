@@ -34,6 +34,8 @@
 		CD4F3EBD1717B9ED008A250D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EBC1717B9ED008A250D /* Default.png */; };
 		CD4F3EBF1717B9F6008A250D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EBE1717B9F6008A250D /* Default@2x.png */; };
 		CD4F3EC11717B9FD008A250D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EC01717B9FD008A250D /* Default-568h@2x.png */; };
+		CD4F3ECB171BC55C008A250D /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4F3EC9171BC55C008A250D /* LocationViewController.m */; };
+		CD4F3ECC171BC55C008A250D /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3ECA171BC55C008A250D /* LocationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,9 @@
 		CD4F3EBC1717B9ED008A250D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CD4F3EBE1717B9F6008A250D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CD4F3EC01717B9FD008A250D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CD4F3EC8171BC55B008A250D /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationViewController.h; path = snowBrains/LocationViewController.h; sourceTree = SOURCE_ROOT; };
+		CD4F3EC9171BC55C008A250D /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationViewController.m; path = snowBrains/LocationViewController.m; sourceTree = SOURCE_ROOT; };
+		CD4F3ECA171BC55C008A250D /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationViewController.xib; path = snowBrains/LocationViewController.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +134,9 @@
 				CD4F3E921717B971008A250D /* PullToRefreshView.m */,
 				CD4F3E931717B971008A250D /* ViewController.h */,
 				CD4F3E941717B971008A250D /* ViewController.m */,
+				CD4F3EC8171BC55B008A250D /* LocationViewController.h */,
+				CD4F3EC9171BC55C008A250D /* LocationViewController.m */,
+				CD4F3ECA171BC55C008A250D /* LocationViewController.xib */,
 				CD4F3E1D17153337008A250D /* Supporting Files */,
 			);
 			name = snowBrains;
@@ -229,6 +237,7 @@
 				CD4F3EBD1717B9ED008A250D /* Default.png in Resources */,
 				CD4F3EBF1717B9F6008A250D /* Default@2x.png in Resources */,
 				CD4F3EC11717B9FD008A250D /* Default-568h@2x.png in Resources */,
+				CD4F3ECC171BC55C008A250D /* LocationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +252,7 @@
 				CD4F3E971717B971008A250D /* main.m in Sources */,
 				CD4F3E981717B971008A250D /* PullToRefreshView.m in Sources */,
 				CD4F3E991717B971008A250D /* ViewController.m in Sources */,
+				CD4F3ECB171BC55C008A250D /* LocationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

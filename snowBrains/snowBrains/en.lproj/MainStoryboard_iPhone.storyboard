@@ -166,6 +166,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="locationButton" destination="70G-zO-zSc" id="PXm-xj-0BI"/>
                         <outlet property="webview" destination="ahH-ae-rQf" id="ISD-UY-we1"/>
                     </connections>
                 </viewController>

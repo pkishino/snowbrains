@@ -7,6 +7,16 @@
 //
 
 #import "ViewController.h"
+@interface UIPopoverController (overrides)
++ (BOOL)_popoversDisabled;
+@end
+
+@implementation UIPopoverController (overrides)
+
++ (BOOL)_popoversDisabled { return NO;
+}
+
+@end
 
 @interface ViewController (){
     UIScrollView *currentScrollView;
@@ -55,9 +65,19 @@
 
 - (void)viewDidUnload {
     [self setWebview:nil];
+    [self setLocationButton:nil];
     [super viewDidUnload];
 }
 - (IBAction)locationTap:(id)sender {
-    //self.pop = [[UIPopoverController alloc]﻿ initWithContentViewController: popoverView];
+    LocationViewController* popoverView=[[LocationViewController alloc]init];
+    
+    UIPopoverController *popover=[[UIPopoverController alloc]initWithContentViewController: popoverView];
+    popover.delegate=self;
+    popover.popoverLayoutMargins = UIEdgeInsetsMake(self.locationButton.frame.origin.x, self.locationButton.frame.origin.x, 0, 0);
+    self.pop=popover;
+    if([self.pop isPopoverVisible])
+       [self.pop dismissPopoverAnimated:YES];
+    [self.pop presentPopoverFromRect:self.locationButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    
 }
 @end
