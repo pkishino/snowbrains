@@ -17,7 +17,6 @@
 		CD4F3E981717B971008A250D /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4F3E921717B971008A250D /* PullToRefreshView.m */; };
 		CD4F3E991717B971008A250D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4F3E941717B971008A250D /* ViewController.m */; };
 		CD4F3EAC1717B9C1008A250D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3E9A1717B9C0008A250D /* InfoPlist.strings */; };
-		CD4F3EAD1717B9C1008A250D /* snowBrains-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3E9C1717B9C1008A250D /* snowBrains-Info.plist */; };
 		CD4F3EAE1717B9C1008A250D /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3E9E1717B9C1008A250D /* arrow.png */; };
 		CD4F3EAF1717B9C1008A250D /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3E9F1717B9C1008A250D /* arrow@2x.png */; };
 		CD4F3EB01717B9C1008A250D /* brainsHeaderBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EA01717B9C1008A250D /* brainsHeaderBackground.png */; };
@@ -213,7 +212,6 @@
 			files = (
 				CD4F3E961717B971008A250D /* MainStoryboard_iPhone.storyboard in Resources */,
 				CD4F3EAC1717B9C1008A250D /* InfoPlist.strings in Resources */,
-				CD4F3EAD1717B9C1008A250D /* snowBrains-Info.plist in Resources */,
 				CD4F3EAE1717B9C1008A250D /* arrow.png in Resources */,
 				CD4F3EAF1717B9C1008A250D /* arrow@2x.png in Resources */,
 				CD4F3EB01717B9C1008A250D /* brainsHeaderBackground.png in Resources */,

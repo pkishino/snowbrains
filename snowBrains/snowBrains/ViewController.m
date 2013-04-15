@@ -36,7 +36,7 @@
     //[self.view addSubview:self.webview];
 	// Do any additional setup after loading the view, typically from a nib.
     NSURL *url = [NSURL URLWithString:@"http://www.snowbrains.com"];
-    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:2];
+    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
     [self.webview loadRequest:snowbrains];
 }
 -(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
@@ -56,5 +56,8 @@
 - (void)viewDidUnload {
     [self setWebview:nil];
     [super viewDidUnload];
+}
+- (IBAction)locationTap:(id)sender {
+    //self.pop = [[UIPopoverController alloc]﻿ initWithContentViewController: popoverView];
 }
 @end
