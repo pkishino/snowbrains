@@ -45,88 +45,103 @@
                                 <rect key="frame" x="0.0" y="440" width="320" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9R4-G6-sf4">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9R4-G6-sf4">
                                 <rect key="frame" x="0.0" y="55" width="53" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="homeDefault.png">
+                                <state key="normal" image="Home.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="homeSelected.png"/>
-                                <state key="highlighted" image="homeSelected.png">
+                                <state key="selected" image="HomeSelected.png"/>
+                                <state key="highlighted" image="HomeSelected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="homeTap:" destination="2" eventType="touchUpInside" id="Dle-xI-oNv"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qmn-X8-Dt4">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qmn-X8-Dt4">
                                 <rect key="frame" x="265" y="55" width="53" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="homeDefault.png">
+                                <state key="normal" image="Brains.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="homeSelected.png"/>
-                                <state key="highlighted" image="homeSelected.png">
+                                <state key="selected" image="BrainsSelected.png"/>
+                                <state key="highlighted" image="BrainsSelected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="brainsTap:" destination="2" eventType="touchUpInside" id="Oaj-3c-Dxz"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="j9c-S1-SQs">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="j9c-S1-SQs">
                                 <rect key="frame" x="212" y="55" width="53" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="homeDefault.png">
+                                <state key="normal" image="Gear.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="homeSelected.png"/>
-                                <state key="highlighted" image="homeSelected.png">
+                                <state key="selected" image="GearSelected.png"/>
+                                <state key="highlighted" image="GearSelected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="gearTap:" destination="2" eventType="touchUpInside" id="EOI-ak-TNI"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2x9-gj-Yh0">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2x9-gj-Yh0">
                                 <rect key="frame" x="159" y="55" width="53" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="homeDefault.png">
+                                <state key="normal" image="Video.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="homeSelected.png"/>
-                                <state key="highlighted" image="homeSelected.png">
+                                <state key="selected" image="VideoSelected.png"/>
+                                <state key="highlighted" image="VideoSelected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="videoTap:" destination="2" eventType="touchUpInside" id="Z8f-gj-sIc"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zMw-rz-wEB">
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zMw-rz-wEB">
                                 <rect key="frame" x="106" y="55" width="53" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="homeDefault.png">
+                                <state key="normal" image="Weather.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="homeSelected.png"/>
-                                <state key="highlighted" image="homeSelected.png">
+                                <state key="selected" image="WeatherSelected.png"/>
+                                <state key="highlighted" image="WeatherSelected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="weatherTap:" destination="2" eventType="touchUpInside" id="gcC-vb-yuz"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="70G-zO-zSc">
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="70G-zO-zSc">
                                 <rect key="frame" x="53" y="55" width="53" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="homeDefault.png">
+                                <state key="normal" image="Locations.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="homeSelected.png"/>
-                                <state key="highlighted" image="homeSelected.png">
+                                <state key="selected" image="LocationsSelected.png"/>
+                                <state key="highlighted" image="LocationsSelected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="locationTap:" destination="2" eventType="touchUpInside" id="ig2-4u-Bnj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rYU-Bo-yKK">
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rYU-Bo-yKK">
                                 <rect key="frame" x="0.0" y="440" width="73" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
@@ -138,7 +153,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cgS-jJ-5EO">
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cgS-jJ-5EO">
                                 <rect key="frame" x="124" y="440" width="73" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -150,7 +165,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CiA-sd-5LG">
+                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CiA-sd-5LG">
                                 <rect key="frame" x="247" y="440" width="73" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -166,7 +181,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="brainsButton" destination="qmn-X8-Dt4" id="f7I-bj-VRN"/>
+                        <outlet property="gearButton" destination="j9c-S1-SQs" id="ELZ-zh-aoY"/>
+                        <outlet property="homeButton" destination="9R4-G6-sf4" id="KYb-db-gPo"/>
                         <outlet property="locationButton" destination="70G-zO-zSc" id="PXm-xj-0BI"/>
+                        <outlet property="videoButton" destination="2x9-gj-Yh0" id="1Ot-Om-fpA"/>
+                        <outlet property="weatherButton" destination="zMw-rz-wEB" id="nQ9-pW-kv1"/>
                         <outlet property="webview" destination="ahH-ae-rQf" id="ISD-UY-we1"/>
                     </connections>
                 </viewController>
@@ -175,13 +195,23 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Brains.png" width="53" height="20"/>
+        <image name="BrainsSelected.png" width="53" height="20"/>
+        <image name="Gear.png" width="53" height="20"/>
+        <image name="GearSelected.png" width="53" height="20"/>
+        <image name="Home.png" width="53" height="20"/>
+        <image name="HomeSelected.png" width="53" height="20"/>
+        <image name="Locations.png" width="53" height="20"/>
+        <image name="LocationsSelected.png" width="53" height="20"/>
         <image name="SnowBrains.png" width="304" height="83"/>
+        <image name="Video.png" width="53" height="20"/>
+        <image name="VideoSelected.png" width="53" height="20"/>
+        <image name="Weather.png" width="53" height="20"/>
+        <image name="WeatherSelected.png" width="53" height="20"/>
         <image name="brainsHeaderBackground.png" width="960" height="151"/>
         <image name="brainsHeaderForeground.png" width="960" height="151"/>
         <image name="brainsLogo.png" width="50" height="110"/>
         <image name="buttonBackground.png" width="14" height="27"/>
-        <image name="homeDefault.png" width="36" height="11"/>
-        <image name="homeSelected.png" width="36" height="11"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

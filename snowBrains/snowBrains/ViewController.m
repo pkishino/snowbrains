@@ -30,6 +30,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupPullDownRefresh];
+
+    NSURL *url = [NSURL URLWithString:@"http://www.snowbrains.com"];
+    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
+    [self.webview loadRequest:snowbrains];
+    
+    [self.homeButton setSelected:YES];
+}
+-(void)setupPullDownRefresh{
+    //setup the pulldownrefresh view
     [self.webview setDelegate:self];
     self.webview.tag=999;
     for(UIView *subView in self.webview.subviews){
@@ -42,12 +52,6 @@
     [pull setDelegate:self];
     pull.tag=998;
     [currentScrollView addSubview:pull];
-    //[self.webview addSubview:currentScrollView]
-    //[self.view addSubview:self.webview];
-	// Do any additional setup after loading the view, typically from a nib.
-    NSURL *url = [NSURL URLWithString:@"http://www.snowbrains.com"];
-    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
-    [self.webview loadRequest:snowbrains];
 }
 -(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
     [(UIWebView *)[self.view viewWithTag:999] reload];
@@ -68,16 +72,55 @@
     [self setLocationButton:nil];
     [super viewDidUnload];
 }
+- (IBAction)homeTap:(id)sender{
+    if(!self.homeButton.isSelected)
+        [self.homeButton setSelected:YES];
+}
 - (IBAction)locationTap:(id)sender {
+    for(int i=1;i<7;i++){
+        [((UIButton *)[self.view viewWithTag:i]) setSelected:NO];
+    }
+    if(!self.locationButton.isSelected)
+       [self.locationButton setSelected:YES];
     LocationViewController* popoverView=[[LocationViewController alloc]init];
     
     UIPopoverController *popover=[[UIPopoverController alloc]initWithContentViewController: popoverView];
+    popover.popoverBackgroundViewClass=[CustomPopoverBackgroundView class];
+    popover.passthroughViews=[[NSArray alloc]initWithObjects:self.view, nil];
     popover.delegate=self;
     popover.popoverLayoutMargins = UIEdgeInsetsMake(self.locationButton.frame.origin.x, self.locationButton.frame.origin.x, 0, 0);
     self.pop=popover;
     if([self.pop isPopoverVisible])
        [self.pop dismissPopoverAnimated:YES];
     [self.pop presentPopoverFromRect:self.locationButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    
 }
+- (IBAction)weatherTap:(id)sender{
+    for(int i=1;i<7;i++){
+        [((UIButton *)[self.view viewWithTag:i]) setSelected:NO];
+    }
+    if(!self.weatherButton.isSelected)
+        [self.weatherButton setSelected:YES];
+}
+- (IBAction)videoTap:(id)sender{
+    for(int i=1;i<7;i++){
+        [((UIButton *)[self.view viewWithTag:i]) setSelected:NO];
+    }
+    if(!self.videoButton.isSelected)
+        [self.videoButton setSelected:YES];
+}
+- (IBAction)gearTap:(id)sender{
+    for(int i=1;i<7;i++){
+        [((UIButton *)[self.view viewWithTag:i]) setSelected:NO];
+    }
+    if(!self.gearButton.isSelected)
+        [self.gearButton setSelected:YES];
+}
+- (IBAction)brainsTap:(id)sender{
+    for(int i=1;i<7;i++){
+        [((UIButton *)[self.view viewWithTag:i]) setSelected:NO];
+    }
+    if(!self.brainsButton.isSelected)
+        [self.brainsButton setSelected:YES];
+}
+
 @end

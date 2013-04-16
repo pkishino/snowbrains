@@ -36,6 +36,77 @@
 		CD4F3EC11717B9FD008A250D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EC01717B9FD008A250D /* Default-568h@2x.png */; };
 		CD4F3ECB171BC55C008A250D /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4F3EC9171BC55C008A250D /* LocationViewController.m */; };
 		CD4F3ECC171BC55C008A250D /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3ECA171BC55C008A250D /* LocationViewController.xib */; };
+		CDEF4588171D284900688181 /* Alaska.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4544171D284900688181 /* Alaska.png */; };
+		CDEF4589171D284900688181 /* AlaskaSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4545171D284900688181 /* AlaskaSelected.png */; };
+		CDEF458A171D284900688181 /* Alps.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4546171D284900688181 /* Alps.png */; };
+		CDEF458B171D284900688181 /* AlpsSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4547171D284900688181 /* AlpsSelected.png */; };
+		CDEF458C171D284900688181 /* Brains.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4548171D284900688181 /* Brains.png */; };
+		CDEF458D171D284900688181 /* BrainsSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4549171D284900688181 /* BrainsSelected.png */; };
+		CDEF458E171D284900688181 /* Gear.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF454A171D284900688181 /* Gear.png */; };
+		CDEF458F171D284900688181 /* GearSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF454B171D284900688181 /* GearSelected.png */; };
+		CDEF4590171D284900688181 /* Home.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF454C171D284900688181 /* Home.png */; };
+		CDEF4591171D284900688181 /* HomeSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF454D171D284900688181 /* HomeSelected.png */; };
+		CDEF4592171D284900688181 /* Jackson.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF454E171D284900688181 /* Jackson.png */; };
+		CDEF4593171D284900688181 /* JacksonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF454F171D284900688181 /* JacksonSelected.png */; };
+		CDEF4594171D284900688181 /* Japan.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4550171D284900688181 /* Japan.png */; };
+		CDEF4595171D284900688181 /* JapanSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4551171D284900688181 /* JapanSelected.png */; };
+		CDEF4596171D284900688181 /* Locations.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4552171D284900688181 /* Locations.png */; };
+		CDEF4597171D284900688181 /* LocationsSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4553171D284900688181 /* LocationsSelected.png */; };
+		CDEF4598171D284900688181 /* Mammoth.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4554171D284900688181 /* Mammoth.png */; };
+		CDEF4599171D284900688181 /* MammothSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4555171D284900688181 /* MammothSelected.png */; };
+		CDEF459A171D284900688181 /* More.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4556171D284900688181 /* More.png */; };
+		CDEF459B171D284900688181 /* MoreSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4557171D284900688181 /* MoreSelected.png */; };
+		CDEF459C171D284900688181 /* PNW.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4558171D284900688181 /* PNW.png */; };
+		CDEF459D171D284900688181 /* PNWSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4559171D284900688181 /* PNWSelected.png */; };
+		CDEF459E171D284900688181 /* SouthAmerica.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF455A171D284900688181 /* SouthAmerica.png */; };
+		CDEF459F171D284900688181 /* SouthAmericaSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF455B171D284900688181 /* SouthAmericaSelected.png */; };
+		CDEF45A0171D284900688181 /* Squaw.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF455C171D284900688181 /* Squaw.png */; };
+		CDEF45A1171D284900688181 /* SquawSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF455D171D284900688181 /* SquawSelected.png */; };
+		CDEF45A2171D284900688181 /* Utah.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF455E171D284900688181 /* Utah.png */; };
+		CDEF45A3171D284900688181 /* UtahSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF455F171D284900688181 /* UtahSelected.png */; };
+		CDEF45A4171D284900688181 /* Video.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4560171D284900688181 /* Video.png */; };
+		CDEF45A5171D284900688181 /* VideoSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4561171D284900688181 /* VideoSelected.png */; };
+		CDEF45A6171D284900688181 /* Weather.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4562171D284900688181 /* Weather.png */; };
+		CDEF45A7171D284900688181 /* WeatherSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4563171D284900688181 /* WeatherSelected.png */; };
+		CDEF45A8171D284900688181 /* Whistler.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4564171D284900688181 /* Whistler.png */; };
+		CDEF45A9171D284900688181 /* WhistlerSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4565171D284900688181 /* WhistlerSelected.png */; };
+		CDEF45AA171D284900688181 /* Alaska@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4566171D284900688181 /* Alaska@2x.png */; };
+		CDEF45AB171D284900688181 /* AlaskaSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4567171D284900688181 /* AlaskaSelected@2x.png */; };
+		CDEF45AC171D284900688181 /* Alps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4568171D284900688181 /* Alps@2x.png */; };
+		CDEF45AD171D284900688181 /* AlpsSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4569171D284900688181 /* AlpsSelected@2x.png */; };
+		CDEF45AE171D284900688181 /* Brains@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF456A171D284900688181 /* Brains@2x.png */; };
+		CDEF45AF171D284900688181 /* BrainsSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF456B171D284900688181 /* BrainsSelected@2x.png */; };
+		CDEF45B0171D284900688181 /* Gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF456C171D284900688181 /* Gear@2x.png */; };
+		CDEF45B1171D284900688181 /* GearSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF456D171D284900688181 /* GearSelected@2x.png */; };
+		CDEF45B2171D284900688181 /* Home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF456E171D284900688181 /* Home@2x.png */; };
+		CDEF45B3171D284900688181 /* HomeSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF456F171D284900688181 /* HomeSelected@2x.png */; };
+		CDEF45B4171D284900688181 /* Jackson@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4570171D284900688181 /* Jackson@2x.png */; };
+		CDEF45B5171D284900688181 /* JacksonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4571171D284900688181 /* JacksonSelected@2x.png */; };
+		CDEF45B6171D284900688181 /* Japan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4572171D284900688181 /* Japan@2x.png */; };
+		CDEF45B7171D284900688181 /* JapanSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4573171D284900688181 /* JapanSelected@2x.png */; };
+		CDEF45B8171D284900688181 /* Locations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4574171D284900688181 /* Locations@2x.png */; };
+		CDEF45B9171D284900688181 /* LocationsSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4575171D284900688181 /* LocationsSelected@2x.png */; };
+		CDEF45BA171D284900688181 /* Mammoth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4576171D284900688181 /* Mammoth@2x.png */; };
+		CDEF45BB171D284900688181 /* MammothSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4577171D284900688181 /* MammothSelected@2x.png */; };
+		CDEF45BC171D284900688181 /* More@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4578171D284900688181 /* More@2x.png */; };
+		CDEF45BD171D284900688181 /* MoreSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4579171D284900688181 /* MoreSelected@2x.png */; };
+		CDEF45BE171D284900688181 /* PNW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF457A171D284900688181 /* PNW@2x.png */; };
+		CDEF45BF171D284900688181 /* PNWSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF457B171D284900688181 /* PNWSelected@2x.png */; };
+		CDEF45C0171D284900688181 /* SouthAmerica@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF457C171D284900688181 /* SouthAmerica@2x.png */; };
+		CDEF45C1171D284900688181 /* SouthAmericaSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF457D171D284900688181 /* SouthAmericaSelected@2x.png */; };
+		CDEF45C2171D284900688181 /* Squaw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF457E171D284900688181 /* Squaw@2x.png */; };
+		CDEF45C3171D284900688181 /* SquawSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF457F171D284900688181 /* SquawSelected@2x.png */; };
+		CDEF45C4171D284900688181 /* Utah@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4580171D284900688181 /* Utah@2x.png */; };
+		CDEF45C5171D284900688181 /* UtahSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4581171D284900688181 /* UtahSelected@2x.png */; };
+		CDEF45C6171D284900688181 /* Video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4582171D284900688181 /* Video@2x.png */; };
+		CDEF45C7171D284900688181 /* VideoSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4583171D284900688181 /* VideoSelected@2x.png */; };
+		CDEF45C8171D284900688181 /* Weather@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4584171D284900688181 /* Weather@2x.png */; };
+		CDEF45C9171D284900688181 /* WeatherSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4585171D284900688181 /* WeatherSelected@2x.png */; };
+		CDEF45CA171D284900688181 /* Whistler@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4586171D284900688181 /* Whistler@2x.png */; };
+		CDEF45CB171D284900688181 /* WhistlerSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF4587171D284900688181 /* WhistlerSelected@2x.png */; };
+		CDEF45CE171D2E5A00688181 /* CustomPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */; };
+		CDEF45D1171D30F200688181 /* arrowPop.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45CF171D30F200688181 /* arrowPop.png */; };
+		CDEF45D2171D30F200688181 /* popover-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45D0171D30F200688181 /* popover-bg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +146,78 @@
 		CD4F3EC8171BC55B008A250D /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationViewController.h; path = snowBrains/LocationViewController.h; sourceTree = SOURCE_ROOT; };
 		CD4F3EC9171BC55C008A250D /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationViewController.m; path = snowBrains/LocationViewController.m; sourceTree = SOURCE_ROOT; };
 		CD4F3ECA171BC55C008A250D /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationViewController.xib; path = snowBrains/LocationViewController.xib; sourceTree = SOURCE_ROOT; };
+		CDEF4544171D284900688181 /* Alaska.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alaska.png; sourceTree = "<group>"; };
+		CDEF4545171D284900688181 /* AlaskaSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlaskaSelected.png; sourceTree = "<group>"; };
+		CDEF4546171D284900688181 /* Alps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alps.png; sourceTree = "<group>"; };
+		CDEF4547171D284900688181 /* AlpsSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlpsSelected.png; sourceTree = "<group>"; };
+		CDEF4548171D284900688181 /* Brains.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brains.png; sourceTree = "<group>"; };
+		CDEF4549171D284900688181 /* BrainsSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BrainsSelected.png; sourceTree = "<group>"; };
+		CDEF454A171D284900688181 /* Gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gear.png; sourceTree = "<group>"; };
+		CDEF454B171D284900688181 /* GearSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GearSelected.png; sourceTree = "<group>"; };
+		CDEF454C171D284900688181 /* Home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home.png; sourceTree = "<group>"; };
+		CDEF454D171D284900688181 /* HomeSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeSelected.png; sourceTree = "<group>"; };
+		CDEF454E171D284900688181 /* Jackson.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jackson.png; sourceTree = "<group>"; };
+		CDEF454F171D284900688181 /* JacksonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JacksonSelected.png; sourceTree = "<group>"; };
+		CDEF4550171D284900688181 /* Japan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Japan.png; sourceTree = "<group>"; };
+		CDEF4551171D284900688181 /* JapanSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JapanSelected.png; sourceTree = "<group>"; };
+		CDEF4552171D284900688181 /* Locations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Locations.png; sourceTree = "<group>"; };
+		CDEF4553171D284900688181 /* LocationsSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationsSelected.png; sourceTree = "<group>"; };
+		CDEF4554171D284900688181 /* Mammoth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mammoth.png; sourceTree = "<group>"; };
+		CDEF4555171D284900688181 /* MammothSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MammothSelected.png; sourceTree = "<group>"; };
+		CDEF4556171D284900688181 /* More.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = More.png; sourceTree = "<group>"; };
+		CDEF4557171D284900688181 /* MoreSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MoreSelected.png; sourceTree = "<group>"; };
+		CDEF4558171D284900688181 /* PNW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PNW.png; sourceTree = "<group>"; };
+		CDEF4559171D284900688181 /* PNWSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PNWSelected.png; sourceTree = "<group>"; };
+		CDEF455A171D284900688181 /* SouthAmerica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SouthAmerica.png; sourceTree = "<group>"; };
+		CDEF455B171D284900688181 /* SouthAmericaSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SouthAmericaSelected.png; sourceTree = "<group>"; };
+		CDEF455C171D284900688181 /* Squaw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Squaw.png; sourceTree = "<group>"; };
+		CDEF455D171D284900688181 /* SquawSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquawSelected.png; sourceTree = "<group>"; };
+		CDEF455E171D284900688181 /* Utah.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Utah.png; sourceTree = "<group>"; };
+		CDEF455F171D284900688181 /* UtahSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UtahSelected.png; sourceTree = "<group>"; };
+		CDEF4560171D284900688181 /* Video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Video.png; sourceTree = "<group>"; };
+		CDEF4561171D284900688181 /* VideoSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VideoSelected.png; sourceTree = "<group>"; };
+		CDEF4562171D284900688181 /* Weather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Weather.png; sourceTree = "<group>"; };
+		CDEF4563171D284900688181 /* WeatherSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WeatherSelected.png; sourceTree = "<group>"; };
+		CDEF4564171D284900688181 /* Whistler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Whistler.png; sourceTree = "<group>"; };
+		CDEF4565171D284900688181 /* WhistlerSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhistlerSelected.png; sourceTree = "<group>"; };
+		CDEF4566171D284900688181 /* Alaska@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Alaska@2x.png"; sourceTree = "<group>"; };
+		CDEF4567171D284900688181 /* AlaskaSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlaskaSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF4568171D284900688181 /* Alps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Alps@2x.png"; sourceTree = "<group>"; };
+		CDEF4569171D284900688181 /* AlpsSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlpsSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF456A171D284900688181 /* Brains@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brains@2x.png"; sourceTree = "<group>"; };
+		CDEF456B171D284900688181 /* BrainsSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BrainsSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF456C171D284900688181 /* Gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gear@2x.png"; sourceTree = "<group>"; };
+		CDEF456D171D284900688181 /* GearSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GearSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF456E171D284900688181 /* Home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home@2x.png"; sourceTree = "<group>"; };
+		CDEF456F171D284900688181 /* HomeSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomeSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF4570171D284900688181 /* Jackson@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jackson@2x.png"; sourceTree = "<group>"; };
+		CDEF4571171D284900688181 /* JacksonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JacksonSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF4572171D284900688181 /* Japan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Japan@2x.png"; sourceTree = "<group>"; };
+		CDEF4573171D284900688181 /* JapanSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JapanSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF4574171D284900688181 /* Locations@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Locations@2x.png"; sourceTree = "<group>"; };
+		CDEF4575171D284900688181 /* LocationsSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LocationsSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF4576171D284900688181 /* Mammoth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mammoth@2x.png"; sourceTree = "<group>"; };
+		CDEF4577171D284900688181 /* MammothSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MammothSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF4578171D284900688181 /* More@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "More@2x.png"; sourceTree = "<group>"; };
+		CDEF4579171D284900688181 /* MoreSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MoreSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF457A171D284900688181 /* PNW@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PNW@2x.png"; sourceTree = "<group>"; };
+		CDEF457B171D284900688181 /* PNWSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PNWSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF457C171D284900688181 /* SouthAmerica@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SouthAmerica@2x.png"; sourceTree = "<group>"; };
+		CDEF457D171D284900688181 /* SouthAmericaSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SouthAmericaSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF457E171D284900688181 /* Squaw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Squaw@2x.png"; sourceTree = "<group>"; };
+		CDEF457F171D284900688181 /* SquawSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SquawSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF4580171D284900688181 /* Utah@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Utah@2x.png"; sourceTree = "<group>"; };
+		CDEF4581171D284900688181 /* UtahSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UtahSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF4582171D284900688181 /* Video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Video@2x.png"; sourceTree = "<group>"; };
+		CDEF4583171D284900688181 /* VideoSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VideoSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF4584171D284900688181 /* Weather@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weather@2x.png"; sourceTree = "<group>"; };
+		CDEF4585171D284900688181 /* WeatherSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeatherSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF4586171D284900688181 /* Whistler@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Whistler@2x.png"; sourceTree = "<group>"; };
+		CDEF4587171D284900688181 /* WhistlerSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhistlerSelected@2x.png"; sourceTree = "<group>"; };
+		CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPopoverBackgroundView.h; path = snowBrains/CustomPopoverBackgroundView.h; sourceTree = SOURCE_ROOT; };
+		CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPopoverBackgroundView.m; path = snowBrains/CustomPopoverBackgroundView.m; sourceTree = SOURCE_ROOT; };
+		CDEF45CF171D30F200688181 /* arrowPop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowPop.png; path = "snowBrains/supporting files/arrowPop.png"; sourceTree = SOURCE_ROOT; };
+		CDEF45D0171D30F200688181 /* popover-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "popover-bg.png"; path = "snowBrains/supporting files/popover-bg.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +277,8 @@
 				CD4F3E921717B971008A250D /* PullToRefreshView.m */,
 				CD4F3E931717B971008A250D /* ViewController.h */,
 				CD4F3E941717B971008A250D /* ViewController.m */,
+				CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */,
+				CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */,
 				CD4F3EC8171BC55B008A250D /* LocationViewController.h */,
 				CD4F3EC9171BC55C008A250D /* LocationViewController.m */,
 				CD4F3ECA171BC55C008A250D /* LocationViewController.xib */,
@@ -146,6 +291,9 @@
 		CD4F3E1D17153337008A250D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CDEF45CF171D30F200688181 /* arrowPop.png */,
+				CDEF45D0171D30F200688181 /* popover-bg.png */,
+				CDEF4542171D284900688181 /* menuImages */,
 				CD4F3E9A1717B9C0008A250D /* InfoPlist.strings */,
 				CD4F3E9C1717B9C1008A250D /* snowBrains-Info.plist */,
 				CD4F3E9D1717B9C1008A250D /* snowBrains-Prefix.pch */,
@@ -165,6 +313,90 @@
 				CD4F3EAB1717B9C1008A250D /* SnowBrainsSplash_640x1136.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CDEF4542171D284900688181 /* menuImages */ = {
+			isa = PBXGroup;
+			children = (
+				CDEF4543171D284900688181 /* 53x20 */,
+				CDEF4566171D284900688181 /* Alaska@2x.png */,
+				CDEF4567171D284900688181 /* AlaskaSelected@2x.png */,
+				CDEF4568171D284900688181 /* Alps@2x.png */,
+				CDEF4569171D284900688181 /* AlpsSelected@2x.png */,
+				CDEF456A171D284900688181 /* Brains@2x.png */,
+				CDEF456B171D284900688181 /* BrainsSelected@2x.png */,
+				CDEF456C171D284900688181 /* Gear@2x.png */,
+				CDEF456D171D284900688181 /* GearSelected@2x.png */,
+				CDEF456E171D284900688181 /* Home@2x.png */,
+				CDEF456F171D284900688181 /* HomeSelected@2x.png */,
+				CDEF4570171D284900688181 /* Jackson@2x.png */,
+				CDEF4571171D284900688181 /* JacksonSelected@2x.png */,
+				CDEF4572171D284900688181 /* Japan@2x.png */,
+				CDEF4573171D284900688181 /* JapanSelected@2x.png */,
+				CDEF4574171D284900688181 /* Locations@2x.png */,
+				CDEF4575171D284900688181 /* LocationsSelected@2x.png */,
+				CDEF4576171D284900688181 /* Mammoth@2x.png */,
+				CDEF4577171D284900688181 /* MammothSelected@2x.png */,
+				CDEF4578171D284900688181 /* More@2x.png */,
+				CDEF4579171D284900688181 /* MoreSelected@2x.png */,
+				CDEF457A171D284900688181 /* PNW@2x.png */,
+				CDEF457B171D284900688181 /* PNWSelected@2x.png */,
+				CDEF457C171D284900688181 /* SouthAmerica@2x.png */,
+				CDEF457D171D284900688181 /* SouthAmericaSelected@2x.png */,
+				CDEF457E171D284900688181 /* Squaw@2x.png */,
+				CDEF457F171D284900688181 /* SquawSelected@2x.png */,
+				CDEF4580171D284900688181 /* Utah@2x.png */,
+				CDEF4581171D284900688181 /* UtahSelected@2x.png */,
+				CDEF4582171D284900688181 /* Video@2x.png */,
+				CDEF4583171D284900688181 /* VideoSelected@2x.png */,
+				CDEF4584171D284900688181 /* Weather@2x.png */,
+				CDEF4585171D284900688181 /* WeatherSelected@2x.png */,
+				CDEF4586171D284900688181 /* Whistler@2x.png */,
+				CDEF4587171D284900688181 /* WhistlerSelected@2x.png */,
+			);
+			name = menuImages;
+			path = "snowBrains/supporting files/menuImages";
+			sourceTree = SOURCE_ROOT;
+		};
+		CDEF4543171D284900688181 /* 53x20 */ = {
+			isa = PBXGroup;
+			children = (
+				CDEF4544171D284900688181 /* Alaska.png */,
+				CDEF4545171D284900688181 /* AlaskaSelected.png */,
+				CDEF4546171D284900688181 /* Alps.png */,
+				CDEF4547171D284900688181 /* AlpsSelected.png */,
+				CDEF4548171D284900688181 /* Brains.png */,
+				CDEF4549171D284900688181 /* BrainsSelected.png */,
+				CDEF454A171D284900688181 /* Gear.png */,
+				CDEF454B171D284900688181 /* GearSelected.png */,
+				CDEF454C171D284900688181 /* Home.png */,
+				CDEF454D171D284900688181 /* HomeSelected.png */,
+				CDEF454E171D284900688181 /* Jackson.png */,
+				CDEF454F171D284900688181 /* JacksonSelected.png */,
+				CDEF4550171D284900688181 /* Japan.png */,
+				CDEF4551171D284900688181 /* JapanSelected.png */,
+				CDEF4552171D284900688181 /* Locations.png */,
+				CDEF4553171D284900688181 /* LocationsSelected.png */,
+				CDEF4554171D284900688181 /* Mammoth.png */,
+				CDEF4555171D284900688181 /* MammothSelected.png */,
+				CDEF4556171D284900688181 /* More.png */,
+				CDEF4557171D284900688181 /* MoreSelected.png */,
+				CDEF4558171D284900688181 /* PNW.png */,
+				CDEF4559171D284900688181 /* PNWSelected.png */,
+				CDEF455A171D284900688181 /* SouthAmerica.png */,
+				CDEF455B171D284900688181 /* SouthAmericaSelected.png */,
+				CDEF455C171D284900688181 /* Squaw.png */,
+				CDEF455D171D284900688181 /* SquawSelected.png */,
+				CDEF455E171D284900688181 /* Utah.png */,
+				CDEF455F171D284900688181 /* UtahSelected.png */,
+				CDEF4560171D284900688181 /* Video.png */,
+				CDEF4561171D284900688181 /* VideoSelected.png */,
+				CDEF4562171D284900688181 /* Weather.png */,
+				CDEF4563171D284900688181 /* WeatherSelected.png */,
+				CDEF4564171D284900688181 /* Whistler.png */,
+				CDEF4565171D284900688181 /* WhistlerSelected.png */,
+			);
+			path = 53x20;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +470,76 @@
 				CD4F3EBF1717B9F6008A250D /* Default@2x.png in Resources */,
 				CD4F3EC11717B9FD008A250D /* Default-568h@2x.png in Resources */,
 				CD4F3ECC171BC55C008A250D /* LocationViewController.xib in Resources */,
+				CDEF4588171D284900688181 /* Alaska.png in Resources */,
+				CDEF4589171D284900688181 /* AlaskaSelected.png in Resources */,
+				CDEF458A171D284900688181 /* Alps.png in Resources */,
+				CDEF458B171D284900688181 /* AlpsSelected.png in Resources */,
+				CDEF458C171D284900688181 /* Brains.png in Resources */,
+				CDEF458D171D284900688181 /* BrainsSelected.png in Resources */,
+				CDEF458E171D284900688181 /* Gear.png in Resources */,
+				CDEF458F171D284900688181 /* GearSelected.png in Resources */,
+				CDEF4590171D284900688181 /* Home.png in Resources */,
+				CDEF4591171D284900688181 /* HomeSelected.png in Resources */,
+				CDEF4592171D284900688181 /* Jackson.png in Resources */,
+				CDEF4593171D284900688181 /* JacksonSelected.png in Resources */,
+				CDEF4594171D284900688181 /* Japan.png in Resources */,
+				CDEF4595171D284900688181 /* JapanSelected.png in Resources */,
+				CDEF4596171D284900688181 /* Locations.png in Resources */,
+				CDEF4597171D284900688181 /* LocationsSelected.png in Resources */,
+				CDEF4598171D284900688181 /* Mammoth.png in Resources */,
+				CDEF4599171D284900688181 /* MammothSelected.png in Resources */,
+				CDEF459A171D284900688181 /* More.png in Resources */,
+				CDEF459B171D284900688181 /* MoreSelected.png in Resources */,
+				CDEF459C171D284900688181 /* PNW.png in Resources */,
+				CDEF459D171D284900688181 /* PNWSelected.png in Resources */,
+				CDEF459E171D284900688181 /* SouthAmerica.png in Resources */,
+				CDEF459F171D284900688181 /* SouthAmericaSelected.png in Resources */,
+				CDEF45A0171D284900688181 /* Squaw.png in Resources */,
+				CDEF45A1171D284900688181 /* SquawSelected.png in Resources */,
+				CDEF45A2171D284900688181 /* Utah.png in Resources */,
+				CDEF45A3171D284900688181 /* UtahSelected.png in Resources */,
+				CDEF45A4171D284900688181 /* Video.png in Resources */,
+				CDEF45A5171D284900688181 /* VideoSelected.png in Resources */,
+				CDEF45A6171D284900688181 /* Weather.png in Resources */,
+				CDEF45A7171D284900688181 /* WeatherSelected.png in Resources */,
+				CDEF45A8171D284900688181 /* Whistler.png in Resources */,
+				CDEF45A9171D284900688181 /* WhistlerSelected.png in Resources */,
+				CDEF45AA171D284900688181 /* Alaska@2x.png in Resources */,
+				CDEF45AB171D284900688181 /* AlaskaSelected@2x.png in Resources */,
+				CDEF45AC171D284900688181 /* Alps@2x.png in Resources */,
+				CDEF45AD171D284900688181 /* AlpsSelected@2x.png in Resources */,
+				CDEF45AE171D284900688181 /* Brains@2x.png in Resources */,
+				CDEF45AF171D284900688181 /* BrainsSelected@2x.png in Resources */,
+				CDEF45B0171D284900688181 /* Gear@2x.png in Resources */,
+				CDEF45B1171D284900688181 /* GearSelected@2x.png in Resources */,
+				CDEF45B2171D284900688181 /* Home@2x.png in Resources */,
+				CDEF45B3171D284900688181 /* HomeSelected@2x.png in Resources */,
+				CDEF45B4171D284900688181 /* Jackson@2x.png in Resources */,
+				CDEF45B5171D284900688181 /* JacksonSelected@2x.png in Resources */,
+				CDEF45B6171D284900688181 /* Japan@2x.png in Resources */,
+				CDEF45B7171D284900688181 /* JapanSelected@2x.png in Resources */,
+				CDEF45B8171D284900688181 /* Locations@2x.png in Resources */,
+				CDEF45B9171D284900688181 /* LocationsSelected@2x.png in Resources */,
+				CDEF45BA171D284900688181 /* Mammoth@2x.png in Resources */,
+				CDEF45BB171D284900688181 /* MammothSelected@2x.png in Resources */,
+				CDEF45BC171D284900688181 /* More@2x.png in Resources */,
+				CDEF45BD171D284900688181 /* MoreSelected@2x.png in Resources */,
+				CDEF45BE171D284900688181 /* PNW@2x.png in Resources */,
+				CDEF45BF171D284900688181 /* PNWSelected@2x.png in Resources */,
+				CDEF45C0171D284900688181 /* SouthAmerica@2x.png in Resources */,
+				CDEF45C1171D284900688181 /* SouthAmericaSelected@2x.png in Resources */,
+				CDEF45C2171D284900688181 /* Squaw@2x.png in Resources */,
+				CDEF45C3171D284900688181 /* SquawSelected@2x.png in Resources */,
+				CDEF45C4171D284900688181 /* Utah@2x.png in Resources */,
+				CDEF45C5171D284900688181 /* UtahSelected@2x.png in Resources */,
+				CDEF45C6171D284900688181 /* Video@2x.png in Resources */,
+				CDEF45C7171D284900688181 /* VideoSelected@2x.png in Resources */,
+				CDEF45C8171D284900688181 /* Weather@2x.png in Resources */,
+				CDEF45C9171D284900688181 /* WeatherSelected@2x.png in Resources */,
+				CDEF45CA171D284900688181 /* Whistler@2x.png in Resources */,
+				CDEF45CB171D284900688181 /* WhistlerSelected@2x.png in Resources */,
+				CDEF45D1171D30F200688181 /* arrowPop.png in Resources */,
+				CDEF45D2171D30F200688181 /* popover-bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +555,7 @@
 				CD4F3E981717B971008A250D /* PullToRefreshView.m in Sources */,
 				CD4F3E991717B971008A250D /* ViewController.m in Sources */,
 				CD4F3ECB171BC55C008A250D /* LocationViewController.m in Sources */,
+				CDEF45CE171D2E5A00688181 /* CustomPopoverBackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
