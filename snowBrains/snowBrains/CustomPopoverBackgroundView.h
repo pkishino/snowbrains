@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIPopoverBackgroundView.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface CustomPopoverBackgroundView : UIPopoverBackgroundView{
-    UIImageView *_borderImageView;
-    UIImageView *_arrowView;
     CGFloat _arrowOffset;
     UIPopoverArrowDirection _arrowDirection;
 }
+@property (nonatomic, strong) UIImageView *borderImageView;
+@property (nonatomic, strong) UIImageView *arrowView;
+
 
 @end

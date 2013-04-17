@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "MoreViewController.h"
+#import "CustomPopoverBackgroundView.h"
 
-@interface LocationViewController : UIViewController
+@interface LocationViewController : UIViewController<UIPopoverControllerDelegate>
 
+@property (strong, nonatomic) UIPopoverController *pop;
+
+- (IBAction)moreTap:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *moreButton;
 @end

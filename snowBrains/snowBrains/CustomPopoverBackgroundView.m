@@ -10,7 +10,7 @@
 #define CONTENT_INSET 0.0
 #define CAP_INSET 0.0
 #define ARROW_BASE 0.0
-#define ARROW_HEIGHT 0.0
+#define ARROW_HEIGHT 0.01
 
 @implementation CustomPopoverBackgroundView
 
@@ -18,16 +18,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _borderImageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"popover-bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(CAP_INSET,CAP_INSET,CAP_INSET,CAP_INSET)]];
+        self.borderImageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"popover-bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(CAP_INSET,CAP_INSET,CAP_INSET,CAP_INSET)]];
+        self.arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrowPop.png"]];
+        [self addSubview:self.borderImageView];
         
-        _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrowPop.png"]];
-        
-        [self addSubview:_borderImageView];
-        [self addSubview:_arrowView];
+        //[self addSubview:self.arrowView];
     }
     return self;
 }
-
 - (CGFloat) arrowOffset {
     return _arrowOffset;
 }
@@ -72,14 +70,14 @@
             _top += ARROW_HEIGHT;
             _height -= ARROW_HEIGHT;
             _coordinate = ((self.frame.size.width / 2) + self.arrowOffset) - (ARROW_BASE/2);
-            _arrowView.frame = CGRectMake(_coordinate, 0, ARROW_BASE, ARROW_HEIGHT);
+            self.arrowView.frame = CGRectMake(_coordinate, 0, ARROW_BASE, ARROW_HEIGHT);
             break;
             
             
         case UIPopoverArrowDirectionDown:
             _height -= ARROW_HEIGHT;
             _coordinate = ((self.frame.size.width / 2) + self.arrowOffset) - (ARROW_BASE/2);
-            _arrowView.frame = CGRectMake(_coordinate, _height, ARROW_BASE, ARROW_HEIGHT);
+            self.arrowView.frame = CGRectMake(_coordinate, _height, ARROW_BASE, ARROW_HEIGHT);
             _rotation = CGAffineTransformMakeRotation( M_PI );
             break;
             
@@ -87,24 +85,40 @@
             _left += ARROW_BASE;
             _width -= ARROW_BASE;
             _coordinate = ((self.frame.size.height / 2) + self.arrowOffset) - (ARROW_HEIGHT/2);
-            _arrowView.frame = CGRectMake(0, _coordinate, ARROW_BASE, ARROW_HEIGHT);
+            self.arrowView.frame = CGRectMake(0, _coordinate, ARROW_BASE, ARROW_HEIGHT);
             _rotation = CGAffineTransformMakeRotation( -M_PI_2 );
             break;
             
         case UIPopoverArrowDirectionRight:
             _width -= ARROW_BASE;
             _coordinate = ((self.frame.size.height / 2) + self.arrowOffset)- (ARROW_HEIGHT/2);
-            _arrowView.frame = CGRectMake(_width, _coordinate, ARROW_BASE, ARROW_HEIGHT);
+            self.arrowView.frame = CGRectMake(_width, _coordinate, ARROW_BASE, ARROW_HEIGHT);
             _rotation = CGAffineTransformMakeRotation( M_PI_2 );
-            
+        case UIPopoverArrowDirectionAny:
+            _top += ARROW_HEIGHT;
+            _height -= ARROW_HEIGHT;
+            _coordinate = ((self.frame.size.width / 2) + self.arrowOffset) - (ARROW_BASE/2);
+            self.arrowView.frame = CGRectMake(_coordinate, 0, ARROW_BASE, ARROW_HEIGHT);
+            break;
+        case UIPopoverArrowDirectionUnknown:
+            _top += ARROW_HEIGHT;
+            _height -= ARROW_HEIGHT;
+            _coordinate = ((self.frame.size.width / 2) + self.arrowOffset) - (ARROW_BASE/2);
+            self.arrowView.frame = CGRectMake(_coordinate, 0, ARROW_BASE, ARROW_HEIGHT);
+            break;
+        default:
+            _top += ARROW_HEIGHT;
+            _height -= ARROW_HEIGHT;
+            _coordinate = ((self.frame.size.width / 2) + self.arrowOffset) - (ARROW_BASE/2);
+            self.arrowView.frame = CGRectMake(_coordinate, 0, ARROW_BASE, ARROW_HEIGHT);
             break;
             
     }
     
-    _borderImageView.frame =  CGRectMake(_left, _top, _width, _height);
+    self.borderImageView.frame =  CGRectMake(_left, 0, _width, _height);
     
     
-    [_arrowView setTransform:_rotation];
+    [self.arrowView setTransform:_rotation];
     
 }
 

@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PullToRefreshView.h"
 #import "LocationViewController.h"
+#import "VideoViewController.h"
 #import "CustomPopoverBackgroundView.h"
+
 @interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIPopoverControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 @property (strong, nonatomic) UIPopoverController *pop;

@@ -57,11 +57,11 @@
 						</object>
 						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">SquawSelected.png</string>
+							<string key="NSResourceName">UtahSelected.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Squaw.png</string>
+							<string key="NSResourceName">Utah.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
@@ -93,11 +93,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="701536768"/>
 						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">JacksonSelected.png</string>
+							<string key="NSResourceName">MammothSelected.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Jackson.png</string>
+							<string key="NSResourceName">Mammoth.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="843046408">
 							<int key="type">2</int>
@@ -129,11 +129,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="701536768"/>
 						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">WhistlerSelected.png</string>
+							<string key="NSResourceName">PNWSelected.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Whistler.png</string>
+							<string key="NSResourceName">PNW.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="843046408"/>
 						<reference key="IBUIFont" ref="315531862"/>
@@ -158,11 +158,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="701536768"/>
 						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">AlaskaSelected.png</string>
+							<string key="NSResourceName">SouthAmericaSelected.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Alaska.png</string>
+							<string key="NSResourceName">SouthAmerica.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="843046408"/>
 						<reference key="IBUIFont" ref="315531862"/>
@@ -173,6 +173,7 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{0, 80}, {53, 20}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView" ref="1013667741"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -186,17 +187,46 @@
 						<reference key="IBUINormalTitleShadowColor" ref="701536768"/>
 						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">MoreSelected.png</string>
+							<string key="NSResourceName">JapanSelected.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">More.png</string>
+							<string key="NSResourceName">Japan.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="843046408"/>
+						<reference key="IBUIFont" ref="315531862"/>
+					</object>
+					<object class="IBUIButton" id="1013667741">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">1316</int>
+						<object class="NSPSMatrix" key="NSFrameMatrix"/>
+						<string key="NSFrame">{{0, 100}, {53, 20}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
+						<reference key="IBUIHighlightedTitleColor" ref="875788631"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="701536768"/>
+						<object class="NSCustomResource" key="IBUISelectedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">AlpsSelected.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">Alps.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="843046408"/>
 						<reference key="IBUIFont" ref="315531862"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{53, 100}</string>
+				<string key="NSFrameSize">{53, 120}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
@@ -222,23 +252,6 @@
 					</object>
 					<int key="connectionID">3</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moreButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="423948847"/>
-					</object>
-					<int key="connectionID">14</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">moreTap:</string>
-						<reference key="source" ref="423948847"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">12</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -257,6 +270,7 @@
 							<reference ref="91338953"/>
 							<reference ref="1043275133"/>
 							<reference ref="423948847"/>
+							<reference ref="1013667741"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -296,6 +310,11 @@
 						<reference key="object" ref="423948847"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">11</int>
+						<reference key="object" ref="1013667741"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -304,20 +323,24 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="11.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<reference key="11.IBUserGuides" ref="0"/>
+				<boolean value="NO" key="11.showNotes"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<reference key="5.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="5.showNotes"/>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<reference key="6.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="6.showNotes"/>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<reference key="7.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="7.showNotes"/>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<reference key="8.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="8.showNotes"/>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -329,7 +352,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">14</int>
+			<int key="maxID">11</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -337,16 +360,18 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="Alaska.png">{53, 20}</string>
-			<string key="AlaskaSelected.png">{53, 20}</string>
-			<string key="Jackson.png">{53, 20}</string>
-			<string key="JacksonSelected.png">{53, 20}</string>
-			<string key="More.png">{53, 20}</string>
-			<string key="MoreSelected.png">{53, 20}</string>
-			<string key="Squaw.png">{53, 20}</string>
-			<string key="SquawSelected.png">{53, 20}</string>
-			<string key="Whistler.png">{53, 20}</string>
-			<string key="WhistlerSelected.png">{53, 20}</string>
+			<string key="Alps.png">{53, 20}</string>
+			<string key="AlpsSelected.png">{53, 20}</string>
+			<string key="Japan.png">{53, 20}</string>
+			<string key="JapanSelected.png">{53, 20}</string>
+			<string key="Mammoth.png">{53, 20}</string>
+			<string key="MammothSelected.png">{53, 20}</string>
+			<string key="PNW.png">{53, 20}</string>
+			<string key="PNWSelected.png">{53, 20}</string>
+			<string key="SouthAmerica.png">{53, 20}</string>
+			<string key="SouthAmericaSelected.png">{53, 20}</string>
+			<string key="Utah.png">{53, 20}</string>
+			<string key="UtahSelected.png">{53, 20}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

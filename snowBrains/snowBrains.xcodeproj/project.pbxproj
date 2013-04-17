@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD3C3069171D80540033AB22 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3C3067171D80540033AB22 /* VideoViewController.m */; };
+		CD3C306A171D80540033AB22 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3C3068171D80540033AB22 /* VideoViewController.xib */; };
+		CD3C306C171D89F10033AB22 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3C306B171D89F10033AB22 /* MoreViewController.xib */; };
+		CD3C306E171D8A060033AB22 /* MoreViewController.m in Resources */ = {isa = PBXBuildFile; fileRef = CD3C306D171D8A060033AB22 /* MoreViewController.m */; };
+		CD3C3070171E43940033AB22 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3C306D171D8A060033AB22 /* MoreViewController.m */; };
 		CD4F3E1717153337008A250D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4F3E1617153337008A250D /* UIKit.framework */; };
 		CD4F3E1917153337008A250D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4F3E1817153337008A250D /* Foundation.framework */; };
 		CD4F3E1B17153337008A250D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4F3E1A17153337008A250D /* CoreGraphics.framework */; };
@@ -110,6 +115,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD3C3066171D80540033AB22 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoViewController.h; path = snowBrains/VideoViewController.h; sourceTree = SOURCE_ROOT; };
+		CD3C3067171D80540033AB22 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoViewController.m; path = snowBrains/VideoViewController.m; sourceTree = SOURCE_ROOT; };
+		CD3C3068171D80540033AB22 /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VideoViewController.xib; path = snowBrains/VideoViewController.xib; sourceTree = SOURCE_ROOT; };
+		CD3C306B171D89F10033AB22 /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MoreViewController.xib; path = snowBrains/MoreViewController.xib; sourceTree = SOURCE_ROOT; };
+		CD3C306D171D8A060033AB22 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreViewController.m; path = snowBrains/MoreViewController.m; sourceTree = SOURCE_ROOT; };
+		CD3C306F171E2C040033AB22 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreViewController.h; path = snowBrains/MoreViewController.h; sourceTree = SOURCE_ROOT; };
 		CD4F3E1317153337008A250D /* snowBrains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snowBrains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4F3E1617153337008A250D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD4F3E1817153337008A250D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -282,6 +293,12 @@
 				CD4F3EC8171BC55B008A250D /* LocationViewController.h */,
 				CD4F3EC9171BC55C008A250D /* LocationViewController.m */,
 				CD4F3ECA171BC55C008A250D /* LocationViewController.xib */,
+				CD3C306F171E2C040033AB22 /* MoreViewController.h */,
+				CD3C306D171D8A060033AB22 /* MoreViewController.m */,
+				CD3C306B171D89F10033AB22 /* MoreViewController.xib */,
+				CD3C3066171D80540033AB22 /* VideoViewController.h */,
+				CD3C3067171D80540033AB22 /* VideoViewController.m */,
+				CD3C3068171D80540033AB22 /* VideoViewController.xib */,
 				CD4F3E1D17153337008A250D /* Supporting Files */,
 			);
 			name = snowBrains;
@@ -540,6 +557,9 @@
 				CDEF45CB171D284900688181 /* WhistlerSelected@2x.png in Resources */,
 				CDEF45D1171D30F200688181 /* arrowPop.png in Resources */,
 				CDEF45D2171D30F200688181 /* popover-bg.png in Resources */,
+				CD3C306A171D80540033AB22 /* VideoViewController.xib in Resources */,
+				CD3C306C171D89F10033AB22 /* MoreViewController.xib in Resources */,
+				CD3C306E171D8A060033AB22 /* MoreViewController.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,12 +570,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD3C3070171E43940033AB22 /* MoreViewController.m in Sources */,
 				CD4F3E951717B971008A250D /* AppDelegate.m in Sources */,
 				CD4F3E971717B971008A250D /* main.m in Sources */,
 				CD4F3E981717B971008A250D /* PullToRefreshView.m in Sources */,
 				CD4F3E991717B971008A250D /* ViewController.m in Sources */,
 				CD4F3ECB171BC55C008A250D /* LocationViewController.m in Sources */,
 				CDEF45CE171D2E5A00688181 /* CustomPopoverBackgroundView.m in Sources */,
+				CD3C3069171D80540033AB22 /* VideoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,7 +628,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -631,7 +653,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
