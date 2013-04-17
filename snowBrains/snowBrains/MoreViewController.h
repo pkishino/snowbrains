@@ -11,4 +11,12 @@
 
 @interface MoreViewController : UIViewController
 
+@property (nonatomic, assign) id delegate;
+
+@end
+@protocol MoreViewControllerDelegate <NSObject>
+
+@required
+-(void)loadpage:(NSURL *)url;
+
 @end

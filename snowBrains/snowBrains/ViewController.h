@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "PullToRefreshView.h"
 #import "LocationViewController.h"
+#import "MoreViewController.h"
 #import "VideoViewController.h"
 #import "CustomPopoverBackgroundView.h"
 
-@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIPopoverControllerDelegate>
+@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIPopoverControllerDelegate,MoreViewControllerDelegate,VideoViewControllerDelegate,LocationViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 @property (strong, nonatomic) UIPopoverController *pop;
+@property (strong, nonatomic) IBOutlet UIImageView *loadBackground;
+@property (strong, nonatomic) IBOutlet UIImageView *loadFigure;
+@property (strong, nonatomic) IBOutlet UIImageView *flakeAnimation;
 
 - (IBAction)homeTap:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *homeButton;
@@ -33,8 +37,6 @@
 
 - (IBAction)brainsTap:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *brainsButton;
-
-
-
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @end

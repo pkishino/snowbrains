@@ -12,6 +12,8 @@
 		CD3C306C171D89F10033AB22 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3C306B171D89F10033AB22 /* MoreViewController.xib */; };
 		CD3C306E171D8A060033AB22 /* MoreViewController.m in Resources */ = {isa = PBXBuildFile; fileRef = CD3C306D171D8A060033AB22 /* MoreViewController.m */; };
 		CD3C3070171E43940033AB22 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3C306D171D8A060033AB22 /* MoreViewController.m */; };
+		CD3C3073171ED2550033AB22 /* flake.png in Resources */ = {isa = PBXBuildFile; fileRef = CD3C3071171ED2550033AB22 /* flake.png */; };
+		CD3C3074171ED2550033AB22 /* headless.png in Resources */ = {isa = PBXBuildFile; fileRef = CD3C3072171ED2550033AB22 /* headless.png */; };
 		CD4F3E1717153337008A250D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4F3E1617153337008A250D /* UIKit.framework */; };
 		CD4F3E1917153337008A250D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4F3E1817153337008A250D /* Foundation.framework */; };
 		CD4F3E1B17153337008A250D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4F3E1A17153337008A250D /* CoreGraphics.framework */; };
@@ -121,6 +123,8 @@
 		CD3C306B171D89F10033AB22 /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MoreViewController.xib; path = snowBrains/MoreViewController.xib; sourceTree = SOURCE_ROOT; };
 		CD3C306D171D8A060033AB22 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreViewController.m; path = snowBrains/MoreViewController.m; sourceTree = SOURCE_ROOT; };
 		CD3C306F171E2C040033AB22 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreViewController.h; path = snowBrains/MoreViewController.h; sourceTree = SOURCE_ROOT; };
+		CD3C3071171ED2550033AB22 /* flake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flake.png; path = "snowBrains/supporting files/flake.png"; sourceTree = SOURCE_ROOT; };
+		CD3C3072171ED2550033AB22 /* headless.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headless.png; path = "snowBrains/supporting files/headless.png"; sourceTree = SOURCE_ROOT; };
 		CD4F3E1317153337008A250D /* snowBrains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snowBrains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4F3E1617153337008A250D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD4F3E1817153337008A250D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -308,6 +312,8 @@
 		CD4F3E1D17153337008A250D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CD3C3071171ED2550033AB22 /* flake.png */,
+				CD3C3072171ED2550033AB22 /* headless.png */,
 				CDEF45CF171D30F200688181 /* arrowPop.png */,
 				CDEF45D0171D30F200688181 /* popover-bg.png */,
 				CDEF4542171D284900688181 /* menuImages */,
@@ -560,6 +566,8 @@
 				CD3C306A171D80540033AB22 /* VideoViewController.xib in Resources */,
 				CD3C306C171D89F10033AB22 /* MoreViewController.xib in Resources */,
 				CD3C306E171D8A060033AB22 /* MoreViewController.m in Resources */,
+				CD3C3073171ED2550033AB22 /* flake.png in Resources */,
+				CD3C3074171ED2550033AB22 /* headless.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

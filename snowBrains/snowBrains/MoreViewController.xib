@@ -173,7 +173,7 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{0, 80}, {53, 20}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="1013667741"/>
+						<reference key="NSNextKeyView" ref="1037318541"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -196,7 +196,7 @@
 						<reference key="IBUIFontDescription" ref="843046408"/>
 						<reference key="IBUIFont" ref="315531862"/>
 					</object>
-					<object class="IBUIButton" id="1013667741">
+					<object class="IBUIButton" id="1037318541">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">1316</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
@@ -228,7 +228,7 @@
 				</array>
 				<string key="NSFrameSize">{53, 120}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="927662041"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MCAwAA</bytes>
@@ -270,7 +270,7 @@
 							<reference ref="91338953"/>
 							<reference ref="1043275133"/>
 							<reference ref="423948847"/>
-							<reference ref="1013667741"/>
+							<reference ref="1037318541"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -312,13 +312,13 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
-						<reference key="object" ref="1013667741"/>
+						<reference key="object" ref="1037318541"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.CustomClassName">LocationViewController</string>
+				<string key="-1.CustomClassName">MoreViewController</string>
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

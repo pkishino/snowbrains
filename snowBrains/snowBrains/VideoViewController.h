@@ -10,4 +10,12 @@
 #import <QuartzCore/QuartzCore.h>
 @interface VideoViewController : UIViewController
 
+@property (nonatomic, assign) id delegate;
+
+@end
+@protocol VideoViewControllerDelegate <NSObject>
+
+@required
+-(void)loadpage:(NSURL *)url;
+
 @end
