@@ -36,39 +36,39 @@
 }
 -(IBAction)utahTap:(id)sender{
     [self deselect];
-    if(!self.utahButton.isSelected)
-        [self.utahButton setSelected:YES];
+//    if(!self.utahButton.isSelected)
+//        [self.utahButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/utah/?app=1"]];
     
 }
 -(IBAction)mammothTap:(id)sender{
     [self deselect];
-    if(!self.mammothButton.isSelected)
-        [self.mammothButton setSelected:YES];
+//    if(!self.mammothButton.isSelected)
+//        [self.mammothButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/mammoth/?app=1"]];
 }
 -(IBAction)pnwTap:(id)sender{
     [self deselect];
-    if(!self.pnwButton.isSelected)
-        [self.pnwButton setSelected:YES];
+//    if(!self.pnwButton.isSelected)
+//        [self.pnwButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/pacificnorthwest/?app=1"]];
 }
 -(IBAction)samericaTap:(id)sender{
     [self deselect];
-    if(!self.samericaButton.isSelected)
-        [self.samericaButton setSelected:YES];
+//    if(!self.samericaButton.isSelected)
+//        [self.samericaButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/southamerica/?app=1"]];
 }
 -(IBAction)japanTap:(id)sender{
     [self deselect];
-    if(!self.japanButton.isSelected)
-        [self.japanButton setSelected:YES];
+//    if(!self.japanButton.isSelected)
+//        [self.japanButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/japan/?app=1"]];
 }
 -(IBAction)alpsTap:(id)sender{
     [self deselect];
-    if(!self.alpsButton.isSelected)
-        [self.alpsButton setSelected:YES];
+//    if(!self.alpsButton.isSelected)
+//        [self.alpsButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alps/?app=1"]];
 }
 

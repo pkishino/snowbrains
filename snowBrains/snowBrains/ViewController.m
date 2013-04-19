@@ -20,12 +20,18 @@
 
 @interface ViewController (){
     UIScrollView *currentScrollView;
-    
+    BOOL redirect;
+    NSString *requestString;
 }
 
 @end
 
 @implementation ViewController
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return ((toInterfaceOrientation == UIInterfaceOrientationPortrait)|| (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight));
@@ -33,10 +39,9 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return (UIInterfaceOrientationMaskPortrait |  UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight);
+    return (UIInterfaceOrientationMaskAll|UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight|UIInterfaceOrientationPortrait|UIInterfaceOrientationPortraitUpsideDown);
 }
 -(void)viewWillAppear:(BOOL)animated{
-    [self setupAnimation];
 }
 
 - (void)viewDidLoad
@@ -44,14 +49,14 @@
     [super viewDidLoad];
     [self.webview setDelegate:self];
     [self setupPullDownRefresh];
-    
+    [self setupAnimation];
     [self.homeButton setSelected:YES];
     
     [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
 }
 -(void)loadWithURL:(NSURL *)url{
-    //NSURL *url = [NSURL URLWithString:@"http://www.snowbrains.com/?app=1"];
-    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+    [self.webview stopLoading];
+    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
     [self.webview loadRequest:snowbrains];
 }
 -(void)setupPullDownRefresh{
@@ -73,6 +78,7 @@
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     self.flakeAnimation.hidden=NO;
+    [self setupAnimation];
     [self.flakeAnimation startAnimating];
     if(!self.loadFigure.isHidden){
         self.loadFigure.hidden=NO;
@@ -95,21 +101,47 @@
     [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    
+    if(!redirect){
+//        [self dismissAndDeselect];
+//        self.flakeAnimation.hidden=NO;
+//        self.loadFigure.hidden=NO;
+//        self.loadBackground.hidden=NO;
+        if(error.code==kCFURLErrorNotConnectedToInternet){
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [self.flakeAnimation stopAnimating];
+        }else if(!error.code==kCFURLErrorCancelled)
+            [self.webview goBack];
+//        [self homeTap:nil];
+    }
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    NSString *requestString=[NSString stringWithFormat:@"Request: %@ and Nav type: %d",request,navigationType];
-    NSLog(@"%@",requestString);
+    redirect=NO;
+    requestString=[NSString stringWithFormat:@"%@",request.URL];
+    NSLog(@"%@ navtype: %d",requestString,navigationType);
     //if navigationtype is 0 (link clicked) then check, otherwise ignore (keep loading)(type 5)
     //if the request is to somewhere in snowbrains then copy out the request, attach /?app=1 to it if not already and then send that request instead
+    if(navigationType==UIWebViewNavigationTypeLinkClicked){
+        if([requestString rangeOfString:@"http://www.snowbrains.com"].location==NSNotFound&&[requestString rangeOfString:@"http://snowbrains.com"].location==NSNotFound){
+            //if the request is to outside of snowbrains then ask if user wants to open in safari
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"External site" message:@"The requested site is outside of Snowbrains, please press OK to load with default Browser" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
+            [alert show];
+            return NO;
+        }else if ([requestString rangeOfString:@"?app=1"].location==NSNotFound){
+            NSURL *redirectTo=[NSURL URLWithString:[NSString stringWithFormat:@"%@?app=1",requestString]];
+            [self loadWithURL:redirectTo];
+            redirect=YES;
+            return NO;
+        }
+    }
     //if request is a mailto request then handle that
     
-    
-    //if the request is to outside of snowbrains then ask if user wants to open in safari
-    
-    //if(request )
     return YES;
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if( buttonIndex == 1 ) [[UIApplication sharedApplication]openURL:[NSURL URLWithString:requestString]];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -211,6 +243,7 @@
     }
 }
 -(void)loadpage:(NSURL *)url{
+    [self dismissAndDeselect];
     [self loadWithURL:url];
 }
 -(void)setupAnimation{

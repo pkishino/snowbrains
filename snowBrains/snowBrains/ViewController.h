@@ -13,7 +13,7 @@
 #import "VideoViewController.h"
 #import "CustomPopoverBackgroundView.h"
 
-@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIPopoverControllerDelegate,MoreViewControllerDelegate,VideoViewControllerDelegate,LocationViewControllerDelegate>
+@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIPopoverControllerDelegate,MoreViewControllerDelegate,VideoViewControllerDelegate,LocationViewControllerDelegate,UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 @property (strong, nonatomic) UIPopoverController *pop;
 @property (strong, nonatomic) LocationViewController *locationViewRef;

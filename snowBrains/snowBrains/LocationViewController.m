@@ -36,29 +36,29 @@
 }
 - (IBAction)squawTap:(id)sender{
     [self dismissAndDeselect];
-    if(!self.squawButton.isSelected)
-        [self.squawButton setSelected:YES];
+//    if(!self.squawButton.isSelected)
+//        [self.squawButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/squaw/?app=1"]];
     
 }
 - (IBAction)jacksonTap:(id)sender{
     [self dismissAndDeselect];
-    if(!self.jacksonButton.isSelected)
-        [self.jacksonButton setSelected:YES];
+//    if(!self.jacksonButton.isSelected)
+//        [self.jacksonButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/jackson/?app=1"]];
     
 }
 - (IBAction)whistlerTap:(id)sender{
     [self dismissAndDeselect];
-    if(!self.whistlerButton.isSelected)
-        [self.whistlerButton setSelected:YES];
+//    if(!self.whistlerButton.isSelected)
+//        [self.whistlerButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/whistler/?app=1"]];
     
 }
 - (IBAction)alaskaTap:(id)sender{
     [self dismissAndDeselect];
-    if(!self.alaskaButton.isSelected)
-        [self.alaskaButton setSelected:YES];
+//    if(!self.alaskaButton.isSelected)
+//        [self.alaskaButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alaska/?app=1"]];
     
 }

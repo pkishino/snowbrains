@@ -31,20 +31,20 @@
 }
 -(IBAction)brainTap:(id)sender{
     [self deselect];
-    if(!self.brainButton.isSelected)
-        [self.brainButton setSelected:YES];
+//    if(!self.brainButton.isSelected)
+//        [self.brainButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/brainvideos/?app=1"]];
 }
 -(IBAction)nonBrainTap:(id)sender{
     [self deselect];
-    if(!self.nonBrainButton.isSelected)
-        [self.nonBrainButton setSelected:YES];
+//    if(!self.nonBrainButton.isSelected)
+//        [self.nonBrainButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/nonbrain/?app=1"]];
 }
 -(IBAction)trailerTap:(id)sender{
     [self deselect];
-    if(!self.trailerButton.isSelected)
-        [self.trailerButton setSelected:YES];
+//    if(!self.trailerButton.isSelected)
+//        [self.trailerButton setSelected:YES];
     [self.delegate loadpage:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/trailers/?app=1"]];
 }
 
