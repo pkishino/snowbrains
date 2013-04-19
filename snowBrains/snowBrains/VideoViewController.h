@@ -11,6 +11,14 @@
 @interface VideoViewController : UIViewController
 
 @property (nonatomic, assign) id delegate;
+- (IBAction)brainTap:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *brainButton;
+
+- (IBAction)nonBrainTap:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *nonBrainButton;
+
+- (IBAction)trailerTap:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *trailerButton;
 
 @end
 @protocol VideoViewControllerDelegate <NSObject>

@@ -14,6 +14,7 @@
 @interface LocationViewController : UIViewController<UIPopoverControllerDelegate>
 
 @property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) UIView *mainViewRef;
 @property (strong, nonatomic) UIPopoverController *pop;
 
 - (IBAction)squawTap:(id)sender;

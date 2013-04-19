@@ -16,6 +16,7 @@
 @interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIPopoverControllerDelegate,MoreViewControllerDelegate,VideoViewControllerDelegate,LocationViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 @property (strong, nonatomic) UIPopoverController *pop;
+@property (strong, nonatomic) LocationViewController *locationViewRef;
 @property (strong, nonatomic) IBOutlet UIImageView *loadBackground;
 @property (strong, nonatomic) IBOutlet UIImageView *loadFigure;
 @property (strong, nonatomic) IBOutlet UIImageView *flakeAnimation;

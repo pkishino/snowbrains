@@ -141,7 +141,7 @@
                                     <action selector="locationTap:" destination="2" eventType="touchUpInside" id="ig2-4u-Bnj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rYU-Bo-yKK">
+                            <button opaque="NO" tag="107" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rYU-Bo-yKK">
                                 <rect key="frame" x="0.0" y="440" width="73" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
@@ -153,7 +153,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cgS-jJ-5EO">
+                            <button opaque="NO" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cgS-jJ-5EO">
                                 <rect key="frame" x="124" y="440" width="73" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -165,7 +165,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CiA-sd-5LG">
+                            <button opaque="NO" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CiA-sd-5LG">
                                 <rect key="frame" x="247" y="440" width="73" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -181,12 +181,12 @@
                                 <rect key="frame" x="0.0" y="75" width="320" height="365"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="headless.png" id="bGJ-c4-iOr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="SnowBrainsLogoNoHead.png" id="bGJ-c4-iOr">
                                 <rect key="frame" x="122" y="208" width="76" height="193"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="flake.png" id="yhB-8L-iri">
-                                <rect key="frame" x="141" y="208" width="38" height="44"/>
+                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="FlakeHighRes.png" id="yhB-8L-iri">
+                                <rect key="frame" x="138" y="208" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -212,6 +212,7 @@
     <resources>
         <image name="Brains.png" width="53" height="20"/>
         <image name="BrainsSelected.png" width="53" height="20"/>
+        <image name="FlakeHighRes.png" width="406" height="465"/>
         <image name="Gear.png" width="53" height="20"/>
         <image name="GearSelected.png" width="53" height="20"/>
         <image name="Home.png" width="53" height="20"/>
@@ -219,6 +220,7 @@
         <image name="Locations.png" width="53" height="20"/>
         <image name="LocationsSelected.png" width="53" height="20"/>
         <image name="SnowBrains.png" width="304" height="83"/>
+        <image name="SnowBrainsLogoNoHead.png" width="265" height="576"/>
         <image name="Video.png" width="53" height="20"/>
         <image name="VideoSelected.png" width="53" height="20"/>
         <image name="Weather.png" width="53" height="20"/>
@@ -227,33 +229,7 @@
         <image name="brainsHeaderForeground.png" width="960" height="151"/>
         <image name="brainsLogo.png" width="50" height="110"/>
         <image name="buttonBackground.png" width="14" height="27"/>
-        <image name="flake.png" width="19" height="22"/>
-        <image name="headless.png" width="50" height="110"/>
     </resources>
-    <classes>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="brainsTap:"/>
-                <relationship kind="action" name="gearTap:"/>
-                <relationship kind="action" name="homeTap:"/>
-                <relationship kind="action" name="locationTap:"/>
-                <relationship kind="action" name="videoTap:"/>
-                <relationship kind="action" name="weatherTap:"/>
-                <relationship kind="outlet" name="brainsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="flakeAnimation" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="gearButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loadBackground" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="loadFigure" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="locationButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="videoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="weatherButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="webview" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

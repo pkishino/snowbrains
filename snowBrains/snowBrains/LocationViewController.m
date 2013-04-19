@@ -71,18 +71,20 @@
     popoverView.delegate=self.delegate;
     UIPopoverController *popover=[[UIPopoverController alloc]initWithContentViewController: popoverView];
     popover.popoverBackgroundViewClass=[CustomPopoverBackgroundView class];
-    popover.passthroughViews=[[NSArray alloc]initWithObjects:self.view, nil];
+    popover.passthroughViews=[[NSArray alloc]initWithObjects:self.view,self.mainViewRef, nil];
     popover.delegate=self;
     popover.popoverLayoutMargins = UIEdgeInsetsMake(self.moreButton.frame.origin.x, self.moreButton.frame.origin.x, 0, 0);
+    popover.contentViewController.view.tag=666;
     self.pop=popover;
     [self.pop presentPopoverFromRect:self.moreButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 -(void)dismissAndDeselect{
     if([self.pop isPopoverVisible])
         [self.pop dismissPopoverAnimated:YES];
-    for(int i=201;i<207;i++){
+    for(int i=201;i<206;i++){
         [((UIButton *)[self.view viewWithTag:i]) setSelected:NO];
     }
+    //[((UIView *)[self.view viewWithTag:666])]
 }
 
 - (void)didReceiveMemoryWarning
