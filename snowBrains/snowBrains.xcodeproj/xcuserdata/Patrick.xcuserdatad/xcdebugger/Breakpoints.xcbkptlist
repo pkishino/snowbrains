@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388069725.887779"
+         timestampString = "388301432.672075"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "44"
-         endingLineNumber = "44"
+         startingLineNumber = "46"
+         endingLineNumber = "46"
          landmarkName = "-viewWillAppear:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388073257.379325"
+         timestampString = "388305022.32406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "124"
-         endingLineNumber = "124"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
          landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388073257.379325"
+         timestampString = "388305022.32406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "125"
-         endingLineNumber = "125"
+         startingLineNumber = "158"
+         endingLineNumber = "158"
          landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388073257.379325"
+         timestampString = "388305022.32406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "132"
-         endingLineNumber = "132"
+         startingLineNumber = "165"
+         endingLineNumber = "165"
          landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388069725.887779"
+         timestampString = "388301432.672075"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "31"
-         endingLineNumber = "31"
+         startingLineNumber = "33"
+         endingLineNumber = "33"
          landmarkName = "-shouldAutorotate"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388069725.887779"
+         timestampString = "388301432.672075"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "35"
-         endingLineNumber = "35"
+         startingLineNumber = "37"
+         endingLineNumber = "37"
          landmarkName = "-shouldAutorotateToInterfaceOrientation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388069725.887779"
+         timestampString = "388301432.672075"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "40"
-         endingLineNumber = "40"
+         startingLineNumber = "42"
+         endingLineNumber = "42"
          landmarkName = "-supportedInterfaceOrientations"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388070069.064725"
+         timestampString = "388305022.32406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "110"
-         endingLineNumber = "110"
+         startingLineNumber = "139"
+         endingLineNumber = "139"
          landmarkName = "-webView:didFailLoadWithError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,24 +190,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388073257.379325"
+         timestampString = "388305022.32406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "250"
-         endingLineNumber = "250"
+         startingLineNumber = "283"
+         endingLineNumber = "283"
          landmarkName = "-setupAnimation"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388072086.17329"
+         timestampString = "388305022.32406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "82"
-         endingLineNumber = "82"
+         startingLineNumber = "115"
+         endingLineNumber = "115"
          landmarkName = "-webViewDidStartLoad:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -216,11 +216,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388072725.553701"
+         timestampString = "388305022.32406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "104"
-         endingLineNumber = "104"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
          landmarkName = "-webView:didFailLoadWithError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -229,11 +229,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388073131.84038"
+         timestampString = "388305022.32406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "109"
-         endingLineNumber = "109"
+         startingLineNumber = "138"
+         endingLineNumber = "138"
          landmarkName = "-webView:didFailLoadWithError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -242,11 +242,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388073144.245355"
+         timestampString = "388305022.32406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
+         startingLineNumber = "141"
+         endingLineNumber = "141"
          landmarkName = "-webView:didFailLoadWithError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -255,12 +255,64 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "snowBrains/ViewController.m"
-         timestampString = "388073336.786011"
+         timestampString = "388305022.32406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "113"
-         endingLineNumber = "113"
+         startingLineNumber = "147"
+         endingLineNumber = "147"
          landmarkName = "-webView:didFailLoadWithError:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "snowBrains/ViewController.m"
+         timestampString = "388305022.32406"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "306"
+         endingLineNumber = "306"
+         landmarkName = "-forwardSwipe"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "snowBrains/ViewController.m"
+         timestampString = "388305022.32406"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "298"
+         endingLineNumber = "298"
+         landmarkName = "-backSwipe"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "snowBrains/ViewController.m"
+         timestampString = "388305022.32406"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "308"
+         endingLineNumber = "308"
+         landmarkName = "-forwardSwipe"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "snowBrains/ViewController.m"
+         timestampString = "388305022.32406"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "299"
+         endingLineNumber = "299"
+         landmarkName = "-backSwipe"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

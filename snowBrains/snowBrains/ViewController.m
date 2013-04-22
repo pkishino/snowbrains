@@ -22,6 +22,8 @@
     UIScrollView *currentScrollView;
     BOOL redirect;
     NSString *requestString;
+    UIButton *backButton;
+    UIButton *forwardButton;
 }
 
 @end
@@ -50,6 +52,7 @@
     [self.webview setDelegate:self];
     [self setupPullDownRefresh];
     [self setupAnimation];
+    [self setupSwipe];
     [self.homeButton setSelected:YES];
     
     [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
@@ -58,6 +61,31 @@
     [self.webview stopLoading];
     NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
     [self.webview loadRequest:snowbrains];
+}
+-(void)setupSwipe{
+    UISwipeGestureRecognizer* leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(backSwipe)];
+    leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    leftSwipeRecognizer.cancelsTouchesInView = YES;
+    backButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [backButton setImage:[UIImage imageNamed:@"backwardSwipe"] forState:UIControlStateNormal];
+    [self.webview addGestureRecognizer:leftSwipeRecognizer];
+    [backButton addTarget:self action:@selector(backwardTap:) forControlEvents:UIControlEventTouchUpInside];
+//    backButton.frame=CGRectMake(0, self.view.center.y, 41, 54);
+    backButton.hidden=YES;
+    [self.webview addSubview:backButton];
+    
+    UISwipeGestureRecognizer* rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(forwardSwipe)];
+    rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    rightSwipeRecognizer.cancelsTouchesInView = YES;
+    [self.webview addGestureRecognizer:rightSwipeRecognizer];
+    
+    forwardButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [forwardButton setImage:[UIImage imageNamed:@"forwardSwipe"] forState:UIControlStateNormal];
+    [forwardButton addTarget:self action:@selector(forwardTap:) forControlEvents:UIControlEventTouchUpInside];
+//    forwardButton.frame=CGRectMake(self.view.frame.size.width-41, self.view.center.y, 41, 54);
+    forwardButton.hidden=YES;
+    [self.webview addSubview:forwardButton];
 }
 -(void)setupPullDownRefresh{
     //setup the pulldownrefresh view
@@ -75,6 +103,11 @@
 }
 -(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
     [(UIWebView *)[self.view viewWithTag:999] reload];
+    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(cancelPullToRefresh) userInfo:nil repeats:NO];
+}
+-(void)cancelPullToRefresh{
+    [(UIWebView *)[self.view viewWithTag:999] stopLoading];
+    [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     self.flakeAnimation.hidden=NO;
@@ -83,6 +116,7 @@
     if(!self.loadFigure.isHidden){
         self.loadFigure.hidden=NO;
         self.loadBackground.hidden=NO;
+        self.loadBackground 
     }
     if([self.pop isPopoverVisible])
         [self.pop dismissPopoverAnimated:YES];
@@ -102,17 +136,17 @@
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     if(!redirect){
-//        [self dismissAndDeselect];
-//        self.flakeAnimation.hidden=NO;
-//        self.loadFigure.hidden=NO;
-//        self.loadBackground.hidden=NO;
         if(error.code==kCFURLErrorNotConnectedToInternet){
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             [self.flakeAnimation stopAnimating];
+            self.flakeAnimation.hidden=YES;
+            self.loadFigure.hidden=YES;
+            self.loadBackground.hidden=YES;
+            [self.webview stopLoading];
+            [(PullToRefreshView *)[self.view viewWithTag:998]finishedLoading];
         }else if(!error.code==kCFURLErrorCancelled)
             [self.webview goBack];
-//        [self homeTap:nil];
     }
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
@@ -257,6 +291,31 @@
 }
 -(void)setupImageAnimation{
     
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
+}
+-(void)backSwipe{
+    if(backButton.isHidden){
+        backButton.frame=CGRectMake(0, self.webview.center.y-100, 41, 54);
+        backButton.hidden=NO;
+        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backSwipe) userInfo:nil repeats:NO];
+    }else
+        backButton.hidden=YES;
+}
+-(void)forwardSwipe{
+    if(forwardButton.isHidden){
+        forwardButton.frame=CGRectMake(self.webview.frame.size.width-41, self.webview.center.y-100, 41, 54);
+        forwardButton.hidden=NO;
+        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(forwardSwipe) userInfo:nil repeats:NO];
+    }else
+        forwardButton.hidden=YES;
+}
+-(IBAction)backwardTap:(id)sender{
+    [self.webview goBack];
+}
+-(IBAction)forwardTap:(id)sender{
+    [self.webview goForward];
 }
 
 @end

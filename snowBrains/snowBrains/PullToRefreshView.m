@@ -220,14 +220,6 @@
     }
 }
 
-//-(void) playSound:(NSString *)fName withExt:(NSString *) ext
-//{
-//    SystemSoundID completeSound;
-//    NSURL *audioPath = [[NSBundle mainBundle] URLForResource:fName withExtension:ext];
-//    AudioServicesCreateSystemSoundID((__bridge CFURLRef)audioPath, &completeSound);
-//    AudioServicesPlaySystemSound (completeSound);
-//}
-
 #pragma mark -
 #pragma mark Dealloc
 
