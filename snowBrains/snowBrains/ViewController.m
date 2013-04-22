@@ -116,7 +116,6 @@
     if(!self.loadFigure.isHidden){
         self.loadFigure.hidden=NO;
         self.loadBackground.hidden=NO;
-        self.loadBackground 
     }
     if([self.pop isPopoverVisible])
         [self.pop dismissPopoverAnimated:YES];
