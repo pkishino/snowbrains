@@ -8,8 +8,32 @@
 
 #import "AppDelegate.h"
 #import "RNCachingURLProtocol.h"
+#import "SideMenuViewController.h"
 
 @implementation AppDelegate
+//- (ViewController *)demoController {
+//    return [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+//}
+
+- (UINavigationController *)navigationController {
+    return [[UINavigationController alloc]
+            initWithRootViewController:[self demoController]];
+}
+
+- (MFSideMenu *)sideMenu {
+    SideMenuViewController *leftSideMenuController = [[SideMenuViewController alloc] init];
+    SideMenuViewController *rightSideMenuController = [[SideMenuViewController alloc] init];
+    UINavigationController *navigationController = [self navigationController];
+    
+    MFSideMenu *sideMenu = [MFSideMenu menuWithNavigationController:navigationController
+                                             leftSideMenuController:leftSideMenuController
+                                            rightSideMenuController:rightSideMenuController];
+    leftSideMenuController.sideMenu = sideMenu;
+    rightSideMenuController.sideMenu = sideMenu;
+    
+    return sideMenu;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

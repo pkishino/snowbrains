@@ -117,6 +117,9 @@
 		CD8D8AAA17264E9D002AF83D /* RNCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AA817264E9D002AF83D /* RNCachingURLProtocol.m */; };
 		CD8D8AB017265D2F002AF83D /* MFSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AAD17265D2F002AF83D /* MFSideMenu.m */; };
 		CD8D8AB117265D2F002AF83D /* UINavigationController+MFSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AAF17265D2F002AF83D /* UINavigationController+MFSideMenu.m */; };
+		CD8D8AB417266287002AF83D /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8AB217266287002AF83D /* menu-icon.png */; };
+		CD8D8AB517266287002AF83D /* menu-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8AB317266287002AF83D /* menu-icon@2x.png */; };
+		CD8D8AC3172663BA002AF83D /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AC2172663BA002AF83D /* SideMenuViewController.m */; };
 		CDEF45CE171D2E5A00688181 /* CustomPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */; };
 		CDEF45D1171D30F200688181 /* arrowPop.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45CF171D30F200688181 /* arrowPop.png */; };
 		CDEF45D2171D30F200688181 /* popover-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45D0171D30F200688181 /* popover-bg.png */; };
@@ -261,6 +264,10 @@
 		CD8D8AAD17265D2F002AF83D /* MFSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSideMenu.m; sourceTree = "<group>"; };
 		CD8D8AAE17265D2F002AF83D /* UINavigationController+MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MFSideMenu.h"; sourceTree = "<group>"; };
 		CD8D8AAF17265D2F002AF83D /* UINavigationController+MFSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MFSideMenu.m"; sourceTree = "<group>"; };
+		CD8D8AB217266287002AF83D /* menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-icon.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8AB317266287002AF83D /* menu-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-icon@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8AC1172663BA002AF83D /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SideMenuViewController.h; path = snowBrains/SideMenuViewController.h; sourceTree = SOURCE_ROOT; };
+		CD8D8AC2172663BA002AF83D /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenuViewController.m; path = snowBrains/SideMenuViewController.m; sourceTree = SOURCE_ROOT; };
 		CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPopoverBackgroundView.h; path = snowBrains/CustomPopoverBackgroundView.h; sourceTree = SOURCE_ROOT; };
 		CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPopoverBackgroundView.m; path = snowBrains/CustomPopoverBackgroundView.m; sourceTree = SOURCE_ROOT; };
 		CDEF45CF171D30F200688181 /* arrowPop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowPop.png; path = "snowBrains/supporting files/arrowPop.png"; sourceTree = SOURCE_ROOT; };
@@ -423,6 +430,8 @@
 		CD4F3E1C17153337008A250D /* snowBrains */ = {
 			isa = PBXGroup;
 			children = (
+				CD8D8AC1172663BA002AF83D /* SideMenuViewController.h */,
+				CD8D8AC2172663BA002AF83D /* SideMenuViewController.m */,
 				CD4F3E8C1717B971008A250D /* AppDelegate.h */,
 				CD4F3E8D1717B971008A250D /* AppDelegate.m */,
 				CD4F3E8E1717B971008A250D /* MainStoryboard_iPhone.storyboard */,
@@ -451,6 +460,8 @@
 		CD4F3E1D17153337008A250D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CD8D8AB217266287002AF83D /* menu-icon.png */,
+				CD8D8AB317266287002AF83D /* menu-icon@2x.png */,
 				CD3C3167172023600033AB22 /* menuItems */,
 				CD3C3075171F7F170033AB22 /* FlakeHighRes.png */,
 				CD3C3076171F7F170033AB22 /* SnowBrainsLogoNoHead.png */,
@@ -669,6 +680,8 @@
 				CDF6E1191724FB1000E7E714 /* TrailersSelected@2x.png in Resources */,
 				CDF6E11C1724FC5700E7E714 /* backwardSwipe.png in Resources */,
 				CDF6E11D1724FC5700E7E714 /* backwardSwipe@2x.png in Resources */,
+				CD8D8AB417266287002AF83D /* menu-icon.png in Resources */,
+				CD8D8AB517266287002AF83D /* menu-icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,6 +704,7 @@
 				CD8D8AAA17264E9D002AF83D /* RNCachingURLProtocol.m in Sources */,
 				CD8D8AB017265D2F002AF83D /* MFSideMenu.m in Sources */,
 				CD8D8AB117265D2F002AF83D /* UINavigationController+MFSideMenu.m in Sources */,
+				CD8D8AC3172663BA002AF83D /* SideMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
