@@ -14,3 +14,9 @@ images n stuff/brainsHeaderBackground.png
 images n stuff/brainsHeaderBackground.jpg
 
 images n stuff/like:share bug chrome.png
+
+*.xcuserstate
+
+snowBrains/snowBrains.xcodeproj/xcuserdata/Patrick.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
+
+snowBrains/snowBrains.xcodeproj/project.xcworkspace/xcuserdata/Patrick.xcuserdatad/UserInterfaceState.xcuserstate
