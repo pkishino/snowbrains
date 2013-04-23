@@ -135,7 +135,7 @@
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     if(!redirect){
-        if(error.code==kCFURLErrorNotConnectedToInternet){
+        if(error.code==kCFURLErrorNotConnectedToInternet||error.code==kCFURLErrorTimedOut){
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             [self.flakeAnimation stopAnimating];
