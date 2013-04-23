@@ -115,6 +115,8 @@
 		CD8D8AA317264E5D002AF83D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8D8AA217264E5D002AF83D /* SystemConfiguration.framework */; };
 		CD8D8AA917264E9D002AF83D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AA617264E9D002AF83D /* Reachability.m */; };
 		CD8D8AAA17264E9D002AF83D /* RNCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AA817264E9D002AF83D /* RNCachingURLProtocol.m */; };
+		CD8D8AB017265D2F002AF83D /* MFSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AAD17265D2F002AF83D /* MFSideMenu.m */; };
+		CD8D8AB117265D2F002AF83D /* UINavigationController+MFSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AAF17265D2F002AF83D /* UINavigationController+MFSideMenu.m */; };
 		CDEF45CE171D2E5A00688181 /* CustomPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */; };
 		CDEF45D1171D30F200688181 /* arrowPop.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45CF171D30F200688181 /* arrowPop.png */; };
 		CDEF45D2171D30F200688181 /* popover-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45D0171D30F200688181 /* popover-bg.png */; };
@@ -255,6 +257,10 @@
 		CD8D8AA617264E9D002AF83D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		CD8D8AA717264E9D002AF83D /* RNCachingURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCachingURLProtocol.h; sourceTree = "<group>"; };
 		CD8D8AA817264E9D002AF83D /* RNCachingURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCachingURLProtocol.m; sourceTree = "<group>"; };
+		CD8D8AAC17265D2F002AF83D /* MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenu.h; sourceTree = "<group>"; };
+		CD8D8AAD17265D2F002AF83D /* MFSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSideMenu.m; sourceTree = "<group>"; };
+		CD8D8AAE17265D2F002AF83D /* UINavigationController+MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MFSideMenu.h"; sourceTree = "<group>"; };
+		CD8D8AAF17265D2F002AF83D /* UINavigationController+MFSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MFSideMenu.m"; sourceTree = "<group>"; };
 		CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPopoverBackgroundView.h; path = snowBrains/CustomPopoverBackgroundView.h; sourceTree = SOURCE_ROOT; };
 		CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPopoverBackgroundView.m; path = snowBrains/CustomPopoverBackgroundView.m; sourceTree = SOURCE_ROOT; };
 		CDEF45CF171D30F200688181 /* arrowPop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowPop.png; path = "snowBrains/supporting files/arrowPop.png"; sourceTree = SOURCE_ROOT; };
@@ -403,6 +409,7 @@
 		CD4F3E1517153337008A250D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD8D8AAB17265D2F002AF83D /* MFSideMenu */,
 				CD8D8AA417264E9D002AF83D /* Persistant Cache */,
 				CD8D8AA217264E5D002AF83D /* SystemConfiguration.framework */,
 				CD4F3E771716C474008A250D /* QuartzCore.framework */,
@@ -485,6 +492,18 @@
 			);
 			name = "Persistant Cache";
 			path = "snowBrains/Persistant Cache";
+			sourceTree = "<group>";
+		};
+		CD8D8AAB17265D2F002AF83D /* MFSideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				CD8D8AAC17265D2F002AF83D /* MFSideMenu.h */,
+				CD8D8AAD17265D2F002AF83D /* MFSideMenu.m */,
+				CD8D8AAE17265D2F002AF83D /* UINavigationController+MFSideMenu.h */,
+				CD8D8AAF17265D2F002AF83D /* UINavigationController+MFSideMenu.m */,
+			);
+			name = MFSideMenu;
+			path = snowBrains/MFSideMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -670,6 +689,8 @@
 				CD3C3069171D80540033AB22 /* VideoViewController.m in Sources */,
 				CD8D8AA917264E9D002AF83D /* Reachability.m in Sources */,
 				CD8D8AAA17264E9D002AF83D /* RNCachingURLProtocol.m in Sources */,
+				CD8D8AB017265D2F002AF83D /* MFSideMenu.m in Sources */,
+				CD8D8AB117265D2F002AF83D /* UINavigationController+MFSideMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
