@@ -383,7 +383,6 @@
 		CD4F3E0A17153337008A250D = {
 			isa = PBXGroup;
 			children = (
-				CD8D8AA217264E5D002AF83D /* SystemConfiguration.framework */,
 				CD4F3EBC1717B9ED008A250D /* Default.png */,
 				CD4F3EBE1717B9F6008A250D /* Default@2x.png */,
 				CD4F3EC01717B9FD008A250D /* Default-568h@2x.png */,
@@ -405,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				CD8D8AA417264E9D002AF83D /* Persistant Cache */,
+				CD8D8AA217264E5D002AF83D /* SystemConfiguration.framework */,
 				CD4F3E771716C474008A250D /* QuartzCore.framework */,
 				CD4F3E1617153337008A250D /* UIKit.framework */,
 				CD4F3E1817153337008A250D /* Foundation.framework */,
