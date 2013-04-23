@@ -7,14 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "RNCachingURLProtocol.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    //Extend the splash screen for 1 seconds.
-    //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+    [NSURLProtocol registerClass:[RNCachingURLProtocol class]];
     return YES;
 }
 							

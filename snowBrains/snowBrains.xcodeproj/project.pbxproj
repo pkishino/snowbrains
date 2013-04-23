@@ -112,8 +112,9 @@
 		CD4F3EC11717B9FD008A250D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EC01717B9FD008A250D /* Default-568h@2x.png */; };
 		CD4F3ECB171BC55C008A250D /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4F3EC9171BC55C008A250D /* LocationViewController.m */; };
 		CD4F3ECC171BC55C008A250D /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3ECA171BC55C008A250D /* LocationViewController.xib */; };
-		CD8D8A611726175F002AF83D /* MFSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8A5E1726175F002AF83D /* MFSideMenu.m */; };
-		CD8D8A621726175F002AF83D /* UINavigationController+MFSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8A601726175F002AF83D /* UINavigationController+MFSideMenu.m */; };
+		CD8D8AA317264E5D002AF83D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8D8AA217264E5D002AF83D /* SystemConfiguration.framework */; };
+		CD8D8AA917264E9D002AF83D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AA617264E9D002AF83D /* Reachability.m */; };
+		CD8D8AAA17264E9D002AF83D /* RNCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AA817264E9D002AF83D /* RNCachingURLProtocol.m */; };
 		CDEF45CE171D2E5A00688181 /* CustomPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */; };
 		CDEF45D1171D30F200688181 /* arrowPop.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45CF171D30F200688181 /* arrowPop.png */; };
 		CDEF45D2171D30F200688181 /* popover-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45D0171D30F200688181 /* popover-bg.png */; };
@@ -249,10 +250,11 @@
 		CD4F3EC8171BC55B008A250D /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationViewController.h; path = snowBrains/LocationViewController.h; sourceTree = SOURCE_ROOT; };
 		CD4F3EC9171BC55C008A250D /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationViewController.m; path = snowBrains/LocationViewController.m; sourceTree = SOURCE_ROOT; };
 		CD4F3ECA171BC55C008A250D /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationViewController.xib; path = snowBrains/LocationViewController.xib; sourceTree = SOURCE_ROOT; };
-		CD8D8A5D1726175F002AF83D /* MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenu.h; sourceTree = "<group>"; };
-		CD8D8A5E1726175F002AF83D /* MFSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSideMenu.m; sourceTree = "<group>"; };
-		CD8D8A5F1726175F002AF83D /* UINavigationController+MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MFSideMenu.h"; sourceTree = "<group>"; };
-		CD8D8A601726175F002AF83D /* UINavigationController+MFSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MFSideMenu.m"; sourceTree = "<group>"; };
+		CD8D8AA217264E5D002AF83D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CD8D8AA517264E9D002AF83D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		CD8D8AA617264E9D002AF83D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		CD8D8AA717264E9D002AF83D /* RNCachingURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCachingURLProtocol.h; sourceTree = "<group>"; };
+		CD8D8AA817264E9D002AF83D /* RNCachingURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCachingURLProtocol.m; sourceTree = "<group>"; };
 		CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPopoverBackgroundView.h; path = snowBrains/CustomPopoverBackgroundView.h; sourceTree = SOURCE_ROOT; };
 		CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPopoverBackgroundView.m; path = snowBrains/CustomPopoverBackgroundView.m; sourceTree = SOURCE_ROOT; };
 		CDEF45CF171D30F200688181 /* arrowPop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowPop.png; path = "snowBrains/supporting files/arrowPop.png"; sourceTree = SOURCE_ROOT; };
@@ -280,6 +282,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD8D8AA317264E5D002AF83D /* SystemConfiguration.framework in Frameworks */,
 				CD4F3E781716C474008A250D /* QuartzCore.framework in Frameworks */,
 				CD4F3E1717153337008A250D /* UIKit.framework in Frameworks */,
 				CD4F3E1917153337008A250D /* Foundation.framework in Frameworks */,
@@ -380,6 +383,7 @@
 		CD4F3E0A17153337008A250D = {
 			isa = PBXGroup;
 			children = (
+				CD8D8AA217264E5D002AF83D /* SystemConfiguration.framework */,
 				CD4F3EBC1717B9ED008A250D /* Default.png */,
 				CD4F3EBE1717B9F6008A250D /* Default@2x.png */,
 				CD4F3EC01717B9FD008A250D /* Default-568h@2x.png */,
@@ -400,6 +404,7 @@
 		CD4F3E1517153337008A250D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD8D8AA417264E9D002AF83D /* Persistant Cache */,
 				CD4F3E771716C474008A250D /* QuartzCore.framework */,
 				CD4F3E1617153337008A250D /* UIKit.framework */,
 				CD4F3E1817153337008A250D /* Foundation.framework */,
@@ -411,7 +416,6 @@
 		CD4F3E1C17153337008A250D /* snowBrains */ = {
 			isa = PBXGroup;
 			children = (
-				CD8D8A5C1726175F002AF83D /* MFSideMenu */,
 				CD4F3E8C1717B971008A250D /* AppDelegate.h */,
 				CD4F3E8D1717B971008A250D /* AppDelegate.m */,
 				CD4F3E8E1717B971008A250D /* MainStoryboard_iPhone.storyboard */,
@@ -471,16 +475,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CD8D8A5C1726175F002AF83D /* MFSideMenu */ = {
+		CD8D8AA417264E9D002AF83D /* Persistant Cache */ = {
 			isa = PBXGroup;
 			children = (
-				CD8D8A5D1726175F002AF83D /* MFSideMenu.h */,
-				CD8D8A5E1726175F002AF83D /* MFSideMenu.m */,
-				CD8D8A5F1726175F002AF83D /* UINavigationController+MFSideMenu.h */,
-				CD8D8A601726175F002AF83D /* UINavigationController+MFSideMenu.m */,
+				CD8D8AA517264E9D002AF83D /* Reachability.h */,
+				CD8D8AA617264E9D002AF83D /* Reachability.m */,
+				CD8D8AA717264E9D002AF83D /* RNCachingURLProtocol.h */,
+				CD8D8AA817264E9D002AF83D /* RNCachingURLProtocol.m */,
 			);
-			name = MFSideMenu;
-			path = snowBrains/MFSideMenu;
+			name = "Persistant Cache";
+			path = "snowBrains/Persistant Cache";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -664,8 +668,8 @@
 				CD4F3ECB171BC55C008A250D /* LocationViewController.m in Sources */,
 				CDEF45CE171D2E5A00688181 /* CustomPopoverBackgroundView.m in Sources */,
 				CD3C3069171D80540033AB22 /* VideoViewController.m in Sources */,
-				CD8D8A611726175F002AF83D /* MFSideMenu.m in Sources */,
-				CD8D8A621726175F002AF83D /* UINavigationController+MFSideMenu.m in Sources */,
+				CD8D8AA917264E9D002AF83D /* Reachability.m in Sources */,
+				CD8D8AAA17264E9D002AF83D /* RNCachingURLProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
