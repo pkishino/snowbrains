@@ -119,7 +119,18 @@
 		CD8D8AB117265D2F002AF83D /* UINavigationController+MFSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AAF17265D2F002AF83D /* UINavigationController+MFSideMenu.m */; };
 		CD8D8AB417266287002AF83D /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8AB217266287002AF83D /* menu-icon.png */; };
 		CD8D8AB517266287002AF83D /* menu-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8AB317266287002AF83D /* menu-icon@2x.png */; };
-		CD8D8AC3172663BA002AF83D /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AC2172663BA002AF83D /* SideMenuViewController.m */; };
+		CD8D8AC3172663BA002AF83D /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8AC2172663BA002AF83D /* LeftMenuViewController.m */; };
+		CD8D8ACB17267200002AF83D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8ACA17267200002AF83D /* ViewController.xib */; };
+		CD8D8B0B17276599002AF83D /* navBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B0917276599002AF83D /* navBarBackground.png */; };
+		CD8D8B0C17276599002AF83D /* navBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B0A17276599002AF83D /* navBarBackground@2x.png */; };
+		CD8D8B1017276868002AF83D /* navBarBackground-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B0D17276867002AF83D /* navBarBackground-Landscape.png */; };
+		CD8D8B1117276868002AF83D /* navBarBackground-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B0E17276867002AF83D /* navBarBackground-Landscape@2x.png */; };
+		CD8D8B1217276868002AF83D /* navBarBackground-Landscape5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B0F17276867002AF83D /* navBarBackground-Landscape5@2x.png */; };
+		CD8D8B1417276E29002AF83D /* SnowBrainsHeadlessGuy.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B1317276E29002AF83D /* SnowBrainsHeadlessGuy.png */; };
+		CD8D8B18172789A8002AF83D /* RightMenuViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B17172789A8002AF83D /* RightMenuViewController.h */; };
+		CD8D8B1A172789C9002AF83D /* RightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8B19172789C8002AF83D /* RightMenuViewController.m */; };
+		CD8D8B1C17279C2F002AF83D /* sideBarHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B1B17279C2F002AF83D /* sideBarHeader.png */; };
+		CD8D8B1E1727B7BD002AF83D /* sideBarHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B1D1727B7BD002AF83D /* sideBarHeader@2x.png */; };
 		CDEF45CE171D2E5A00688181 /* CustomPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */; };
 		CDEF45D1171D30F200688181 /* arrowPop.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45CF171D30F200688181 /* arrowPop.png */; };
 		CDEF45D2171D30F200688181 /* popover-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45D0171D30F200688181 /* popover-bg.png */; };
@@ -264,10 +275,21 @@
 		CD8D8AAD17265D2F002AF83D /* MFSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSideMenu.m; sourceTree = "<group>"; };
 		CD8D8AAE17265D2F002AF83D /* UINavigationController+MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MFSideMenu.h"; sourceTree = "<group>"; };
 		CD8D8AAF17265D2F002AF83D /* UINavigationController+MFSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MFSideMenu.m"; sourceTree = "<group>"; };
-		CD8D8AB217266287002AF83D /* menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-icon.png"; sourceTree = SOURCE_ROOT; };
-		CD8D8AB317266287002AF83D /* menu-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-icon@2x.png"; sourceTree = SOURCE_ROOT; };
-		CD8D8AC1172663BA002AF83D /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SideMenuViewController.h; path = snowBrains/SideMenuViewController.h; sourceTree = SOURCE_ROOT; };
-		CD8D8AC2172663BA002AF83D /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenuViewController.m; path = snowBrains/SideMenuViewController.m; sourceTree = SOURCE_ROOT; };
+		CD8D8AB217266287002AF83D /* menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-icon.png"; path = "snowBrains/supporting files/menu-icon.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8AB317266287002AF83D /* menu-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-icon@2x.png"; path = "snowBrains/supporting files/menu-icon@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8AC1172663BA002AF83D /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeftMenuViewController.h; path = snowBrains/LeftMenuViewController.h; sourceTree = SOURCE_ROOT; };
+		CD8D8AC2172663BA002AF83D /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeftMenuViewController.m; path = snowBrains/LeftMenuViewController.m; sourceTree = SOURCE_ROOT; };
+		CD8D8ACA17267200002AF83D /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = snowBrains/ViewController.xib; sourceTree = SOURCE_ROOT; };
+		CD8D8B0917276599002AF83D /* navBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navBarBackground.png; path = "snowBrains/supporting files/navBarBackground.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8B0A17276599002AF83D /* navBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navBarBackground@2x.png"; path = "snowBrains/supporting files/navBarBackground@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8B0D17276867002AF83D /* navBarBackground-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navBarBackground-Landscape.png"; path = "snowBrains/supporting files/navBarBackground-Landscape.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8B0E17276867002AF83D /* navBarBackground-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navBarBackground-Landscape@2x.png"; path = "snowBrains/supporting files/navBarBackground-Landscape@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8B0F17276867002AF83D /* navBarBackground-Landscape5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navBarBackground-Landscape5@2x.png"; path = "snowBrains/supporting files/navBarBackground-Landscape5@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8B1317276E29002AF83D /* SnowBrainsHeadlessGuy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SnowBrainsHeadlessGuy.png; path = "snowBrains/supporting files/SnowBrainsHeadlessGuy.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8B17172789A8002AF83D /* RightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RightMenuViewController.h; path = snowBrains/RightMenuViewController.h; sourceTree = SOURCE_ROOT; };
+		CD8D8B19172789C8002AF83D /* RightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RightMenuViewController.m; path = snowBrains/RightMenuViewController.m; sourceTree = SOURCE_ROOT; };
+		CD8D8B1B17279C2F002AF83D /* sideBarHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sideBarHeader.png; path = "snowBrains/supporting files/sideBarHeader.png"; sourceTree = SOURCE_ROOT; };
+		CD8D8B1D1727B7BD002AF83D /* sideBarHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sideBarHeader@2x.png"; path = "snowBrains/supporting files/sideBarHeader@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPopoverBackgroundView.h; path = snowBrains/CustomPopoverBackgroundView.h; sourceTree = SOURCE_ROOT; };
 		CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPopoverBackgroundView.m; path = snowBrains/CustomPopoverBackgroundView.m; sourceTree = SOURCE_ROOT; };
 		CDEF45CF171D30F200688181 /* arrowPop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowPop.png; path = "snowBrains/supporting files/arrowPop.png"; sourceTree = SOURCE_ROOT; };
@@ -430,8 +452,10 @@
 		CD4F3E1C17153337008A250D /* snowBrains */ = {
 			isa = PBXGroup;
 			children = (
-				CD8D8AC1172663BA002AF83D /* SideMenuViewController.h */,
-				CD8D8AC2172663BA002AF83D /* SideMenuViewController.m */,
+				CD8D8AC1172663BA002AF83D /* LeftMenuViewController.h */,
+				CD8D8AC2172663BA002AF83D /* LeftMenuViewController.m */,
+				CD8D8B17172789A8002AF83D /* RightMenuViewController.h */,
+				CD8D8B19172789C8002AF83D /* RightMenuViewController.m */,
 				CD4F3E8C1717B971008A250D /* AppDelegate.h */,
 				CD4F3E8D1717B971008A250D /* AppDelegate.m */,
 				CD4F3E8E1717B971008A250D /* MainStoryboard_iPhone.storyboard */,
@@ -440,6 +464,7 @@
 				CD4F3E921717B971008A250D /* PullToRefreshView.m */,
 				CD4F3E931717B971008A250D /* ViewController.h */,
 				CD4F3E941717B971008A250D /* ViewController.m */,
+				CD8D8ACA17267200002AF83D /* ViewController.xib */,
 				CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */,
 				CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */,
 				CD4F3EC8171BC55B008A250D /* LocationViewController.h */,
@@ -460,6 +485,14 @@
 		CD4F3E1D17153337008A250D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CD8D8B1D1727B7BD002AF83D /* sideBarHeader@2x.png */,
+				CD8D8B1B17279C2F002AF83D /* sideBarHeader.png */,
+				CD8D8B1317276E29002AF83D /* SnowBrainsHeadlessGuy.png */,
+				CD8D8B0D17276867002AF83D /* navBarBackground-Landscape.png */,
+				CD8D8B0E17276867002AF83D /* navBarBackground-Landscape@2x.png */,
+				CD8D8B0F17276867002AF83D /* navBarBackground-Landscape5@2x.png */,
+				CD8D8B0917276599002AF83D /* navBarBackground.png */,
+				CD8D8B0A17276599002AF83D /* navBarBackground@2x.png */,
 				CD8D8AB217266287002AF83D /* menu-icon.png */,
 				CD8D8AB317266287002AF83D /* menu-icon@2x.png */,
 				CD3C3167172023600033AB22 /* menuItems */,
@@ -682,6 +715,16 @@
 				CDF6E11D1724FC5700E7E714 /* backwardSwipe@2x.png in Resources */,
 				CD8D8AB417266287002AF83D /* menu-icon.png in Resources */,
 				CD8D8AB517266287002AF83D /* menu-icon@2x.png in Resources */,
+				CD8D8ACB17267200002AF83D /* ViewController.xib in Resources */,
+				CD8D8B0B17276599002AF83D /* navBarBackground.png in Resources */,
+				CD8D8B0C17276599002AF83D /* navBarBackground@2x.png in Resources */,
+				CD8D8B1017276868002AF83D /* navBarBackground-Landscape.png in Resources */,
+				CD8D8B1117276868002AF83D /* navBarBackground-Landscape@2x.png in Resources */,
+				CD8D8B1217276868002AF83D /* navBarBackground-Landscape5@2x.png in Resources */,
+				CD8D8B1417276E29002AF83D /* SnowBrainsHeadlessGuy.png in Resources */,
+				CD8D8B18172789A8002AF83D /* RightMenuViewController.h in Resources */,
+				CD8D8B1C17279C2F002AF83D /* sideBarHeader.png in Resources */,
+				CD8D8B1E1727B7BD002AF83D /* sideBarHeader@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,7 +747,8 @@
 				CD8D8AAA17264E9D002AF83D /* RNCachingURLProtocol.m in Sources */,
 				CD8D8AB017265D2F002AF83D /* MFSideMenu.m in Sources */,
 				CD8D8AB117265D2F002AF83D /* UINavigationController+MFSideMenu.m in Sources */,
-				CD8D8AC3172663BA002AF83D /* SideMenuViewController.m in Sources */,
+				CD8D8AC3172663BA002AF83D /* LeftMenuViewController.m in Sources */,
+				CD8D8B1A172789C9002AF83D /* RightMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

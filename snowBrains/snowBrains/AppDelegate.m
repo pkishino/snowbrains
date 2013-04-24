@@ -8,21 +8,26 @@
 
 #import "AppDelegate.h"
 #import "RNCachingURLProtocol.h"
-#import "SideMenuViewController.h"
+#import "LeftMenuViewController.h"
+#import "RightMenuViewController.h"
+#import "ViewController.h"
+
+#define WIDTH_IPHONE_5 568
+#define IS_IPHONE_5 ([[UIScreen mainScreen] bounds].size.height == WIDTH_IPHONE_5)
 
 @implementation AppDelegate
-//- (ViewController *)demoController {
-//    return [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-//}
+- (ViewController *)viewController {
+    return [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+}
 
 - (UINavigationController *)navigationController {
     return [[UINavigationController alloc]
-            initWithRootViewController:[self demoController]];
+            initWithRootViewController:[self viewController]];
 }
 
 - (MFSideMenu *)sideMenu {
-    SideMenuViewController *leftSideMenuController = [[SideMenuViewController alloc] init];
-    SideMenuViewController *rightSideMenuController = [[SideMenuViewController alloc] init];
+    LeftMenuViewController *leftSideMenuController = [[LeftMenuViewController alloc] init];
+    RightMenuViewController *rightSideMenuController = [[RightMenuViewController alloc] init];
     UINavigationController *navigationController = [self navigationController];
     
     MFSideMenu *sideMenu = [MFSideMenu menuWithNavigationController:navigationController
@@ -39,6 +44,21 @@
 {
     // Override point for customization after application launch.
     [NSURLProtocol registerClass:[RNCachingURLProtocol class]];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    self.window.rootViewController = [self sideMenu].navigationController;
+    [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
+    if (IS_IPHONE_5)
+    {
+        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape5"] forBarMetrics:UIBarMetricsLandscapePhone];
+    }
+    else
+    {
+        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
+    }
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 							

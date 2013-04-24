@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "MFSideMenu.h"
 @interface UIPopoverController (overrides)
 + (BOOL)_popoversDisabled;
 @end
@@ -63,27 +64,25 @@
     [self.webview loadRequest:snowbrains];
 }
 -(void)setupSwipe{
-    UISwipeGestureRecognizer* leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(backSwipe)];
-    leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    leftSwipeRecognizer.cancelsTouchesInView = YES;
+    UISwipeGestureRecognizer* upSwipeRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(showSwipeControl)];
+    upSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+    upSwipeRecognizer.cancelsTouchesInView = YES;
     backButton=[UIButton buttonWithType:UIButtonTypeCustom];
     
     [backButton setImage:[UIImage imageNamed:@"backwardSwipe"] forState:UIControlStateNormal];
-    [self.webview addGestureRecognizer:leftSwipeRecognizer];
+    [self.webview addGestureRecognizer:upSwipeRecognizer];
     [backButton addTarget:self action:@selector(backwardTap:) forControlEvents:UIControlEventTouchUpInside];
-//    backButton.frame=CGRectMake(0, self.view.center.y, 41, 54);
     backButton.hidden=YES;
     [self.webview addSubview:backButton];
     
-    UISwipeGestureRecognizer* rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(forwardSwipe)];
-    rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    rightSwipeRecognizer.cancelsTouchesInView = YES;
-    [self.webview addGestureRecognizer:rightSwipeRecognizer];
+//    UISwipeGestureRecognizer* rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(forwardSwipe)];
+//    rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+//    rightSwipeRecognizer.cancelsTouchesInView = YES;
+//    [self.webview addGestureRecognizer:rightSwipeRecognizer];
     
     forwardButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [forwardButton setImage:[UIImage imageNamed:@"forwardSwipe"] forState:UIControlStateNormal];
     [forwardButton addTarget:self action:@selector(forwardTap:) forControlEvents:UIControlEventTouchUpInside];
-//    forwardButton.frame=CGRectMake(self.view.frame.size.width-41, self.view.center.y, 41, 54);
     forwardButton.hidden=YES;
     [self.webview addSubview:forwardButton];
 }
@@ -116,6 +115,7 @@
     if(!self.loadFigure.isHidden){
         self.loadFigure.hidden=NO;
         self.loadBackground.hidden=NO;
+        self.loadLogo.hidden=NO;
     }
     if([self.pop isPopoverVisible])
         [self.pop dismissPopoverAnimated:YES];
@@ -131,6 +131,7 @@
     self.flakeAnimation.hidden=YES;
     self.loadFigure.hidden=YES;
     self.loadBackground.hidden=YES;
+    self.loadLogo.hidden=YES;
     [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
@@ -185,7 +186,6 @@
 - (void)viewDidUnload {
     [self setWebview:nil];
     [self setLocationButton:nil];
-    [self setLoadingIndicator:nil];
     [self setLoadBackground:nil];
     [self setLoadFigure:nil];
     [self setFlakeAnimation:nil];
@@ -294,22 +294,26 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
     return YES;
 }
--(void)backSwipe{
-    if(backButton.isHidden){
+-(void)showSwipeControl{
+    if(backButton.isHidden&&forwardButton.isHidden){
         backButton.frame=CGRectMake(0, self.webview.center.y-100, 41, 54);
         backButton.hidden=NO;
-        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backSwipe) userInfo:nil repeats:NO];
-    }else
-        backButton.hidden=YES;
-}
--(void)forwardSwipe{
-    if(forwardButton.isHidden){
         forwardButton.frame=CGRectMake(self.webview.frame.size.width-41, self.webview.center.y-100, 41, 54);
         forwardButton.hidden=NO;
-        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(forwardSwipe) userInfo:nil repeats:NO];
-    }else
+        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(showSwipeControl) userInfo:nil repeats:NO];
+    }else{
+        backButton.hidden=YES;
         forwardButton.hidden=YES;
+    }
 }
+//-(void)forwardSwipe{
+//    if(forwardButton.isHidden){
+//        forwardButton.frame=CGRectMake(self.webview.frame.size.width-41, self.webview.center.y-100, 41, 54);
+//        forwardButton.hidden=NO;
+//        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(forwardSwipe) userInfo:nil repeats:NO];
+//    }else
+//        forwardButton.hidden=YES;
+//}
 -(IBAction)backwardTap:(id)sender{
     [self.webview goBack];
 }
@@ -348,7 +352,6 @@
     switch (self.navigationController.sideMenu.menuState) {
         case MFSideMenuStateClosed:
             self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
-            self.navigationItem.leftBarButtonItem = [self backBarButtonItem];
             self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
             break;
         case MFSideMenuStateLeftMenuOpen:
@@ -372,7 +375,6 @@
             initWithImage:[UIImage imageNamed:@"menu-icon.png"] style:UIBarButtonItemStyleBordered
             target:self.navigationController.sideMenu
             action:@selector(toggleRightSideMenu)];
-}
 }
 
 @end

@@ -4,15 +4,15 @@
 //
 //  Created by Michael Frederick on 3/19/12.
 
-#import "SideMenuViewController.h"
+#import "LeftMenuViewController.h"
 #import "MFSideMenu.h"
 #import "ViewController.h"
 
-@interface SideMenuViewController()
+@interface LeftMenuViewController()
 @property(nonatomic, strong) UISearchBar *searchBar;
 @end
 
-@implementation SideMenuViewController
+@implementation LeftMenuViewController
 
 @synthesize sideMenu;
 @synthesize searchBar;

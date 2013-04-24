@@ -230,32 +230,6 @@
         <image name="brainsLogo.png" width="50" height="110"/>
         <image name="buttonBackground.png" width="14" height="27"/>
     </resources>
-    <classes>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backwardTap:"/>
-                <relationship kind="action" name="brainsTap:"/>
-                <relationship kind="action" name="forwardTap:"/>
-                <relationship kind="action" name="gearTap:"/>
-                <relationship kind="action" name="homeTap:"/>
-                <relationship kind="action" name="locationTap:"/>
-                <relationship kind="action" name="videoTap:"/>
-                <relationship kind="action" name="weatherTap:"/>
-                <relationship kind="outlet" name="brainsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="flakeAnimation" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="gearButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loadBackground" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="loadFigure" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="loadingIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="locationButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="videoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="weatherButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="webview" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
