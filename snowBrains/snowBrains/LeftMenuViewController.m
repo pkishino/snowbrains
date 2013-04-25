@@ -7,8 +7,46 @@
 #import "LeftMenuViewController.h"
 #import "MFSideMenu.h"
 #import "ViewController.h"
+#import "MenuCell.h"
 
-@interface LeftMenuViewController()
+enum {
+    lMenuListMain = 0,
+    lMenuListBookmark,
+    lMenuListExtra,
+    lMenuListCount
+};
+enum {
+    lLocationSquaw = 0,
+    lLocationJackson,
+    lLocationWhistler,
+    lLocationAlaska,
+    lLocationMore,
+    lLocationCount
+};
+enum {
+    lMoreUtah =0,
+    lMoreMammoth,
+    lMorePNW,
+    lMoreSouthAmerica,
+    lMoreJapan,
+    lMoreAlps,
+    lMoreCount
+};
+enum {
+    lVideoBrains = 0,
+    lVideoNonBrains,
+    lVideoTrailer,
+    lVideoCount
+};
+
+@interface LeftMenuViewController(){
+    NSMutableArray *leftSideMenu;
+    NSArray *mainItems;
+    NSArray *locationItems;
+    NSArray *moreItems;
+    NSArray *videoItems;
+//    NSDictionary *mainList;
+}
 @property(nonatomic, strong) UISearchBar *searchBar;
 @end
 
@@ -16,14 +54,23 @@
 
 @synthesize sideMenu;
 @synthesize searchBar;
+- (id)init{
+    if(self=[super init]){
+        mainItems=[[NSArray alloc]initWithObjects:@"Home",@"Locations",@"Weather",@"Video",@"Gear",@"Brains", nil];
+        locationItems=[[NSArray alloc]initWithObjects:@"Squaw",@"Jackson",@"Whistler",@"Alaska",@"More", nil];
+        moreItems=[[NSArray alloc]initWithObjects:@"Utah",@"Mammoth",@"PNW",@"SouthAmerica",@"Japan",@"Alps", nil];
+        videoItems=[[NSArray alloc]initWithObjects:@"BrainVideo",@"NonBrainVids",@"Trailers", nil];
+    }
+    return self;
+}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    
+    self.delegate=self.sideMenu.navigationController.delegate;
     CGRect searchBarFrame = CGRectMake(0, 0, self.tableView.frame.size.width, 45.0);
     self.searchBar = [[UISearchBar alloc] initWithFrame:searchBarFrame];
     self.searchBar.delegate = self;
-    
+    self.tableView.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"buttonBackground"]];
     self.tableView.tableHeaderView = self.searchBar;
 }
 
@@ -32,41 +79,51 @@
 #pragma mark - UITableViewDataSource
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [NSString stringWithFormat:@"Section %d", section];
+    return [self getSectionName:section];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return mainItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"buttonBackground"]];
+    [cell.contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonBackground"]]];
+    cell.textLabel.backgroundColor=[UIColor clearColor];
+    cell.textLabel.text=[mainItems objectAtIndex:indexPath.row];
+    cell.imageView.image=[UIImage imageNamed:@"flake"];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Item %d", indexPath.row];
     
     return cell;
 }
-
+-(NSString *)getSectionName:(NSInteger)section{
+    if(section==lMenuListMain)
+        return @"Main";
+    else if(section==lMenuListBookmark)
+        return @"Bookmark";
+    else if (section==lMenuListExtra)
+        return @"Extra";
+    return nil;
+}
 
 #pragma mark -
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ViewController *viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-//    viewController.title = [NSString stringWithFormat:@" View Controller #%d-%d", indexPath.section, indexPath.row];
     
-    NSArray *controllers = [NSArray arrayWithObject:viewController];
-    self.sideMenu.navigationController.viewControllers = controllers;
+    [self.delegate homeTap];
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
     
     if(self.searchBar.isFirstResponder) [self.searchBar resignFirstResponder];

@@ -89,7 +89,6 @@
 		CD4F3E1B17153337008A250D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4F3E1A17153337008A250D /* CoreGraphics.framework */; };
 		CD4F3E781716C474008A250D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4F3E771716C474008A250D /* QuartzCore.framework */; };
 		CD4F3E951717B971008A250D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4F3E8D1717B971008A250D /* AppDelegate.m */; };
-		CD4F3E961717B971008A250D /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3E8E1717B971008A250D /* MainStoryboard_iPhone.storyboard */; };
 		CD4F3E971717B971008A250D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4F3E901717B971008A250D /* main.m */; };
 		CD4F3E981717B971008A250D /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4F3E921717B971008A250D /* PullToRefreshView.m */; };
 		CD4F3E991717B971008A250D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4F3E941717B971008A250D /* ViewController.m */; };
@@ -100,7 +99,6 @@
 		CD4F3EB11717B9C1008A250D /* brainsHeaderForeground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EA11717B9C1008A250D /* brainsHeaderForeground.png */; };
 		CD4F3EB21717B9C1008A250D /* brainsLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EA21717B9C1008A250D /* brainsLogo.png */; };
 		CD4F3EB31717B9C1008A250D /* buttonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EA31717B9C1008A250D /* buttonBackground.png */; };
-		CD4F3EB41717B9C1008A250D /* homeDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EA41717B9C1008A250D /* homeDefault.png */; };
 		CD4F3EB61717B9C1008A250D /* SnowBrains_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EA61717B9C1008A250D /* SnowBrains_57x57.png */; };
 		CD4F3EB71717B9C1008A250D /* SnowBrains_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EA71717B9C1008A250D /* SnowBrains_114x114.png */; };
 		CD4F3EB81717B9C1008A250D /* SnowBrains.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4F3EA81717B9C1008A250D /* SnowBrains.png */; };
@@ -131,11 +129,28 @@
 		CD8D8B1A172789C9002AF83D /* RightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8B19172789C8002AF83D /* RightMenuViewController.m */; };
 		CD8D8B1C17279C2F002AF83D /* sideBarHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B1B17279C2F002AF83D /* sideBarHeader.png */; };
 		CD8D8B1E1727B7BD002AF83D /* sideBarHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8D8B1D1727B7BD002AF83D /* sideBarHeader@2x.png */; };
+		CD8EB3B41727EBE6003EBEAF /* barButton.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3A81727EBE6003EBEAF /* barButton.png */; };
+		CD8EB3B51727EBE6003EBEAF /* barButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3A91727EBE6003EBEAF /* barButton@2x.png */; };
+		CD8EB3B61727EBE6003EBEAF /* barButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3AA1727EBE6003EBEAF /* barButtonBack.png */; };
+		CD8EB3B71727EBE6003EBEAF /* barButtonBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3AB1727EBE6003EBEAF /* barButtonBack@2x.png */; };
+		CD8EB3B81727EBE6003EBEAF /* barButtonBackDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3AC1727EBE6003EBEAF /* barButtonBackDisabled.png */; };
+		CD8EB3B91727EBE6003EBEAF /* barButtonBackDisabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3AD1727EBE6003EBEAF /* barButtonBackDisabled@2x.png */; };
+		CD8EB3BA1727EBE6003EBEAF /* barButtonBackPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3AE1727EBE6003EBEAF /* barButtonBackPressed.png */; };
+		CD8EB3BB1727EBE6003EBEAF /* barButtonBackPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3AF1727EBE6003EBEAF /* barButtonBackPressed@2x.png */; };
+		CD8EB3BC1727EBE6003EBEAF /* barButtonDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3B01727EBE6003EBEAF /* barButtonDisabled.png */; };
+		CD8EB3BD1727EBE6003EBEAF /* barButtonDisabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3B11727EBE6003EBEAF /* barButtonDisabled@2x.png */; };
+		CD8EB3BE1727EBE6003EBEAF /* barButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3B21727EBE6003EBEAF /* barButtonPressed.png */; };
+		CD8EB3BF1727EBE6003EBEAF /* barButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3B31727EBE6003EBEAF /* barButtonPressed@2x.png */; };
+		CD8EB3CA1728CE32003EBEAF /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8EB3C91728CE32003EBEAF /* MenuCell.m */; };
+		CD8EB3D11728D564003EBEAF /* barButtonForward.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3CB1728D564003EBEAF /* barButtonForward.png */; };
+		CD8EB3D21728D564003EBEAF /* barButtonForward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3CC1728D564003EBEAF /* barButtonForward@2x.png */; };
+		CD8EB3D31728D564003EBEAF /* barButtonForwardDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3CD1728D564003EBEAF /* barButtonForwardDisabled.png */; };
+		CD8EB3D41728D564003EBEAF /* barButtonForwardDisabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3CE1728D564003EBEAF /* barButtonForwardDisabled@2x.png */; };
+		CD8EB3D51728D564003EBEAF /* barButtonForwardPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3CF1728D564003EBEAF /* barButtonForwardPressed.png */; };
+		CD8EB3D61728D564003EBEAF /* barButtonForwardPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3D01728D564003EBEAF /* barButtonForwardPressed@2x.png */; };
 		CDEF45CE171D2E5A00688181 /* CustomPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */; };
 		CDEF45D1171D30F200688181 /* arrowPop.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45CF171D30F200688181 /* arrowPop.png */; };
 		CDEF45D2171D30F200688181 /* popover-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45D0171D30F200688181 /* popover-bg.png */; };
-		CDF6E0FE1724FAF300E7E714 /* forwardSwipe.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF6E0FC1724FAF300E7E714 /* forwardSwipe.png */; };
-		CDF6E0FF1724FAF300E7E714 /* forwardSwipe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF6E0FD1724FAF300E7E714 /* forwardSwipe@2x.png */; };
 		CDF6E10D1724FB1000E7E714 /* BrainVideo.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF6E1001724FB1000E7E714 /* BrainVideo.png */; };
 		CDF6E10E1724FB1000E7E714 /* BrainVideo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF6E1011724FB1000E7E714 /* BrainVideo@2x.png */; };
 		CDF6E10F1724FB1000E7E714 /* BrainVideoSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF6E1021724FB1000E7E714 /* BrainVideoSelected.png */; };
@@ -148,8 +163,6 @@
 		CDF6E1171724FB1000E7E714 /* Trailers@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF6E10A1724FB1000E7E714 /* Trailers@2x.png */; };
 		CDF6E1181724FB1000E7E714 /* TrailersSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF6E10B1724FB1000E7E714 /* TrailersSelected.png */; };
 		CDF6E1191724FB1000E7E714 /* TrailersSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF6E10C1724FB1000E7E714 /* TrailersSelected@2x.png */; };
-		CDF6E11C1724FC5700E7E714 /* backwardSwipe.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF6E11A1724FC5700E7E714 /* backwardSwipe.png */; };
-		CDF6E11D1724FC5700E7E714 /* backwardSwipe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF6E11B1724FC5700E7E714 /* backwardSwipe@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -238,7 +251,6 @@
 		CD4F3E771716C474008A250D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CD4F3E8C1717B971008A250D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = snowBrains/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		CD4F3E8D1717B971008A250D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = snowBrains/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		CD4F3E8F1717B971008A250D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = snowBrains/en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		CD4F3E901717B971008A250D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = snowBrains/main.m; sourceTree = SOURCE_ROOT; };
 		CD4F3E911717B971008A250D /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullToRefreshView.h; path = snowBrains/PullToRefreshView.h; sourceTree = SOURCE_ROOT; };
 		CD4F3E921717B971008A250D /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullToRefreshView.m; path = snowBrains/PullToRefreshView.m; sourceTree = SOURCE_ROOT; };
@@ -253,7 +265,6 @@
 		CD4F3EA11717B9C1008A250D /* brainsHeaderForeground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brainsHeaderForeground.png; path = "snowBrains/supporting files/brainsHeaderForeground.png"; sourceTree = SOURCE_ROOT; };
 		CD4F3EA21717B9C1008A250D /* brainsLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brainsLogo.png; path = "snowBrains/supporting files/brainsLogo.png"; sourceTree = SOURCE_ROOT; };
 		CD4F3EA31717B9C1008A250D /* buttonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonBackground.png; path = "snowBrains/supporting files/buttonBackground.png"; sourceTree = SOURCE_ROOT; };
-		CD4F3EA41717B9C1008A250D /* homeDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeDefault.png; path = "snowBrains/supporting files/homeDefault.png"; sourceTree = SOURCE_ROOT; };
 		CD4F3EA61717B9C1008A250D /* SnowBrains_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SnowBrains_57x57.png; path = "snowBrains/supporting files/SnowBrains_57x57.png"; sourceTree = SOURCE_ROOT; };
 		CD4F3EA71717B9C1008A250D /* SnowBrains_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SnowBrains_114x114.png; path = "snowBrains/supporting files/SnowBrains_114x114.png"; sourceTree = SOURCE_ROOT; };
 		CD4F3EA81717B9C1008A250D /* SnowBrains.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SnowBrains.png; path = "snowBrains/supporting files/SnowBrains.png"; sourceTree = SOURCE_ROOT; };
@@ -290,12 +301,30 @@
 		CD8D8B19172789C8002AF83D /* RightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RightMenuViewController.m; path = snowBrains/RightMenuViewController.m; sourceTree = SOURCE_ROOT; };
 		CD8D8B1B17279C2F002AF83D /* sideBarHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sideBarHeader.png; path = "snowBrains/supporting files/sideBarHeader.png"; sourceTree = SOURCE_ROOT; };
 		CD8D8B1D1727B7BD002AF83D /* sideBarHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sideBarHeader@2x.png"; path = "snowBrains/supporting files/sideBarHeader@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3A81727EBE6003EBEAF /* barButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButton.png; path = "snowBrains/supporting files/barButton.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3A91727EBE6003EBEAF /* barButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButton@2x.png"; path = "snowBrains/supporting files/barButton@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3AA1727EBE6003EBEAF /* barButtonBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonBack.png; path = "snowBrains/supporting files/barButtonBack.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3AB1727EBE6003EBEAF /* barButtonBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonBack@2x.png"; path = "snowBrains/supporting files/barButtonBack@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3AC1727EBE6003EBEAF /* barButtonBackDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonBackDisabled.png; path = "snowBrains/supporting files/barButtonBackDisabled.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3AD1727EBE6003EBEAF /* barButtonBackDisabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonBackDisabled@2x.png"; path = "snowBrains/supporting files/barButtonBackDisabled@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3AE1727EBE6003EBEAF /* barButtonBackPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonBackPressed.png; path = "snowBrains/supporting files/barButtonBackPressed.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3AF1727EBE6003EBEAF /* barButtonBackPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonBackPressed@2x.png"; path = "snowBrains/supporting files/barButtonBackPressed@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3B01727EBE6003EBEAF /* barButtonDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonDisabled.png; path = "snowBrains/supporting files/barButtonDisabled.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3B11727EBE6003EBEAF /* barButtonDisabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonDisabled@2x.png"; path = "snowBrains/supporting files/barButtonDisabled@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3B21727EBE6003EBEAF /* barButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonPressed.png; path = "snowBrains/supporting files/barButtonPressed.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3B31727EBE6003EBEAF /* barButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonPressed@2x.png"; path = "snowBrains/supporting files/barButtonPressed@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3C81728CE32003EBEAF /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = SOURCE_ROOT; };
+		CD8EB3C91728CE32003EBEAF /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = SOURCE_ROOT; };
+		CD8EB3CB1728D564003EBEAF /* barButtonForward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonForward.png; path = "snowBrains/supporting files/barButtonForward.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3CC1728D564003EBEAF /* barButtonForward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonForward@2x.png"; path = "snowBrains/supporting files/barButtonForward@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3CD1728D564003EBEAF /* barButtonForwardDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonForwardDisabled.png; path = "snowBrains/supporting files/barButtonForwardDisabled.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3CE1728D564003EBEAF /* barButtonForwardDisabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonForwardDisabled@2x.png"; path = "snowBrains/supporting files/barButtonForwardDisabled@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3CF1728D564003EBEAF /* barButtonForwardPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonForwardPressed.png; path = "snowBrains/supporting files/barButtonForwardPressed.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3D01728D564003EBEAF /* barButtonForwardPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonForwardPressed@2x.png"; path = "snowBrains/supporting files/barButtonForwardPressed@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPopoverBackgroundView.h; path = snowBrains/CustomPopoverBackgroundView.h; sourceTree = SOURCE_ROOT; };
 		CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPopoverBackgroundView.m; path = snowBrains/CustomPopoverBackgroundView.m; sourceTree = SOURCE_ROOT; };
 		CDEF45CF171D30F200688181 /* arrowPop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowPop.png; path = "snowBrains/supporting files/arrowPop.png"; sourceTree = SOURCE_ROOT; };
 		CDEF45D0171D30F200688181 /* popover-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "popover-bg.png"; path = "snowBrains/supporting files/popover-bg.png"; sourceTree = SOURCE_ROOT; };
-		CDF6E0FC1724FAF300E7E714 /* forwardSwipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = forwardSwipe.png; path = "snowBrains/supporting files/forwardSwipe.png"; sourceTree = SOURCE_ROOT; };
-		CDF6E0FD1724FAF300E7E714 /* forwardSwipe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forwardSwipe@2x.png"; path = "snowBrains/supporting files/forwardSwipe@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDF6E1001724FB1000E7E714 /* BrainVideo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrainVideo.png; path = "snowBrains/supporting files/BrainVideo.png"; sourceTree = SOURCE_ROOT; };
 		CDF6E1011724FB1000E7E714 /* BrainVideo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BrainVideo@2x.png"; path = "snowBrains/supporting files/BrainVideo@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDF6E1021724FB1000E7E714 /* BrainVideoSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrainVideoSelected.png; path = "snowBrains/supporting files/BrainVideoSelected.png"; sourceTree = SOURCE_ROOT; };
@@ -308,8 +337,6 @@
 		CDF6E10A1724FB1000E7E714 /* Trailers@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Trailers@2x.png"; path = "snowBrains/supporting files/Trailers@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDF6E10B1724FB1000E7E714 /* TrailersSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrailersSelected.png; path = "snowBrains/supporting files/TrailersSelected.png"; sourceTree = SOURCE_ROOT; };
 		CDF6E10C1724FB1000E7E714 /* TrailersSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TrailersSelected@2x.png"; path = "snowBrains/supporting files/TrailersSelected@2x.png"; sourceTree = SOURCE_ROOT; };
-		CDF6E11A1724FC5700E7E714 /* backwardSwipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backwardSwipe.png; path = "snowBrains/supporting files/backwardSwipe.png"; sourceTree = SOURCE_ROOT; };
-		CDF6E11B1724FC5700E7E714 /* backwardSwipe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backwardSwipe@2x.png"; path = "snowBrains/supporting files/backwardSwipe@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,30 +479,11 @@
 		CD4F3E1C17153337008A250D /* snowBrains */ = {
 			isa = PBXGroup;
 			children = (
-				CD8D8AC1172663BA002AF83D /* LeftMenuViewController.h */,
-				CD8D8AC2172663BA002AF83D /* LeftMenuViewController.m */,
-				CD8D8B17172789A8002AF83D /* RightMenuViewController.h */,
-				CD8D8B19172789C8002AF83D /* RightMenuViewController.m */,
-				CD4F3E8C1717B971008A250D /* AppDelegate.h */,
-				CD4F3E8D1717B971008A250D /* AppDelegate.m */,
-				CD4F3E8E1717B971008A250D /* MainStoryboard_iPhone.storyboard */,
-				CD4F3E901717B971008A250D /* main.m */,
-				CD4F3E911717B971008A250D /* PullToRefreshView.h */,
-				CD4F3E921717B971008A250D /* PullToRefreshView.m */,
-				CD4F3E931717B971008A250D /* ViewController.h */,
-				CD4F3E941717B971008A250D /* ViewController.m */,
-				CD8D8ACA17267200002AF83D /* ViewController.xib */,
-				CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */,
-				CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */,
-				CD4F3EC8171BC55B008A250D /* LocationViewController.h */,
-				CD4F3EC9171BC55C008A250D /* LocationViewController.m */,
-				CD4F3ECA171BC55C008A250D /* LocationViewController.xib */,
-				CD3C306F171E2C040033AB22 /* MoreViewController.h */,
-				CD3C306D171D8A060033AB22 /* MoreViewController.m */,
-				CD3C306B171D89F10033AB22 /* MoreViewController.xib */,
-				CD3C3066171D80540033AB22 /* VideoViewController.h */,
-				CD3C3067171D80540033AB22 /* VideoViewController.m */,
-				CD3C3068171D80540033AB22 /* VideoViewController.xib */,
+				CD8EB3C31727ED56003EBEAF /* sideMenuViews */,
+				CD8EB3C71727ED8B003EBEAF /* AppDelegate */,
+				CD8EB3C41727ED65003EBEAF /* helper Views */,
+				CD8EB3C51727ED70003EBEAF /* Main View */,
+				CD8EB3C61727ED7C003EBEAF /* Sub views */,
 				CD4F3E1D17153337008A250D /* Supporting Files */,
 			);
 			name = snowBrains;
@@ -485,43 +493,13 @@
 		CD4F3E1D17153337008A250D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CD8D8B1D1727B7BD002AF83D /* sideBarHeader@2x.png */,
-				CD8D8B1B17279C2F002AF83D /* sideBarHeader.png */,
-				CD8D8B1317276E29002AF83D /* SnowBrainsHeadlessGuy.png */,
-				CD8D8B0D17276867002AF83D /* navBarBackground-Landscape.png */,
-				CD8D8B0E17276867002AF83D /* navBarBackground-Landscape@2x.png */,
-				CD8D8B0F17276867002AF83D /* navBarBackground-Landscape5@2x.png */,
-				CD8D8B0917276599002AF83D /* navBarBackground.png */,
-				CD8D8B0A17276599002AF83D /* navBarBackground@2x.png */,
-				CD8D8AB217266287002AF83D /* menu-icon.png */,
-				CD8D8AB317266287002AF83D /* menu-icon@2x.png */,
-				CD3C3167172023600033AB22 /* menuItems */,
-				CD3C3075171F7F170033AB22 /* FlakeHighRes.png */,
-				CD3C3076171F7F170033AB22 /* SnowBrainsLogoNoHead.png */,
-				CD3C3071171ED2550033AB22 /* flake.png */,
-				CDF6E0FC1724FAF300E7E714 /* forwardSwipe.png */,
-				CDF6E0FD1724FAF300E7E714 /* forwardSwipe@2x.png */,
-				CDF6E11A1724FC5700E7E714 /* backwardSwipe.png */,
-				CDF6E11B1724FC5700E7E714 /* backwardSwipe@2x.png */,
-				CD3C3072171ED2550033AB22 /* headless.png */,
-				CDEF45CF171D30F200688181 /* arrowPop.png */,
-				CDEF45D0171D30F200688181 /* popover-bg.png */,
 				CD4F3E9A1717B9C0008A250D /* InfoPlist.strings */,
 				CD4F3E9C1717B9C1008A250D /* snowBrains-Info.plist */,
 				CD4F3E9D1717B9C1008A250D /* snowBrains-Prefix.pch */,
-				CD4F3E9E1717B9C1008A250D /* arrow.png */,
-				CD4F3E9F1717B9C1008A250D /* arrow@2x.png */,
-				CD4F3EA01717B9C1008A250D /* brainsHeaderBackground.png */,
-				CD4F3EA11717B9C1008A250D /* brainsHeaderForeground.png */,
-				CD4F3EA21717B9C1008A250D /* brainsLogo.png */,
-				CD4F3EA31717B9C1008A250D /* buttonBackground.png */,
-				CD4F3EA41717B9C1008A250D /* homeDefault.png */,
-				CD4F3EA61717B9C1008A250D /* SnowBrains_57x57.png */,
-				CD4F3EA71717B9C1008A250D /* SnowBrains_114x114.png */,
-				CD4F3EA81717B9C1008A250D /* SnowBrains.png */,
-				CD4F3EA91717B9C1008A250D /* SnowBrainsSplas_640x960.png */,
-				CD4F3EAA1717B9C1008A250D /* SnowBrainsSplash_320x480.png */,
-				CD4F3EAB1717B9C1008A250D /* SnowBrainsSplash_640x1136.png */,
+				CD8EB3C01727EC78003EBEAF /* UIButtons */,
+				CD8EB3C11727ECA2003EBEAF /* background images */,
+				CD3C3167172023600033AB22 /* menuItems */,
+				CD8EB3C21727ECC2003EBEAF /* app images */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -548,6 +526,133 @@
 			);
 			name = MFSideMenu;
 			path = snowBrains/MFSideMenu;
+			sourceTree = "<group>";
+		};
+		CD8EB3C01727EC78003EBEAF /* UIButtons */ = {
+			isa = PBXGroup;
+			children = (
+				CD8EB3CB1728D564003EBEAF /* barButtonForward.png */,
+				CD8EB3CC1728D564003EBEAF /* barButtonForward@2x.png */,
+				CD8EB3CD1728D564003EBEAF /* barButtonForwardDisabled.png */,
+				CD8EB3CE1728D564003EBEAF /* barButtonForwardDisabled@2x.png */,
+				CD8EB3CF1728D564003EBEAF /* barButtonForwardPressed.png */,
+				CD8EB3D01728D564003EBEAF /* barButtonForwardPressed@2x.png */,
+				CD4F3E9E1717B9C1008A250D /* arrow.png */,
+				CD4F3E9F1717B9C1008A250D /* arrow@2x.png */,
+				CD8D8AB217266287002AF83D /* menu-icon.png */,
+				CD8D8AB317266287002AF83D /* menu-icon@2x.png */,
+				CD8EB3A81727EBE6003EBEAF /* barButton.png */,
+				CD8EB3A91727EBE6003EBEAF /* barButton@2x.png */,
+				CD8EB3B01727EBE6003EBEAF /* barButtonDisabled.png */,
+				CD8EB3B11727EBE6003EBEAF /* barButtonDisabled@2x.png */,
+				CD8EB3B21727EBE6003EBEAF /* barButtonPressed.png */,
+				CD8EB3B31727EBE6003EBEAF /* barButtonPressed@2x.png */,
+				CD8EB3AA1727EBE6003EBEAF /* barButtonBack.png */,
+				CD8EB3AB1727EBE6003EBEAF /* barButtonBack@2x.png */,
+				CD8EB3AC1727EBE6003EBEAF /* barButtonBackDisabled.png */,
+				CD8EB3AD1727EBE6003EBEAF /* barButtonBackDisabled@2x.png */,
+				CD8EB3AE1727EBE6003EBEAF /* barButtonBackPressed.png */,
+				CD8EB3AF1727EBE6003EBEAF /* barButtonBackPressed@2x.png */,
+				CDEF45CF171D30F200688181 /* arrowPop.png */,
+				CDEF45D0171D30F200688181 /* popover-bg.png */,
+			);
+			name = UIButtons;
+			sourceTree = "<group>";
+		};
+		CD8EB3C11727ECA2003EBEAF /* background images */ = {
+			isa = PBXGroup;
+			children = (
+				CD4F3EA31717B9C1008A250D /* buttonBackground.png */,
+				CD8D8B1D1727B7BD002AF83D /* sideBarHeader@2x.png */,
+				CD8D8B1B17279C2F002AF83D /* sideBarHeader.png */,
+				CD8D8B1317276E29002AF83D /* SnowBrainsHeadlessGuy.png */,
+				CD8D8B0D17276867002AF83D /* navBarBackground-Landscape.png */,
+				CD8D8B0E17276867002AF83D /* navBarBackground-Landscape@2x.png */,
+				CD8D8B0F17276867002AF83D /* navBarBackground-Landscape5@2x.png */,
+				CD8D8B0917276599002AF83D /* navBarBackground.png */,
+				CD8D8B0A17276599002AF83D /* navBarBackground@2x.png */,
+				CD3C3075171F7F170033AB22 /* FlakeHighRes.png */,
+				CD3C3076171F7F170033AB22 /* SnowBrainsLogoNoHead.png */,
+				CD3C3071171ED2550033AB22 /* flake.png */,
+				CD3C3072171ED2550033AB22 /* headless.png */,
+				CD4F3EA01717B9C1008A250D /* brainsHeaderBackground.png */,
+				CD4F3EA11717B9C1008A250D /* brainsHeaderForeground.png */,
+				CD4F3EA21717B9C1008A250D /* brainsLogo.png */,
+			);
+			name = "background images";
+			sourceTree = "<group>";
+		};
+		CD8EB3C21727ECC2003EBEAF /* app images */ = {
+			isa = PBXGroup;
+			children = (
+				CD4F3EA61717B9C1008A250D /* SnowBrains_57x57.png */,
+				CD4F3EA71717B9C1008A250D /* SnowBrains_114x114.png */,
+				CD4F3EA81717B9C1008A250D /* SnowBrains.png */,
+				CD4F3EA91717B9C1008A250D /* SnowBrainsSplas_640x960.png */,
+				CD4F3EAA1717B9C1008A250D /* SnowBrainsSplash_320x480.png */,
+				CD4F3EAB1717B9C1008A250D /* SnowBrainsSplash_640x1136.png */,
+			);
+			name = "app images";
+			sourceTree = "<group>";
+		};
+		CD8EB3C31727ED56003EBEAF /* sideMenuViews */ = {
+			isa = PBXGroup;
+			children = (
+				CD8D8AC1172663BA002AF83D /* LeftMenuViewController.h */,
+				CD8D8AC2172663BA002AF83D /* LeftMenuViewController.m */,
+				CD8EB3C81728CE32003EBEAF /* MenuCell.h */,
+				CD8EB3C91728CE32003EBEAF /* MenuCell.m */,
+				CD8D8B17172789A8002AF83D /* RightMenuViewController.h */,
+				CD8D8B19172789C8002AF83D /* RightMenuViewController.m */,
+			);
+			name = sideMenuViews;
+			sourceTree = "<group>";
+		};
+		CD8EB3C41727ED65003EBEAF /* helper Views */ = {
+			isa = PBXGroup;
+			children = (
+				CD4F3E911717B971008A250D /* PullToRefreshView.h */,
+				CD4F3E921717B971008A250D /* PullToRefreshView.m */,
+				CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */,
+				CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */,
+			);
+			name = "helper Views";
+			sourceTree = "<group>";
+		};
+		CD8EB3C51727ED70003EBEAF /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				CD4F3E931717B971008A250D /* ViewController.h */,
+				CD4F3E941717B971008A250D /* ViewController.m */,
+				CD8D8ACA17267200002AF83D /* ViewController.xib */,
+			);
+			name = "Main View";
+			sourceTree = "<group>";
+		};
+		CD8EB3C61727ED7C003EBEAF /* Sub views */ = {
+			isa = PBXGroup;
+			children = (
+				CD4F3EC8171BC55B008A250D /* LocationViewController.h */,
+				CD4F3EC9171BC55C008A250D /* LocationViewController.m */,
+				CD4F3ECA171BC55C008A250D /* LocationViewController.xib */,
+				CD3C306F171E2C040033AB22 /* MoreViewController.h */,
+				CD3C306D171D8A060033AB22 /* MoreViewController.m */,
+				CD3C306B171D89F10033AB22 /* MoreViewController.xib */,
+				CD3C3066171D80540033AB22 /* VideoViewController.h */,
+				CD3C3067171D80540033AB22 /* VideoViewController.m */,
+				CD3C3068171D80540033AB22 /* VideoViewController.xib */,
+			);
+			name = "Sub views";
+			sourceTree = "<group>";
+		};
+		CD8EB3C71727ED8B003EBEAF /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				CD4F3E8C1717B971008A250D /* AppDelegate.h */,
+				CD4F3E8D1717B971008A250D /* AppDelegate.m */,
+				CD4F3E901717B971008A250D /* main.m */,
+			);
+			name = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -601,7 +706,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD4F3E961717B971008A250D /* MainStoryboard_iPhone.storyboard in Resources */,
 				CD4F3EAC1717B9C1008A250D /* InfoPlist.strings in Resources */,
 				CD4F3EAE1717B9C1008A250D /* arrow.png in Resources */,
 				CD4F3EAF1717B9C1008A250D /* arrow@2x.png in Resources */,
@@ -609,7 +713,6 @@
 				CD4F3EB11717B9C1008A250D /* brainsHeaderForeground.png in Resources */,
 				CD4F3EB21717B9C1008A250D /* brainsLogo.png in Resources */,
 				CD4F3EB31717B9C1008A250D /* buttonBackground.png in Resources */,
-				CD4F3EB41717B9C1008A250D /* homeDefault.png in Resources */,
 				CD4F3EB61717B9C1008A250D /* SnowBrains_57x57.png in Resources */,
 				CD4F3EB71717B9C1008A250D /* SnowBrains_114x114.png in Resources */,
 				CD4F3EB81717B9C1008A250D /* SnowBrains.png in Resources */,
@@ -697,8 +800,6 @@
 				CD3C31641720232D0033AB22 /* Whistler@2x.png in Resources */,
 				CD3C31651720232D0033AB22 /* WhistlerSelected.png in Resources */,
 				CD3C31661720232D0033AB22 /* WhistlerSelected@2x.png in Resources */,
-				CDF6E0FE1724FAF300E7E714 /* forwardSwipe.png in Resources */,
-				CDF6E0FF1724FAF300E7E714 /* forwardSwipe@2x.png in Resources */,
 				CDF6E10D1724FB1000E7E714 /* BrainVideo.png in Resources */,
 				CDF6E10E1724FB1000E7E714 /* BrainVideo@2x.png in Resources */,
 				CDF6E10F1724FB1000E7E714 /* BrainVideoSelected.png in Resources */,
@@ -711,8 +812,6 @@
 				CDF6E1171724FB1000E7E714 /* Trailers@2x.png in Resources */,
 				CDF6E1181724FB1000E7E714 /* TrailersSelected.png in Resources */,
 				CDF6E1191724FB1000E7E714 /* TrailersSelected@2x.png in Resources */,
-				CDF6E11C1724FC5700E7E714 /* backwardSwipe.png in Resources */,
-				CDF6E11D1724FC5700E7E714 /* backwardSwipe@2x.png in Resources */,
 				CD8D8AB417266287002AF83D /* menu-icon.png in Resources */,
 				CD8D8AB517266287002AF83D /* menu-icon@2x.png in Resources */,
 				CD8D8ACB17267200002AF83D /* ViewController.xib in Resources */,
@@ -725,6 +824,24 @@
 				CD8D8B18172789A8002AF83D /* RightMenuViewController.h in Resources */,
 				CD8D8B1C17279C2F002AF83D /* sideBarHeader.png in Resources */,
 				CD8D8B1E1727B7BD002AF83D /* sideBarHeader@2x.png in Resources */,
+				CD8EB3B41727EBE6003EBEAF /* barButton.png in Resources */,
+				CD8EB3B51727EBE6003EBEAF /* barButton@2x.png in Resources */,
+				CD8EB3B61727EBE6003EBEAF /* barButtonBack.png in Resources */,
+				CD8EB3B71727EBE6003EBEAF /* barButtonBack@2x.png in Resources */,
+				CD8EB3B81727EBE6003EBEAF /* barButtonBackDisabled.png in Resources */,
+				CD8EB3B91727EBE6003EBEAF /* barButtonBackDisabled@2x.png in Resources */,
+				CD8EB3BA1727EBE6003EBEAF /* barButtonBackPressed.png in Resources */,
+				CD8EB3BB1727EBE6003EBEAF /* barButtonBackPressed@2x.png in Resources */,
+				CD8EB3BC1727EBE6003EBEAF /* barButtonDisabled.png in Resources */,
+				CD8EB3BD1727EBE6003EBEAF /* barButtonDisabled@2x.png in Resources */,
+				CD8EB3BE1727EBE6003EBEAF /* barButtonPressed.png in Resources */,
+				CD8EB3BF1727EBE6003EBEAF /* barButtonPressed@2x.png in Resources */,
+				CD8EB3D11728D564003EBEAF /* barButtonForward.png in Resources */,
+				CD8EB3D21728D564003EBEAF /* barButtonForward@2x.png in Resources */,
+				CD8EB3D31728D564003EBEAF /* barButtonForwardDisabled.png in Resources */,
+				CD8EB3D41728D564003EBEAF /* barButtonForwardDisabled@2x.png in Resources */,
+				CD8EB3D51728D564003EBEAF /* barButtonForwardPressed.png in Resources */,
+				CD8EB3D61728D564003EBEAF /* barButtonForwardPressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,20 +866,13 @@
 				CD8D8AB117265D2F002AF83D /* UINavigationController+MFSideMenu.m in Sources */,
 				CD8D8AC3172663BA002AF83D /* LeftMenuViewController.m in Sources */,
 				CD8D8B1A172789C9002AF83D /* RightMenuViewController.m in Sources */,
+				CD8EB3CA1728CE32003EBEAF /* MenuCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CD4F3E8E1717B971008A250D /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CD4F3E8F1717B971008A250D /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
 		CD4F3E9A1717B9C0008A250D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

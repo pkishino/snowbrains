@@ -8,37 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "PullToRefreshView.h"
-#import "LocationViewController.h"
 #import "MoreViewController.h"
-#import "VideoViewController.h"
-#import "CustomPopoverBackgroundView.h"
+#import "LeftMenuViewController.h"
 
-@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIPopoverControllerDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate>
+@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,UINavigationControllerDelegate,LeftMenuViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
-@property (strong, nonatomic) UIPopoverController *pop;
-@property (strong, nonatomic) LocationViewController *locationViewRef;
 @property (strong, nonatomic) IBOutlet UIImageView *loadBackground;
 @property (strong, nonatomic) IBOutlet UIImageView *loadLogo;
 @property (strong, nonatomic) IBOutlet UIImageView *loadFigure;
 @property (strong, nonatomic) IBOutlet UIImageView *flakeAnimation;
 
-- (IBAction)homeTap:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *homeButton;
-
-- (IBAction)locationTap:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *locationButton;
-
-- (IBAction)weatherTap:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *weatherButton;
-
-- (IBAction)videoTap:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *videoButton;
-
-- (IBAction)gearTap:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *gearButton;
-
-- (IBAction)brainsTap:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *brainsButton;
 
 @end

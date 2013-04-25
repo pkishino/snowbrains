@@ -60,8 +60,10 @@
         [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
     }
     
-//    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarMiniDefaultButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarMiniDefaultButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:@"buttonBackground"]];
+    
     
     return YES;
 }

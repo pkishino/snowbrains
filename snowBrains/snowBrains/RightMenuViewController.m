@@ -25,7 +25,7 @@
     UIImageView *menuLogoView =[[UIImageView alloc]initWithImage:menuLogoImage];
     self.menuLogo = [[UIView alloc]initWithFrame:menuLogoFrame];
     [menuLogo addSubview:menuLogoView];
-    
+    self.tableView.bounces=NO;
     self.tableView.tableHeaderView = self.menuLogo;
 }
 
@@ -36,9 +36,12 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [NSString stringWithFormat:@"Section %d", section];
 }
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    return[[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"section%d",section]]];
+//}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -53,8 +56,10 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"buttonBackground"]];
+    [cell.contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonBackground"]]];
     cell.textLabel.text = [NSString stringWithFormat:@"Item %d", indexPath.row];
+    cell.textLabel.backgroundColor=[UIColor clearColor];
     
     return cell;
 }
@@ -64,11 +69,11 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ViewController *viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+//    ViewController *viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
 //    viewController.title = [NSString stringWithFormat:@" View Controller #%d-%d", indexPath.section, indexPath.row];
     
-    NSArray *controllers = [NSArray arrayWithObject:viewController];
-    self.sideMenu.navigationController.viewControllers = controllers;
+//    NSArray *controllers = [NSArray arrayWithObject:viewController];
+//    self.sideMenu.navigationController.viewControllers = controllers;
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
 }
 

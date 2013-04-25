@@ -14,16 +14,29 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        self.menuItem=self.textLabel;
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)updateCellDisplay {
+    if (self.selected || self.highlighted) {
+        self.menuItem.textColor = [UIColor redColor];
+    }
+    else {
+        self.menuItem.textColor = [UIColor whiteColor];
+    }
 }
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    [self updateCellDisplay];
+}
+
+- (void) setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    [self updateCellDisplay];
+}
+
 
 @end

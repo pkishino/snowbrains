@@ -25,6 +25,7 @@
     NSString *requestString;
     UIButton *backButton;
     UIButton *forwardButton;
+    UIImageView * backBar;
 }
 
 @end
@@ -41,7 +42,6 @@
     [self setupPullDownRefresh];
     [self setupAnimation];
     [self setupSwipe];
-    [self.homeButton setSelected:YES];
     [self setupSideMenu];
     [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
 }
@@ -51,6 +51,10 @@
     [self.webview loadRequest:snowbrains];
 }
 -(void)setupSwipe{
+    backBar=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"buttonBackground"]];
+    backBar.hidden=YES;
+    [self.webview addSubview:backBar];
+    
     UISwipeGestureRecognizer* downSwipeRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(showSwipeControl)];
     downSwipeRecognizer.delegate=self;
     downSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
@@ -64,13 +68,17 @@
     [self.webview addGestureRecognizer:upSwipeRecognizer];
     
     backButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageNamed:@"backwardSwipe"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"barButtonBack"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"barButtonBackDisabled"] forState:UIControlStateDisabled];
+    [backButton setImage:[UIImage imageNamed:@"barButtonBackPressed"] forState:UIControlStateHighlighted];
     [backButton addTarget:self action:@selector(backwardTap:) forControlEvents:UIControlEventTouchUpInside];
     backButton.hidden=YES;
     [self.webview addSubview:backButton];
     
     forwardButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [forwardButton setImage:[UIImage imageNamed:@"forwardSwipe"] forState:UIControlStateNormal];
+    [forwardButton setImage:[UIImage imageNamed:@"barButtonForward"] forState:UIControlStateNormal];
+    [forwardButton setImage:[UIImage imageNamed:@"barButtonForwardDisabled"] forState:UIControlStateDisabled];
+    [forwardButton setImage:[UIImage imageNamed:@"barButtonForwardPressed"] forState:UIControlStateHighlighted];
     [forwardButton addTarget:self action:@selector(forwardTap:) forControlEvents:UIControlEventTouchUpInside];
     forwardButton.hidden=YES;
     [self.webview addSubview:forwardButton];
@@ -106,13 +114,6 @@
         self.loadBackground.hidden=NO;
         self.loadLogo.hidden=NO;
     }
-    if([self.pop isPopoverVisible])
-        [self.pop dismissPopoverAnimated:YES];
-    if(self.locationViewRef.pop){
-        if([self.locationViewRef.pop isPopoverVisible])
-            [self.locationViewRef.pop dismissPopoverAnimated:YES];
-    }
-    
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
@@ -174,98 +175,32 @@
 
 - (void)viewDidUnload {
     [self setWebview:nil];
-    [self setLocationButton:nil];
     [self setLoadBackground:nil];
     [self setLoadFigure:nil];
     [self setFlakeAnimation:nil];
     [super viewDidUnload];
 }
-- (IBAction)homeTap:(id)sender{
-    if(!self.homeButton.isSelected){
-        [self dismissAndDeselect];
-        [self.homeButton setSelected:YES];
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
-    }
+- (void)homeTap{
+    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
 }
 - (IBAction)locationTap:(id)sender {
-    if(!self.locationButton.isSelected){
-        [self dismissAndDeselect];
-        [self.locationButton setSelected:YES];
-        //[self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/?app=1"]];
-        LocationViewController* popoverView=[[LocationViewController alloc]init];
-        popoverView.delegate=self;
-        popoverView.mainViewRef=self.view;
-        self.locationViewRef=popoverView;
-        UIPopoverController *popover=[[UIPopoverController alloc]initWithContentViewController: popoverView];
-        popover.popoverBackgroundViewClass=[CustomPopoverBackgroundView class];
-        popover.passthroughViews=[[NSArray alloc]initWithObjects:self.view, nil];
-        popover.delegate=self;
-        popover.popoverLayoutMargins = UIEdgeInsetsMake(self.locationButton.frame.origin.x, self.locationButton.frame.origin.x, 0, 0);
-        self.pop=popover;
-        [self.pop presentPopoverFromRect:self.locationButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    }else{
-        if([self.pop isPopoverVisible])
-            [self.pop dismissPopoverAnimated:YES];
-        if(self.locationViewRef.pop){
-            if([self.locationViewRef.pop isPopoverVisible])
-                [self.locationViewRef.pop dismissPopoverAnimated:YES];
-        }
-    }
+    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/?app=1"]];
+
 }
 - (IBAction)weatherTap:(id)sender{
-    if(!self.weatherButton.isSelected){
-        [self dismissAndDeselect];
-        [self.weatherButton setSelected:YES];
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/weather/?app=1"]];
-    }
+    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/weather/?app=1"]];
 }
 - (IBAction)videoTap:(id)sender{
-    if(!self.videoButton.isSelected){
-        [self dismissAndDeselect];        
-        [self.videoButton setSelected:YES];
-        //[self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/?app=1"]];
-        VideoViewController* popoverView=[[VideoViewController alloc]init];
-        popoverView.delegate=self;
-        UIPopoverController *popover=[[UIPopoverController alloc]initWithContentViewController: popoverView];
-        popover.popoverBackgroundViewClass=[CustomPopoverBackgroundView class];
-        popover.delegate=self;
-        popover.popoverLayoutMargins = UIEdgeInsetsMake(self.videoButton.frame.origin.x, self.videoButton.frame.origin.x, 0, 0);
-        popover.passthroughViews=[[NSArray alloc]initWithObjects:self.view, nil];
-        self.pop=popover;
-        [self.pop presentPopoverFromRect:self.videoButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    }else{
-        if([self.pop isPopoverVisible])
-            [self.pop dismissPopoverAnimated:YES];
-    }
-    
+    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/?app=1"]];
 }
 - (IBAction)gearTap:(id)sender{
-    if(!self.gearButton.isSelected){
-        [self dismissAndDeselect];        
-        [self.gearButton setSelected:YES];
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/gear/?app=1"]];
-    }
+   [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/gear/?app=1"]];
 }
 - (IBAction)brainsTap:(id)sender{
-    if(!self.brainsButton.isSelected){
-        [self dismissAndDeselect];
-        [self.brainsButton setSelected:YES];
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/brains/?app=1"]];
-    }
+    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/brains/?app=1"]];
 }
--(void)dismissAndDeselect{
-    if([self.pop isPopoverVisible])
-        [self.pop dismissPopoverAnimated:YES];
-    if(self.locationViewRef.pop){
-        if([self.locationViewRef.pop isPopoverVisible])
-            [self.locationViewRef.pop dismissPopoverAnimated:YES];
-    }
-    for(int i=101;i<107;i++){
-        [((UIButton *)[self.view viewWithTag:i]) setSelected:NO];
-    }
-}
+
 -(void)loadpage:(NSURL *)url{
-    [self dismissAndDeselect];
     [self loadWithURL:url];
 }
 -(void)setupAnimation{
@@ -285,13 +220,15 @@
 }
 -(void)showSwipeControl{
     if(backButton.isHidden&&forwardButton.isHidden){
-        backButton.frame=CGRectMake(0, self.webview.frame.size.height-54, 41, 54);
+        backBar.frame=CGRectMake(0, self.webview.bounds.size.height-30, self.webview.bounds.size.width, 30);
+        backBar.hidden=NO;
+        backButton.frame=CGRectMake(0, self.webview.bounds.size.height-30, 20, 30);
         backButton.hidden=NO;
         if(!self.webview.canGoBack)
            [backButton setEnabled:NO];
         else
            [backButton setEnabled:YES];
-        forwardButton.frame=CGRectMake(self.webview.frame.size.width-41, self.webview.frame.size.height-54, 41, 54);
+        forwardButton.frame=CGRectMake(self.webview.bounds.size.width-20, self.webview.bounds.size.height-30, 20, 30);
         forwardButton.hidden=NO;
         if(!self.webview.canGoForward)
             [forwardButton setEnabled:NO];
@@ -302,22 +239,7 @@
 -(void)hideSwipeControl{
     backButton.hidden=YES;
     forwardButton.hidden=YES;
-}
--(void)backwardSwipe{
-    if(backButton.isHidden){
-        backButton.frame=CGRectMake(0, self.webview.center.y-100, 41, 54);
-        backButton.hidden=NO;
-        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backwardSwipe) userInfo:nil repeats:NO];
-    }else
-        forwardButton.hidden=YES;
-}
--(void)forwardSwipe{
-    if(forwardButton.isHidden){
-        forwardButton.frame=CGRectMake(self.webview.frame.size.width-41, self.webview.center.y-100, 41, 54);
-        forwardButton.hidden=NO;
-        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(forwardSwipe) userInfo:nil repeats:NO];
-    }else
-        forwardButton.hidden=YES;
+    backBar.hidden=YES;
 }
 -(IBAction)backwardTap:(id)sender{
     [self.webview goBack];
@@ -329,6 +251,7 @@
     __weak ViewController *weakSelf = self;
     // if you want to listen for menu open/close events
     // this is useful, for example, if you want to change a UIBarButtonItem when the menu closes
+    self.navigationController.delegate=self;
     self.navigationController.sideMenu.menuStateEventBlock = ^(MFSideMenuStateEvent event) {
         switch (event) {
             case MFSideMenuStateEventMenuWillOpen:

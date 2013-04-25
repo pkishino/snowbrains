@@ -10,5 +10,12 @@
 @interface LeftMenuViewController : UITableViewController<UISearchBarDelegate>
 
 @property (nonatomic, assign) MFSideMenu *sideMenu;
+@property (nonatomic,weak) id delegate;
+
+@end
+
+@protocol LeftMenuViewControllerDelegate <NSObject>
+
+-(void)homeTap;
 
 @end
