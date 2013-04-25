@@ -46,9 +46,11 @@
     [NSURLProtocol registerClass:[RNCachingURLProtocol class]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     self.window.rootViewController = [self sideMenu].navigationController;
+    [self.window makeKeyAndVisible];
+    
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
+    
     if (IS_IPHONE_5)
     {
         [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape5"] forBarMetrics:UIBarMetricsLandscapePhone];
@@ -57,7 +59,9 @@
     {
         [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
     }
-    [self.window makeKeyAndVisible];
+    
+//    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarMiniDefaultButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarMiniDefaultButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     
     return YES;
 }
