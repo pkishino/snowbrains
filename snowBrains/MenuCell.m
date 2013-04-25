@@ -15,6 +15,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.menuItem=self.textLabel;
+//        UIImageView *separatorImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.frame)-1, self.frame.size.width, 1)];
+//        separatorImage.image=[UIImage imageNamed:@"cellSeparator"];
+//        [[self contentView] addSubview:separatorImage];
+        self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackground"]];
     }
     return self;
 }
@@ -22,9 +26,11 @@
 - (void)updateCellDisplay {
     if (self.selected || self.highlighted) {
         self.menuItem.textColor = [UIColor redColor];
+        self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackgroundSelected"]];
     }
     else {
         self.menuItem.textColor = [UIColor whiteColor];
+        self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackground"]];
     }
 }
 

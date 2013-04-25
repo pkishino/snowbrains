@@ -16,6 +16,6 @@
 
 @protocol LeftMenuViewControllerDelegate <NSObject>
 
--(void)homeTap;
+-(void)menuTap:(NSString *)menuItem;
 
 @end

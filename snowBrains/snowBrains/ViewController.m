@@ -180,29 +180,30 @@
     [self setFlakeAnimation:nil];
     [super viewDidUnload];
 }
-- (void)homeTap{
-    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
+-(void)menuTap:(NSString *)menuItem{
+    if([menuItem isEqualToString:@"Home"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
+    else if([menuItem isEqualToString:@"Weather"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/weather/?app=1"]];
+    else if([menuItem isEqualToString:@"Gear"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/gear/?app=1"]];    
+    else if([menuItem isEqualToString:@"Brains"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/brains/?app=1"]];
+    else if([menuItem isEqualToString:@"Squaw"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/squaw/?app=1"]];
+    else if([menuItem isEqualToString:@"Jackson"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/jackson/?app=1"]];
+    else if([menuItem isEqualToString:@"Whistler"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/whistler/?app=1"]];
+    else if([menuItem isEqualToString:@"Alaska"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alaska/?app=1"]];      
 }
-- (IBAction)locationTap:(id)sender {
-    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/?app=1"]];
+//    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/?app=1"]];
 
-}
-- (IBAction)weatherTap:(id)sender{
-    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/weather/?app=1"]];
-}
-- (IBAction)videoTap:(id)sender{
-    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/?app=1"]];
-}
-- (IBAction)gearTap:(id)sender{
-   [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/gear/?app=1"]];
-}
-- (IBAction)brainsTap:(id)sender{
-    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/brains/?app=1"]];
-}
+//    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/?app=1"]];
 
--(void)loadpage:(NSURL *)url{
-    [self loadWithURL:url];
-}
+
+
 -(void)setupAnimation{
     CABasicAnimation *fullRotation;
     fullRotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
@@ -315,7 +316,7 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return (UIInterfaceOrientationMaskAll|UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight|UIInterfaceOrientationPortrait|UIInterfaceOrientationPortraitUpsideDown);
+    return (UIInterfaceOrientationMaskAll|UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight|UIInterfaceOrientationPortrait);
 }
 
 @end

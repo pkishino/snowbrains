@@ -60,12 +60,14 @@ enum {
         locationItems=[[NSArray alloc]initWithObjects:@"Squaw",@"Jackson",@"Whistler",@"Alaska",@"More", nil];
         moreItems=[[NSArray alloc]initWithObjects:@"Utah",@"Mammoth",@"PNW",@"SouthAmerica",@"Japan",@"Alps", nil];
         videoItems=[[NSArray alloc]initWithObjects:@"BrainVideo",@"NonBrainVids",@"Trailers", nil];
+        leftSideMenu=[[NSMutableArray alloc]initWithArray:mainItems];
     }
     return self;
 }
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.delegate=self.sideMenu.navigationController.delegate;
     CGRect searchBarFrame = CGRectMake(0, 0, self.tableView.frame.size.width, 45.0);
     self.searchBar = [[UISearchBar alloc] initWithFrame:searchBarFrame];
@@ -87,7 +89,7 @@ enum {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return mainItems.count;
+    return leftSideMenu.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,10 +100,16 @@ enum {
     if (cell == nil) {
         cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"buttonBackground"]];
-    [cell.contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonBackground"]]];
+    //cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"buttonBackground"]];
+    //[cell.contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonBackground"]]];
     cell.textLabel.backgroundColor=[UIColor clearColor];
-    cell.textLabel.text=[mainItems objectAtIndex:indexPath.row];
+    cell.textLabel.text=[leftSideMenu objectAtIndex:indexPath.row];
+    if([locationItems containsObject:cell.textLabel.text]||[videoItems containsObject:cell.textLabel.text])
+        cell.indentationLevel=1;
+    else if([moreItems containsObject:cell.textLabel.text])
+        cell.indentationLevel=2;
+    else
+        cell.indentationLevel=0;
     cell.imageView.image=[UIImage imageNamed:@"flake"];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
@@ -122,8 +130,12 @@ enum {
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self.delegate homeTap];
+    NSString *selectedMenuItem=[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+    if([selectedMenuItem isEqualToString:@"Locations"]||[selectedMenuItem isEqualToString:@"More"]||[selectedMenuItem isEqualToString:@"Video"]){
+        [self manageSubCells:selectedMenuItem];
+        return;
+    }else
+        [self.delegate menuTap:selectedMenuItem];
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
     
     if(self.searchBar.isFirstResponder) [self.searchBar resignFirstResponder];
@@ -169,6 +181,37 @@ enum {
     [self.searchBar setShowsCancelButton:NO animated:YES];
     
     self.sideMenu.panMode = MFSideMenuPanModeDefault;
+}
+-(void)manageSubCells:(NSString *)selection{
+    if([[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]].textLabel.text isEqualToString:selection]){
+        NSMutableArray *tempList=[[NSMutableArray alloc]initWithArray:leftSideMenu];
+        if([selection isEqualToString:@"Locations"]){
+            if([tempList containsObject:[locationItems objectAtIndex:0]]){
+                [tempList removeObjectsInArray:locationItems];
+                [tempList removeObjectsInArray:moreItems];
+            }else{
+            for(int i=0;i<locationItems.count;i++)
+                [tempList insertObject:[locationItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
+            }
+        }else if([selection isEqualToString:@"More"]){
+            if([tempList containsObject:[moreItems objectAtIndex:0]])
+                [tempList removeObjectsInArray:moreItems];
+            else{
+            for(int i=0;i<moreItems.count;i++)
+                [tempList insertObject:[moreItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
+                }
+        }else if([selection isEqualToString:@"Video"]){
+            if([tempList containsObject:[videoItems objectAtIndex:0]])
+                [tempList removeObjectsInArray:videoItems];
+            else{
+            for(int i=0;i<videoItems.count;i++)
+                [tempList insertObject:[videoItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
+            }
+        }
+        leftSideMenu=tempList;
+        [self.tableView reloadData];
+    }
+    
 }
 
 @end

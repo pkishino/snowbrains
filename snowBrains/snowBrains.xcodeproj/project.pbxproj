@@ -148,6 +148,10 @@
 		CD8EB3D41728D564003EBEAF /* barButtonForwardDisabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3CE1728D564003EBEAF /* barButtonForwardDisabled@2x.png */; };
 		CD8EB3D51728D564003EBEAF /* barButtonForwardPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3CF1728D564003EBEAF /* barButtonForwardPressed.png */; };
 		CD8EB3D61728D564003EBEAF /* barButtonForwardPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3D01728D564003EBEAF /* barButtonForwardPressed@2x.png */; };
+		CD8EB3DA17292805003EBEAF /* sideBarCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3D817292805003EBEAF /* sideBarCellBackground@2x.png */; };
+		CD8EB3DB17292805003EBEAF /* sideBarCellBackgroundSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3D917292805003EBEAF /* sideBarCellBackgroundSelected@2x.png */; };
+		CD8EB3DE172928AA003EBEAF /* sideBarCellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3DC172928A9003EBEAF /* sideBarCellBackground.png */; };
+		CD8EB3DF172928AA003EBEAF /* sideBarCellBackgroundSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8EB3DD172928AA003EBEAF /* sideBarCellBackgroundSelected.png */; };
 		CDEF45CE171D2E5A00688181 /* CustomPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */; };
 		CDEF45D1171D30F200688181 /* arrowPop.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45CF171D30F200688181 /* arrowPop.png */; };
 		CDEF45D2171D30F200688181 /* popover-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEF45D0171D30F200688181 /* popover-bg.png */; };
@@ -321,6 +325,10 @@
 		CD8EB3CE1728D564003EBEAF /* barButtonForwardDisabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonForwardDisabled@2x.png"; path = "snowBrains/supporting files/barButtonForwardDisabled@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD8EB3CF1728D564003EBEAF /* barButtonForwardPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonForwardPressed.png; path = "snowBrains/supporting files/barButtonForwardPressed.png"; sourceTree = SOURCE_ROOT; };
 		CD8EB3D01728D564003EBEAF /* barButtonForwardPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonForwardPressed@2x.png"; path = "snowBrains/supporting files/barButtonForwardPressed@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3D817292805003EBEAF /* sideBarCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sideBarCellBackground@2x.png"; path = "snowBrains/supporting files/sideBarCellBackground@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3D917292805003EBEAF /* sideBarCellBackgroundSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sideBarCellBackgroundSelected@2x.png"; path = "snowBrains/supporting files/sideBarCellBackgroundSelected@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3DC172928A9003EBEAF /* sideBarCellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sideBarCellBackground.png; path = "snowBrains/supporting files/sideBarCellBackground.png"; sourceTree = SOURCE_ROOT; };
+		CD8EB3DD172928AA003EBEAF /* sideBarCellBackgroundSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sideBarCellBackgroundSelected.png; path = "snowBrains/supporting files/sideBarCellBackgroundSelected.png"; sourceTree = SOURCE_ROOT; };
 		CDEF45CC171D2E5A00688181 /* CustomPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPopoverBackgroundView.h; path = snowBrains/CustomPopoverBackgroundView.h; sourceTree = SOURCE_ROOT; };
 		CDEF45CD171D2E5A00688181 /* CustomPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPopoverBackgroundView.m; path = snowBrains/CustomPopoverBackgroundView.m; sourceTree = SOURCE_ROOT; };
 		CDEF45CF171D30F200688181 /* arrowPop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrowPop.png; path = "snowBrains/supporting files/arrowPop.png"; sourceTree = SOURCE_ROOT; };
@@ -493,6 +501,7 @@
 		CD4F3E1D17153337008A250D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CD8EB3D7172927E9003EBEAF /* TableViewStuff */,
 				CD4F3E9A1717B9C0008A250D /* InfoPlist.strings */,
 				CD4F3E9C1717B9C1008A250D /* snowBrains-Info.plist */,
 				CD4F3E9D1717B9C1008A250D /* snowBrains-Prefix.pch */,
@@ -653,6 +662,17 @@
 				CD4F3E901717B971008A250D /* main.m */,
 			);
 			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		CD8EB3D7172927E9003EBEAF /* TableViewStuff */ = {
+			isa = PBXGroup;
+			children = (
+				CD8EB3DC172928A9003EBEAF /* sideBarCellBackground.png */,
+				CD8EB3DD172928AA003EBEAF /* sideBarCellBackgroundSelected.png */,
+				CD8EB3D817292805003EBEAF /* sideBarCellBackground@2x.png */,
+				CD8EB3D917292805003EBEAF /* sideBarCellBackgroundSelected@2x.png */,
+			);
+			name = TableViewStuff;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -842,6 +862,10 @@
 				CD8EB3D41728D564003EBEAF /* barButtonForwardDisabled@2x.png in Resources */,
 				CD8EB3D51728D564003EBEAF /* barButtonForwardPressed.png in Resources */,
 				CD8EB3D61728D564003EBEAF /* barButtonForwardPressed@2x.png in Resources */,
+				CD8EB3DA17292805003EBEAF /* sideBarCellBackground@2x.png in Resources */,
+				CD8EB3DB17292805003EBEAF /* sideBarCellBackgroundSelected@2x.png in Resources */,
+				CD8EB3DE172928AA003EBEAF /* sideBarCellBackground.png in Resources */,
+				CD8EB3DF172928AA003EBEAF /* sideBarCellBackgroundSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
