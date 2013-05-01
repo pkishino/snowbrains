@@ -104,13 +104,18 @@ enum {
     cell.textLabel.text=[leftSideMenu objectAtIndex:indexPath.row];
     if([locationItems containsObject:cell.textLabel.text]||[videoItems containsObject:cell.textLabel.text]){
         cell.indentationLevel=1;
-        cell.textLabel.font=[UIFont systemFontOfSize:15];
+        cell.textLabel.font=[UIFont italicSystemFontOfSize:15];
     }else if([moreItems containsObject:cell.textLabel.text]){
         cell.indentationLevel=2;
-        cell.textLabel.font=[UIFont systemFontOfSize:15];
+        cell.textLabel.font=[UIFont boldSystemFontOfSize:12];
     }else{
         cell.indentationLevel=0;
         cell.textLabel.font=[UIFont systemFontOfSize:17];
+    }
+    if([cell.textLabel.text isEqualToString:@"Locations"]||[cell.textLabel.text isEqualToString:@"Video"]||[cell.textLabel.text isEqualToString:@"More"]){
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    }else{
+        cell.accessoryType=UITableViewCellAccessoryNone;
     }
     cell.imageView.image=[UIImage imageNamed:@"flake"];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;

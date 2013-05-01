@@ -26,6 +26,7 @@
     UIButton *backButton;
     UIButton *forwardButton;
     UIImageView * backBar;
+    NSString *menuSelection;
 }
 
 @end
@@ -43,7 +44,8 @@
     [self setupAnimation];
     [self setupSwipe];
     [self setupSideMenu];
-    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
+    [self menuTap:@"Home"];
+    
 }
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
@@ -106,6 +108,7 @@
     [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
+    [self hideSwipeControl];
     self.flakeAnimation.hidden=NO;
     [self setupAnimation];
     [self.flakeAnimation startAnimating];
@@ -126,7 +129,9 @@
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     if(!redirect){
-        if(error.code==kCFURLErrorNotConnectedToInternet||error.code==kCFURLErrorTimedOut){
+        int errorCode=error.code*-1;
+        //if(error.code==kCFURLErrorNotConnectedToInternet||error.code==kCFURLErrorTimedOut){
+        if(1021>=errorCode&&errorCode>=1000){
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             [self.flakeAnimation stopAnimating];
@@ -135,17 +140,22 @@
             self.loadBackground.hidden=YES;
             [self.webview stopLoading];
             [(PullToRefreshView *)[self.view viewWithTag:998]finishedLoading];
-        }else if(!error.code==kCFURLErrorCancelled)
+            return;
+        }else if(!(error.code==kCFURLErrorCancelled)){
             [self.webview goBack];
+            return;
+        }
+        NSLog(@"Starting timeout timer");
+        [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(webViewDidFinishLoad:) userInfo:webView repeats:NO];
     }
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     redirect=NO;
     requestString=[NSString stringWithFormat:@"%@",request.URL];
-    NSLog(@"%@ navtype: %d",requestString,navigationType);
+    //NSLog(@"%@ navtype: %d",requestString,navigationType);
     //if navigationtype is 0 (link clicked) then check, otherwise ignore (keep loading)(type 5)
     //if the request is to somewhere in snowbrains then copy out the request, attach /?app=1 to it if not already and then send that request instead
-    if(navigationType==UIWebViewNavigationTypeLinkClicked){
+    if(navigationType==UIWebViewNavigationTypeLinkClicked||navigationType==UIWebViewNavigationTypeReload){
         if([requestString rangeOfString:@"http://www.snowbrains.com"].location==NSNotFound&&[requestString rangeOfString:@"http://snowbrains.com"].location==NSNotFound){
             //if the request is to outside of snowbrains then ask if user wants to open in safari
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"External site" message:@"The requested site is outside of Snowbrains, please press OK to load with default Browser" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
@@ -181,6 +191,8 @@
     [super viewDidUnload];
 }
 -(void)menuTap:(NSString *)menuItem{
+    menuSelection=menuItem;
+    self.navigationItem.title=menuItem;
     if([menuItem isEqualToString:@"Home"])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
     else if([menuItem isEqualToString:@"Weather"])
@@ -272,25 +284,25 @@
     // this is useful, for example, if you want to change a UIBarButtonItem when the menu closes
     self.navigationController.delegate=self;
     self.navigationController.sideMenu.menuStateEventBlock = ^(MFSideMenuStateEvent event) {
-        switch (event) {
-            case MFSideMenuStateEventMenuWillOpen:
-                // the menu will open
-                weakSelf.navigationItem.title = @"Menu Will Open!";
-                break;
-            case MFSideMenuStateEventMenuDidOpen: {
-                // the menu finished opening
-                weakSelf.navigationItem.title = @"Menu Opened!";
-                break;
-            }
-            case MFSideMenuStateEventMenuWillClose:
-                // the menu will close
-                weakSelf.navigationItem.title = @"Menu Will Close!";
-                break;
-            case MFSideMenuStateEventMenuDidClose:
-                // the menu finished closing
-                weakSelf.navigationItem.title = @"Menu Closed!";
-                break;
-        }
+//        switch (event) {
+//            case MFSideMenuStateEventMenuWillOpen:
+//                // the menu will open
+//                weakSelf.navigationItem.title = @"Menu Will Open!";
+//                break;
+//            case MFSideMenuStateEventMenuDidOpen: {
+//                // the menu finished opening
+//                weakSelf.navigationItem.title = @"Menu Opened!";
+//                break;
+//            }
+//            case MFSideMenuStateEventMenuWillClose:
+//                // the menu will close
+//                weakSelf.navigationItem.title = @"Menu Will Close!";
+//                break;
+//            case MFSideMenuStateEventMenuDidClose:
+//                // the menu finished closing
+//                weakSelf.navigationItem.title = @"Menu Closed!";
+//                break;
+//        }
         NSLog(@"event occurred: %@", weakSelf.navigationItem.title);
         [weakSelf setupMenuBarButtonItems];
     };
