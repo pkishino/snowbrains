@@ -58,8 +58,8 @@ enum {
     if(self=[super init]){
         mainItems=[[NSArray alloc]initWithObjects:@"Home",@"Locations",@"Weather",@"Video",@"Gear",@"Brains", nil];
         locationItems=[[NSArray alloc]initWithObjects:@"Squaw",@"Jackson",@"Whistler",@"Alaska",@"More", nil];
-        moreItems=[[NSArray alloc]initWithObjects:@"Utah",@"Mammoth",@"PNW",@"SouthAmerica",@"Japan",@"Alps", nil];
-        videoItems=[[NSArray alloc]initWithObjects:@"BrainVideo",@"NonBrainVids",@"Trailers", nil];
+        moreItems=[[NSArray alloc]initWithObjects:@"Utah",@"Mammoth",@"PNW",@"South America",@"Japan",@"Alps", nil];
+        videoItems=[[NSArray alloc]initWithObjects:@"Brain Videos",@"Non-Brain Videos",@"Trailers", nil];
         leftSideMenu=[[NSMutableArray alloc]initWithArray:mainItems];
     }
     return self;
@@ -100,16 +100,18 @@ enum {
     if (cell == nil) {
         cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    //cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"buttonBackground"]];
-    //[cell.contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonBackground"]]];
     cell.textLabel.backgroundColor=[UIColor clearColor];
     cell.textLabel.text=[leftSideMenu objectAtIndex:indexPath.row];
-    if([locationItems containsObject:cell.textLabel.text]||[videoItems containsObject:cell.textLabel.text])
+    if([locationItems containsObject:cell.textLabel.text]||[videoItems containsObject:cell.textLabel.text]){
         cell.indentationLevel=1;
-    else if([moreItems containsObject:cell.textLabel.text])
+        cell.textLabel.font=[UIFont systemFontOfSize:15];
+    }else if([moreItems containsObject:cell.textLabel.text]){
         cell.indentationLevel=2;
-    else
+        cell.textLabel.font=[UIFont systemFontOfSize:15];
+    }else{
         cell.indentationLevel=0;
+        cell.textLabel.font=[UIFont systemFontOfSize:17];
+    }
     cell.imageView.image=[UIImage imageNamed:@"flake"];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     

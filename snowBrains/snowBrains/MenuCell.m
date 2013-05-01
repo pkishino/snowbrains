@@ -15,10 +15,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.menuItem=self.textLabel;
-//        UIImageView *separatorImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.frame)-1, self.frame.size.width, 1)];
-//        separatorImage.image=[UIImage imageNamed:@"cellSeparator"];
-//        [[self contentView] addSubview:separatorImage];
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackground"]];
+        if([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"]){
+            self.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+        }
     }
     return self;
 }

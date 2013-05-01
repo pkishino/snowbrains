@@ -196,7 +196,25 @@
     else if([menuItem isEqualToString:@"Whistler"])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/whistler/?app=1"]];
     else if([menuItem isEqualToString:@"Alaska"])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alaska/?app=1"]];      
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alaska/?app=1"]];
+    else if([menuItem isEqualToString:@"Japan"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/japan/?app=1"]];
+    else if([menuItem isEqualToString:@"Alps"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alps/?app=1"]];
+    else if([menuItem isEqualToString:@"PNW"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/pacificnorthwest/?app=1"]];
+    else if([menuItem isEqualToString:@"Utah"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/utah/?app=1"]];
+    else if([menuItem isEqualToString:@"South America"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/southamerica/?app=1"]];
+    else if([menuItem isEqualToString:@"Mammoth"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/mammoth/?app=1"]];
+    else if([menuItem isEqualToString:@"Brain Videos"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/brainvideos/?app=1"]];
+    else if([menuItem isEqualToString:@"Non-Brain Videos"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/nonbrain/?app=1"]];
+    else if([menuItem isEqualToString:@"Trailers"])
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/trailers/?app=1"]];
 }
 //    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/?app=1"]];
 
