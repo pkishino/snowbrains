@@ -178,9 +178,6 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     redirect=NO;
     requestString=[NSString stringWithFormat:@"%@",request.URL];
-    //NSLog(@"%@ navtype: %d",requestString,navigationType);
-    //if navigationtype is 0 (link clicked) then check, otherwise ignore (keep loading)(type 5)
-    //if the request is to somewhere in snowbrains then copy out the request, attach /?app=1 to it if not already and then send that request instead
     if(navigationType==UIWebViewNavigationTypeLinkClicked||navigationType==UIWebViewNavigationTypeReload){
         if([requestString rangeOfString:@"http://www.snowbrains.com"].location==NSNotFound&&[requestString rangeOfString:@"http://snowbrains.com"].location==NSNotFound){
             //if the request is to outside of snowbrains then ask if user wants to open in safari
@@ -281,6 +278,7 @@
     return YES;
 }
 -(void)showSwipeControl{
+    if(self.loadFigure.isHidden){
     self.toolBar.hidden=NO;
     if(!self.webview.canGoBack)
         [self.backButton setEnabled:NO];
@@ -290,31 +288,11 @@
         [self.forwardButton setEnabled:NO];
     else
         [self.forwardButton setEnabled:YES];
+    }
 
-//    if(backButton.isHidden&&forwardButton.isHidden){
-//        backBar.frame=CGRectMake(0, self.webview.bounds.size.height-30, self.webview.bounds.size.width, 30);
-//        backBar.hidden=NO;
-//        self.toolBar.hidden=NO;
-//        backButton.frame=CGRectMake(0, self.webview.bounds.size.height-30, 20, 30);
-//        backButton.hidden=NO;
-//        if(!self.webview.canGoBack)
-//           [backButton setEnabled:NO];
-//        else
-//           [backButton setEnabled:YES];
-//        forwardButton.frame=CGRectMake(self.webview.bounds.size.width-20, self.webview.bounds.size.height-30, 20, 30);
-//        forwardButton.hidden=NO;
-//        if(!self.webview.canGoForward)
-//            [forwardButton setEnabled:NO];
-//        else
-//            [forwardButton setEnabled:YES];
-//    }
 }
 -(void)hideSwipeControl{
     self.toolBar.hidden=YES;
-//    backButton.hidden=YES;
-//    forwardButton.hidden=YES;
-//    self.toolBar.hidden=YES;
-//    backBar.hidden=YES;
 }
 -(IBAction)backwardTap:(id)sender{
     [self.webview goBack];
@@ -394,7 +372,18 @@
 }
 
 - (IBAction)shareTap:(id)sender {
-    [self showActionSheet:sender];
+    if( [UIActivityViewController class] ) {
+        [self showShareSheet:sender];
+    }else
+        [self showActionSheet:sender];
+}
+-(void)showShareSheet:(id)sender{
+    NSString *textToShare = @"Text that will be shared";
+    //UIImage *imageToShare = [UIImage imageNamed:@"share_picture.png"];
+    NSArray *itemsToShare = [[NSArray alloc] initWithObjects:textToShare, nil];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+    activityVC.excludedActivityTypes = [[NSArray alloc] initWithObjects: UIActivityTypePrint, UIActivityTypeAssignToContact, UIActivityTypePostToWeibo, nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 -(void)showActionSheet:(id)sender{
     NSString *actionSheetTitle = @"Share Menu"; //Action Sheet Title
