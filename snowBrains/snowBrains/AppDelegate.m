@@ -11,6 +11,7 @@
 #import "LeftMenuViewController.h"
 #import "RightMenuViewController.h"
 #import "ViewController.h"
+#import <Socialize/Socialize.h>
 
 #define WIDTH_IPHONE_5 568
 #define IS_IPHONE_5 ([[UIScreen mainScreen] bounds].size.height == WIDTH_IPHONE_5)
@@ -64,6 +65,34 @@
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:@"buttonBackground"]];
     
+    //[AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+    
+    // set the socialize api key and secret, register your app here: http://www.getsocialize.com/apps/
+    [Socialize storeConsumerKey:@"7bd30ae2-ccda-4b61-b5bc-43986b877862"];
+    [Socialize storeConsumerSecret:@"7871baed-d109-41cb-91bc-2d5422adb865"];
+    
+    // Register for Apple Push Notification Service
+    [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+    
+    // Handle Socialize notification at launch
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo != nil) {
+        [self handleNotification:userInfo];
+    }
+    
+    // Specify a Socialize entity loader block
+    [Socialize setEntityLoaderBlock:^(UINavigationController *navigationController, id<SocializeEntity>entity) {
+        
+        SampleEntityLoader *entityLoader = [[SampleEntityLoader alloc] initWithEntity:entity];
+        
+        if (navigationController == nil) {
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:entityLoader];
+            [self.window.rootViewController presentModalViewController:navigationController animated:YES];
+        } else {
+            [navigationController pushViewController:entityLoader animated:YES];
+        }
+    }];
     
     return YES;
 }
@@ -93,6 +122,9 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+-(void)handleNotification:(NSDictionary *)userInfo{
+    
 }
 
 @end

@@ -11,33 +11,33 @@
 
 enum {
     lMenuListMain = 0,
-    lMenuListBookmark,
-    lMenuListExtra,
+    lMenuListFavorites,
+    lMenuListOther,
     lMenuListCount
 };
-enum {
-    lLocationSquaw = 0,
-    lLocationJackson,
-    lLocationWhistler,
-    lLocationAlaska,
-    lLocationMore,
-    lLocationCount
-};
-enum {
-    lMoreUtah =0,
-    lMoreMammoth,
-    lMorePNW,
-    lMoreSouthAmerica,
-    lMoreJapan,
-    lMoreAlps,
-    lMoreCount
-};
-enum {
-    lVideoBrains = 0,
-    lVideoNonBrains,
-    lVideoTrailer,
-    lVideoCount
-};
+//enum {
+//    lLocationSquaw = 0,
+//    lLocationJackson,
+//    lLocationWhistler,
+//    lLocationAlaska,
+//    lLocationMore,
+//    lLocationCount
+//};
+//enum {
+//    lMoreUtah =0,
+//    lMoreMammoth,
+//    lMorePNW,
+//    lMoreSouthAmerica,
+//    lMoreJapan,
+//    lMoreAlps,
+//    lMoreCount
+//};
+//enum {
+//    lVideoBrains = 0,
+//    lVideoNonBrains,
+//    lVideoTrailer,
+//    lVideoCount
+//};
 
 @interface LeftMenuViewController(){
     NSMutableArray *leftSideMenu;
@@ -45,7 +45,7 @@ enum {
     NSArray *locationItems;
     NSArray *moreItems;
     NSArray *videoItems;
-//    NSDictionary *mainList;
+    NSArray *sections;
 }
 @property(nonatomic, strong) UISearchBar *searchBar;
 @end
@@ -61,6 +61,8 @@ enum {
         moreItems=[[NSArray alloc]initWithObjects:@"Utah",@"Mammoth",@"PNW",@"South America",@"Japan",@"Alps", nil];
         videoItems=[[NSArray alloc]initWithObjects:@"Brain Videos",@"Non-Brain Videos",@"Trailers", nil];
         leftSideMenu=[[NSMutableArray alloc]initWithArray:mainItems];
+        sections=[[NSArray alloc]initWithObjects:@"Main",@"Favorites",@"Other", nil];
+        
     }
     return self;
 }
@@ -85,11 +87,11 @@ enum {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return leftSideMenu.count;
+    return[self getSectionCount:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,13 +105,13 @@ enum {
     cell.textLabel.backgroundColor=[UIColor clearColor];
     cell.textLabel.text=[leftSideMenu objectAtIndex:indexPath.row];
     if([locationItems containsObject:cell.textLabel.text]||[videoItems containsObject:cell.textLabel.text]){
-        cell.indentationLevel=1;
+        cell.indentationLevel=2;
         cell.textLabel.font=[UIFont italicSystemFontOfSize:15];
     }else if([moreItems containsObject:cell.textLabel.text]){
-        cell.indentationLevel=2;
+        cell.indentationLevel=3;
         cell.textLabel.font=[UIFont boldSystemFontOfSize:12];
     }else{
-        cell.indentationLevel=0;
+        cell.indentationLevel=1;
         cell.textLabel.font=[UIFont systemFontOfSize:17];
     }
     if([cell.textLabel.text isEqualToString:@"Locations"]||[cell.textLabel.text isEqualToString:@"Video"]||[cell.textLabel.text isEqualToString:@"More"]){
@@ -126,11 +128,20 @@ enum {
 -(NSString *)getSectionName:(NSInteger)section{
     if(section==lMenuListMain)
         return @"Main";
-    else if(section==lMenuListBookmark)
-        return @"Bookmark";
-    else if (section==lMenuListExtra)
-        return @"Extra";
+    else if(section==lMenuListFavorites)
+        return @"Favorites";
+    else if (section==lMenuListOther)
+        return @"Other";
     return nil;
+}
+-(int)getSectionCount:(NSInteger)section{
+    if(section==lMenuListMain)
+        return leftSideMenu.count;
+    else if(section==lMenuListFavorites)
+        return 0;
+    else if (section==lMenuListOther)
+        return 1;
+    return -1;
 }
 
 #pragma mark -
@@ -141,11 +152,47 @@ enum {
     if([selectedMenuItem isEqualToString:@"Locations"]||[selectedMenuItem isEqualToString:@"More"]||[selectedMenuItem isEqualToString:@"Video"]){
         [self manageSubCells:selectedMenuItem];
         return;
-    }else
+    }else{
+//        ViewController *viewController = [[ViewController alloc]initWithForward:YES];
+//        NSArray *controllers = [NSArray arrayWithObject:viewController];
+//        self.sideMenu.navigationController.viewControllers = controllers;
+//        [viewController menuTap:selectedMenuItem];
         [self.delegate menuTap:selectedMenuItem];
+    }
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
     
     if(self.searchBar.isFirstResponder) [self.searchBar resignFirstResponder];
+}
+-(void)manageSubCells:(NSString *)selection{
+    if([[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]].textLabel.text isEqualToString:selection]){
+        NSMutableArray *tempList=[[NSMutableArray alloc]initWithArray:leftSideMenu];
+        if([selection isEqualToString:@"Locations"]){
+            if([tempList containsObject:[locationItems objectAtIndex:0]]){
+                [tempList removeObjectsInArray:locationItems];
+                [tempList removeObjectsInArray:moreItems];
+            }else{
+                for(int i=0;i<locationItems.count;i++)
+                    [tempList insertObject:[locationItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
+            }
+        }else if([selection isEqualToString:@"More"]){
+            if([tempList containsObject:[moreItems objectAtIndex:0]])
+                [tempList removeObjectsInArray:moreItems];
+            else{
+                for(int i=0;i<moreItems.count;i++)
+                    [tempList insertObject:[moreItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
+            }
+        }else if([selection isEqualToString:@"Video"]){
+            if([tempList containsObject:[videoItems objectAtIndex:0]])
+                [tempList removeObjectsInArray:videoItems];
+            else{
+                for(int i=0;i<videoItems.count;i++)
+                    [tempList insertObject:[videoItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
+            }
+        }
+        leftSideMenu=tempList;
+        [self.tableView reloadData];
+    }
+    
 }
 
 
@@ -189,36 +236,6 @@ enum {
     
     self.sideMenu.panMode = MFSideMenuPanModeDefault;
 }
--(void)manageSubCells:(NSString *)selection{
-    if([[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]].textLabel.text isEqualToString:selection]){
-        NSMutableArray *tempList=[[NSMutableArray alloc]initWithArray:leftSideMenu];
-        if([selection isEqualToString:@"Locations"]){
-            if([tempList containsObject:[locationItems objectAtIndex:0]]){
-                [tempList removeObjectsInArray:locationItems];
-                [tempList removeObjectsInArray:moreItems];
-            }else{
-            for(int i=0;i<locationItems.count;i++)
-                [tempList insertObject:[locationItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
-            }
-        }else if([selection isEqualToString:@"More"]){
-            if([tempList containsObject:[moreItems objectAtIndex:0]])
-                [tempList removeObjectsInArray:moreItems];
-            else{
-            for(int i=0;i<moreItems.count;i++)
-                [tempList insertObject:[moreItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
-                }
-        }else if([selection isEqualToString:@"Video"]){
-            if([tempList containsObject:[videoItems objectAtIndex:0]])
-                [tempList removeObjectsInArray:videoItems];
-            else{
-            for(int i=0;i<videoItems.count;i++)
-                [tempList insertObject:[videoItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
-            }
-        }
-        leftSideMenu=tempList;
-        [self.tableView reloadData];
-    }
-    
-}
+
 
 @end

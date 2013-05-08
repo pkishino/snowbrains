@@ -6,6 +6,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MFSideMenu.h"
+#import "SettingsViewController.h"
 
 @interface RightMenuViewController : UITableViewController
 

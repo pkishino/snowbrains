@@ -6,7 +6,6 @@
 
 #import "RightMenuViewController.h"
 #import "MFSideMenu.h"
-#import "ViewController.h"
 
 @interface RightMenuViewController()
 @property(nonatomic, strong) UIView *menuLogo;
@@ -69,11 +68,9 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    ViewController *viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-//    viewController.title = [NSString stringWithFormat:@" View Controller #%d-%d", indexPath.section, indexPath.row];
-    
-//    NSArray *controllers = [NSArray arrayWithObject:viewController];
-//    self.sideMenu.navigationController.viewControllers = controllers;
+    SettingsViewController *viewController = [[SettingsViewController alloc]init];
+    NSArray *controllers = [NSArray arrayWithObject:viewController];
+    self.sideMenu.navigationController.viewControllers = controllers;
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
 }
 

@@ -23,15 +23,23 @@
     UIScrollView *currentScrollView;
     BOOL redirect;
     NSString *requestString;
-    UIButton *backButton;
-    UIButton *forwardButton;
+//    UIButton *backButton;
+//    UIButton *forwardButton;
     UIImageView * backBar;
     NSString *menuSelection;
+    BOOL toForward;
+    AFHTTPClient *client;
 }
 
 @end
 
 @implementation ViewController
+-(id)initWithForward:(BOOL)forward{
+    if([super init]){
+        toForward=forward;
+    }
+    return self;
+}
 
 #pragma mark -
 #pragma mark - View setup
@@ -44,18 +52,44 @@
     [self setupAnimation];
     [self setupSwipe];
     [self setupSideMenu];
+    client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
+    [client setDefaultHeader:@"User-Agent" value:@"Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.56"];
+    [client setDefaultHeader:@"Accept-Language" value:@"en-US,en;q=0.8"];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    if(!toForward)
     [self menuTap:@"Home"];
-    
 }
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
     NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
     [self.webview loadRequest:snowbrains];
+//    [NSURLConnection sendAsynchronousRequest:snowbrains queue:[[NSOperationQueue alloc]init] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
+//        NSString *http=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//        [self.webview loadHTMLString: http baseURL:url];
+//    }];
+//    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
+//    AFHTTPRequestOperation *operation=[[AFHTTPRequestOperation alloc]initWithRequest:snowbrains];
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        //NSString *data=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        [self.webview loadData:responseObject MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:url];
+//        NSLog(@"Success");
+//    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Failure");
+//    }];
+//     AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSString *data=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        [self.webview loadHTMLString: data baseURL:url];
+//        NSLog(@"Success");
+//    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Failure");
+//    }];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue addOperation:operation];
+
+    
 }
 -(void)setupSwipe{
-    backBar=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"buttonBackground"]];
-    backBar.hidden=YES;
-    [self.webview addSubview:backBar];
     
     UISwipeGestureRecognizer* downSwipeRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(showSwipeControl)];
     downSwipeRecognizer.delegate=self;
@@ -69,21 +103,6 @@
     upSwipeRecognizer.cancelsTouchesInView = YES;
     [self.webview addGestureRecognizer:upSwipeRecognizer];
     
-    backButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageNamed:@"barButtonBack"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"barButtonBackDisabled"] forState:UIControlStateDisabled];
-    [backButton setImage:[UIImage imageNamed:@"barButtonBackPressed"] forState:UIControlStateHighlighted];
-    [backButton addTarget:self action:@selector(backwardTap:) forControlEvents:UIControlEventTouchUpInside];
-    backButton.hidden=YES;
-    [self.webview addSubview:backButton];
-    
-    forwardButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [forwardButton setImage:[UIImage imageNamed:@"barButtonForward"] forState:UIControlStateNormal];
-    [forwardButton setImage:[UIImage imageNamed:@"barButtonForwardDisabled"] forState:UIControlStateDisabled];
-    [forwardButton setImage:[UIImage imageNamed:@"barButtonForwardPressed"] forState:UIControlStateHighlighted];
-    [forwardButton addTarget:self action:@selector(forwardTap:) forControlEvents:UIControlEventTouchUpInside];
-    forwardButton.hidden=YES;
-    [self.webview addSubview:forwardButton];
 }
 -(void)setupPullDownRefresh{
     //setup the pulldownrefresh view
@@ -104,15 +123,20 @@
     [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(cancelPullToRefresh) userInfo:nil repeats:NO];
 }
 -(void)cancelPullToRefresh{
+    if([(UIWebView *)[self.view viewWithTag:999] isLoading]){
     [(UIWebView *)[self.view viewWithTag:999] stopLoading];
     [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    }
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     [self hideSwipeControl];
     self.flakeAnimation.hidden=NO;
-    [self setupAnimation];
+    //[self setupAnimation];
     [self.flakeAnimation startAnimating];
-    if(!self.loadFigure.isHidden){
+    if(!self.loadFigure.isHidden&&!toForward){
         self.loadFigure.hidden=NO;
         self.loadBackground.hidden=NO;
         self.loadLogo.hidden=NO;
@@ -120,12 +144,14 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
     [self.flakeAnimation stopAnimating];
     self.flakeAnimation.hidden=YES;
     self.loadFigure.hidden=YES;
     self.loadBackground.hidden=YES;
     self.loadLogo.hidden=YES;
     [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
+    //NSLog(@"%@",[self.webview stringByEvaluatingJavaScriptFromString: @"document.documentElement.outerHTML"]);
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     if(!redirect){
@@ -188,6 +214,11 @@
     [self setLoadBackground:nil];
     [self setLoadFigure:nil];
     [self setFlakeAnimation:nil];
+    [self setToolBar:nil];
+    [self setShareButton:nil];
+    [self setBackButton:nil];
+    [self setShareButton:nil];
+    [self setForwardButton:nil];
     [super viewDidUnload];
 }
 -(void)menuTap:(NSString *)menuItem{
@@ -250,27 +281,40 @@
     return YES;
 }
 -(void)showSwipeControl{
-    if(backButton.isHidden&&forwardButton.isHidden){
-        backBar.frame=CGRectMake(0, self.webview.bounds.size.height-30, self.webview.bounds.size.width, 30);
-        backBar.hidden=NO;
-        backButton.frame=CGRectMake(0, self.webview.bounds.size.height-30, 20, 30);
-        backButton.hidden=NO;
-        if(!self.webview.canGoBack)
-           [backButton setEnabled:NO];
-        else
-           [backButton setEnabled:YES];
-        forwardButton.frame=CGRectMake(self.webview.bounds.size.width-20, self.webview.bounds.size.height-30, 20, 30);
-        forwardButton.hidden=NO;
-        if(!self.webview.canGoForward)
-            [forwardButton setEnabled:NO];
-        else
-            [forwardButton setEnabled:YES];
-    }
+    self.toolBar.hidden=NO;
+    if(!self.webview.canGoBack)
+        [self.backButton setEnabled:NO];
+    else
+        [self.backButton setEnabled:YES];
+    if(!self.webview.canGoForward)
+        [self.forwardButton setEnabled:NO];
+    else
+        [self.forwardButton setEnabled:YES];
+
+//    if(backButton.isHidden&&forwardButton.isHidden){
+//        backBar.frame=CGRectMake(0, self.webview.bounds.size.height-30, self.webview.bounds.size.width, 30);
+//        backBar.hidden=NO;
+//        self.toolBar.hidden=NO;
+//        backButton.frame=CGRectMake(0, self.webview.bounds.size.height-30, 20, 30);
+//        backButton.hidden=NO;
+//        if(!self.webview.canGoBack)
+//           [backButton setEnabled:NO];
+//        else
+//           [backButton setEnabled:YES];
+//        forwardButton.frame=CGRectMake(self.webview.bounds.size.width-20, self.webview.bounds.size.height-30, 20, 30);
+//        forwardButton.hidden=NO;
+//        if(!self.webview.canGoForward)
+//            [forwardButton setEnabled:NO];
+//        else
+//            [forwardButton setEnabled:YES];
+//    }
 }
 -(void)hideSwipeControl{
-    backButton.hidden=YES;
-    forwardButton.hidden=YES;
-    backBar.hidden=YES;
+    self.toolBar.hidden=YES;
+//    backButton.hidden=YES;
+//    forwardButton.hidden=YES;
+//    self.toolBar.hidden=YES;
+//    backBar.hidden=YES;
 }
 -(IBAction)backwardTap:(id)sender{
     [self.webview goBack];
@@ -348,5 +392,24 @@
 {
     return (UIInterfaceOrientationMaskAll|UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight|UIInterfaceOrientationPortrait);
 }
+
+- (IBAction)shareTap:(id)sender {
+    [self showActionSheet:sender];
+}
+-(void)showActionSheet:(id)sender{
+    NSString *actionSheetTitle = @"Share Menu"; //Action Sheet Title
+    NSString *other1 = @"Other Button 1";
+    NSString *other2 = @"Other Button 2";
+    NSString *other3 = @"Other Button 3";
+    NSString *cancelTitle = @"Cancel Button";
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:actionSheetTitle
+                                  delegate:self
+                                  cancelButtonTitle:cancelTitle
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:other1, other2, other3, nil];
+    [actionSheet showInView:self.view];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {}
 
 @end
