@@ -13,6 +13,11 @@
 #import "ViewController.h"
 #import <Socialize/Socialize.h>
 
+#import "SHK.h"
+#import "SHKConfiguration.h"
+#import "SHKFacebook.h"
+#import "MyShareKitConfig.h"
+
 #define WIDTH_IPHONE_5 568
 #define IS_IPHONE_5 ([[UIScreen mainScreen] bounds].size.height == WIDTH_IPHONE_5)
 
@@ -93,6 +98,10 @@
             [navigationController pushViewController:entityLoader animated:YES];
         }
     }];
+    [SHK flushOfflineQueue];
+    
+    DefaultSHKConfigurator *configurator=[[MyShareKitConfig alloc]init];
+    [SHKConfiguration sharedInstanceWithConfigurator:configurator];
     
     return YES;
 }
@@ -117,14 +126,28 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [SHKFacebook handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [SHKFacebook handleWillTerminate];
 }
 -(void)handleNotification:(NSDictionary *)userInfo{
     
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    NSString* scheme = [url scheme];
+    
+    if ([scheme hasPrefix:[NSString stringWithFormat:@"fb%@", SHKCONFIG(facebookAppId)]]) {
+        return [SHKFacebook handleOpenURL:url];
+    }    
+    return YES;
 }
 
 @end

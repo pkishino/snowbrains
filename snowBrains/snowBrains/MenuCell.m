@@ -8,7 +8,9 @@
 
 #import "MenuCell.h"
 
-@implementation MenuCell
+@implementation MenuCell{
+}
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -17,18 +19,32 @@
         self.menuItem=self.textLabel;
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackground"]];
         if([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"]){
-            self.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        }
+            self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
+        }else
+            self.accessoryView=nil;
     }
     return self;
 }
 
 - (void)updateCellDisplay {
     if (self.selected || self.highlighted) {
-        self.menuItem.textColor = [UIColor redColor];
-        self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackgroundSelected"]];
+        
+        if([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"]){
+            self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
+        }else{
+            self.accessoryView=nil;
+            self.menuItem.textColor = [UIColor redColor];
+            self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackgroundSelected"]];
+        }
+        
     }
     else {
+        
+        if([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"]){
+            self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
+        }else{
+            self.accessoryView=nil;
+        }
         self.menuItem.textColor = [UIColor whiteColor];
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackground"]];
     }

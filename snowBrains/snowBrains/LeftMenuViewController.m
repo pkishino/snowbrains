@@ -148,22 +148,25 @@ enum {
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *selectedMenuItem=[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+    UITableViewCell *cell=[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:indexPath];
+    NSString *selectedMenuItem=cell.textLabel.text;
     if([selectedMenuItem isEqualToString:@"Locations"]||[selectedMenuItem isEqualToString:@"More"]||[selectedMenuItem isEqualToString:@"Video"]){
-        [self manageSubCells:selectedMenuItem];
+        [self manageSubCells:cell];
         return;
     }else{
 //        ViewController *viewController = [[ViewController alloc]initWithForward:YES];
 //        NSArray *controllers = [NSArray arrayWithObject:viewController];
 //        self.sideMenu.navigationController.viewControllers = controllers;
 //        [viewController menuTap:selectedMenuItem];
+        [self.tableView setAllowsMultipleSelection:NO];
         [self.delegate menuTap:selectedMenuItem];
     }
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
     
     if(self.searchBar.isFirstResponder) [self.searchBar resignFirstResponder];
 }
--(void)manageSubCells:(NSString *)selection{
+-(void)manageSubCells:(UITableViewCell *)cell{
+    NSString *selection=cell.textLabel.text;
     if([[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]].textLabel.text isEqualToString:selection]){
         NSMutableArray *tempList=[[NSMutableArray alloc]initWithArray:leftSideMenu];
         if([selection isEqualToString:@"Locations"]){
@@ -175,16 +178,17 @@ enum {
                     [tempList insertObject:[locationItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
             }
         }else if([selection isEqualToString:@"More"]){
-            if([tempList containsObject:[moreItems objectAtIndex:0]])
+            if([tempList containsObject:[moreItems objectAtIndex:0]]){
                 [tempList removeObjectsInArray:moreItems];
+            }
             else{
                 for(int i=0;i<moreItems.count;i++)
                     [tempList insertObject:[moreItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
             }
         }else if([selection isEqualToString:@"Video"]){
-            if([tempList containsObject:[videoItems objectAtIndex:0]])
+            if([tempList containsObject:[videoItems objectAtIndex:0]]){
                 [tempList removeObjectsInArray:videoItems];
-            else{
+            }else{
                 for(int i=0;i<videoItems.count;i++)
                     [tempList insertObject:[videoItems objectAtIndex:i] atIndex:[leftSideMenu indexOfObject:selection]+i+1];
             }

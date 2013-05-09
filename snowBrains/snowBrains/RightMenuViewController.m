@@ -68,9 +68,9 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SettingsViewController *viewController = [[SettingsViewController alloc]init];
-    NSArray *controllers = [NSArray arrayWithObject:viewController];
-    self.sideMenu.navigationController.viewControllers = controllers;
+//    SettingsViewController *viewController = [[SettingsViewController alloc]init];
+//    NSArray *controllers = [NSArray arrayWithObject:viewController];
+//    self.sideMenu.navigationController.viewControllers = controllers;
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
 }
 

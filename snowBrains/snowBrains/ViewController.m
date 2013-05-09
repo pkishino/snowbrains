@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "MFSideMenu.h"
+#import "SHK.h"
 @interface UIPopoverController (overrides)
 + (BOOL)_popoversDisabled;
 @end
@@ -372,9 +373,9 @@
 }
 
 - (IBAction)shareTap:(id)sender {
-    if( [UIActivityViewController class] ) {
-        [self showShareSheet:sender];
-    }else
+//    if( [UIActivityViewController class] ) {
+//        [self showShareSheet:sender];
+//    }else
         [self showActionSheet:sender];
 }
 -(void)showShareSheet:(id)sender{
@@ -386,18 +387,36 @@
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 -(void)showActionSheet:(id)sender{
-    NSString *actionSheetTitle = @"Share Menu"; //Action Sheet Title
-    NSString *other1 = @"Other Button 1";
-    NSString *other2 = @"Other Button 2";
-    NSString *other3 = @"Other Button 3";
-    NSString *cancelTitle = @"Cancel Button";
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:actionSheetTitle
-                                  delegate:self
-                                  cancelButtonTitle:cancelTitle
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:other1, other2, other3, nil];
-    [actionSheet showInView:self.view];
+//    NSString *actionSheetTitle = @"Share Menu"; //Action Sheet Title
+//    NSString *other1 = @"Other Button 1";
+//    NSString *other2 = @"Other Button 2";
+//    NSString *other3 = @"Other Button 3";
+//    NSString *cancelTitle = @"Cancel Button";
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+//                                  initWithTitle:actionSheetTitle
+//                                  delegate:self
+//                                  cancelButtonTitle:cancelTitle
+//                                  destructiveButtonTitle:nil
+//                                  otherButtonTitles:other1, other2, other3, nil];
+//    [actionSheet showInView:self.view];
+    // Create the item to share (in this example, a url)
+    
+    NSString *request=[NSString stringWithFormat:@"%@",self.webview.request.URL];
+    if ([request rangeOfString:@"?app=1"].location!=NSNotFound){
+        request=[request stringByReplacingOccurrencesOfString:@"?app=1" withString:@""];
+    }
+    
+    SHKItem *item = [SHKItem URL:[NSURL URLWithString:request] title:@"SnowBrains is Awesome!" contentType:SHKURLContentTypeWebpage];
+    
+    // Get the ShareKit action sheet
+    SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+    // ShareKit detects top view controller (the one intended to present ShareKit UI) automatically,
+    // but sometimes it may not find one. To be safe, set it explicitly
+    [SHK setRootViewController:self];
+    
+    // Display the action sheet
+    [actionSheet showFromToolbar:self.toolBar];
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {}
 
