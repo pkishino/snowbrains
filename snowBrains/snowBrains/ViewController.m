@@ -36,7 +36,7 @@
 
 @implementation ViewController
 -(id)initWithForward:(BOOL)forward{
-    if([super init]){
+    if(self=[super init]){
         toForward=forward;
     }
     return self;
@@ -53,13 +53,19 @@
     [self setupAnimation];
     [self setupSwipe];
     [self setupSideMenu];
-    client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
-    [client setDefaultHeader:@"User-Agent" value:@"Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.56"];
-    [client setDefaultHeader:@"Accept-Language" value:@"en-US,en;q=0.8"];
-}
--(void)viewWillAppear:(BOOL)animated{
+//    client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
+//    [client setDefaultHeader:@"User-Agent" value:@"Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B329"];
+//    [client setDefaultHeader:@"Accept-Language" value:@"ja-jp"];
+//    [client setDefaultHeader:@"Accept" value:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"];
     if(!toForward)
-    [self menuTap:@"Home"];
+        [self menuTap:@"Home"];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                   initWithTitle: @"Back"
+                                   style: UIBarButtonItemStyleBordered
+                                   target: nil action: nil];
+    
+    [self.navigationItem setBackBarButtonItem: backButton];
 }
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
@@ -177,6 +183,9 @@
     }
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+//    for(NSString *headers in request.allHTTPHeaderFields){
+//        NSLog(@"%@: %@",headers,[request valueForHTTPHeaderField:headers]);
+//    }
     redirect=NO;
     requestString=[NSString stringWithFormat:@"%@",request.URL];
     if(navigationType==UIWebViewNavigationTypeLinkClicked||navigationType==UIWebViewNavigationTypeReload){
@@ -193,7 +202,9 @@
         }
     }
     //if request is a mailto request then handle that
-    
+    if(self.webview.request==request){
+        return NO;
+    }
     return YES;
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

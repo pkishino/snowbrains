@@ -50,9 +50,14 @@
 {
     // Override point for customization after application launch.
     [NSURLProtocol registerClass:[RNCachingURLProtocol class]];
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
+                                                         diskCapacity:20 * 1024 * 1024
+                                                             diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [self sideMenu].navigationController;
+    //self.window.rootViewController=[self viewController];
     [self.window makeKeyAndVisible];
     
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
@@ -70,34 +75,32 @@
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:@"buttonBackground"]];
     
-    //[AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-    
     
     // set the socialize api key and secret, register your app here: http://www.getsocialize.com/apps/
     [Socialize storeConsumerKey:@"7bd30ae2-ccda-4b61-b5bc-43986b877862"];
     [Socialize storeConsumerSecret:@"7871baed-d109-41cb-91bc-2d5422adb865"];
     
-    // Register for Apple Push Notification Service
-    [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-    
-    // Handle Socialize notification at launch
-    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    if (userInfo != nil) {
-        [self handleNotification:userInfo];
-    }
-    
-    // Specify a Socialize entity loader block
-    [Socialize setEntityLoaderBlock:^(UINavigationController *navigationController, id<SocializeEntity>entity) {
-        
-        SampleEntityLoader *entityLoader = [[SampleEntityLoader alloc] initWithEntity:entity];
-        
-        if (navigationController == nil) {
-            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:entityLoader];
-            [self.window.rootViewController presentModalViewController:navigationController animated:YES];
-        } else {
-            [navigationController pushViewController:entityLoader animated:YES];
-        }
-    }];
+//    // Register for Apple Push Notification Service
+//    [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+//    
+//    // Handle Socialize notification at launch
+//    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+//    if (userInfo != nil) {
+//        [self handleNotification:userInfo];
+//    }
+//    
+//    // Specify a Socialize entity loader block
+//    [Socialize setEntityLoaderBlock:^(UINavigationController *navigationController, id<SocializeEntity>entity) {
+//        
+//        SampleEntityLoader *entityLoader = [[SampleEntityLoader alloc] initWithEntity:entity];
+//        
+//        if (navigationController == nil) {
+//            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:entityLoader];
+//            [self.window.rootViewController presentModalViewController:navigationController animated:YES];
+//        } else {
+//            [navigationController pushViewController:entityLoader animated:YES];
+//        }
+//    }];
     [SHK flushOfflineQueue];
     
     DefaultSHKConfigurator *configurator=[[MyShareKitConfig alloc]init];

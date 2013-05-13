@@ -56,7 +56,7 @@
 
 // Forms
 - (UIColor *)formFontColor {
-    return nil;
+    return [UIColor whiteColor];
 }
 
 - (UIColor*)formBackgroundColor {

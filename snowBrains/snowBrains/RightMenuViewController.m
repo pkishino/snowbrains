@@ -7,6 +7,8 @@
 #import "RightMenuViewController.h"
 #import "MFSideMenu.h"
 
+#import "SettingsViewController.h"
+
 @interface RightMenuViewController()
 @property(nonatomic, strong) UIView *menuLogo;
 @end
@@ -68,9 +70,19 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    SettingsViewController *viewController = [[SettingsViewController alloc]init];
-//    NSArray *controllers = [NSArray arrayWithObject:viewController];
-//    self.sideMenu.navigationController.viewControllers = controllers;
+    SettingsViewController *viewController = [[SettingsViewController alloc]init];
+    viewController.showDoneButton=NO;
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+//                                   initWithTitle: @"Back"
+//                                   style: UIBarButtonItemStyleBordered
+//                                   target: nil action: nil];
+//    
+//    [viewController.navigationItem setBackBarButtonItem:backButton];
+    
+    [self.sideMenu.navigationController pushViewController:viewController animated:NO];
+//    NSMutableArray *controllers = [self.sideMenu.navigationController.viewControllers mutableCopy];
+//    [controllers addObject:viewController];
+//    self.sideMenu.navigationController.viewControllers=controllers;
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
 }
 

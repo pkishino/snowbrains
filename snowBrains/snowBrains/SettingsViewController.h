@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "IASKAppSettingsViewController.h"
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : IASKAppSettingsViewController
 
 @end
