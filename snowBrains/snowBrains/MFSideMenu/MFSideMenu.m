@@ -80,6 +80,22 @@ typedef enum {
                             rightSideMenuController:rightMenuController
                                             panMode:MFSideMenuPanModeDefault];
 }
++ (MFSideMenu *)menuWithNavigationController:(UINavigationController *)controller
+                      leftSideMenuController:(id)leftMenuController{
+    MFSideMenu *menu = [[MFSideMenu alloc] init];
+    menu.navigationController = controller;
+    menu.leftSideMenuViewController = leftMenuController;
+    menu.rightSideMenuViewController = nil;
+    menu.panMode = MFSideMenuPanModeDefault;
+    controller.sideMenu = menu;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:menu
+                                             selector:@selector(statusBarOrientationDidChange:)
+                                                 name:UIApplicationDidChangeStatusBarOrientationNotification
+                                               object:nil];
+    
+    return menu;
+}
 
 + (MFSideMenu *) menuWithNavigationController:(UINavigationController *)controller
                            leftSideMenuController:(id)leftMenuController
@@ -118,6 +134,7 @@ typedef enum {
     
     [self setLeftSideMenuFrameToClosedPosition];
     [self setRightSideMenuFrameToClosedPosition];
+
 }
 
 

@@ -52,6 +52,8 @@ typedef void (^MFSideMenuStateEventBlock)(MFSideMenuStateEvent);
 + (MFSideMenu *)menuWithNavigationController:(UINavigationController *)controller
                       leftSideMenuController:(id)leftMenuController
                      rightSideMenuController:(id)rightMenuController;
++ (MFSideMenu *)menuWithNavigationController:(UINavigationController *)controller
+                      leftSideMenuController:(id)leftMenuController;
 
 + (MFSideMenu *)menuWithNavigationController:(UINavigationController *)controller
                        leftSideMenuController:(id)leftMenuController

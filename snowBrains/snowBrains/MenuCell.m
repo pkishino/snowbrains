@@ -19,6 +19,7 @@
     if (self) {
         self.menuItem=self.textLabel;
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackground"]];
+        self.menuItem.textColor = [UIColor whiteColor];
         if([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"]){
             self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
             showArrowDown=NO;
@@ -29,21 +30,21 @@
 }
 
 - (void)updateCellDisplay {
-    if (self.selected || self.highlighted) {
+    if(([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"])&&showArrowDown)
+        self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
+    else if(([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"])&&!showArrowDown)
+        self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
+    else if (self.selected || self.highlighted) {
         self.accessoryView=nil;
         self.menuItem.textColor = [UIColor redColor];
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackgroundSelected"]];
-    
     }
     else {
         self.accessoryView=nil;
         self.menuItem.textColor = [UIColor whiteColor];
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackground"]];
     }
-    if(([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"])&&showArrowDown)
-        self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
-    else if(([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"])&&!showArrowDown)
-        self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
+    
 
 }
 

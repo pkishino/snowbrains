@@ -24,8 +24,6 @@
     UIScrollView *currentScrollView;
     BOOL redirect;
     NSString *requestString;
-//    UIButton *backButton;
-//    UIButton *forwardButton;
     UIImageView * backBar;
     NSString *menuSelection;
     BOOL toForward;
@@ -318,25 +316,6 @@
     // this is useful, for example, if you want to change a UIBarButtonItem when the menu closes
     self.navigationController.delegate=self;
     self.navigationController.sideMenu.menuStateEventBlock = ^(MFSideMenuStateEvent event) {
-//        switch (event) {
-//            case MFSideMenuStateEventMenuWillOpen:
-//                // the menu will open
-//                weakSelf.navigationItem.title = @"Menu Will Open!";
-//                break;
-//            case MFSideMenuStateEventMenuDidOpen: {
-//                // the menu finished opening
-//                weakSelf.navigationItem.title = @"Menu Opened!";
-//                break;
-//            }
-//            case MFSideMenuStateEventMenuWillClose:
-//                // the menu will close
-//                weakSelf.navigationItem.title = @"Menu Will Close!";
-//                break;
-//            case MFSideMenuStateEventMenuDidClose:
-//                // the menu finished closing
-//                weakSelf.navigationItem.title = @"Menu Closed!";
-//                break;
-//        }
         NSLog(@"event occurred: %@", weakSelf.navigationItem.title);
         [weakSelf setupMenuBarButtonItems];
     };
@@ -345,13 +324,13 @@
     switch (self.navigationController.sideMenu.menuState) {
         case MFSideMenuStateClosed:
             self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
-            self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+//            self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
             break;
         case MFSideMenuStateLeftMenuOpen:
             self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
             break;
         case MFSideMenuStateRightMenuOpen:
-            self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+//            self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
             break;
     }
 }
