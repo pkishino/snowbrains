@@ -8,7 +8,8 @@
 #import "MFSideMenu.h"
 #import "ViewController.h"
 #import "MenuCell.h"
-
+#import "IASKAppSettingsViewController.h"
+#import "InAppSettings.h"
 enum {
     lMenuListMain = 0,
     lMenuListFavorites,
@@ -161,13 +162,10 @@ enum {
     if([selectedMenuItem isEqualToString:@"Locations"]||[selectedMenuItem isEqualToString:@"More"]||[selectedMenuItem isEqualToString:@"Video"]){
         [self manageSubCells:cell];
         return;
+    }else if([selectedMenuItem isEqualToString:@"Settings"]){
+        InAppSettingsModalViewController *settings=[[InAppSettingsModalViewController alloc]init];
+        [[self.sideMenu.navigationController.viewControllers objectAtIndex:0] presentModalViewController:settings animated:YES];
     }else{
-        //use this to create a new controller and load that
-//        ViewController *viewController = [[ViewController alloc]initWithForward:YES];
-//        NSArray *controllers = [NSArray arrayWithObject:viewController];
-//        self.sideMenu.navigationController.viewControllers = controllers;
-//        [viewController menuTap:selectedMenuItem];
-//        [self.tableView setAllowsMultipleSelection:NO];
         [self.delegate menuTap:selectedMenuItem];
     }
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
@@ -227,6 +225,8 @@ enum {
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self.searchBar resignFirstResponder];
+    [self.delegate search:searchBar.text];
+    [self.sideMenu setMenuState:MFSideMenuStateClosed];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {

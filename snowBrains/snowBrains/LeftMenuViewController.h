@@ -17,5 +17,6 @@
 @protocol LeftMenuViewControllerDelegate <NSObject>
 
 -(void)menuTap:(NSString *)menuItem;
+-(void)search:(NSString *)searchItem;
 
 @end

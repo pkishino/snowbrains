@@ -58,12 +58,19 @@
     if(!toForward)
         [self menuTap:@"Home"];
     
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
-                                   initWithTitle: @"Back"
-                                   style: UIBarButtonItemStyleBordered
-                                   target: nil action: nil];
-    
-    [self.navigationItem setBackBarButtonItem: backButton];
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+//                                   initWithTitle: @"Back"
+//                                   style: UIBarButtonItemStyleBordered
+//                                   target: nil action: nil];
+//    
+//    [self.navigationItem setBackBarButtonItem: backButton];
+//    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
+//        self.bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+//    } else {
+//        self.bannerView = [[ADBannerView alloc] init];
+//    }
+    self.bannerView.delegate=self;
+    self.bannerView.hidden=YES;
 }
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
@@ -270,7 +277,9 @@
 
 //    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/?app=1"]];
 
-
+-(void)search:(NSString *)searchItem{
+    [self loadWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.snowbrains.com/?s=%@",searchItem]]];
+}
 
 -(void)setupAnimation{
     CABasicAnimation *fullRotation;
@@ -299,10 +308,12 @@
     else
         [self.forwardButton setEnabled:YES];
     }
+    [self viewDidLayoutSubviews];
 
 }
 -(void)hideSwipeControl{
     self.toolBar.hidden=YES;
+    [self viewDidLayoutSubviews];
 }
 -(IBAction)backwardTap:(id)sender{
     [self.webview goBack];
@@ -369,27 +380,13 @@
         [self showActionSheet:sender];
 }
 -(void)showShareSheet:(id)sender{
-    NSString *textToShare = @"Text that will be shared";
-    //UIImage *imageToShare = [UIImage imageNamed:@"share_picture.png"];
+    NSString *textToShare = @"Input text to share";
     NSArray *itemsToShare = [[NSArray alloc] initWithObjects:textToShare, nil];
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
     activityVC.excludedActivityTypes = [[NSArray alloc] initWithObjects: UIActivityTypePrint, UIActivityTypeAssignToContact, UIActivityTypePostToWeibo, nil];
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 -(void)showActionSheet:(id)sender{
-//    NSString *actionSheetTitle = @"Share Menu"; //Action Sheet Title
-//    NSString *other1 = @"Other Button 1";
-//    NSString *other2 = @"Other Button 2";
-//    NSString *other3 = @"Other Button 3";
-//    NSString *cancelTitle = @"Cancel Button";
-//    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-//                                  initWithTitle:actionSheetTitle
-//                                  delegate:self
-//                                  cancelButtonTitle:cancelTitle
-//                                  destructiveButtonTitle:nil
-//                                  otherButtonTitles:other1, other2, other3, nil];
-//    [actionSheet showInView:self.view];
-    // Create the item to share (in this example, a url)
     
     NSString *request=[NSString stringWithFormat:@"%@",self.webview.request.URL];
     if ([request rangeOfString:@"?app=1"].location!=NSNotFound){
@@ -409,5 +406,42 @@
     [actionSheet showFromToolbar:self.toolBar];
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    self.bannerView.hidden=NO;
+    NSLog(@"%c",banner.bannerLoaded);
+}
+- (BOOL)bannerViewActionShouldBegin:
+(ADBannerView *)banner
+               willLeaveApplication:(BOOL)willLeave
+{
+    return YES;
+}
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+    [self.bannerView setHidden:YES];
+}
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    self.bannerView.hidden=YES;
+    NSLog(@"%@",error);
+}
+- (void) viewDidLayoutSubviews {
+    if (self.bannerView.bannerLoaded) {
+        if(self.toolBar.isHidden){
+            CGRect contentFrame = self.view.bounds;
+            CGRect bannerFrame = self.bannerView.frame;
+            contentFrame.size.height -= self.bannerView.frame.size.height;
+            bannerFrame.origin.y = contentFrame.size.height;
+            self.bannerView.frame = bannerFrame;
+        }else{
+            CGRect contentFrame = self.view.bounds;
+            CGRect bannerFrame = self.bannerView.frame;
+            contentFrame.size.height -= self.bannerView.frame.size.height;
+            bannerFrame.origin.y = self.toolBar.frame.origin.y-self.bannerView.frame.size.height;
+            self.bannerView.frame = bannerFrame;
+        }
+    }
+}
 
 @end
