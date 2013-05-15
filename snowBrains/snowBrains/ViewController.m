@@ -47,6 +47,8 @@
 {
     [super viewDidLoad];
     [self.webview setDelegate:self];
+    if(!toForward)
+        [self menuTap:@"Home"];
     [self setupPullDownRefresh];
     [self setupAnimation];
     [self setupSwipe];
@@ -55,8 +57,7 @@
 //    [client setDefaultHeader:@"User-Agent" value:@"Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B329"];
 //    [client setDefaultHeader:@"Accept-Language" value:@"ja-jp"];
 //    [client setDefaultHeader:@"Accept" value:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"];
-    if(!toForward)
-        [self menuTap:@"Home"];
+    
     
 //    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
 //                                   initWithTitle: @"Back"
@@ -64,13 +65,9 @@
 //                                   target: nil action: nil];
 //    
 //    [self.navigationItem setBackBarButtonItem: backButton];
-//    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
-//        self.bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-//    } else {
-//        self.bannerView = [[ADBannerView alloc] init];
-//    }
     self.bannerView.delegate=self;
     self.bannerView.hidden=YES;
+    [self viewDidLayoutSubviews];
 }
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
@@ -233,6 +230,7 @@
     [self setBackButton:nil];
     [self setShareButton:nil];
     [self setForwardButton:nil];
+    [self setBookmarkButton:nil];
     [super viewDidUnload];
 }
 -(void)menuTap:(NSString *)menuItem{
@@ -317,6 +315,9 @@
 }
 -(IBAction)backwardTap:(id)sender{
     [self.webview goBack];
+}
+
+- (IBAction)bookmarkTap:(id)sender {
 }
 -(IBAction)forwardTap:(id)sender{
     [self.webview goForward];

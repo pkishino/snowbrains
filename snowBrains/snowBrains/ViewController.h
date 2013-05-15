@@ -20,11 +20,13 @@
 @property (strong, nonatomic) IBOutlet UIImageView *flakeAnimation;
 @property (strong, nonatomic) IBOutlet UIToolbar *toolBar;
 - (IBAction)backwardTap:(id)sender;
+- (IBAction)bookmarkTap:(id)sender;
 - (IBAction)shareTap:(id)sender;
 - (IBAction)forwardTap:(id)sender;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *bookmarkButton;
 -(id)initWithForward:(BOOL)forward;
 
 @property (weak, nonatomic) IBOutlet ADBannerView *bannerView;
