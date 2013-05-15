@@ -49,6 +49,7 @@
     [self.webview setDelegate:self];
     if(!toForward)
         [self menuTap:@"Home"];
+    self.webview.allowsInlineMediaPlayback=YES;
     [self setupPullDownRefresh];
     [self setupAnimation];
     [self setupSwipe];
@@ -192,6 +193,20 @@
     requestString=[NSString stringWithFormat:@"%@",request.URL];
     if(navigationType==UIWebViewNavigationTypeLinkClicked||navigationType==UIWebViewNavigationTypeReload){
         if([requestString rangeOfString:@"http://www.snowbrains.com"].location==NSNotFound&&[requestString rangeOfString:@"http://snowbrains.com"].location==NSNotFound){
+            if([requestString rangeOfString:@"youtube.com"].location!=NSNotFound){
+                if([requestString rangeOfString:@"www.youtube.com"].location!=NSNotFound){
+//                    requestString=[requestString stringByReplacingOccurrencesOfString:@"www" withString:@"m"];
+                    requestString=[requestString stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
+                    [self loadWithURL:[NSURL URLWithString:requestString]];
+                    redirect=YES;
+                    return NO;
+                }else{
+                    [self loadWithURL:[NSURL URLWithString:requestString]];
+                    redirect=YES;
+                    return NO;
+                }
+                
+            }
             //if the request is to outside of snowbrains then ask if user wants to open in safari
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"External site" message:@"The requested site is outside of Snowbrains, please press OK to load with default Browser" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
             [alert show];
@@ -203,7 +218,6 @@
             return NO;
         }
     }
-    //if request is a mailto request then handle that
     if(self.webview.request==request){
         return NO;
     }
