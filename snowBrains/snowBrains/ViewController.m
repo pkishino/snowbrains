@@ -28,6 +28,7 @@
     NSString *menuSelection;
     BOOL toForward;
     AFHTTPClient *client;
+    UIWebView *videoView;
 }
 
 @end
@@ -72,7 +73,7 @@
 }
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
-    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
+    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
     [self.webview loadRequest:snowbrains];
 //    [NSURLConnection sendAsynchronousRequest:snowbrains queue:[[NSOperationQueue alloc]init] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
 //        NSString *http=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -194,18 +195,13 @@
     if(navigationType==UIWebViewNavigationTypeLinkClicked||navigationType==UIWebViewNavigationTypeReload){
         if([requestString rangeOfString:@"http://www.snowbrains.com"].location==NSNotFound&&[requestString rangeOfString:@"http://snowbrains.com"].location==NSNotFound){
             if([requestString rangeOfString:@"youtube.com"].location!=NSNotFound){
-                if([requestString rangeOfString:@"www.youtube.com"].location!=NSNotFound){
-//                    requestString=[requestString stringByReplacingOccurrencesOfString:@"www" withString:@"m"];
-                    requestString=[requestString stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
-                    [self loadWithURL:[NSURL URLWithString:requestString]];
-                    redirect=YES;
-                    return NO;
-                }else{
-                    [self loadWithURL:[NSURL URLWithString:requestString]];
-                    redirect=YES;
-                    return NO;
-                }
-                
+
+//                if([requestString rangeOfString:@"iframe class"].location==NSNotFound){
+//                    [self loadYoutube:requestString];
+//                    return NO;
+//                }
+//                else
+//                    return YES;
             }
             //if the request is to outside of snowbrains then ask if user wants to open in safari
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"External site" message:@"The requested site is outside of Snowbrains, please press OK to load with default Browser" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
@@ -226,7 +222,24 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if( buttonIndex == 1 ) [[UIApplication sharedApplication]openURL:[NSURL URLWithString:requestString]];
 }
-
+//-(void)loadYoutube:(NSString *)request{
+////    if([UIDevice ])
+//    requestString=[requestString stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
+//    
+//    NSString *youTubeHTMLTemplate = @"<html><body style=\"margin:0;padding:0;\"><iframe class=\"youtube-player\" type=\"text/html\" width=\"%f\" height=\"%f\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
+//    NSString* html = [NSString stringWithFormat:youTubeHTMLTemplate, self.webview.frame.size.width, self.webview.frame.size.height, requestString];
+//    if(videoView == nil) {
+//        videoView = [[UIWebView alloc] initWithFrame:self.view.frame];
+//        [self.view addSubview:videoView];
+//    }
+//    self.view.autoresizesSubviews=YES;
+//    [videoView setMediaPlaybackRequiresUserAction:NO];
+//    [videoView loadHTMLString:html baseURL:nil];
+//    [videoView stringByEvaluatingJavaScriptFromString:@"function onPlayerReady(event){event.target.playVideo();}"];
+////    [self.webview loadHTMLString:html baseURL:nil];
+//    
+//    
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -332,6 +345,11 @@
 }
 
 - (IBAction)bookmarkTap:(id)sender {
+    BookmarkModalViewController *bookmarkAdd=[[BookmarkModalViewController alloc]initWithURL:self.webview.request.URL];
+    [self presentModalViewController:bookmarkAdd animated:YES];
+}
+-(void)bookmarkLoad:(NSString *)bookmark{
+    [self loadWithURL:[NSURL URLWithString:bookmark]];
 }
 -(IBAction)forwardTap:(id)sender{
     [self.webview goForward];

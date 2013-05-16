@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PullToRefreshView.h"
-#import "MoreViewController.h"
 #import "LeftMenuViewController.h"
+#import "BookmarkViewController.h"
 #import <iAd/iAd.h>
 
 @interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,UINavigationControllerDelegate,LeftMenuViewControllerDelegate,UIActionSheetDelegate,ADBannerViewDelegate>

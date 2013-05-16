@@ -36,7 +36,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="674197399">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">1312</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIWebView" id="431890916">
@@ -189,7 +189,6 @@
 				</array>
 				<object class="NSPSMatrix" key="NSFrameMatrix"/>
 				<string key="NSFrame">{{0, 44}, {320, 436}}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="431890916"/>
 				<reference key="IBUIBackgroundColor" ref="128001427"/>
 				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">

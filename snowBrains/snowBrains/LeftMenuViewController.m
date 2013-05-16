@@ -97,6 +97,13 @@ enum {
     self.searchBar.delegate = self;
     self.tableView.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"buttonBackground"]];
     self.tableView.tableHeaderView = self.searchBar;
+    
+    NSString *notificationName = @"InAppSettingsViewControllerDelegateWillDismissedNotification";
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deselectSettings:)
+     name:notificationName
+     object:nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
     favoritesList=[self loadFavorites];
@@ -169,6 +176,9 @@ enum {
     else if (section==lMenuListOther)
         return 1;
     return -1;
+}
+-(void)deselectSettings:(NSNotification *)notification{
+    [self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:lMenuListOther] animated:YES];
 }
 
 #pragma mark -

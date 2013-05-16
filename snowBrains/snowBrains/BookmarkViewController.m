@@ -37,14 +37,20 @@ NSString *const BookmarkViewControllerDelegateDidDismissedNotification = @"Bookm
     }];
 }
 -(IBAction)addBookmark:(id)sender{
-//    [self.delegate addBookmark:self.bookmarkName.text withLink:self.bookmarkURL];
     NSMutableArray *bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
     if (!bookmarks) {
         bookmarks = [[NSMutableArray alloc] init];
     }
+    NSString *name=self.bookmarkName.text;
+    name=[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if([name length]!=0){
     [bookmarks addObject:[NSDictionary dictionaryWithObjectsAndKeys:self.bookmarkName.text,@"Name",[self.bookmarkURL absoluteString],@"URL", nil]];
     [[NSUserDefaults standardUserDefaults] setObject:bookmarks forKey:@"Bookmarks"];
     [self dismissModalView:nil];
+    }else{
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", @"error") message:NSLocalizedString(@"Please input a name for the bookmark", @"Empty bookmark name") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 - (void)addDoneButton{
@@ -84,7 +90,14 @@ NSString *const BookmarkViewControllerDelegateDidDismissedNotification = @"Bookm
     [self registerForKeyboardNotifications];
     
     NSString *name=[NSString stringWithFormat:@"%@",self.bookmarkURL];
-    //    name=[name string]
+    NSRange match;
+    NSRange match1;
+    match = [name rangeOfString: @".com"];
+    name=[name substringFromIndex:match.location+4];
+    match1 = [name rangeOfString: @"?app=1"];
+    name=[name substringToIndex:match1.location];
+    name=[name stringByReplacingOccurrencesOfString:@"-" withString:@" "];
+    name=[name stringByReplacingOccurrencesOfString:@"/" withString:@""];
     self.bookmarkName.text=name;
 }
 
