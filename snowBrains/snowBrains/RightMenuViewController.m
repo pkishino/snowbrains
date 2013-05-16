@@ -7,7 +7,7 @@
 #import "RightMenuViewController.h"
 #import "MFSideMenu.h"
 
-#import "SettingsViewController.h"
+//#import "SettingsViewController.h"
 
 @interface RightMenuViewController()
 @property(nonatomic, strong) UIView *menuLogo;

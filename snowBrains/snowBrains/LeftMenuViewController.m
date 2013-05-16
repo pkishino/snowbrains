@@ -45,6 +45,7 @@ enum {
     
     NSMutableArray *mainList;
     NSMutableArray *favoritesList;
+    NSMutableArray *favoritesURLS;
     NSMutableArray *otherList;
     
     NSArray *mainItems;
@@ -59,7 +60,7 @@ enum {
 @implementation LeftMenuViewController
 
 @synthesize sideMenu;
-@synthesize searchBar;
+//@synthesize searchBar;
 - (id)init{
     if(self=[super init]){
         
@@ -68,11 +69,23 @@ enum {
         moreItems=[[NSArray alloc]initWithObjects:@"Utah",@"Mammoth",@"PNW",@"South America",@"Japan",@"Alps", nil];
         videoItems=[[NSArray alloc]initWithObjects:@"Brain Videos",@"Non-Brain Videos",@"Trailers", nil];
         mainList=[[NSMutableArray alloc]initWithArray:mainItems];
-        favoritesList=[[NSMutableArray alloc]initWithObjects:@"Favorite dummy", nil];
+        favoritesList=[[NSMutableArray alloc]initWithObjects:@"Favorites dummy", nil];
+        favoritesURLS=[[NSMutableArray alloc]initWithObjects:@"Favorites dummy", nil];
         otherList=[[NSMutableArray alloc]initWithObjects:@"Settings",@"Contact", nil];
         sections=[[NSMutableArray alloc]initWithObjects:mainItems,favoritesList,otherList, nil];
     }
     return self;
+}
+-(NSMutableArray *)loadFavorites{
+    NSMutableArray *bookmarks=[[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+    NSMutableArray *names=[[NSMutableArray alloc]init];
+    NSMutableArray *urls=[[NSMutableArray alloc]init];
+    for(NSDictionary *bookmark in bookmarks){
+        [names addObject:[bookmark valueForKey:@"Name"]];
+        [urls addObject:[bookmark valueForKey:@"URL"]];
+    }
+    favoritesURLS=urls;
+    return names;
 }
 
 - (void) viewDidLoad {
@@ -84,6 +97,11 @@ enum {
     self.searchBar.delegate = self;
     self.tableView.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"buttonBackground"]];
     self.tableView.tableHeaderView = self.searchBar;
+}
+-(void)viewWillAppear:(BOOL)animated{
+    favoritesList=[self loadFavorites];
+    sections=[[NSMutableArray alloc]initWithObjects:mainItems,favoritesList,otherList, nil];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:lMenuListFavorites] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 
@@ -159,7 +177,9 @@ enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell=[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:indexPath];
     NSString *selectedMenuItem=cell.textLabel.text;
-    if([selectedMenuItem isEqualToString:@"Locations"]||[selectedMenuItem isEqualToString:@"More"]||[selectedMenuItem isEqualToString:@"Video"]){
+    if(indexPath.section==lMenuListFavorites){
+        [self.delegate bookmarkLoad:[favoritesURLS objectAtIndex:indexPath.row]];
+    }else if([selectedMenuItem isEqualToString:@"Locations"]||[selectedMenuItem isEqualToString:@"More"]||[selectedMenuItem isEqualToString:@"Video"]){
         [self manageSubCells:cell];
         return;
     }else if([selectedMenuItem isEqualToString:@"Settings"]){

@@ -18,5 +18,6 @@
 
 -(void)menuTap:(NSString *)menuItem;
 -(void)search:(NSString *)searchItem;
+-(void)bookmarkLoad:(NSURL *)bookmark;
 
 @end
