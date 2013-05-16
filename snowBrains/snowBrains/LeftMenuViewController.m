@@ -118,7 +118,91 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [self getSectionName:section];
 }
-
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    if ([tableView respondsToSelector:@selector(dequeueReusableHeaderFooterViewWithIdentifier:)]){
+//        static NSString *headerReuseIdentifier = @"TableViewSectionHeaderViewIdentifier";
+//        UITableViewHeaderFooterView *sectionHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerReuseIdentifier];
+//        if(sectionHeaderView == nil){
+//            sectionHeaderView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:headerReuseIdentifier];
+//        }
+//        
+//        if(section==lMenuListFavorites){
+//            UIButton *edit=[UIButton buttonWithType:UIButtonTypeCustom];
+//            [edit setTitle:@"Edit" forState:UIControlStateNormal];
+//            [edit setTitle:@"Done" forState:UIControlStateSelected];
+//            [edit.titleLabel setShadowColor:[UIColor darkGrayColor]];
+////            [edit.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+//            [edit.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
+//            [edit addTarget:self action:@selector(editSection:) forControlEvents:UIControlEventTouchDown];
+//            edit.frame=CGRectMake(sectionHeaderView.frame.size.width-60, sectionHeaderView.textLabel.frame.origin.y, 50, sectionHeaderView.textLabel.frame.size.height);
+//            [sectionHeaderView addSubview:edit];
+//            sectionHeaderView.userInteractionEnabled=YES;
+//        }
+//        sectionHeaderView.textLabel.textColor=[UIColor whiteColor];
+//        return sectionHeaderView;
+//    }else{
+        UIView* sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, [self tableView:tableView heightForHeaderInSection:section])];
+        sectionHeaderView.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+        
+        UIImageView *headerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PlainTableViewSectionHeader"]];
+        headerImage.contentMode = UIViewContentModeScaleAspectFit;
+        
+        [sectionHeaderView addSubview:headerImage];
+        
+        UILabel *sectionText = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, tableView.bounds.size.width - 70, 18)];
+        sectionText.text = [self tableView:tableView titleForHeaderInSection:section];
+        sectionText.backgroundColor = [UIColor clearColor];
+        sectionText.textColor = [UIColor whiteColor];
+        sectionText.shadowColor = [UIColor darkGrayColor];
+        sectionText.shadowOffset = CGSizeMake(0,1);
+        sectionText.font = [UIFont boldSystemFontOfSize:18];
+        
+        [sectionHeaderView addSubview:sectionText];
+        if(section==lMenuListFavorites){
+            UIButton *edit=[UIButton buttonWithType:UIButtonTypeCustom];
+            edit.tag=69;
+            [edit setTitle:@"Edit" forState:UIControlStateNormal];
+            [edit setTitle:@"Done" forState:UIControlStateSelected];
+            [edit.titleLabel setShadowColor:[UIColor darkGrayColor]];
+            [edit.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+            [edit.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
+            [edit addTarget:self action:@selector(editSection:) forControlEvents:UIControlEventTouchDown];
+            edit.frame=CGRectMake(sectionHeaderView.frame.size.width-60, sectionText.frame.origin.y, 50, sectionText.frame.size.height);
+            [sectionHeaderView addSubview:edit];
+            sectionHeaderView.userInteractionEnabled=YES;
+        }
+        
+        return sectionHeaderView;
+//    }
+}
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return UITableViewAutomaticDimension;
+}
+-(IBAction)editSection:(id)sender{
+    if([self.tableView isEditing]){
+        [self.tableView setEditing:NO animated:YES];
+        [(UIButton *)[self.tableView viewWithTag:69] setSelected:NO];
+    }else{
+        [(UIButton *)[self.tableView viewWithTag:69] setSelected:YES];
+        [self.tableView setEditing:YES animated:YES];
+    }
+}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section==lMenuListFavorites)return YES;
+    return NO;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        NSMutableArray *bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+        [bookmarks removeObjectAtIndex:indexPath.row ];
+        [favoritesList removeObjectAtIndex:indexPath.row];
+        [[NSUserDefaults standardUserDefaults] setObject:bookmarks forKey:@"Bookmarks"];
+        // Animate the deletion
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return sections.count;
 }
@@ -187,6 +271,7 @@ enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell=[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:indexPath];
     NSString *selectedMenuItem=cell.textLabel.text;
+    if(!self.tableView.isEditing){
     if(indexPath.section==lMenuListFavorites){
         [self.delegate bookmarkLoad:[favoritesURLS objectAtIndex:indexPath.row]];
     }else if([selectedMenuItem isEqualToString:@"Locations"]||[selectedMenuItem isEqualToString:@"More"]||[selectedMenuItem isEqualToString:@"Video"]){
@@ -201,6 +286,7 @@ enum {
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
     
     if(self.searchBar.isFirstResponder) [self.searchBar resignFirstResponder];
+    }
 }
 -(void)manageSubCells:(UITableViewCell *)cell{
     NSString *selection=cell.textLabel.text;

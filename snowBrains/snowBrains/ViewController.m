@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MFSideMenu.h"
 #import "SHK.h"
+#import "AppDelegate.h"
 @interface UIPopoverController (overrides)
 + (BOOL)_popoversDisabled;
 @end
@@ -34,6 +35,16 @@
 @end
 
 @implementation ViewController
+-(id)init{
+    if(self=[super init]){
+//        NSURLRequest *preload=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
+//        [self.webview loadRequest:preload];
+//        self.webview.delegate=self;
+        client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
+// 
+    }
+    return self;
+}
 -(id)initWithForward:(BOOL)forward{
     if(self=[super init]){
         toForward=forward;
@@ -48,19 +59,15 @@
 {
     [super viewDidLoad];
     [self.webview setDelegate:self];
-    if(!toForward)
+    if(!toForward){
         [self menuTap:@"Home"];
+    }
     self.webview.allowsInlineMediaPlayback=YES;
     [self setupPullDownRefresh];
-    [self setupAnimation];
+//    [self setupAnimation];
     [self setupSwipe];
     [self setupSideMenu];
-//    client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
-//    [client setDefaultHeader:@"User-Agent" value:@"Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B329"];
-//    [client setDefaultHeader:@"Accept-Language" value:@"ja-jp"];
-//    [client setDefaultHeader:@"Accept" value:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"];
-    
-    
+      
 //    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
 //                                   initWithTitle: @"Back"
 //                                   style: UIBarButtonItemStyleBordered
@@ -71,10 +78,15 @@
     self.bannerView.hidden=YES;
     [self viewDidLayoutSubviews];
 }
+//-(void)loadPreloadedWeb:(NSNotification *)notification{
+//    AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//    self.webview=mainDelegate.preLoader;
+//}
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
-    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
-    [self.webview loadRequest:snowbrains];
+//    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+//    [self.webview loadRequest:snowbrains];
+    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
 //    [NSURLConnection sendAsynchronousRequest:snowbrains queue:[[NSOperationQueue alloc]init] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
 //        NSString *http=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 //        [self.webview loadHTMLString: http baseURL:url];
@@ -88,15 +100,25 @@
 //    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
 //        NSLog(@"Failure");
 //    }];
-//     AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSString *data=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//        [self.webview loadHTMLString: data baseURL:url];
-//        NSLog(@"Success");
-//    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Failure");
-//    }];
-//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-//    [queue addOperation:operation];
+     AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *data=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        [self.webview loadHTMLString: data baseURL:url];
+        NSLog(@"Success");
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Failure");
+    }];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:operation];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+    [self hideSwipeControl];
+    self.flakeAnimation.hidden=NO;
+    [self setupAnimation];
+    [self.flakeAnimation startAnimating];
+    if(!self.loadFigure.isHidden&&!toForward){
+        self.loadFigure.hidden=NO;
+        self.loadBackground.hidden=NO;
+        self.loadLogo.hidden=NO;
+    }
 
     
 }
@@ -141,18 +163,17 @@
     [alert show];
     }
 }
--(void)webViewDidStartLoad:(UIWebView *)webView{
-    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
-    [self hideSwipeControl];
-    self.flakeAnimation.hidden=NO;
-    //[self setupAnimation];
-    [self.flakeAnimation startAnimating];
-    if(!self.loadFigure.isHidden&&!toForward){
-        self.loadFigure.hidden=NO;
-        self.loadBackground.hidden=NO;
-        self.loadLogo.hidden=NO;
-    }
-}
+//-(void)webViewDidStartLoad:(UIWebView *)webView{
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+//    [self hideSwipeControl];
+//    self.flakeAnimation.hidden=NO;
+//    [self.flakeAnimation startAnimating];
+//    if(!self.loadFigure.isHidden&&!toForward){
+//        self.loadFigure.hidden=NO;
+//        self.loadBackground.hidden=NO;
+//        self.loadLogo.hidden=NO;
+//    }
+//}
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
@@ -195,18 +216,19 @@
     if(navigationType==UIWebViewNavigationTypeLinkClicked||navigationType==UIWebViewNavigationTypeReload){
         if([requestString rangeOfString:@"http://www.snowbrains.com"].location==NSNotFound&&[requestString rangeOfString:@"http://snowbrains.com"].location==NSNotFound){
             if([requestString rangeOfString:@"youtube.com"].location!=NSNotFound){
-
+                return YES;
 //                if([requestString rangeOfString:@"iframe class"].location==NSNotFound){
 //                    [self loadYoutube:requestString];
 //                    return NO;
 //                }
 //                else
 //                    return YES;
-            }
+            }else{
             //if the request is to outside of snowbrains then ask if user wants to open in safari
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"External site" message:@"The requested site is outside of Snowbrains, please press OK to load with default Browser" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
             [alert show];
             return NO;
+            }
         }else if ([requestString rangeOfString:@"?app=1"].location==NSNotFound){
             NSURL *redirectTo=[NSURL URLWithString:[NSString stringWithFormat:@"%@?app=1",requestString]];
             [self loadWithURL:redirectTo];

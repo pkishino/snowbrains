@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *bookmarkButton;
+-(id)init;
 -(id)initWithForward:(BOOL)forward;
 
 @property (weak, nonatomic) IBOutlet ADBannerView *bannerView;

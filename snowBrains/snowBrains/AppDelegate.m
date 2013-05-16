@@ -22,7 +22,8 @@
 
 @implementation AppDelegate
 - (ViewController *)viewController {
-    return [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+//    return [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    return [[ViewController alloc]init];
 }
 
 - (UINavigationController *)navigationController {
@@ -56,10 +57,14 @@
                                                          diskCapacity:20 * 1024 * 1024
                                                              diskPath:nil];
     [NSURLCache setSharedURLCache:URLCache];
+//    NSURLRequest *preload=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
+//    [self.preLoader loadRequest:preload];
+//    self.preLoader.delegate=self;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [self sideMenu].navigationController;
     [self.window makeKeyAndVisible];
+    
     
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
     
@@ -125,6 +130,12 @@
         return [SHKFacebook handleOpenURL:url];
     }    
     return YES;
+}
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"Preloaded" object:nil];
+}
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    
 }
 
 @end
