@@ -587,7 +587,9 @@ typedef enum {
 - (void)closeSideMenu {
     // notify that the menu state event is starting
     [self sendMenuStateEventNotification:MFSideMenuStateEventMenuWillClose];
-    
+    UIButton *edit=(UIButton *)[leftSideMenuViewController.view viewWithTag:69];
+    if(edit.isSelected)[edit sendAction:@selector(editSection:) to:leftSideMenuViewController forEvent:nil];
+
     CGFloat navigationControllerXPosition = ABS([self pointAdjustedForInterfaceOrientation:self.rootViewController.view.frame.origin].x);
     CGFloat duration = [self animationDurationFromStartPosition:navigationControllerXPosition toEndPosition:0];
     [UIView animateWithDuration:duration animations:^{

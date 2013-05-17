@@ -382,7 +382,13 @@
     // this is useful, for example, if you want to change a UIBarButtonItem when the menu closes
     self.navigationController.delegate=self;
     self.navigationController.sideMenu.menuStateEventBlock = ^(MFSideMenuStateEvent event) {
-        NSLog(@"event occurred: %@", weakSelf.navigationItem.title);
+//        switch (event) {
+//                case MFSideMenuStateEventMenuWillClose:
+//                
+//                break;
+//        }
+ 
+       
         [weakSelf setupMenuBarButtonItems];
     };
 }
@@ -416,16 +422,28 @@
 }
 - (BOOL)shouldAutorotate
 {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    if (orientation == UIInterfaceOrientationLandscapeLeft||orientation==UIInterfaceOrientationLandscapeRight){
+        
+        self.loadFigure.frame=CGRectMake(202, 159, self.loadFigure.frame.size.width, self.loadFigure.frame.size.height);
+    }else{
+        self.loadFigure.frame=CGRectMake(122, 237, self.loadFigure.frame.size.width, self.loadFigure.frame.size.height);
+    }
     return YES;
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return ((toInterfaceOrientation == UIInterfaceOrientationPortrait)|| (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight));
+//    return ((toInterfaceOrientation == UIInterfaceOrientationPortrait)|| (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight));
+    return[self shouldAutorotate];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return (UIInterfaceOrientationMaskAll|UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight|UIInterfaceOrientationPortrait);
+    return (UIInterfaceOrientationMaskAll);
+}
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    [self shouldAutorotate];
 }
 
 - (IBAction)shareTap:(id)sender {

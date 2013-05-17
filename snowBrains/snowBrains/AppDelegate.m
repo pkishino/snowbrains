@@ -16,6 +16,7 @@
 #import "SHKConfiguration.h"
 #import "SHKFacebook.h"
 #import "MyShareKitConfig.h"
+#import "InAppSettings.h"
 
 #define WIDTH_IPHONE_5 568
 #define IS_IPHONE_5 ([[UIScreen mainScreen] bounds].size.height == WIDTH_IPHONE_5)
@@ -60,7 +61,7 @@
 //    NSURLRequest *preload=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
 //    [self.preLoader loadRequest:preload];
 //    self.preLoader.delegate=self;
-    
+    [InAppSettings registerDefaults];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [self sideMenu].navigationController;
     [self.window makeKeyAndVisible];

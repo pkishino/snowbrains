@@ -6,11 +6,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MFSideMenu.h"
+#import <MessageUI/MessageUI.h>
 
-@interface LeftMenuViewController : UITableViewController<UISearchBarDelegate>
+@interface LeftMenuViewController : UITableViewController<UISearchBarDelegate,MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, assign) MFSideMenu *sideMenu;
 @property (nonatomic,weak) id delegate;
+@property (nonatomic,retain) UITableView *tableView;
 
 @end
 

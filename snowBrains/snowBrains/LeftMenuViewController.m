@@ -274,12 +274,14 @@ enum {
     if(!self.tableView.isEditing){
     if(indexPath.section==lMenuListFavorites){
         [self.delegate bookmarkLoad:[favoritesURLS objectAtIndex:indexPath.row]];
-    }else if([selectedMenuItem isEqualToString:@"Locations"]||[selectedMenuItem isEqualToString:@"More"]||[selectedMenuItem isEqualToString:@"Video"]){
+    }else if((indexPath.section==lMenuListMain)&&([selectedMenuItem isEqualToString:@"Locations"]||[selectedMenuItem isEqualToString:@"More"]||[selectedMenuItem isEqualToString:@"Video"])){
         [self manageSubCells:cell];
         return;
-    }else if([selectedMenuItem isEqualToString:@"Settings"]){
+    }else if((indexPath.section==lMenuListOther)&&[selectedMenuItem isEqualToString:@"Settings"]){
         InAppSettingsModalViewController *settings=[[InAppSettingsModalViewController alloc]init];
         [[self.sideMenu.navigationController.viewControllers objectAtIndex:0] presentModalViewController:settings animated:YES];
+    }else if((indexPath.section==lMenuListOther)&&[selectedMenuItem isEqualToString:@"Contact"]){
+        [self sendMail];
     }else{
         [self.delegate menuTap:selectedMenuItem];
     }
@@ -365,6 +367,44 @@ enum {
     [self.searchBar setShowsCancelButton:NO animated:YES];
     
     self.sideMenu.panMode = MFSideMenuPanModeDefault;
+}
+- (void)sendMail{
+        if ([MFMailComposeViewController canSendMail])
+        {
+            MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+            mailer.mailComposeDelegate = self;
+            [mailer setToRecipients:[NSArray arrayWithObjects:@"contact@snowbrains.com", nil]];
+            [mailer setSubject:@"SnowBrains!"];
+            [[self.sideMenu.navigationController.viewControllers objectAtIndex:0] presentModalViewController:mailer animated:YES];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error for alerts")message:NSLocalizedString(@"Email unsupported", @"Email Error for alerts")delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok button for alerts")otherButtonTitles: nil];
+            [alert show];
+        }
+    [self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:[otherList indexOfObject:@"Contact"] inSection:lMenuListOther] animated:YES];
+}
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
+//    switch (result)
+//    {
+//        case MFMailComposeResultCancelled:
+//            LogInfo(@"Mail cancelled: you cancelled the operation and no email message was queued.");
+//            break;
+//        case MFMailComposeResultSaved:
+//            LogInfo(@"Mail saved: you saved the email message in the drafts folder.");
+//            break;
+//        case MFMailComposeResultSent:
+//            LogInfo(@"Mail send: the email message is queued in the outbox. It is ready to send.");
+//            break;
+//        case MFMailComposeResultFailed:
+//            LogInfo(@"Mail failed: the email message was not saved or queued, possibly due to an error.");
+//            break;
+//        default:
+//            LogInfo(@"Mail not sent.");
+//            break;
+//    }
+    // Remove the mail view
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 
