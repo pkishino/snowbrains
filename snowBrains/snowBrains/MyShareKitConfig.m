@@ -56,11 +56,11 @@
 
 // Forms
 - (UIColor *)formFontColor {
-    return [UIColor whiteColor];
+    return [UIColor blackColor];
 }
 
 - (UIColor*)formBackgroundColor {
-    return [UIColor darkGrayColor];
+    return [UIColor colorWithPatternImage:[UIImage imageNamed:@"back-tableview"]];
 }
 
 // iPad views. You can change presentation style for different sharers
