@@ -60,7 +60,7 @@
 }
 
 - (UIColor*)formBackgroundColor {
-    return [UIColor grayColor];
+    return [UIColor darkGrayColor];
 }
 
 // iPad views. You can change presentation style for different sharers

@@ -216,11 +216,8 @@
     if(navigationType==UIWebViewNavigationTypeLinkClicked||navigationType==UIWebViewNavigationTypeReload){
         if([requestString rangeOfString:@"http://www.snowbrains.com"].location==NSNotFound&&[requestString rangeOfString:@"http://snowbrains.com"].location==NSNotFound){
             if([requestString rangeOfString:@"youtube.com"].location!=NSNotFound){
-                return YES;
-//                if([requestString rangeOfString:@"iframe class"].location==NSNotFound){
-//                    [self loadYoutube:requestString];
-//                    return NO;
-//                }
+                    [self loadYoutube:requestString];
+                    return NO;
 //                else
 //                    return YES;
             }else{
@@ -244,24 +241,38 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if( buttonIndex == 1 ) [[UIApplication sharedApplication]openURL:[NSURL URLWithString:requestString]];
 }
-//-(void)loadYoutube:(NSString *)request{
+-(void)loadYoutube:(NSString *)request{
+    
 ////    if([UIDevice ])
 //    requestString=[requestString stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
 //    
 //    NSString *youTubeHTMLTemplate = @"<html><body style=\"margin:0;padding:0;\"><iframe class=\"youtube-player\" type=\"text/html\" width=\"%f\" height=\"%f\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
 //    NSString* html = [NSString stringWithFormat:youTubeHTMLTemplate, self.webview.frame.size.width, self.webview.frame.size.height, requestString];
-//    if(videoView == nil) {
-//        videoView = [[UIWebView alloc] initWithFrame:self.view.frame];
-//        [self.view addSubview:videoView];
-//    }
-//    self.view.autoresizesSubviews=YES;
-//    [videoView setMediaPlaybackRequiresUserAction:NO];
+    UIViewController *video=[[UIViewController alloc]init];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                   initWithTitle: @"Back"
+                                   style: UIBarButtonItemStyleBordered
+                                   target: self action: @selector(dismissModalViewControllerAnimated:)];
+    
+    [video.navigationItem setLeftBarButtonItem:backButton animated:YES];
+    UINavigationController *bar=[[UINavigationController alloc]initWithRootViewController:video];
+//    [bar.navigationItem setLeftBarButtonItem:backButton animated:YES];
+    video.title=@"Video";
+    if(videoView == nil) {
+        videoView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    }
+    video.view =videoView;
+    [videoView setMediaPlaybackRequiresUserAction:NO];
+    [videoView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:request]]];
+//    [self.navigationController pushViewController:video animated:YES];
+    [self presentModalViewController:bar animated:YES];
+    
 //    [videoView loadHTMLString:html baseURL:nil];
 //    [videoView stringByEvaluatingJavaScriptFromString:@"function onPlayerReady(event){event.target.playVideo();}"];
 ////    [self.webview loadHTMLString:html baseURL:nil];
 //    
 //    
-//}
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -427,14 +438,18 @@
     if (orientation == UIInterfaceOrientationLandscapeLeft||orientation==UIInterfaceOrientationLandscapeRight){
         
         self.loadFigure.frame=CGRectMake(202, 159, self.loadFigure.frame.size.width, self.loadFigure.frame.size.height);
+        self.bannerView.requiredContentSizeIdentifiers=[NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
+        self.bannerView.currentContentSizeIdentifier=ADBannerContentSizeIdentifierLandscape;
     }else{
         self.loadFigure.frame=CGRectMake(122, 237, self.loadFigure.frame.size.width, self.loadFigure.frame.size.height);
+        self.bannerView.requiredContentSizeIdentifiers=[NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
+        self.bannerView.currentContentSizeIdentifier=ADBannerContentSizeIdentifierPortrait;
     }
+    [self viewDidLayoutSubviews];
     return YES;
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-//    return ((toInterfaceOrientation == UIInterfaceOrientationPortrait)|| (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight));
     return[self shouldAutorotate];
 }
 
@@ -515,6 +530,28 @@
             self.bannerView.frame = bannerFrame;
         }
     }
+}
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
+    //    switch (result)
+    //    {
+    //        case MFMailComposeResultCancelled:
+    //            LogInfo(@"Mail cancelled: you cancelled the operation and no email message was queued.");
+    //            break;
+    //        case MFMailComposeResultSaved:
+    //            LogInfo(@"Mail saved: you saved the email message in the drafts folder.");
+    //            break;
+    //        case MFMailComposeResultSent:
+    //            LogInfo(@"Mail send: the email message is queued in the outbox. It is ready to send.");
+    //            break;
+    //        case MFMailComposeResultFailed:
+    //            LogInfo(@"Mail failed: the email message was not saved or queued, possibly due to an error.");
+    //            break;
+    //        default:
+    //            LogInfo(@"Mail not sent.");
+    //            break;
+    //    }
+    // Remove the mail view
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

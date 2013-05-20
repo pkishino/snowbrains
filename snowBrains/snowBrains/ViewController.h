@@ -14,7 +14,7 @@
 #import <iAd/iAd.h>
 
 
-@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,UINavigationControllerDelegate,LeftMenuViewControllerDelegate,UIActionSheetDelegate,ADBannerViewDelegate>
+@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,UINavigationControllerDelegate,LeftMenuViewControllerDelegate,UIActionSheetDelegate,ADBannerViewDelegate,MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 @property (strong, nonatomic) IBOutlet UIImageView *loadBackground;
 @property (strong, nonatomic) IBOutlet UIImageView *loadLogo;

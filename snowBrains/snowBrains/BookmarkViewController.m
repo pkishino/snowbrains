@@ -99,6 +99,8 @@ NSString *const BookmarkViewControllerDelegateDidDismissedNotification = @"Bookm
     name=[name stringByReplacingOccurrencesOfString:@"-" withString:@" "];
     name=[name stringByReplacingOccurrencesOfString:@"/" withString:@""];
     self.bookmarkName.text=name;
+    
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"back-tableview"]]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -163,6 +165,20 @@ NSString *const BookmarkViewControllerDelegateDidDismissedNotification = @"Bookm
         [UIView setAnimationBeginsFromCurrentState:YES];
         [UIView commitAnimations];
     }
+}
+- (BOOL)shouldAutorotate
+{
+
+    return YES;
+}
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return[self shouldAutorotate];
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return (UIInterfaceOrientationMaskAll);
 }
 
 - (void)viewDidUnload {

@@ -372,7 +372,7 @@ enum {
         if ([MFMailComposeViewController canSendMail])
         {
             MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
-            mailer.mailComposeDelegate = self;
+            mailer.mailComposeDelegate = [self.sideMenu.navigationController.viewControllers objectAtIndex:0];
             [mailer setToRecipients:[NSArray arrayWithObjects:@"contact@snowbrains.com", nil]];
             [mailer setSubject:@"SnowBrains!"];
             [[self.sideMenu.navigationController.viewControllers objectAtIndex:0] presentModalViewController:mailer animated:YES];
@@ -383,28 +383,6 @@ enum {
             [alert show];
         }
     [self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:[otherList indexOfObject:@"Contact"] inSection:lMenuListOther] animated:YES];
-}
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
-//    switch (result)
-//    {
-//        case MFMailComposeResultCancelled:
-//            LogInfo(@"Mail cancelled: you cancelled the operation and no email message was queued.");
-//            break;
-//        case MFMailComposeResultSaved:
-//            LogInfo(@"Mail saved: you saved the email message in the drafts folder.");
-//            break;
-//        case MFMailComposeResultSent:
-//            LogInfo(@"Mail send: the email message is queued in the outbox. It is ready to send.");
-//            break;
-//        case MFMailComposeResultFailed:
-//            LogInfo(@"Mail failed: the email message was not saved or queued, possibly due to an error.");
-//            break;
-//        default:
-//            LogInfo(@"Mail not sent.");
-//            break;
-//    }
-    // Remove the mail view
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 
