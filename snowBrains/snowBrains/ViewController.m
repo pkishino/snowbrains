@@ -37,11 +37,7 @@
 @implementation ViewController
 -(id)init{
     if(self=[super init]){
-//        NSURLRequest *preload=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
-//        [self.webview loadRequest:preload];
-//        self.webview.delegate=self;
         client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
-// 
     }
     return self;
 }
@@ -78,10 +74,6 @@
     self.bannerView.hidden=YES;
     [self viewDidLayoutSubviews];
 }
-//-(void)loadPreloadedWeb:(NSNotification *)notification{
-//    AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//    self.webview=mainDelegate.preLoader;
-//}
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
 //    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
@@ -101,11 +93,13 @@
 //        NSLog(@"Failure");
 //    }];
      AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *data=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        [self.webview loadHTMLString: data baseURL:url];
+//        NSString *data=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        [self.webview loadHTMLString: data baseURL:url];
+        [self.webview loadData:responseObject MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:url];
         NSLog(@"Success");
     } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Failure");
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperation:operation];
@@ -157,10 +151,10 @@
 }
 -(void)cancelPullToRefresh{
     if([(UIWebView *)[self.view viewWithTag:999] isLoading]){
-    [(UIWebView *)[self.view viewWithTag:999] stopLoading];
-    [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+        [(UIWebView *)[self.view viewWithTag:999] stopLoading];
+        [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
 }
 //-(void)webViewDidStartLoad:(UIWebView *)webView{
@@ -183,7 +177,6 @@
     self.loadBackground.hidden=YES;
     self.loadLogo.hidden=YES;
     [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
-    //NSLog(@"%@",[self.webview stringByEvaluatingJavaScriptFromString: @"document.documentElement.outerHTML"]);
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     if(!redirect){
@@ -218,8 +211,6 @@
             if([requestString rangeOfString:@"youtube.com"].location!=NSNotFound){
                     [self loadYoutube:requestString];
                     return NO;
-//                else
-//                    return YES;
             }else{
             //if the request is to outside of snowbrains then ask if user wants to open in safari
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"External site" message:@"The requested site is outside of Snowbrains, please press OK to load with default Browser" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];

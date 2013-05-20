@@ -21,6 +21,8 @@
 		<dict>
 			<key>Type</key>
 			<string>PSSliderSpecifier</string>
+			<key>Name</key>
+			<string></string>
 			<key>Key</key>
 			<string>refresh_timer</string>
 			<key>DefaultValue</key>
@@ -55,6 +57,16 @@
 			<string>E-mail</string>
 			<key>Key</key>
 			<string>mailAddress</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Version</string>
+			<key>Key</key>
+			<string>versionIdentifier</string>
+			<key>DefaultValue</key>
+			<string>0.1 (000)</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>
