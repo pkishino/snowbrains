@@ -48,5 +48,11 @@ void Swizzle(Class c, SEL orig, SEL new)
     else
         method_exchangeImplementations(origMethod, newMethod);
 }
+-(BOOL)shouldAutorotate{
+    return [[NSUserDefaults standardUserDefaults]boolForKey:@"rotate_pref"];
+}
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    return [[NSUserDefaults standardUserDefaults]boolForKey:@"rotate_pref"];
+}
 
 @end

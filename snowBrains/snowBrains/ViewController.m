@@ -30,6 +30,9 @@
     BOOL toForward;
     AFHTTPClient *client;
     UIWebView *videoView;
+    int refreshValue;
+    NSTimer *refreshTimer;
+    BOOL autoRefresh;
 }
 
 @end
@@ -64,18 +67,29 @@
     [self setupSwipe];
     [self setupSideMenu];
       
-//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
-//                                   initWithTitle: @"Back"
-//                                   style: UIBarButtonItemStyleBordered
-//                                   target: nil action: nil];
-//    
-//    [self.navigationItem setBackBarButtonItem: backButton];
     self.bannerView.delegate=self;
     self.bannerView.hidden=YES;
     [self viewDidLayoutSubviews];
+    refreshValue=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"];
+    autoRefresh=[[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"];
+    if(autoRefresh)refreshTimer=[NSTimer scheduledTimerWithTimeInterval:refreshValue target:self selector:@selector(pullToRefreshViewShouldRefresh:) userInfo:nil repeats:YES];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    if(refreshValue!=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"]&&autoRefresh){
+        refreshValue=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"];
+        if([[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"]){
+            [refreshTimer invalidate];
+            refreshTimer=[NSTimer scheduledTimerWithTimeInterval:refreshValue target:self selector:@selector(pullToRefreshViewShouldRefresh:) userInfo:nil repeats:YES];
+        }else if(refreshTimer&&![[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"]){
+            autoRefresh=[[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"];
+            [refreshTimer invalidate];
+            refreshTimer=nil;
+        }
+    }
 }
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
+    [self networkActivity];
 //    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
 //    [self.webview loadRequest:snowbrains];
     NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
@@ -103,6 +117,10 @@
     }];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperation:operation];
+
+    
+}
+-(void)networkActivity{
     [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     [self hideSwipeControl];
     self.flakeAnimation.hidden=NO;
@@ -113,8 +131,6 @@
         self.loadBackground.hidden=NO;
         self.loadLogo.hidden=NO;
     }
-
-    
 }
 -(void)setupSwipe{
     
@@ -234,11 +250,6 @@
 }
 -(void)loadYoutube:(NSString *)request{
     
-////    if([UIDevice ])
-//    requestString=[requestString stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
-//    
-//    NSString *youTubeHTMLTemplate = @"<html><body style=\"margin:0;padding:0;\"><iframe class=\"youtube-player\" type=\"text/html\" width=\"%f\" height=\"%f\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
-//    NSString* html = [NSString stringWithFormat:youTubeHTMLTemplate, self.webview.frame.size.width, self.webview.frame.size.height, requestString];
     UIViewController *video=[[UIViewController alloc]init];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
                                    initWithTitle: @"Back"
@@ -255,14 +266,7 @@
     video.view =videoView;
     [videoView setMediaPlaybackRequiresUserAction:NO];
     [videoView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:request]]];
-//    [self.navigationController pushViewController:video animated:YES];
     [self presentModalViewController:bar animated:YES];
-    
-//    [videoView loadHTMLString:html baseURL:nil];
-//    [videoView stringByEvaluatingJavaScriptFromString:@"function onPlayerReady(event){event.target.playVideo();}"];
-////    [self.webview loadHTMLString:html baseURL:nil];
-//    
-//    
 }
 
 - (void)didReceiveMemoryWarning

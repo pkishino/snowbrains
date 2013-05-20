@@ -7,6 +7,8 @@
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>©2013 SnowBrains.com</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
@@ -20,17 +22,23 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Refresh Rate (10-60 minutes)</string>
+			<key>Key</key>
+			<string>refresh_Title</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSSliderSpecifier</string>
-			<key>Name</key>
-			<string></string>
 			<key>Key</key>
 			<string>refresh_timer</string>
 			<key>DefaultValue</key>
-			<integer>10</integer>
-			<key>MinimumValue</key>
-			<integer>1</integer>
-			<key>MaximumValue</key>
 			<integer>30</integer>
+			<key>MinimumValue</key>
+			<integer>10</integer>
+			<key>MaximumValue</key>
+			<integer>60</integer>
 		</dict>
 		<dict>
 			<key>Type</key>
