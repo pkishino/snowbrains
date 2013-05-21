@@ -8,7 +8,6 @@
 #import "MFSideMenu.h"
 #import "ViewController.h"
 #import "MenuCell.h"
-#import "IASKAppSettingsViewController.h"
 #import "InAppSettings.h"
 enum {
     lMenuListMain = 0,
@@ -16,29 +15,6 @@ enum {
     lMenuListOther,
     lMenuListCount
 };
-//enum {
-//    lLocationSquaw = 0,
-//    lLocationJackson,
-//    lLocationWhistler,
-//    lLocationAlaska,
-//    lLocationMore,
-//    lLocationCount
-//};
-//enum {
-//    lMoreUtah =0,
-//    lMoreMammoth,
-//    lMorePNW,
-//    lMoreSouthAmerica,
-//    lMoreJapan,
-//    lMoreAlps,
-//    lMoreCount
-//};
-//enum {
-//    lVideoBrains = 0,
-//    lVideoNonBrains,
-//    lVideoTrailer,
-//    lVideoCount
-//};
 
 @interface LeftMenuViewController(){
     NSMutableArray *sections;
@@ -237,7 +213,10 @@ enum {
     }else{
         cell.accessoryType=UITableViewCellAccessoryNone;
     }
-    cell.imageView.image=[UIImage imageNamed:@"flake"];
+    if(indexPath.section==lMenuListFavorites)
+        cell.imageView.image=[UIImage imageNamed:@"flake"];
+    else
+        cell.imageView.image=[UIImage imageNamed:[cell.textLabel.text lowercaseString]];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     

@@ -72,21 +72,43 @@
     [self viewDidLayoutSubviews];
     refreshValue=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"];
     autoRefresh=[[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"];
-    if(autoRefresh)refreshTimer=[NSTimer scheduledTimerWithTimeInterval:refreshValue target:self selector:@selector(pullToRefreshViewShouldRefresh:) userInfo:nil repeats:YES];
+    if(autoRefresh)refreshTimer=[NSTimer scheduledTimerWithTimeInterval:refreshValue*3 target:self selector:@selector(pullToRefreshViewShouldRefresh:) userInfo:nil repeats:YES];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults addObserver:self
+               forKeyPath:@"refresh_pref"
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
+    [defaults addObserver:self
+               forKeyPath:@"refresh_timer"
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
+    [defaults addObserver:self
+               forKeyPath:@"rotate_pref"
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
 }
--(void)viewWillAppear:(BOOL)animated{
-    if(refreshValue!=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"]&&autoRefresh){
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context
+{
+    NSLog(@"KVO: %@ changed property %@ to value %@", object, keyPath, change);
+    if(refreshValue!=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"]||autoRefresh!=[[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"]){
         refreshValue=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"];
-        if([[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"]){
+        autoRefresh=[[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"];
+        if(autoRefresh){
             [refreshTimer invalidate];
             refreshTimer=[NSTimer scheduledTimerWithTimeInterval:refreshValue target:self selector:@selector(pullToRefreshViewShouldRefresh:) userInfo:nil repeats:YES];
-        }else if(refreshTimer&&![[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"]){
-            autoRefresh=[[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"];
+        }else if(refreshTimer){
             [refreshTimer invalidate];
             refreshTimer=nil;
         }
     }
 }
+//-(void)viewWillAppear:(BOOL)animated{
+//    
+//}
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
     [self networkActivity];
@@ -163,7 +185,7 @@
 }
 -(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
     [(UIWebView *)[self.view viewWithTag:999] reload];
-    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(cancelPullToRefresh) userInfo:nil repeats:NO];
+//    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(cancelPullToRefresh) userInfo:nil repeats:NO];
 }
 -(void)cancelPullToRefresh{
     if([(UIWebView *)[self.view viewWithTag:999] isLoading]){

@@ -10,8 +10,8 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>SnowBrains_57x57.png</string>
-		<string>SnowBrains_114x114.png</string>
+		<string>SnowBrains_114x114_v2.png</string>
+		<string>SnowBrains_57x57_v2.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -19,8 +19,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>SnowBrains_57x57.png</string>
-				<string>SnowBrains_114x114.png</string>
+				<string>SnowBrains_114x114_v2.png</string>
+				<string>SnowBrains_57x57_v2.png</string>
 			</array>
 		</dict>
 	</dict>
@@ -50,7 +50,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>181</string>
+	<string>193</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
