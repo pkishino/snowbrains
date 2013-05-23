@@ -87,6 +87,8 @@
     DefaultSHKConfigurator *configurator=[[MyShareKitConfig alloc]init];
     [SHKConfiguration sharedInstanceWithConfigurator:configurator];
     
+    [AFNetworkActivityIndicatorManager sharedManager].enabled=YES;
+    
     return YES;
 }
 							

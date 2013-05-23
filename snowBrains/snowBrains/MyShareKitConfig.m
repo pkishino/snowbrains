@@ -40,6 +40,16 @@
 	return @"SnowBrains";
 }
 /*
+ Create a project on Google APIs console,
+ https://code.google.com/apis/console . Under "API Access", create a
+ client ID as "Installed application" with the type "iOS", and
+ register the bundle ID of your application.
+ */
+- (NSString*)googlePlusClientId {
+    return @"31733538632.apps.googleusercontent.com";
+}
+
+/*
  UI Configuration : Basic
  ------------------------
  These provide controls for basic UI settings.  For more advanced configuration see below.

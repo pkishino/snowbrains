@@ -13,14 +13,9 @@
 	</array>
 	<key>services</key>
 	<array>
-		<string>SHKReadability</string>
 		<string>SHKTwitter</string>
 		<string>SHKGooglePlus</string>
 		<string>SHKFacebook</string>
-		<string>SHKReadItLater</string>
-		<string>SHKFlickr</string>
-		<string>SHKInstagram</string>
-		<string>SHKYouTube</string>
 	</array>
 </dict>
 </plist>

@@ -40,7 +40,7 @@
 @implementation ViewController
 -(id)init{
     if(self=[super init]){
-        client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
+        client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/"]];
     }
     return self;
 }
@@ -63,16 +63,16 @@
     }
     self.webview.allowsInlineMediaPlayback=YES;
     [self setupPullDownRefresh];
-//    [self setupAnimation];
+    //    [self setupAnimation];
     [self setupSwipe];
     [self setupSideMenu];
-      
+    
     self.bannerView.delegate=self;
     self.bannerView.hidden=YES;
     [self viewDidLayoutSubviews];
     refreshValue=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"];
     autoRefresh=[[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"];
-    if(autoRefresh)refreshTimer=[NSTimer scheduledTimerWithTimeInterval:refreshValue*3 target:self selector:@selector(pullToRefreshViewShouldRefresh:) userInfo:nil repeats:YES];
+    if(autoRefresh)refreshTimer=[NSTimer scheduledTimerWithTimeInterval:refreshValue*60 target:self selector:@selector(pullToRefreshViewShouldRefresh:) userInfo:nil repeats:YES];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults addObserver:self
@@ -99,47 +99,31 @@
         autoRefresh=[[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"];
         if(autoRefresh){
             [refreshTimer invalidate];
-            refreshTimer=[NSTimer scheduledTimerWithTimeInterval:refreshValue target:self selector:@selector(pullToRefreshViewShouldRefresh:) userInfo:nil repeats:YES];
+            refreshTimer=[NSTimer scheduledTimerWithTimeInterval:refreshValue*60 target:self selector:@selector(pullToRefreshViewShouldRefresh:) userInfo:nil repeats:YES];
         }else if(refreshTimer){
             [refreshTimer invalidate];
             refreshTimer=nil;
         }
     }
 }
-//-(void)viewWillAppear:(BOOL)animated{
-//    
-//}
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
+    [[client operationQueue] cancelAllOperations];
     [self networkActivity];
-//    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
-//    [self.webview loadRequest:snowbrains];
+    
+//    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
     NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
-//    [NSURLConnection sendAsynchronousRequest:snowbrains queue:[[NSOperationQueue alloc]init] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-//        NSString *http=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        [self.webview loadHTMLString: http baseURL:url];
-//    }];
-//    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
-//    AFHTTPRequestOperation *operation=[[AFHTTPRequestOperation alloc]initWithRequest:snowbrains];
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        //NSString *data=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//        [self.webview loadData:responseObject MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:url];
-//        NSLog(@"Success");
-//    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Failure");
-//    }];
-     AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSString *data=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//        [self.webview loadHTMLString: data baseURL:url];
+    AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self.webview loadData:responseObject MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:url];
-        NSLog(@"Success");
+//        NSLog(@"Success");
     } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
+        [self noAccessPage];
     }];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
-
+    [[client operationQueue] addOperation:operation];
+    
+//    [self.webview loadRequest:snowbrains];
     
 }
 -(void)networkActivity{
@@ -153,6 +137,9 @@
         self.loadBackground.hidden=NO;
         self.loadLogo.hidden=NO;
     }
+}
+-(void)noAccessPage{
+    [self webViewDidFinishLoad:nil];
 }
 -(void)setupSwipe{
     
@@ -193,19 +180,20 @@
         [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
+        [self noAccessPage];
     }
 }
-//-(void)webViewDidStartLoad:(UIWebView *)webView{
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
-//    [self hideSwipeControl];
-//    self.flakeAnimation.hidden=NO;
-//    [self.flakeAnimation startAnimating];
-//    if(!self.loadFigure.isHidden&&!toForward){
-//        self.loadFigure.hidden=NO;
-//        self.loadBackground.hidden=NO;
-//        self.loadLogo.hidden=NO;
-//    }
-//}
+-(void)webViewDidStartLoad:(UIWebView *)webView{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+    [self hideSwipeControl];
+    self.flakeAnimation.hidden=NO;
+    [self.flakeAnimation startAnimating];
+    if(!self.loadFigure.isHidden&&!toForward){
+        self.loadFigure.hidden=NO;
+        self.loadBackground.hidden=NO;
+        self.loadLogo.hidden=NO;
+    }
+}
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
@@ -223,12 +211,7 @@
         if(1021>=errorCode&&errorCode>=1000){
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
-            [self.flakeAnimation stopAnimating];
-            self.flakeAnimation.hidden=YES;
-            self.loadFigure.hidden=YES;
-            self.loadBackground.hidden=YES;
-            [self.webview stopLoading];
-            [(PullToRefreshView *)[self.view viewWithTag:998]finishedLoading];
+            [self noAccessPage];
             return;
         }else if(!(error.code==kCFURLErrorCancelled)){
             [self.webview goBack];
@@ -239,21 +222,23 @@
     }
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-//    for(NSString *headers in request.allHTTPHeaderFields){
-//        NSLog(@"%@: %@",headers,[request valueForHTTPHeaderField:headers]);
-//    }
+    //    for(NSString *headers in request.allHTTPHeaderFields){
+    //        NSLog(@"%@: %@",headers,[request valueForHTTPHeaderField:headers]);
+    //    }
     redirect=NO;
     requestString=[NSString stringWithFormat:@"%@",request.URL];
     if(navigationType==UIWebViewNavigationTypeLinkClicked||navigationType==UIWebViewNavigationTypeReload){
         if([requestString rangeOfString:@"http://www.snowbrains.com"].location==NSNotFound&&[requestString rangeOfString:@"http://snowbrains.com"].location==NSNotFound){
             if([requestString rangeOfString:@"youtube.com"].location!=NSNotFound){
-                    [self loadYoutube:requestString];
-                    return NO;
+                [self loadYoutube:requestString];
+                return NO;
             }else{
-            //if the request is to outside of snowbrains then ask if user wants to open in safari
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"External site" message:@"The requested site is outside of Snowbrains, please press OK to load with default Browser" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
-            [alert show];
-            return NO;
+                //if the request is to outside of snowbrains then ask if user wants to open in safari
+                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"External site" message:@"The requested site is outside of Snowbrains, please press OK to load with default Browser" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
+                [alert show];
+                NSLog(@"%@",requestString);
+                [self noAccessPage];
+                return NO;
             }
         }else if ([requestString rangeOfString:@"?app=1"].location==NSNotFound){
             NSURL *redirectTo=[NSURL URLWithString:[NSString stringWithFormat:@"%@?app=1",requestString]];
@@ -280,7 +265,7 @@
     
     [video.navigationItem setLeftBarButtonItem:backButton animated:YES];
     UINavigationController *bar=[[UINavigationController alloc]initWithRootViewController:video];
-//    [bar.navigationItem setLeftBarButtonItem:backButton animated:YES];
+    //    [bar.navigationItem setLeftBarButtonItem:backButton animated:YES];
     video.title=@"Video";
     if(videoView == nil) {
         videoView = [[UIWebView alloc] initWithFrame:self.view.frame];
@@ -318,7 +303,7 @@
     else if([menuItem isEqualToString:@"Weather"])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/weather/?app=1"]];
     else if([menuItem isEqualToString:@"Gear"])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/gear/?app=1"]];    
+        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/gear/?app=1"]];
     else if([menuItem isEqualToString:@"Brains"])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/brains/?app=1"]];
     else if([menuItem isEqualToString:@"Squaw"])
@@ -373,18 +358,18 @@
 }
 -(void)showSwipeControl{
     if(self.loadFigure.isHidden){
-    self.toolBar.hidden=NO;
-    if(!self.webview.canGoBack)
-        [self.backButton setEnabled:NO];
-    else
-        [self.backButton setEnabled:YES];
-    if(!self.webview.canGoForward)
-        [self.forwardButton setEnabled:NO];
-    else
-        [self.forwardButton setEnabled:YES];
+        self.toolBar.hidden=NO;
+        if(!self.webview.canGoBack)
+            [self.backButton setEnabled:NO];
+        else
+            [self.backButton setEnabled:YES];
+        if(!self.webview.canGoForward)
+            [self.forwardButton setEnabled:NO];
+        else
+            [self.forwardButton setEnabled:YES];
     }
     [self viewDidLayoutSubviews];
-
+    
 }
 -(void)hideSwipeControl{
     self.toolBar.hidden=YES;
@@ -395,8 +380,14 @@
 }
 
 - (IBAction)bookmarkTap:(id)sender {
-    BookmarkModalViewController *bookmarkAdd=[[BookmarkModalViewController alloc]initWithURL:self.webview.request.URL];
-    [self presentModalViewController:bookmarkAdd animated:YES];
+    NSURL *toBookmark=self.webview.request.URL;
+    if([[NSString stringWithFormat:@"%@",toBookmark] rangeOfString:@"http://www.snowbrains.com"].location!=NSNotFound){
+        BookmarkModalViewController *bookmarkAdd=[[BookmarkModalViewController alloc]initWithURL:toBookmark];
+        [self presentModalViewController:bookmarkAdd animated:YES];
+    }else{
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", @"Wrong bookmark url error") message:NSLocalizedString(@"Sorry, this page cannot be bookmarked", @"wrong url bookmark message") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+    }
 }
 -(void)bookmarkLoad:(NSString *)bookmark{
     [self loadWithURL:[NSURL URLWithString:bookmark]];
@@ -410,13 +401,13 @@
     // this is useful, for example, if you want to change a UIBarButtonItem when the menu closes
     self.navigationController.delegate=self;
     self.navigationController.sideMenu.menuStateEventBlock = ^(MFSideMenuStateEvent event) {
-//        switch (event) {
-//                case MFSideMenuStateEventMenuWillClose:
-//                
-//                break;
-//        }
- 
-       
+        //        switch (event) {
+        //                case MFSideMenuStateEventMenuWillClose:
+        //
+        //                break;
+        //        }
+        
+        
         [weakSelf setupMenuBarButtonItems];
     };
 }
@@ -424,13 +415,13 @@
     switch (self.navigationController.sideMenu.menuState) {
         case MFSideMenuStateClosed:
             self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
-//            self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+            //            self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
             break;
         case MFSideMenuStateLeftMenuOpen:
             self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
             break;
         case MFSideMenuStateRightMenuOpen:
-//            self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+            //            self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
             break;
     }
 }
@@ -479,10 +470,10 @@
 }
 
 - (IBAction)shareTap:(id)sender {
-//    if( [UIActivityViewController class] ) {
-//        [self showShareSheet:sender];
-//    }else
-        [self showActionSheet:sender];
+    //    if( [UIActivityViewController class] ) {
+    //        [self showShareSheet:sender];
+    //    }else
+    [self showActionSheet:sender];
 }
 -(void)showShareSheet:(id)sender{
     NSString *textToShare = @"Input text to share";
