@@ -108,22 +108,22 @@
 }
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
-    [[client operationQueue] cancelAllOperations];
+    
     [self networkActivity];
     
-//    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
-    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self.webview loadData:responseObject MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:url];
-//        NSLog(@"Success");
-    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        [self noAccessPage];
-    }];
-    [[client operationQueue] addOperation:operation];
+    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+//    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
+//    AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        [self.webview loadData:responseObject MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:url];
+//    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+//        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alert show];
+//        [self noAccessPage];
+//    }];
+//    [[client operationQueue] cancelAllOperations];
+//    [[client operationQueue] addOperation:operation];
     
-//    [self.webview loadRequest:snowbrains];
+    [self.webview loadRequest:snowbrains];
     
 }
 -(void)networkActivity{
@@ -137,6 +137,15 @@
         self.loadBackground.hidden=NO;
         self.loadLogo.hidden=NO;
     }
+}
+-(void)stopNetworkActivity{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+    [self.flakeAnimation stopAnimating];
+    self.flakeAnimation.hidden=YES;
+    self.loadFigure.hidden=YES;
+    self.loadBackground.hidden=YES;
+    self.loadLogo.hidden=YES;
+    [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
 }
 -(void)noAccessPage{
     [self webViewDidFinishLoad:nil];
@@ -172,11 +181,12 @@
 }
 -(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
     [(UIWebView *)[self.view viewWithTag:999] reload];
-//    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(cancelPullToRefresh) userInfo:nil repeats:NO];
+    [self networkActivity];
+    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(cancelPullToRefresh) userInfo:nil repeats:NO];
 }
 -(void)cancelPullToRefresh{
-    if([(UIWebView *)[self.view viewWithTag:999] isLoading]){
-        [(UIWebView *)[self.view viewWithTag:999] stopLoading];
+    if([self.webview isLoading]){
+        [self.webview stopLoading];
         [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
@@ -184,15 +194,15 @@
     }
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
-    [self hideSwipeControl];
-    self.flakeAnimation.hidden=NO;
-    [self.flakeAnimation startAnimating];
-    if(!self.loadFigure.isHidden&&!toForward){
-        self.loadFigure.hidden=NO;
-        self.loadBackground.hidden=NO;
-        self.loadLogo.hidden=NO;
-    }
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+//    [self hideSwipeControl];
+//    self.flakeAnimation.hidden=NO;
+//    [self.flakeAnimation startAnimating];
+//    if(!self.loadFigure.isHidden&&!toForward){
+//        self.loadFigure.hidden=NO;
+//        self.loadBackground.hidden=NO;
+//        self.loadLogo.hidden=NO;
+//    }
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
@@ -222,9 +232,9 @@
     }
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    //    for(NSString *headers in request.allHTTPHeaderFields){
-    //        NSLog(@"%@: %@",headers,[request valueForHTTPHeaderField:headers]);
-    //    }
+//    for(NSString *headers in request.allHTTPHeaderFields){
+//        NSLog(@"%@: %@",headers,[request valueForHTTPHeaderField:headers]);
+//    }
     redirect=NO;
     requestString=[NSString stringWithFormat:@"%@",request.URL];
     if(navigationType==UIWebViewNavigationTypeLinkClicked||navigationType==UIWebViewNavigationTypeReload){
@@ -246,6 +256,17 @@
             redirect=YES;
             return NO;
         }
+    }
+    if ([requestString rangeOfString:@"?app=1"].location==NSNotFound&&([requestString rangeOfString:@"http://snowbrains.com"].location!=NSNotFound||[requestString rangeOfString:@"http://www.snowbrains.com"].location!=NSNotFound)&&([requestString rangeOfString:@"/wp-"].location==NSNotFound||[requestString rangeOfString:@".php"].location==NSNotFound)){
+        NSRange range=NSMakeRange(0, requestString.length);
+        NSRange rangeOfLastDash=[requestString rangeOfString:@"/" options:NSBackwardsSearch range:range];
+        requestString=[requestString substringToIndex:rangeOfLastDash.location+1];
+        requestString=[requestString stringByReplacingCharactersInRange:rangeOfLastDash withString:@"/?app=1"];
+        NSLog(@"%@",requestString);
+        NSURL *redirectTo=[NSURL URLWithString:requestString];
+        [self loadWithURL:redirectTo];
+        redirect=YES;
+        return NO;
     }
     if(self.webview.request==request){
         return NO;
@@ -276,25 +297,7 @@
     [self presentModalViewController:bar animated:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-- (void)viewDidUnload {
-    [self setWebview:nil];
-    [self setLoadBackground:nil];
-    [self setLoadFigure:nil];
-    [self setFlakeAnimation:nil];
-    [self setToolBar:nil];
-    [self setShareButton:nil];
-    [self setBackButton:nil];
-    [self setShareButton:nil];
-    [self setForwardButton:nil];
-    [self setBookmarkButton:nil];
-    [super viewDidUnload];
-}
 -(void)menuTap:(NSString *)menuItem{
     menuSelection=menuItem;
     self.navigationItem.title=menuItem;
@@ -376,7 +379,12 @@
     [self viewDidLayoutSubviews];
 }
 -(IBAction)backwardTap:(id)sender{
+    [self hideSwipeControl];
     [self.webview goBack];
+}
+-(IBAction)forwardTap:(id)sender{
+    [self hideSwipeControl];
+    [self.webview goForward];
 }
 
 - (IBAction)bookmarkTap:(id)sender {
@@ -392,22 +400,13 @@
 -(void)bookmarkLoad:(NSString *)bookmark{
     [self loadWithURL:[NSURL URLWithString:bookmark]];
 }
--(IBAction)forwardTap:(id)sender{
-    [self.webview goForward];
-}
+
 -(void)setupSideMenu{
     __weak ViewController *weakSelf = self;
     // if you want to listen for menu open/close events
     // this is useful, for example, if you want to change a UIBarButtonItem when the menu closes
     self.navigationController.delegate=self;
-    self.navigationController.sideMenu.menuStateEventBlock = ^(MFSideMenuStateEvent event) {
-        //        switch (event) {
-        //                case MFSideMenuStateEventMenuWillClose:
-        //
-        //                break;
-        //        }
-        
-        
+    self.navigationController.sideMenu.menuStateEventBlock = ^(MFSideMenuStateEvent event){
         [weakSelf setupMenuBarButtonItems];
     };
 }
@@ -505,8 +504,8 @@
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
+    [self resizeWebView];
     self.bannerView.hidden=NO;
-    NSLog(@"%c",banner.bannerLoaded);
 }
 - (BOOL)bannerViewActionShouldBegin:
 (ADBannerView *)banner
@@ -517,10 +516,12 @@
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner
 {
     [self.bannerView setHidden:YES];
+    [self resizeWebView];
 }
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
     self.bannerView.hidden=YES;
     NSLog(@"%@",error);
+    [self resizeWebView];
 }
 - (void) viewDidLayoutSubviews {
     if (self.bannerView.bannerLoaded) {
@@ -538,28 +539,41 @@
             self.bannerView.frame = bannerFrame;
         }
     }
+    [self resizeWebView];
+}
+-(void)resizeWebView{
+    CGRect frame=self.view.frame;
+    frame.origin=CGPointMake(0, 0);
+    if(self.bannerView.bannerLoaded){
+        frame.size.height-=self.bannerView.frame.size.height;
+    }
+    if(!self.toolBar.isHidden)
+        frame.size.height-=self.toolBar.frame.size.height;
+//    else
+//        frame.size.height=self.view.frame.size.height;
+    self.webview.frame =frame;
+    [self.webview setNeedsDisplay];
 }
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
-    //    switch (result)
-    //    {
-    //        case MFMailComposeResultCancelled:
-    //            LogInfo(@"Mail cancelled: you cancelled the operation and no email message was queued.");
-    //            break;
-    //        case MFMailComposeResultSaved:
-    //            LogInfo(@"Mail saved: you saved the email message in the drafts folder.");
-    //            break;
-    //        case MFMailComposeResultSent:
-    //            LogInfo(@"Mail send: the email message is queued in the outbox. It is ready to send.");
-    //            break;
-    //        case MFMailComposeResultFailed:
-    //            LogInfo(@"Mail failed: the email message was not saved or queued, possibly due to an error.");
-    //            break;
-    //        default:
-    //            LogInfo(@"Mail not sent.");
-    //            break;
-    //    }
-    // Remove the mail view
     [self dismissModalViewControllerAnimated:YES];
 }
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
+- (void)viewDidUnload {
+    [self setWebview:nil];
+    [self setLoadBackground:nil];
+    [self setLoadFigure:nil];
+    [self setFlakeAnimation:nil];
+    [self setToolBar:nil];
+    [self setShareButton:nil];
+    [self setBackButton:nil];
+    [self setShareButton:nil];
+    [self setForwardButton:nil];
+    [self setBookmarkButton:nil];
+    [super viewDidUnload];
+}
 @end

@@ -64,7 +64,7 @@ static NSString *RNCachingURLHeader = @"X-RNCache";
 {
   // only handle http requests we haven't marked with our header.
   if ([[[request URL] scheme] isEqualToString:@"http"] &&
-      ([request valueForHTTPHeaderField:RNCachingURLHeader] == nil)) {
+      ([request valueForHTTPHeaderField:RNCachingURLHeader] == nil)&&[[[request URL] absoluteString]rangeOfString:@".php"].location==NSNotFound) {
     return YES;
   }
   return NO;
