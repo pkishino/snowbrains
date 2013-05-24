@@ -40,14 +40,14 @@ enum {
 - (id)init{
     if(self=[super init]){
         
-        mainItems=[[NSArray alloc]initWithObjects:@"Home",@"Locations",@"Weather",@"Video",@"Gear",@"Brains", nil];
-        locationItems=[[NSArray alloc]initWithObjects:@"Squaw",@"Jackson",@"Whistler",@"Alaska",@"More", nil];
-        moreItems=[[NSArray alloc]initWithObjects:@"Utah",@"Mammoth",@"PNW",@"South America",@"Japan",@"Alps", nil];
-        videoItems=[[NSArray alloc]initWithObjects:@"Brain Videos",@"Non-Brain Videos",@"Trailers", nil];
+        mainItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Home", @"Home name"),NSLocalizedString(@"Locations", @"Locations name"),NSLocalizedString(@"Weather", @"Weather name"),NSLocalizedString(@"Video", @"Video name"),NSLocalizedString(@"Gear", @"Gear name"),NSLocalizedString(@"Brains", @"Brains name"), nil];
+        locationItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Squaw", @"Squaw name"),NSLocalizedString(@"Jackson",@"Jackson name"),NSLocalizedString(@"Whistler",@"Whistler name"),NSLocalizedString(@"Alaska",@"Alaska name"),NSLocalizedString(@"More",@"More name"), nil];
+        moreItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Utah",@"Utah name"),NSLocalizedString(@"Mammoth",@"Mammoth name"),NSLocalizedString(@"PNW",@"PNW name"),NSLocalizedString(@"South America",@"South America name"),NSLocalizedString(@"Japan",@"Japan name"),NSLocalizedString(@"Alps",@"Alps name"), nil];
+        videoItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Brain Videos",@"Brain Videos name"),NSLocalizedString(@"Non-Brain Videos",@"Non-Brain Videos name"),NSLocalizedString(@"Trailers",@"Trailers name"), nil];
         mainList=[[NSMutableArray alloc]initWithArray:mainItems];
         favoritesList=[[NSMutableArray alloc]initWithObjects:@"Favorites dummy", nil];
         favoritesURLS=[[NSMutableArray alloc]initWithObjects:@"Favorites dummy", nil];
-        otherList=[[NSMutableArray alloc]initWithObjects:@"Settings",@"Contact", nil];
+        otherList=[[NSMutableArray alloc]initWithObjects:NSLocalizedString(@"Settings",@"Settings name"),NSLocalizedString(@"Contact",@"Contact name"), nil];
         sections=[[NSMutableArray alloc]initWithObjects:mainItems,favoritesList,otherList, nil];
     }
     return self;
@@ -137,8 +137,9 @@ enum {
         if(section==lMenuListFavorites){
             UIButton *edit=[UIButton buttonWithType:UIButtonTypeCustom];
             edit.tag=69;
-            [edit setTitle:@"Edit" forState:UIControlStateNormal];
-            [edit setTitle:@"Done" forState:UIControlStateSelected];
+            
+            [edit setTitle:NSLocalizedString(@"Edit", @"Edit button") forState:UIControlStateNormal];
+            [edit setTitle:NSLocalizedString(@"Done", @"Done button") forState:UIControlStateSelected];
             [edit.titleLabel setShadowColor:[UIColor darkGrayColor]];
             [edit.titleLabel setShadowOffset:CGSizeMake(0, 1)];
             [edit.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
@@ -200,15 +201,15 @@ enum {
     cell.textLabel.text=[(NSMutableArray *)[sections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if([locationItems containsObject:cell.textLabel.text]||[videoItems containsObject:cell.textLabel.text]){
         cell.indentationLevel=4;
-        cell.textLabel.font=[UIFont italicSystemFontOfSize:15];
+        cell.textLabel.font=[UIFont boldSystemFontOfSize:14];
     }else if([moreItems containsObject:cell.textLabel.text]){
-        cell.indentationLevel=6;
+        cell.indentationLevel=8;
         cell.textLabel.font=[UIFont boldSystemFontOfSize:12];
     }else{
         cell.indentationLevel=1;
         cell.textLabel.font=[UIFont systemFontOfSize:17];
     }
-    if([cell.textLabel.text isEqualToString:@"Locations"]||[cell.textLabel.text isEqualToString:@"Video"]||[cell.textLabel.text isEqualToString:@"More"]){
+    if([cell.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[cell.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")]||[cell.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]){
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     }else{
         cell.accessoryType=UITableViewCellAccessoryNone;
@@ -224,11 +225,11 @@ enum {
 }
 -(NSString *)getSectionName:(NSInteger)section{
     if(section==lMenuListMain)
-        return @"Main";
+        return NSLocalizedString(@"Main", @"Main name");
     else if(section==lMenuListFavorites)
-        return @"Favorites";
+        return NSLocalizedString(@"Favorites", @"Favorites name");
     else if (section==lMenuListOther)
-        return @"Other";
+        return NSLocalizedString(@"Other", @"Other name");
     return nil;
 }
 -(int)getSectionCount:(NSInteger)section{
@@ -253,13 +254,13 @@ enum {
     if(!self.tableView.isEditing){
     if(indexPath.section==lMenuListFavorites){
         [self.delegate bookmarkLoad:[favoritesURLS objectAtIndex:indexPath.row]];
-    }else if((indexPath.section==lMenuListMain)&&([selectedMenuItem isEqualToString:@"Locations"]||[selectedMenuItem isEqualToString:@"More"]||[selectedMenuItem isEqualToString:@"Video"])){
+    }else if((indexPath.section==lMenuListMain)&&([selectedMenuItem isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[selectedMenuItem isEqualToString:NSLocalizedString(@"More", @"More name")]||[selectedMenuItem isEqualToString:NSLocalizedString(@"Video", @"Video name")])){
         [self manageSubCells:cell];
         return;
-    }else if((indexPath.section==lMenuListOther)&&[selectedMenuItem isEqualToString:@"Settings"]){
+    }else if((indexPath.section==lMenuListOther)&&[selectedMenuItem isEqualToString:NSLocalizedString(@"Settings", @"Settings name")]){
         InAppSettingsModalViewController *settings=[[InAppSettingsModalViewController alloc]init];
         [[self.sideMenu.navigationController.viewControllers objectAtIndex:0] presentModalViewController:settings animated:YES];
-    }else if((indexPath.section==lMenuListOther)&&[selectedMenuItem isEqualToString:@"Contact"]){
+    }else if((indexPath.section==lMenuListOther)&&[selectedMenuItem isEqualToString:NSLocalizedString(@"Contact", @"Contact name")]){
         [self sendMail];
     }else{
         [self.delegate menuTap:selectedMenuItem];
@@ -273,7 +274,7 @@ enum {
     NSString *selection=cell.textLabel.text;
     if([[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]].textLabel.text isEqualToString:selection]){
         NSMutableArray *tempList=[[NSMutableArray alloc]initWithArray:mainList];
-        if([selection isEqualToString:@"Locations"]){
+        if([selection isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]){
             if([tempList containsObject:[locationItems objectAtIndex:0]]){
                 [tempList removeObjectsInArray:locationItems];
                 [tempList removeObjectsInArray:moreItems];
@@ -281,7 +282,7 @@ enum {
                 for(int i=0;i<locationItems.count;i++)
                     [tempList insertObject:[locationItems objectAtIndex:i] atIndex:[mainList indexOfObject:selection]+i+1];
             }
-        }else if([selection isEqualToString:@"More"]){
+        }else if([selection isEqualToString:NSLocalizedString(@"More", @"More name")]){
             if([tempList containsObject:[moreItems objectAtIndex:0]]){
                 [tempList removeObjectsInArray:moreItems];
             }
@@ -289,7 +290,7 @@ enum {
                 for(int i=0;i<moreItems.count;i++)
                     [tempList insertObject:[moreItems objectAtIndex:i] atIndex:[mainList indexOfObject:selection]+i+1];
             }
-        }else if([selection isEqualToString:@"Video"]){
+        }else if([selection isEqualToString:NSLocalizedString(@"Video", @"Video name")]){
             if([tempList containsObject:[videoItems objectAtIndex:0]]){
                 [tempList removeObjectsInArray:videoItems];
             }else{

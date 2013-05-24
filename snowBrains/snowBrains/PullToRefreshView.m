@@ -140,7 +140,7 @@
     [formatter setLocale:[NSLocale currentLocale]];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterMediumStyle];
-    lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [formatter stringFromDate:date]];
+    lastUpdatedLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Last Updated: %@",@"Last Updated: Pull down comment"), [formatter stringFromDate:date]];
 }
 
 - (void)setState:(PullToRefreshViewState)state_ {
@@ -148,14 +148,14 @@
     
 	switch (state) {
 		case PullToRefreshViewStateReady:
-			statusLabel.text = @"Release to refresh...";
+			statusLabel.text = NSLocalizedString(@"Release to refresh...",@"Release: Pull down comment");
 			[self showActivity:NO animated:NO];
             [self setImageFlipped:YES];
             scrollView.contentInset = UIEdgeInsetsZero;
 			break;
             
 		case PullToRefreshViewStateNormal:
-			statusLabel.text = @"Pull down to refresh...";
+			statusLabel.text = NSLocalizedString(@"Pull down to refresh...",@"Release: Pull down comment");
 			[self showActivity:NO animated:NO];
             [self setImageFlipped:NO];
 			[self refreshLastUpdatedDate];
@@ -163,7 +163,7 @@
 			break;
             
 		case PullToRefreshViewStateLoading:
-			statusLabel.text = @"Loading...";
+			statusLabel.text = NSLocalizedString(@"Loading...",@"Loading: Pull down comment");
 			[self showActivity:YES animated:YES];
             [self setImageFlipped:NO];
             scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
@@ -172,6 +172,9 @@
 		default:
 			break;
 	}
+}
+-(PullToRefreshViewState)getState{
+    return state;
 }
 
 #pragma mark -

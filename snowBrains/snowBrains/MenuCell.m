@@ -20,7 +20,7 @@
         self.menuItem=self.textLabel;
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackground"]];
         self.menuItem.textColor = [UIColor whiteColor];
-        if([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"]){
+        if(([self.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")])){
             self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
             showArrowDown=NO;
         }else
@@ -30,9 +30,9 @@
 }
 
 - (void)updateCellDisplay {
-    if(([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"])&&showArrowDown)
+    if(([self.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")])&&showArrowDown)
         self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
-    else if(([self.textLabel.text isEqualToString:@"Locations"]||[self.textLabel.text isEqualToString:@"Video"]||[self.textLabel.text isEqualToString:@"More"])&&!showArrowDown)
+    else if(([self.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")])&&!showArrowDown)
         self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
     else if (self.selected || self.highlighted) {
         self.accessoryView=nil;

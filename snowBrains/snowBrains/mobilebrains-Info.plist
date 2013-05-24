@@ -48,9 +48,19 @@
 				<string>fb306955309438401</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.snowbrains.mobileBrains</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.snowbrains.mobileBrains</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>252</string>
+	<string>264</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>

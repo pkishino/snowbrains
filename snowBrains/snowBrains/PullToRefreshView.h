@@ -56,6 +56,7 @@ typedef enum {
 - (void)refreshLastUpdatedDate;
 - (void)finishedLoading;
 - (void)setState:(PullToRefreshViewState)state_;
+-(PullToRefreshViewState)getState;
 
 - (id)initWithScrollView:(UIScrollView *)scrollView;
 

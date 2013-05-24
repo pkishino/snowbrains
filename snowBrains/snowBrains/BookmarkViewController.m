@@ -48,7 +48,7 @@ NSString *const BookmarkViewControllerDelegateDidDismissedNotification = @"Bookm
     [[NSUserDefaults standardUserDefaults] setObject:bookmarks forKey:@"Bookmarks"];
     [self dismissModalView:nil];
     }else{
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", @"error") message:NSLocalizedString(@"Please input a name for the bookmark", @"Empty bookmark name") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", @"error") message:NSLocalizedString(@"Please input a name for the bookmark", @"Empty bookmark name") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",@"OK button") otherButtonTitles: nil];
         [alert show];
     }
 }
@@ -82,7 +82,7 @@ NSString *const BookmarkViewControllerDelegateDidDismissedNotification = @"Bookm
     
     //if the title is nil set it to Settings
     if(!self.title){
-        self.title = NSLocalizedString(@"Add Bookmark", nil);
+        self.title = NSLocalizedString(@"Add Bookmark", @"Add bookmark");
     }
     
     //setup keyboard notification

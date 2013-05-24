@@ -52,7 +52,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-//    for now this seems to break posting 
+    [TestFlight takeOff:@"c0b7b825-f506-4f0b-b73f-0d75286c3318"];
+//    [TestFlight setOptions:{TFOptionLogToConsole:@NO}];
+//    for now this seems to break posting
     [NSURLProtocol registerClass:[RNCachingURLProtocol class]];
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
                                                          diskCapacity:20 * 1024 * 1024

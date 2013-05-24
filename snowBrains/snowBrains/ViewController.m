@@ -59,7 +59,7 @@
     [super viewDidLoad];
     [self.webview setDelegate:self];
     if(!toForward){
-        [self menuTap:@"Home"];
+        [self menuTap:NSLocalizedString(@"Home", @"Home")];
     }
     self.webview.allowsInlineMediaPlayback=YES;
     [self setupPullDownRefresh];
@@ -105,6 +105,7 @@
             refreshTimer=nil;
         }
     }
+    [TestFlight passCheckpoint:@"chaning settings"];
 }
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
@@ -124,6 +125,7 @@
 //    [[client operationQueue] addOperation:operation];
     
     [self.webview loadRequest:snowbrains];
+    [TestFlight passCheckpoint:@"load page"];
     
 }
 -(void)networkActivity{
@@ -183,14 +185,17 @@
     [(UIWebView *)[self.view viewWithTag:999] reload];
     [self networkActivity];
     [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(cancelPullToRefresh) userInfo:nil repeats:NO];
+    [TestFlight passCheckpoint:@"pull to refresh"];
 }
 -(void)cancelPullToRefresh{
-    if([self.webview isLoading]){
+    if([(PullToRefreshView *)[self.view viewWithTag:998] getState]==PullToRefreshViewStateLoading){
         [self.webview stopLoading];
         [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Connection Error", @"Connection Error") message:NSLocalizedString(@"Could not refresh the current page, please check your internet connection",@"Could not refresh message") delegate:self cancelButtonTitle:NSLocalizedString(@"OK",@"OK button") otherButtonTitles:nil];
         [alert show];
+        [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:2];
         [self noAccessPage];
+        [TestFlight passCheckpoint:@"pull to refresh load fail"];
     }
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
@@ -213,15 +218,26 @@
     self.loadBackground.hidden=YES;
     self.loadLogo.hidden=YES;
     [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
+    [TestFlight passCheckpoint:@"page loaded"];
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     if(!redirect){
         int errorCode=error.code*-1;
-        //if(error.code==kCFURLErrorNotConnectedToInternet||error.code==kCFURLErrorTimedOut){
-        if(1021>=errorCode&&errorCode>=1000){
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Could not load the requested page, please check that you have Internet Access" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        if(errorCode==1009){
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Offline Mode",@"Offline mode") message:NSLocalizedString(@"Could not connect to the internet, displaying last viewed version",@"Offline mode message") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"OK button") otherButtonTitles:nil];
             [alert show];
+            [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:2];
             [self noAccessPage];
+            [TestFlight passCheckpoint:@"offline mode"];
+            return;
+            
+        }
+        else if(1021>=errorCode&&errorCode>=1000){
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Connection Error", @"Connection Error") message:NSLocalizedString(@"Could not load the requested page, please check that you have Internet Access", @"No access") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"OK button") otherButtonTitles:nil];
+            [alert show];
+            [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:2];
+            [self noAccessPage];
+            [TestFlight passCheckpoint:@"no access"];
             return;
         }else if(!(error.code==kCFURLErrorCancelled)){
             [self.webview goBack];
@@ -244,7 +260,7 @@
                 return NO;
             }else{
                 //if the request is to outside of snowbrains then ask if user wants to open in safari
-                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"External site" message:@"The requested site is outside of Snowbrains, please press OK to load with default Browser" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
+                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"External site",@"External site") message:NSLocalizedString(@"The requested site is outside of Snowbrains, please press OK to load with default Browser",@"Load external message") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"Cancel button") otherButtonTitles:NSLocalizedString(@"OK",@"OK button"),nil];
                 [alert show];
                 NSLog(@"%@",requestString);
                 [self noAccessPage];
@@ -273,21 +289,26 @@
     }
     return YES;
 }
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if( buttonIndex == 1 ) [[UIApplication sharedApplication]openURL:[NSURL URLWithString:requestString]];
+    [TestFlight passCheckpoint:@"launch safari"];
+}
+-(void)dismissAlertView:(UIAlertView *)alertView{
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
 }
 -(void)loadYoutube:(NSString *)request{
     
     UIViewController *video=[[UIViewController alloc]init];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
-                                   initWithTitle: @"Back"
+                                   initWithTitle: NSLocalizedString(@"Back",@"Back button")
                                    style: UIBarButtonItemStyleBordered
                                    target: self action: @selector(dismissModalViewControllerAnimated:)];
     
     [video.navigationItem setLeftBarButtonItem:backButton animated:YES];
     UINavigationController *bar=[[UINavigationController alloc]initWithRootViewController:video];
     //    [bar.navigationItem setLeftBarButtonItem:backButton animated:YES];
-    video.title=@"Video";
+    video.title=NSLocalizedString(@"Video",@"Video");
     if(videoView == nil) {
         videoView = [[UIWebView alloc] initWithFrame:self.view.frame];
     }
@@ -295,45 +316,46 @@
     [videoView setMediaPlaybackRequiresUserAction:NO];
     [videoView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:request]]];
     [self presentModalViewController:bar animated:YES];
+    [TestFlight passCheckpoint:@"launching video"];
 }
 
 
 -(void)menuTap:(NSString *)menuItem{
     menuSelection=menuItem;
     self.navigationItem.title=menuItem;
-    if([menuItem isEqualToString:@"Home"])
+    if([menuItem isEqualToString:NSLocalizedString(@"Home",@"Home")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
-    else if([menuItem isEqualToString:@"Weather"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Weather",@"Weather")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/weather/?app=1"]];
-    else if([menuItem isEqualToString:@"Gear"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Gear",@"Gear")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/gear/?app=1"]];
-    else if([menuItem isEqualToString:@"Brains"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Brains",@"Brains")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/brains/?app=1"]];
-    else if([menuItem isEqualToString:@"Squaw"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Squaw",@"Squaw")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/squaw/?app=1"]];
-    else if([menuItem isEqualToString:@"Jackson"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Jackson",@"Jackson")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/jackson/?app=1"]];
-    else if([menuItem isEqualToString:@"Whistler"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Whistler",@"Whistler")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/whistler/?app=1"]];
-    else if([menuItem isEqualToString:@"Alaska"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Alaska",@"Alaska")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alaska/?app=1"]];
-    else if([menuItem isEqualToString:@"Japan"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Japan",@"Japan")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/japan/?app=1"]];
-    else if([menuItem isEqualToString:@"Alps"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Alps",@"Alps")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alps/?app=1"]];
-    else if([menuItem isEqualToString:@"PNW"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"PNW",@"PNW")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/pacificnorthwest/?app=1"]];
-    else if([menuItem isEqualToString:@"Utah"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Utah",@"Utah")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/utah/?app=1"]];
-    else if([menuItem isEqualToString:@"South America"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"South America",@"South America")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/southamerica/?app=1"]];
-    else if([menuItem isEqualToString:@"Mammoth"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Mammoth",@"Mammoth")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/mammoth/?app=1"]];
-    else if([menuItem isEqualToString:@"Brain Videos"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Brain Videos",@"Brain Videos")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/brainvideos/?app=1"]];
-    else if([menuItem isEqualToString:@"Non-Brain Videos"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Non-Brain Videos",@"Non-Brain Videos")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/nonbrain/?app=1"]];
-    else if([menuItem isEqualToString:@"Trailers"])
+    else if([menuItem isEqualToString:NSLocalizedString(@"Trailers",@"Trailers")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/trailers/?app=1"]];
 }
 //    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/?app=1"]];
@@ -342,6 +364,7 @@
 
 -(void)search:(NSString *)searchItem{
     [self loadWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.snowbrains.com/?s=%@",searchItem]]];
+    [TestFlight passCheckpoint:@"searching"];
 }
 
 -(void)setupAnimation{
@@ -381,10 +404,12 @@
 -(IBAction)backwardTap:(id)sender{
     [self hideSwipeControl];
     [self.webview goBack];
+    [TestFlight passCheckpoint:@"webview back"];
 }
 -(IBAction)forwardTap:(id)sender{
     [self hideSwipeControl];
     [self.webview goForward];
+    [TestFlight passCheckpoint:@"webview forward"];
 }
 
 - (IBAction)bookmarkTap:(id)sender {
@@ -393,12 +418,14 @@
         BookmarkModalViewController *bookmarkAdd=[[BookmarkModalViewController alloc]initWithURL:toBookmark];
         [self presentModalViewController:bookmarkAdd animated:YES];
     }else{
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", @"Wrong bookmark url error") message:NSLocalizedString(@"Sorry, this page cannot be bookmarked", @"wrong url bookmark message") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", @"Wrong bookmark url error") message:NSLocalizedString(@"Sorry, this page cannot be bookmarked", @"wrong url bookmark message") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok",@"OK button") otherButtonTitles: nil];
         [alert show];
+        [TestFlight passCheckpoint:@"bookmark failed to open"];
     }
 }
 -(void)bookmarkLoad:(NSString *)bookmark{
     [self loadWithURL:[NSURL URLWithString:bookmark]];
+    [TestFlight passCheckpoint:@"loaded bookmark"];
 }
 
 -(void)setupSideMenu{
@@ -453,6 +480,7 @@
         self.bannerView.currentContentSizeIdentifier=ADBannerContentSizeIdentifierPortrait;
     }
     [self viewDidLayoutSubviews];
+    [TestFlight passCheckpoint:@"rotated"];
     return YES;
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -475,7 +503,7 @@
     [self showActionSheet:sender];
 }
 -(void)showShareSheet:(id)sender{
-    NSString *textToShare = @"Input text to share";
+    NSString *textToShare = NSLocalizedString(@"Input text to share",@"Input text default");
     NSArray *itemsToShare = [[NSArray alloc] initWithObjects:textToShare, nil];
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
     activityVC.excludedActivityTypes = [[NSArray alloc] initWithObjects: UIActivityTypePrint, UIActivityTypeAssignToContact, UIActivityTypePostToWeibo, nil];
@@ -499,6 +527,7 @@
     
     // Display the action sheet
     [actionSheet showFromToolbar:self.toolBar];
+    [TestFlight passCheckpoint:@"Share pressed"];
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {}
 
@@ -557,6 +586,7 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
     [self dismissModalViewControllerAnimated:YES];
 }
+-(IBAction)launchFeedback { [TestFlight openFeedbackView]; }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
