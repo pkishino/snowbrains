@@ -414,12 +414,13 @@
 
 - (IBAction)bookmarkTap:(id)sender {
     NSURL *toBookmark=self.webview.request.URL;
-    if([[NSString stringWithFormat:@"%@",toBookmark] rangeOfString:@"http://www.snowbrains.com"].location!=NSNotFound){
+    if([[NSString stringWithFormat:@"%@",toBookmark] rangeOfString:@"www.snowbrains.com"].location!=NSNotFound||[[NSString stringWithFormat:@"%@",toBookmark] rangeOfString:@"http://snowbrains.com"].location!=NSNotFound){
         BookmarkModalViewController *bookmarkAdd=[[BookmarkModalViewController alloc]initWithURL:toBookmark];
         [self presentModalViewController:bookmarkAdd animated:YES];
     }else{
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", @"Wrong bookmark url error") message:NSLocalizedString(@"Sorry, this page cannot be bookmarked", @"wrong url bookmark message") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok",@"OK button") otherButtonTitles: nil];
         [alert show];
+        NSLog(@"%@",toBookmark);
         [TestFlight passCheckpoint:@"bookmark failed to open"];
     }
 }
