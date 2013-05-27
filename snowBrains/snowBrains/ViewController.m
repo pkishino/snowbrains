@@ -87,6 +87,14 @@
                forKeyPath:@"rotate_pref"
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(loadAbout:)
+     name:@"AboutURL"
+     object:nil];
+}
+-(void)loadAbout:(NSNotification *)notification{
+    [self loadWithURL:[notification.userInfo valueForKey:@"AboutURL"]];
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath
                      ofObject:(id)object
@@ -363,7 +371,7 @@
 //    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/?app=1"]];
 
 -(void)search:(NSString *)searchItem{
-    [self loadWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.snowbrains.com/?s=%@",searchItem]]];
+    [self loadWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.snowbrains.com/search/%@/?app=1",searchItem]]];
     [TestFlight passCheckpoint:@"searching"];
 }
 

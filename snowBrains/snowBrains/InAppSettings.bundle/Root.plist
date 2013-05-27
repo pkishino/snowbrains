@@ -24,9 +24,11 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>Refresh Rate (10-60 minutes)</string>
+			<string>Refresh Rate (10-60 min.)</string>
 			<key>Key</key>
-			<string>refresh_Title</string>
+			<string>refresh_title</string>
+			<key>DefaultValue</key>
+			<string>30</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -60,6 +62,18 @@
 			<key>DefaultValue</key>
 			<string>0.1 (000)</string>
 		</dict>
+        <dict>
+            <key>Type</key>
+            <string>PSTitleValueSpecifier</string>
+            <key>Title</key>
+            <string>About</string>
+            <key>Key</key>
+            <string>aboutUrl</string>
+            <key>DefaultValue</key>
+            <string>SnowBrains</string>
+            <key>InAppURL</key>
+            <string>http://www.snowbrains.com/about/?app=1</string>
+        </dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

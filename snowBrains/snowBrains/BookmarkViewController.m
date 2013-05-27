@@ -44,9 +44,9 @@ NSString *const BookmarkViewControllerDelegateDidDismissedNotification = @"Bookm
     NSString *name=self.bookmarkName.text;
     name=[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if([name length]!=0){
-    [bookmarks addObject:[NSDictionary dictionaryWithObjectsAndKeys:self.bookmarkName.text,@"Name",[self.bookmarkURL absoluteString],@"URL", nil]];
-    [[NSUserDefaults standardUserDefaults] setObject:bookmarks forKey:@"Bookmarks"];
-    [self dismissModalView:nil];
+        [bookmarks addObject:[NSDictionary dictionaryWithObjectsAndKeys:self.bookmarkName.text,@"Name",[self.bookmarkURL absoluteString],@"URL", nil]];
+        [[NSUserDefaults standardUserDefaults] setObject:bookmarks forKey:@"Bookmarks"];
+        [self dismissModalView:nil];
     }else{
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", @"error") message:NSLocalizedString(@"Please input a name for the bookmark", @"Empty bookmark name") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",@"OK button") otherButtonTitles: nil];
         [alert show];

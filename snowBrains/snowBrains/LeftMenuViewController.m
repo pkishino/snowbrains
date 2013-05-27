@@ -215,7 +215,7 @@ enum {
         cell.accessoryType=UITableViewCellAccessoryNone;
     }
     if(indexPath.section==lMenuListFavorites)
-        cell.imageView.image=[UIImage imageNamed:@"flake"];
+        cell.imageView.image=[UIImage imageNamed:@"bookmarkIcon"];
     else
         cell.imageView.image=[UIImage imageNamed:[cell.textLabel.text lowercaseString]];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
