@@ -69,6 +69,16 @@
     
     self.bannerView.delegate=self;
     self.bannerView.hidden=YES;
+    CGRect bannerFrame=CGRectMake(self.view.frame.size.width / 2 - BBANNER_SIZE_320x53.width / 2, self.view.frame.size.height - BBANNER_SIZE_320x53.height, BBANNER_SIZE_320x53.width, BBANNER_SIZE_320x53.height);
+//    self.burstlyBanner=[[BurstlyBannerAdView alloc] initWithIntegrationModeTestNetwork:kBurstlyTestAdmob filterDeviceMacAddresses:nil frame:bannerFrame anchor:kBurstlyAnchorBottom rootViewController:self delegate:self];
+//    self.burstlyBanner=[[BurstlyBannerAdView alloc]initWithAppId:@"CPcPR5EkQkuQeUYJLq0_Pw" zoneId:@"0058158379055264121" frame:bannerFrame anchor:kBurstlyAnchorBottom rootViewController:self delegate:self];
+    self.burstlyBanner=[[BurstlyBannerAdView alloc] initWithAppId:@"CPcPR5EkQkuQeUYJLq0_Pw" zoneId: @"0658158179055264121" frame:bannerFrame anchor:kBurstlyAnchorBottom rootViewController:self delegate:self];
+    [self.burstlyBanner setBackgroundColor:[UIColor greenColor]];
+    [self.view addSubview:self.burstlyBanner];
+    [self.burstlyBanner setDefaultRefreshInterval:20.0f];
+    [self.burstlyBanner showAd];
+    
+    
     [self viewDidLayoutSubviews];
     refreshValue=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"];
     autoRefresh=[[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"];
@@ -540,6 +550,7 @@
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {}
 
+//iAD delegate methods
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
     [self resizeWebView];
@@ -561,6 +572,53 @@
     NSLog(@"%@",error);
     [self resizeWebView];
 }
+
+//burstly banner delegate methods
+// Sent when the ad view takes over the screen when the banner is clicked. Use this callback as an
+// oppurtunity to implement state specific details such as pausing animation, timers, etc. The
+// exact timing of this callback is not guaranteed as a few ad networks roll out the canvas
+// prior to sending a callback whereas some others do the opposite. The following ad networks
+// notify us prior to rolling out the canvas.
+// Admob, Greystripe, Inmobi
+// @param: adNetwork - Specifies the adNetwork that was displayed.
+-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view willTakeOverFullScreen:(NSString*)adNetwork
+{
+    
+}
+
+// Sent when the ad view is dismissed from screen.
+-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view willDismissFullScreen:(NSString*)adNetwork
+{
+    
+}
+-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didHide:(NSString*)lastViewedNetwork{
+    [self.burstlyBanner setHidden:YES];
+    [self resizeWebView];
+    
+}
+
+
+-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didShow:(NSString*)adNetwork{
+    [self resizeWebView];
+    [self.burstlyBanner setHidden:NO];
+}
+
+
+-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didCache:(NSString*)adNetwork{
+    
+}
+
+
+-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view wasClicked:(NSString*)adNetwork{
+    
+}
+
+
+-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didFailWithError:(NSError *)error{
+    self.burstlyBanner.hidden=YES;
+    NSLog(@"%@",error);
+    [self resizeWebView];
+}
 - (void) viewDidLayoutSubviews {
     if (self.bannerView.bannerLoaded) {
         if(self.toolBar.isHidden){
@@ -577,6 +635,22 @@
             self.bannerView.frame = bannerFrame;
         }
     }
+    if (!self.burstlyBanner.isHidden) {
+        if(self.toolBar.isHidden){
+            CGRect contentFrame = self.view.bounds;
+            CGRect bannerFrame = self.burstlyBanner.frame;
+            contentFrame.size.height -= self.burstlyBanner.frame.size.height;
+            bannerFrame.origin.y = contentFrame.size.height;
+            self.burstlyBanner.frame = bannerFrame;
+        }else{
+            CGRect contentFrame = self.view.bounds;
+            CGRect bannerFrame = self.burstlyBanner.frame;
+            contentFrame.size.height -= self.burstlyBanner.frame.size.height;
+            bannerFrame.origin.y = self.toolBar.frame.origin.y-self.burstlyBanner.frame.size.height;
+            self.burstlyBanner.frame = bannerFrame;
+        }
+    }
+
     [self resizeWebView];
 }
 -(void)resizeWebView{
@@ -585,10 +659,11 @@
     if(self.bannerView.bannerLoaded){
         frame.size.height-=self.bannerView.frame.size.height;
     }
+    if(!self.burstlyBanner.isHidden){
+        frame.size.height-=self.burstlyBanner.frame.size.height;
+    }
     if(!self.toolBar.isHidden)
         frame.size.height-=self.toolBar.frame.size.height;
-//    else
-//        frame.size.height=self.view.frame.size.height;
     self.webview.frame =frame;
     [self.webview setNeedsDisplay];
 }

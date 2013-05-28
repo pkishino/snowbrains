@@ -12,9 +12,12 @@
 #import "BookmarkViewController.h"
 #import "AFNetworking.h"
 #import <iAd/iAd.h>
+#import "BurstlyBannerAdView.h"
+#import "BurstlyBannerViewDelegate.h"
+#import "Burstly.h"
 
 
-@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,UINavigationControllerDelegate,LeftMenuViewControllerDelegate,UIActionSheetDelegate,ADBannerViewDelegate,MFMailComposeViewControllerDelegate>
+@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,UINavigationControllerDelegate,LeftMenuViewControllerDelegate,UIActionSheetDelegate,ADBannerViewDelegate,MFMailComposeViewControllerDelegate,BurstlyBannerViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 @property (strong, nonatomic) IBOutlet UIImageView *loadBackground;
 @property (strong, nonatomic) IBOutlet UIImageView *loadLogo;
@@ -33,5 +36,6 @@
 -(id)initWithForward:(BOOL)forward;
 
 @property (weak, nonatomic) IBOutlet ADBannerView *bannerView;
+@property (nonatomic,retain) BurstlyBannerAdView *burstlyBanner;
 
 @end
