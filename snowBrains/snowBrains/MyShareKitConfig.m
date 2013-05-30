@@ -39,6 +39,14 @@
 - (NSString*)twitterUsername {
 	return @"SnowBrains";
 }
+- (NSString*)bitLyLogin {
+	return @"o_7jlvsd9lug";
+}
+
+- (NSString*)bitLyKey {
+	return @"R_bf9e5dfd62d58fadd74c07346b4a9db5";
+}
+
 /*
  Create a project on Google APIs console,
  https://code.google.com/apis/console . Under "API Access", create a

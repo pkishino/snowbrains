@@ -14,6 +14,7 @@
 #import "SHK.h"
 #import "SHKConfiguration.h"
 #import "SHKFacebook.h"
+#import "SHKGooglePlus.h"
 #import "MyShareKitConfig.h"
 #import "InAppSettings.h"
 
@@ -71,15 +72,25 @@
                             [appInfo objectForKey:@"CFBundleVersion"]];
     [[NSUserDefaults standardUserDefaults]setValue:versionStr forKey:@"versionIdentifier"];
     
-    [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
+//    
+//    if (IS_IPHONE_5)
+//    {
+//        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape5"] forBarMetrics:UIBarMetricsLandscapePhone];
+//    }
+//    else
+//    {
+//        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
+//    }
+    [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-portrait"] forBarMetrics:UIBarMetricsDefault];
     
     if (IS_IPHONE_5)
     {
-        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape5"] forBarMetrics:UIBarMetricsLandscapePhone];
+        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-iPhone5"] forBarMetrics:UIBarMetricsLandscapePhone];
     }
     else
     {
-        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
+        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
     }
     
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
@@ -135,7 +146,9 @@
     
     if ([scheme hasPrefix:[NSString stringWithFormat:@"fb%@", SHKCONFIG(facebookAppId)]]) {
         return [SHKFacebook handleOpenURL:url];
-    }    
+    } else if ([scheme isEqualToString:@"com.snowbrains.mobilebrains"]) {
+        return [SHKGooglePlus handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    }
     return YES;
 }
 

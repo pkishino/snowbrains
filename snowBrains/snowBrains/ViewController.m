@@ -10,6 +10,12 @@
 #import "MFSideMenu.h"
 #import "SHK.h"
 #import "AppDelegate.h"
+#import "Burstly.h"
+#import "BurstlyAdUtils.h"
+
+#define APP_ID @"CPcPR5EkQkuQeUYJLq0_Pw"
+#define BANNER_ZONE_ID @"0658158179055264121"
+
 @interface UIPopoverController (overrides)
 + (BOOL)_popoversDisabled;
 @end
@@ -66,20 +72,29 @@
     //    [self setupAnimation];
     [self setupSwipe];
     [self setupSideMenu];
-    
+#if IAD_ENABLED
     self.bannerView.delegate=self;
     self.bannerView.hidden=YES;
+#endif
+#if BURSTLY_ENABLED
+    [Burstly setLogLevel:AS_LOG_LEVEL_DEBUG];
     CGRect bannerFrame=CGRectMake(self.view.frame.size.width / 2 - BBANNER_SIZE_320x53.width / 2, self.view.frame.size.height - BBANNER_SIZE_320x53.height, BBANNER_SIZE_320x53.width, BBANNER_SIZE_320x53.height);
-//    self.burstlyBanner=[[BurstlyBannerAdView alloc] initWithIntegrationModeTestNetwork:kBurstlyTestAdmob filterDeviceMacAddresses:nil frame:bannerFrame anchor:kBurstlyAnchorBottom rootViewController:self delegate:self];
-//    self.burstlyBanner=[[BurstlyBannerAdView alloc]initWithAppId:@"CPcPR5EkQkuQeUYJLq0_Pw" zoneId:@"0058158379055264121" frame:bannerFrame anchor:kBurstlyAnchorBottom rootViewController:self delegate:self];
-    self.burstlyBanner=[[BurstlyBannerAdView alloc] initWithAppId:@"CPcPR5EkQkuQeUYJLq0_Pw" zoneId: @"0658158179055264121" frame:bannerFrame anchor:kBurstlyAnchorBottom rootViewController:self delegate:self];
-    [self.burstlyBanner setBackgroundColor:[UIColor greenColor]];
+//    CGRect bannerFrame=CGRectMake(0, 200, BBANNER_SIZE_320x53.width, BBANNER_SIZE_320x53.height);
+
+    self.burstlyBanner=[[BurstlyBannerAdView alloc] initWithAppId:APP_ID zoneId: BANNER_ZONE_ID frame:bannerFrame anchor:kBurstlyAnchorBottom rootViewController:self delegate:self];
+    [self.burstlyBanner setBackgroundColor:[UIColor grayColor]];
+//    [self.burstlyBanner setAlpha:0.6];
+    
+    [self.burstlyBanner setDefaultRefreshInterval:10];
+    
     [self.view addSubview:self.burstlyBanner];
-    [self.burstlyBanner setDefaultRefreshInterval:20.0f];
     [self.burstlyBanner showAd];
     
+    [self.burstlyBanner setHidden:YES];
+    [self.burstlyBanner setAdPaused:YES];
+#endif
     
-    [self viewDidLayoutSubviews];
+    [self viewWillLayoutSubviews];
     refreshValue=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"];
     autoRefresh=[[NSUserDefaults standardUserDefaults]boolForKey:@"refresh_pref"];
     if(autoRefresh)refreshTimer=[NSTimer scheduledTimerWithTimeInterval:refreshValue*60 target:self selector:@selector(pullToRefreshViewShouldRefresh:) userInfo:nil repeats:YES];
@@ -412,12 +427,12 @@
         else
             [self.forwardButton setEnabled:YES];
     }
-    [self viewDidLayoutSubviews];
+    [self viewWillLayoutSubviews];
     
 }
 -(void)hideSwipeControl{
     self.toolBar.hidden=YES;
-    [self viewDidLayoutSubviews];
+    [self viewWillLayoutSubviews];
 }
 -(IBAction)backwardTap:(id)sender{
     [self hideSwipeControl];
@@ -498,7 +513,7 @@
         self.bannerView.requiredContentSizeIdentifiers=[NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
         self.bannerView.currentContentSizeIdentifier=ADBannerContentSizeIdentifierPortrait;
     }
-    [self viewDidLayoutSubviews];
+    [self viewWillLayoutSubviews];
     [TestFlight passCheckpoint:@"rotated"];
     return YES;
 }
@@ -553,8 +568,10 @@
 //iAD delegate methods
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
-    [self resizeWebView];
+    [self.burstlyBanner setHidden:YES];
+    [self.burstlyBanner setAdPaused:YES];
     self.bannerView.hidden=NO;
+    [self resizeWebView];
 }
 - (BOOL)bannerViewActionShouldBegin:
 (ADBannerView *)banner
@@ -564,10 +581,16 @@
 }
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner
 {
+    [self.burstlyBanner setHidden:NO];
+    [self.burstlyBanner setAdPaused:NO];
+    [self.burstlyBanner showAd];
     [self.bannerView setHidden:YES];
     [self resizeWebView];
 }
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    [self.burstlyBanner setHidden:NO];
+    [self.burstlyBanner setAdPaused:NO];
+    [self.burstlyBanner showAd];
     self.bannerView.hidden=YES;
     NSLog(@"%@",error);
     [self resizeWebView];
@@ -591,35 +614,104 @@
 {
     
 }
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didHide:(NSString*)lastViewedNetwork{
-    [self.burstlyBanner setHidden:YES];
-    [self resizeWebView];
-    
-}
+//-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didHide:(NSString*)lastViewedNetwork{
+//    [self.burstlyBanner setHidden:YES];
+//    [self resizeWebView];
+//    
+//}
+//
+//
+//-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didShow:(NSString*)adNetwork{
+//    [self resizeWebView];
+//    [self.burstlyBanner setHidden:NO];
+//}
 
 
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didShow:(NSString*)adNetwork{
-    [self resizeWebView];
-    [self.burstlyBanner setHidden:NO];
-}
-
-
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didCache:(NSString*)adNetwork{
-    
-}
-
-
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view wasClicked:(NSString*)adNetwork{
-    
-}
+//-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didCache:(NSString*)adNetwork{
+//    
+//}
+//
+//
+//-(void) burstlyBannerAdView:(BurstlyBannerAdView *)view wasClicked:(NSString*)adNetwork{
+//    
+//}
 
 
 -(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didFailWithError:(NSError *)error{
     self.burstlyBanner.hidden=YES;
-    NSLog(@"%@",error);
+    [self.burstlyBanner setAdPaused:YES];
     [self resizeWebView];
+    NSLog(@"Failed to load banner: %@", error.description);
+    switch (error.code)
+    {
+        case BurstlyErrorInvalidRequest:
+            
+            break;
+        case BurstlyErrorNoFill:
+            
+            break;
+        case BurstlyErrorNetworkFailure:
+            
+            break;
+        case BurstlyErrorServerError:
+            
+            break;
+        case BurstlyErrorInterstitialTimedOut:
+            
+            break;
+        case BurstlyErrorRequestThrottled:
+            
+            break;
+        case BurstlyErrorConfigurationError:
+            
+            break;
+        default:
+            
+            break;
+    };
 }
-- (void) viewDidLayoutSubviews {
+//- (void) viewDidLayoutSubviews {
+//    if (self.bannerView.bannerLoaded) {
+//        if(self.toolBar.isHidden){
+//            CGRect contentFrame = self.view.bounds;
+//            CGRect bannerFrame = self.bannerView.frame;
+//            contentFrame.size.height -= self.bannerView.frame.size.height;
+//            bannerFrame.origin.y = contentFrame.size.height;
+//            self.bannerView.frame = bannerFrame;
+//        }else{
+//            CGRect contentFrame = self.view.bounds;
+//            CGRect bannerFrame = self.bannerView.frame;
+//            contentFrame.size.height -= self.bannerView.frame.size.height;
+//            bannerFrame.origin.y = self.toolBar.frame.origin.y-self.bannerView.frame.size.height;
+//            self.bannerView.frame = bannerFrame;
+//        }
+//    }
+//    if (!self.burstlyBanner.isHidden) {
+//        if(self.toolBar.isHidden){
+//            CGRect contentFrame = self.view.bounds;
+//            CGRect bannerFrame = self.burstlyBanner.frame;
+//            contentFrame.size.height -= self.burstlyBanner.frame.size.height;
+//            bannerFrame.origin.y = contentFrame.size.height;
+//            self.burstlyBanner.frame = bannerFrame;
+//        }else{
+//            CGRect contentFrame = self.view.bounds;
+//            CGRect bannerFrame = self.burstlyBanner.frame;
+//            contentFrame.size.height -= self.burstlyBanner.frame.size.height;
+//            bannerFrame.origin.y = self.toolBar.frame.origin.y-self.burstlyBanner.frame.size.height;
+//            self.burstlyBanner.frame = bannerFrame;
+//        }
+//    }
+//
+//    [self resizeWebView];
+//}
+- (void)viewWillLayoutSubviews
+{
+    // It's smart to override this method for repositioning banners.
+    [super viewWillLayoutSubviews];
+    
+    // Reposition banner frame.
+//    CGRect bannerFrame = CGRectMake(0, 200, self.view.bounds.size.width, BBANNER_SIZE_320x53.height);
+//    [self.burstlyBanner setFrame:bannerFrame];
     if (self.bannerView.bannerLoaded) {
         if(self.toolBar.isHidden){
             CGRect contentFrame = self.view.bounds;
@@ -650,7 +742,7 @@
             self.burstlyBanner.frame = bannerFrame;
         }
     }
-
+    
     [self resizeWebView];
 }
 -(void)resizeWebView{
@@ -670,7 +762,7 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
     [self dismissModalViewControllerAnimated:YES];
 }
--(IBAction)launchFeedback { [TestFlight openFeedbackView]; }
+//-(IBAction)launchFeedback { [TestFlight openFeedbackView]; }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

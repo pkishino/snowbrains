@@ -10,6 +10,9 @@
 //#define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__,__LINE__, ##__VA_ARGS__)
 #define NSLog TFLog  
 
+#define IAD_ENABLED 1
+#define BURSTLY_ENABLED 0
+
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>

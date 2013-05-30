@@ -14,7 +14,7 @@
 #import <iAd/iAd.h>
 #import "BurstlyBannerAdView.h"
 #import "BurstlyBannerViewDelegate.h"
-#import "Burstly.h"
+
 
 
 @interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,UINavigationControllerDelegate,LeftMenuViewControllerDelegate,UIActionSheetDelegate,ADBannerViewDelegate,MFMailComposeViewControllerDelegate,BurstlyBannerViewDelegate>
