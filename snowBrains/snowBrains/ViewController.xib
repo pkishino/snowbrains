@@ -66,7 +66,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">brainsHeaderBackground.png</string>
+							<string key="NSResourceName">loadingBackground.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="423262403">
@@ -522,7 +522,7 @@
 			<string key="SnowBrainsHeadlessGuy.png">{212, 445}</string>
 			<string key="barButtonBack.png">{20, 30}</string>
 			<string key="barButtonForward.png">{20, 30}</string>
-			<string key="brainsHeaderBackground.png">{960, 151}</string>
+			<string key="loadingBackground.png">{320, 480}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

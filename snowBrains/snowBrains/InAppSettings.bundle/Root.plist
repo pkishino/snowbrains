@@ -62,18 +62,18 @@
 			<key>DefaultValue</key>
 			<string>0.1 (000)</string>
 		</dict>
-        <dict>
-            <key>Type</key>
-            <string>PSTitleValueSpecifier</string>
-            <key>Title</key>
-            <string>About</string>
-            <key>Key</key>
-            <string>aboutUrl</string>
-            <key>DefaultValue</key>
-            <string>SnowBrains</string>
-            <key>InAppURL</key>
-            <string>http://www.snowbrains.com/about/?app=1</string>
-        </dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>About</string>
+			<key>Key</key>
+			<string>aboutUrl</string>
+			<key>DefaultValue</key>
+			<string>SnowBrains</string>
+			<key>InAppURL</key>
+			<string>http://www.snowbrains.com/about/?app=1</string>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

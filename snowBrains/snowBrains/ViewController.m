@@ -138,6 +138,8 @@
             refreshTimer=nil;
         }
     }
+    int new=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"];
+    [[NSUserDefaults standardUserDefaults]setValue:[NSString stringWithFormat:@"%d",new] forKey:@"refresh_title"];
     [TestFlight passCheckpoint:@"chaning settings"];
 }
 -(void)loadWithURL:(NSURL *)url{
