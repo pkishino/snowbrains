@@ -15,12 +15,13 @@ NSString *const BookmarkViewControllerDelegateWillDismissedNotification = @"Book
 NSString *const BookmarkViewControllerDelegateDidDismissedNotification = @"BookmarkViewControllerDelegateDidDismissedNotification";
 @implementation BookmarkModalViewController
 
-- (id)initWithURL:(NSURL *)url{
+- (id)initWithURL:(NSURL *)url andCategory:(NSString*)category{
     BookmarkViewController *bookmarkView = [[BookmarkViewController alloc] init];
     self = (BookmarkModalViewController *)[[UINavigationController alloc] initWithRootViewController:bookmarkView];
     [bookmarkView addDoneButton];
     [bookmarkView addAddButton];
     bookmarkView.bookmarkURL=url;
+    bookmarkView.bookmarkCategory=category;
     return self;
 }
 
@@ -98,7 +99,12 @@ NSString *const BookmarkViewControllerDelegateDidDismissedNotification = @"Bookm
     name=[name substringToIndex:match1.location];
     name=[name stringByReplacingOccurrencesOfString:@"-" withString:@" "];
     name=[name stringByReplacingOccurrencesOfString:@"/" withString:@""];
-    self.bookmarkName.text=name;
+    if(name.length!=0)
+        self.bookmarkName.text=name;
+    else if (self.bookmarkCategory!=nil)
+        self.bookmarkName.text=self.bookmarkCategory;
+    else
+        self.bookmarkName.text=NSLocalizedString(@"Default name", @"Default bookmark name");
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"back-tableview"]]];
 }

@@ -11,7 +11,7 @@ extern NSString *const BookmarkViewControllerDelegateWillDismissedNotification;
 extern NSString *const BookmarkViewControllerDelegateDidDismissedNotification;
 
 @interface BookmarkModalViewController : UIViewController
--(id)initWithURL:(NSURL *)url;
+-(id)initWithURL:(NSURL *)url andCategory:(NSString *)category;
 
 @end
 @interface BookmarkViewController : UIViewController
@@ -20,6 +20,7 @@ extern NSString *const BookmarkViewControllerDelegateDidDismissedNotification;
 @property (nonatomic,assign)NSURL *bookmarkURL;
 @property (strong, nonatomic) IBOutlet UITextField *bookmarkName;
 @property (nonatomic, weak) UIControl *firstResponder;
+@property (strong,nonatomic)NSString *bookmarkCategory;
 - (IBAction)dismissModalView:(id)sender;
 - (IBAction)addBookmark:(id)sender;
 - (void)addDoneButton;

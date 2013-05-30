@@ -11,7 +11,7 @@
 #import "InAppSettings.h"
 enum {
     lMenuListMain = 0,
-    lMenuListFavorites,
+    lMenuListBookmarks,
     lMenuListOther,
     lMenuListCount
 };
@@ -20,8 +20,8 @@ enum {
     NSMutableArray *sections;
     
     NSMutableArray *mainList;
-    NSMutableArray *favoritesList;
-    NSMutableArray *favoritesURLS;
+    NSMutableArray *bookmarksList;
+    NSMutableArray *bookmarksURLS;
     NSMutableArray *otherList;
     
     NSArray *mainItems;
@@ -45,14 +45,14 @@ enum {
         moreItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Utah",@"Utah name"),NSLocalizedString(@"Mammoth",@"Mammoth name"),NSLocalizedString(@"PNW",@"PNW name"),NSLocalizedString(@"South America",@"South America name"),NSLocalizedString(@"Japan",@"Japan name"),NSLocalizedString(@"Alps",@"Alps name"), nil];
         videoItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Brain Videos",@"Brain Videos name"),NSLocalizedString(@"Non-Brain Videos",@"Non-Brain Videos name"),NSLocalizedString(@"Trailers",@"Trailers name"), nil];
         mainList=[[NSMutableArray alloc]initWithArray:mainItems];
-        favoritesList=[[NSMutableArray alloc]initWithObjects:@"Favorites dummy", nil];
-        favoritesURLS=[[NSMutableArray alloc]initWithObjects:@"Favorites dummy", nil];
+        bookmarksList=[[NSMutableArray alloc]initWithObjects:@"Bookmarks dummy", nil];
+        bookmarksURLS=[[NSMutableArray alloc]initWithObjects:@"Bookmarks dummy", nil];
         otherList=[[NSMutableArray alloc]initWithObjects:NSLocalizedString(@"Settings",@"Settings name"),NSLocalizedString(@"Contact",@"Contact name"), nil];
-        sections=[[NSMutableArray alloc]initWithObjects:mainItems,favoritesList,otherList, nil];
+        sections=[[NSMutableArray alloc]initWithObjects:mainItems,bookmarksList,otherList, nil];
     }
     return self;
 }
--(NSMutableArray *)loadFavorites{
+-(NSMutableArray *)loadBookmarks{
     NSMutableArray *bookmarks=[[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
     NSMutableArray *names=[[NSMutableArray alloc]init];
     NSMutableArray *urls=[[NSMutableArray alloc]init];
@@ -60,7 +60,7 @@ enum {
         [names addObject:[bookmark valueForKey:@"Name"]];
         [urls addObject:[bookmark valueForKey:@"URL"]];
     }
-    favoritesURLS=urls;
+    bookmarksURLS=urls;
     return names;
 }
 
@@ -82,9 +82,10 @@ enum {
      object:nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    favoritesList=[self loadFavorites];
-    sections=[[NSMutableArray alloc]initWithObjects:mainItems,favoritesList,otherList, nil];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:lMenuListFavorites] withRowAnimation:UITableViewRowAnimationAutomatic];
+    bookmarksList=[self loadBookmarks];
+//    sections=[[NSMutableArray alloc]initWithObjects:mainItems,bookmarksList,otherList, nil];
+    [sections replaceObjectAtIndex:lMenuListBookmarks withObject:bookmarksList];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:lMenuListBookmarks] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 
@@ -102,7 +103,7 @@ enum {
 //            sectionHeaderView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:headerReuseIdentifier];
 //        }
 //        
-//        if(section==lMenuListFavorites){
+//        if(section==lMenuListBookmarks){
 //            UIButton *edit=[UIButton buttonWithType:UIButtonTypeCustom];
 //            [edit setTitle:@"Edit" forState:UIControlStateNormal];
 //            [edit setTitle:@"Done" forState:UIControlStateSelected];
@@ -130,21 +131,25 @@ enum {
         sectionText.backgroundColor = [UIColor clearColor];
         sectionText.textColor = [UIColor whiteColor];
         sectionText.shadowColor = [UIColor darkGrayColor];
-        sectionText.shadowOffset = CGSizeMake(0,1);
+        sectionText.shadowOffset = CGSizeMake(1,1);
         sectionText.font = [UIFont boldSystemFontOfSize:18];
         
         [sectionHeaderView addSubview:sectionText];
-        if(section==lMenuListFavorites){
+        if(section==lMenuListBookmarks){
             UIButton *edit=[UIButton buttonWithType:UIButtonTypeCustom];
             edit.tag=69;
             
             [edit setTitle:NSLocalizedString(@"Edit", @"Edit button") forState:UIControlStateNormal];
             [edit setTitle:NSLocalizedString(@"Done", @"Done button") forState:UIControlStateSelected];
+            [edit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [edit setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
             [edit.titleLabel setShadowColor:[UIColor darkGrayColor]];
-            [edit.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+            [edit.titleLabel setShadowOffset:CGSizeMake(1, 1)];
             [edit.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
             [edit addTarget:self action:@selector(editSection:) forControlEvents:UIControlEventTouchDown];
             edit.frame=CGRectMake(sectionHeaderView.frame.size.width-60, sectionText.frame.origin.y, 50, sectionText.frame.size.height);
+            if([self.tableView numberOfRowsInSection:lMenuListBookmarks]!=0) edit.enabled=YES;
+            else edit.enabled=NO;
             [sectionHeaderView addSubview:edit];
             sectionHeaderView.userInteractionEnabled=YES;
         }
@@ -152,8 +157,33 @@ enum {
         return sectionHeaderView;
 //    }
 }
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if(section==lMenuListBookmarks){
+        if([self.tableView numberOfRowsInSection:lMenuListBookmarks]==0){
+            static NSString *CellIdentifier = @"Cell";
+            
+            MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.textLabel.backgroundColor=[UIColor clearColor];
+            cell.textLabel.text=NSLocalizedString(@"Your bookmarks will show here", @"Empty bookmark list footer");
+            cell.textLabel.textColor=[UIColor grayColor];
+            cell.textLabel.font=[UIFont italicSystemFontOfSize:12];
+            cell.indentationLevel=2;
+            cell.accessoryType=UITableViewCellAccessoryNone;
+            cell.imageView.image=nil;
+            return  cell;
+        }return nil;
+    }
+    return nil;
+}
 -(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return UITableViewAutomaticDimension;
+}
+-(float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if(section==lMenuListBookmarks&&bookmarksList.count==0) return 20;
+    return 0;
 }
 -(IBAction)editSection:(id)sender{
     if([self.tableView isEditing]){
@@ -165,7 +195,7 @@ enum {
     }
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section==lMenuListFavorites)return YES;
+    if(indexPath.section==lMenuListBookmarks)return YES;
     return NO;
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -174,10 +204,14 @@ enum {
         // Delete the row from the data source
         NSMutableArray *bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
         [bookmarks removeObjectAtIndex:indexPath.row ];
-        [favoritesList removeObjectAtIndex:indexPath.row];
+        [bookmarksList removeObjectAtIndex:indexPath.row];
         [[NSUserDefaults standardUserDefaults] setObject:bookmarks forKey:@"Bookmarks"];
         // Animate the deletion
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        if([self.tableView numberOfRowsInSection:lMenuListBookmarks]==0){
+            [self editSection:nil];
+            [(UIButton *)[self.tableView viewWithTag:69] setEnabled:NO];
+        }
     }
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -214,7 +248,7 @@ enum {
     }else{
         cell.accessoryType=UITableViewCellAccessoryNone;
     }
-    if(indexPath.section==lMenuListFavorites)
+    if(indexPath.section==lMenuListBookmarks)
         cell.imageView.image=[UIImage imageNamed:@"bookmarkIcon"];
     else
         cell.imageView.image=[UIImage imageNamed:[cell.textLabel.text lowercaseString]];
@@ -226,21 +260,21 @@ enum {
 -(NSString *)getSectionName:(NSInteger)section{
     if(section==lMenuListMain)
         return NSLocalizedString(@"Main", @"Main name");
-    else if(section==lMenuListFavorites)
-        return NSLocalizedString(@"Favorites", @"Favorites name");
+    else if(section==lMenuListBookmarks)
+        return NSLocalizedString(@"Bookmarks", @"Bookmarks name");
     else if (section==lMenuListOther)
         return NSLocalizedString(@"Other", @"Other name");
     return nil;
 }
--(int)getSectionCount:(NSInteger)section{
-    if(section==lMenuListMain)
-        return mainList.count;
-    else if(section==lMenuListFavorites)
-        return 0;
-    else if (section==lMenuListOther)
-        return 1;
-    return -1;
-}
+//-(int)getSectionCount:(NSInteger)section{
+//    if(section==lMenuListMain)
+//        return mainList.count;
+//    else if(section==lMenuListBookmarks)
+//        return 0;
+//    else if (section==lMenuListOther)
+//        return 1;
+//    return -1;
+//}
 -(void)deselectSettings:(NSNotification *)notification{
     [self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:lMenuListOther] animated:YES];
 }
@@ -252,8 +286,8 @@ enum {
     UITableViewCell *cell=[self.tableView.dataSource tableView:self.tableView cellForRowAtIndexPath:indexPath];
     NSString *selectedMenuItem=cell.textLabel.text;
     if(!self.tableView.isEditing){
-    if(indexPath.section==lMenuListFavorites){
-        [self.delegate bookmarkLoad:[favoritesURLS objectAtIndex:indexPath.row]];
+    if(indexPath.section==lMenuListBookmarks){
+        [self.delegate bookmarkLoad:[bookmarksURLS objectAtIndex:indexPath.row]];
     }else if((indexPath.section==lMenuListMain)&&([selectedMenuItem isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[selectedMenuItem isEqualToString:NSLocalizedString(@"More", @"More name")]||[selectedMenuItem isEqualToString:NSLocalizedString(@"Video", @"Video name")])){
         [self manageSubCells:cell];
         return;
@@ -299,7 +333,7 @@ enum {
             }
         }
         mainList=[[NSMutableArray alloc]initWithArray:tempList];
-        sections=[[NSMutableArray alloc]initWithObjects:mainList,favoritesList,otherList, nil];
+        sections=[[NSMutableArray alloc]initWithObjects:mainList,bookmarksList,otherList, nil];
         [self.tableView reloadData];
     }
     
