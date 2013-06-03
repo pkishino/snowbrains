@@ -10,11 +10,11 @@
 
 @implementation MyShareKitConfig
 - (NSString*)appName {
-	return @"Snowbrains iPhone";
+	return @"Snowbrains iOS";
 }
 
 - (NSString*)appURL {
-	return @"http://www.snowbrains.com";
+	return @"http://appstore.com/Snowbrains";
 }
 - (NSString*)facebookAppId {
 	return @"306955309438401";

@@ -145,7 +145,7 @@
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
     
-    [self networkActivity];
+//    [self networkActivity];
     
     NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
 //    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
@@ -234,25 +234,11 @@
     }
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
-//    [self hideSwipeControl];
-//    self.flakeAnimation.hidden=NO;
-//    [self.flakeAnimation startAnimating];
-//    if(!self.loadFigure.isHidden&&!toForward){
-//        self.loadFigure.hidden=NO;
-//        self.loadBackground.hidden=NO;
-//        self.loadLogo.hidden=NO;
-//    }
+    [self networkActivity];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
-    [self.flakeAnimation stopAnimating];
-    self.flakeAnimation.hidden=YES;
-    self.loadFigure.hidden=YES;
-    self.loadBackground.hidden=YES;
-    self.loadLogo.hidden=YES;
-    [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
+    [self stopNetworkActivity];
     [TestFlight passCheckpoint:@"page loaded"];
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
@@ -763,6 +749,7 @@
 }
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
     [self dismissModalViewControllerAnimated:YES];
+    [TestFlight passCheckpoint:@"Dismissed mail"];
 }
 //-(IBAction)launchFeedback { [TestFlight openFeedbackView]; }
 - (void)didReceiveMemoryWarning

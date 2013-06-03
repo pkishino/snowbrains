@@ -5,13 +5,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>snowBrains</string>
+	<string>SnowBrains</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>SnowBrains_114x114_v2.png</string>
-		<string>SnowBrains_57x57_v2.png</string>
+		<string>Icon.png</string>
+		<string>Icon@2x.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -19,8 +19,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>SnowBrains_114x114_v2.png</string>
-				<string>SnowBrains_57x57_v2.png</string>
+				<string>Icon@2x.png</string>
+				<string>Icon.png</string>
 			</array>
 		</dict>
 	</dict>
@@ -52,16 +52,16 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.snowbrains.mobileBrains</string>
+			<string>com.snowbrains.mobilebrains</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.snowbrains.mobileBrains</string>
+				<string>com.snowbrains.mobilebrains</string>
 			</array>
 		</dict>
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>348</string>
+	<string>366</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>

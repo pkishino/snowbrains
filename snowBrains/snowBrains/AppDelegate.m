@@ -55,7 +55,6 @@
     // Override point for customization after application launch.
     [TestFlight takeOff:@"c0b7b825-f506-4f0b-b73f-0d75286c3318"];
 //    [TestFlight setOptions:{TFOptionLogToConsole:@NO}];
-//    for now this seems to break posting
     [NSURLProtocol registerClass:[RNCachingURLProtocol class]];
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
                                                          diskCapacity:20 * 1024 * 1024
@@ -84,14 +83,14 @@
 //    }
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-portrait"] forBarMetrics:UIBarMetricsDefault];
     
-    if (IS_IPHONE_5)
-    {
-        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-iPhone5"] forBarMetrics:UIBarMetricsLandscapePhone];
-    }
-    else
-    {
+//    if (IS_IPHONE_5)
+//    {
+//        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-iPhone5"] forBarMetrics:UIBarMetricsLandscapePhone];
+//    }
+//    else
+//    {
         [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
-    }
+//    }
     
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
