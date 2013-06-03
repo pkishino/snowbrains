@@ -83,14 +83,14 @@
 //    }
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-portrait"] forBarMetrics:UIBarMetricsDefault];
     
-//    if (IS_IPHONE_5)
-//    {
-//        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-iPhone5"] forBarMetrics:UIBarMetricsLandscapePhone];
-//    }
-//    else
-//    {
+    if (IS_IPHONE_5)
+    {
+        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-iPhone5"] forBarMetrics:UIBarMetricsLandscapePhone];
+    }
+    else
+    {
         [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
-//    }
+    }
     
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
