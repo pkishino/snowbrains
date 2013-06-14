@@ -69,7 +69,9 @@
     NSString *versionStr = [NSString stringWithFormat:@"%@ (%@)",
                             [appInfo objectForKey:@"CFBundleShortVersionString"],
                             [appInfo objectForKey:@"CFBundleVersion"]];
+    NSString *appName=[appInfo objectForKey:@"CFBundleDisplayName"];
     [[NSUserDefaults standardUserDefaults]setValue:versionStr forKey:@"versionIdentifier"];
+    [[NSUserDefaults standardUserDefaults]setValue:appName forKey:@"aboutUrl"];
     
 //    [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
 //    

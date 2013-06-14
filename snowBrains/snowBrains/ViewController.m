@@ -16,19 +16,8 @@
 #define APP_ID @"CPcPR5EkQkuQeUYJLq0_Pw"
 #define BANNER_ZONE_ID @"0658158179055264121"
 
-@interface UIPopoverController (overrides)
-+ (BOOL)_popoversDisabled;
-@end
-
-@implementation UIPopoverController (overrides)
-
-+ (BOOL)_popoversDisabled { return NO;
-}
-
-@end
 
 @interface ViewController (){
-    UIScrollView *currentScrollView;
     BOOL redirect;
     NSString *requestString;
     UIImageView * backBar;
@@ -39,14 +28,18 @@
     int refreshValue;
     NSTimer *refreshTimer;
     BOOL autoRefresh;
+    NSString *appName;
 }
 
 @end
 
 @implementation ViewController
+//@synthesize webview;
 -(id)init{
     if(self=[super init]){
-        client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/"]];
+//        client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/"]];
+        NSDictionary *appInfo = [[NSBundle mainBundle] infoDictionary];
+        appName=[appInfo objectForKey:@"CFBundleDisplayName"];
     }
     return self;
 }
@@ -64,6 +57,8 @@
 {
     [super viewDidLoad];
     [self.webview setDelegate:self];
+    self.webview.backgroundColor=[UIColor grayColor];
+    self.webview.scrollView.scrollsToTop=YES;
     if(!toForward){
         [self menuTap:NSLocalizedString(@"Home", @"Home")];
     }
@@ -205,16 +200,10 @@
 -(void)setupPullDownRefresh{
     //setup the pulldownrefresh view
     self.webview.tag=999;
-    for(UIView *subView in self.webview.subviews){
-        if([subView isKindOfClass:[UIScrollView class]]){
-            currentScrollView=(UIScrollView *)subView;
-            currentScrollView.delegate=(id)self;
-        }
-    }
-    PullToRefreshView *pull=[[PullToRefreshView alloc]initWithScrollView:currentScrollView];
+    PullToRefreshView *pull=[[PullToRefreshView alloc]initWithScrollView:self.webview.scrollView];
     [pull setDelegate:self];
     pull.tag=998;
-    [currentScrollView addSubview:pull];
+    [self.webview.scrollView addSubview:pull];
 }
 -(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
     [(UIWebView *)[self.view viewWithTag:999] reload];
@@ -538,7 +527,7 @@
         request=[request stringByReplacingOccurrencesOfString:@"?app=1" withString:@""];
     }
     
-    SHKItem *item = [SHKItem URL:[NSURL URLWithString:request] title:@"SnowBrains is Awesome!" contentType:SHKURLContentTypeWebpage];
+    SHKItem *item = [SHKItem URL:[NSURL URLWithString:request] title:[NSString stringWithFormat:@"%@ is Awesome!",appName] contentType:SHKURLContentTypeWebpage];
     
     // Get the ShareKit action sheet
     SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
@@ -556,8 +545,10 @@
 //iAD delegate methods
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
+#if BURSTLY_ENABLED
     [self.burstlyBanner setHidden:YES];
     [self.burstlyBanner setAdPaused:YES];
+#endif
     self.bannerView.hidden=NO;
     [self resizeWebView];
 }
@@ -569,16 +560,20 @@
 }
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner
 {
+#if BURSTLY_ENABLED
     [self.burstlyBanner setHidden:NO];
     [self.burstlyBanner setAdPaused:NO];
     [self.burstlyBanner showAd];
+#endif
     [self.bannerView setHidden:YES];
     [self resizeWebView];
 }
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+#if BURSTLY_ENABLED
     [self.burstlyBanner setHidden:NO];
     [self.burstlyBanner setAdPaused:NO];
     [self.burstlyBanner showAd];
+#endif
     self.bannerView.hidden=YES;
     NSLog(@"%@",error);
     [self resizeWebView];
@@ -658,40 +653,6 @@
             break;
     };
 }
-//- (void) viewDidLayoutSubviews {
-//    if (self.bannerView.bannerLoaded) {
-//        if(self.toolBar.isHidden){
-//            CGRect contentFrame = self.view.bounds;
-//            CGRect bannerFrame = self.bannerView.frame;
-//            contentFrame.size.height -= self.bannerView.frame.size.height;
-//            bannerFrame.origin.y = contentFrame.size.height;
-//            self.bannerView.frame = bannerFrame;
-//        }else{
-//            CGRect contentFrame = self.view.bounds;
-//            CGRect bannerFrame = self.bannerView.frame;
-//            contentFrame.size.height -= self.bannerView.frame.size.height;
-//            bannerFrame.origin.y = self.toolBar.frame.origin.y-self.bannerView.frame.size.height;
-//            self.bannerView.frame = bannerFrame;
-//        }
-//    }
-//    if (!self.burstlyBanner.isHidden) {
-//        if(self.toolBar.isHidden){
-//            CGRect contentFrame = self.view.bounds;
-//            CGRect bannerFrame = self.burstlyBanner.frame;
-//            contentFrame.size.height -= self.burstlyBanner.frame.size.height;
-//            bannerFrame.origin.y = contentFrame.size.height;
-//            self.burstlyBanner.frame = bannerFrame;
-//        }else{
-//            CGRect contentFrame = self.view.bounds;
-//            CGRect bannerFrame = self.burstlyBanner.frame;
-//            contentFrame.size.height -= self.burstlyBanner.frame.size.height;
-//            bannerFrame.origin.y = self.toolBar.frame.origin.y-self.burstlyBanner.frame.size.height;
-//            self.burstlyBanner.frame = bannerFrame;
-//        }
-//    }
-//
-//    [self resizeWebView];
-//}
 - (void)viewWillLayoutSubviews
 {
     // It's smart to override this method for repositioning banners.
@@ -700,7 +661,7 @@
     // Reposition banner frame.
 //    CGRect bannerFrame = CGRectMake(0, 200, self.view.bounds.size.width, BBANNER_SIZE_320x53.height);
 //    [self.burstlyBanner setFrame:bannerFrame];
-    if (self.bannerView.bannerLoaded) {
+    if (self.bannerView.bannerLoaded&&!self.bannerView.isHidden) {
         if(self.toolBar.isHidden){
             CGRect contentFrame = self.view.bounds;
             CGRect bannerFrame = self.bannerView.frame;
@@ -715,7 +676,8 @@
             self.bannerView.frame = bannerFrame;
         }
     }
-    if (!self.burstlyBanner.isHidden) {
+#if BURSTLY_ENABLED
+    if (self.burstlyBanner&&!self.burstlyBanner.isHidden) {
         if(self.toolBar.isHidden){
             CGRect contentFrame = self.view.bounds;
             CGRect bannerFrame = self.burstlyBanner.frame;
@@ -730,18 +692,20 @@
             self.burstlyBanner.frame = bannerFrame;
         }
     }
-    
+#endif    
     [self resizeWebView];
 }
 -(void)resizeWebView{
     CGRect frame=self.view.frame;
     frame.origin=CGPointMake(0, 0);
-    if(self.bannerView.bannerLoaded){
+    if(self.bannerView.bannerLoaded&&!self.bannerView.isHidden){
         frame.size.height-=self.bannerView.frame.size.height;
     }
-    if(!self.burstlyBanner.isHidden){
+#if BURSTLY_ENABLED
+    if(self.burstlyBanner&&!self.burstlyBanner.isHidden){
         frame.size.height-=self.burstlyBanner.frame.size.height;
     }
+#endif
     if(!self.toolBar.isHidden)
         frame.size.height-=self.toolBar.frame.size.height;
     self.webview.frame =frame;

@@ -4,7 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>mobileBrains.xcscheme</key>
+		<key>cyclebrains.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>50</integer>
+		</dict>
+		<key>snowBrains.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>CD4F3E501716878D008A250D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CDFAD21817617F0B001AAD60</key>
 		<dict>
 			<key>primary</key>
 			<true/>

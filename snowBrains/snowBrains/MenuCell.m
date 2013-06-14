@@ -30,11 +30,11 @@
 }
 
 - (void)updateCellDisplay {
-    if(([self.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")])&&showArrowDown)
-        self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
-    else if(([self.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")])&&!showArrowDown)
-        self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
-    else if (self.selected || self.highlighted) {
+    if(([self.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")])&&showArrowDown){
+//        self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
+    }else if(([self.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")])&&!showArrowDown){
+//        self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
+        }else if (self.selected || self.highlighted) {
         self.accessoryView=nil;
         self.menuItem.textColor = [UIColor redColor];
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sideBarCellBackgroundSelected"]];

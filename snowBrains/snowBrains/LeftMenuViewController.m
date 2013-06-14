@@ -29,6 +29,10 @@ enum {
     NSArray *moreItems;
     NSArray *videoItems;
     
+    bool locationSelect;
+    bool moreSelect;
+    bool videoSelect;
+    
 }
 @property(nonatomic, strong) UISearchBar *searchBar;
 @end
@@ -49,6 +53,9 @@ enum {
         bookmarksURLS=[[NSMutableArray alloc]initWithObjects:@"Bookmarks dummy", nil];
         otherList=[[NSMutableArray alloc]initWithObjects:NSLocalizedString(@"Settings",@"Settings name"),NSLocalizedString(@"Contact",@"Contact name"), nil];
         sections=[[NSMutableArray alloc]initWithObjects:mainItems,bookmarksList,otherList, nil];
+        locationSelect=NO;
+        moreSelect=NO;
+        videoSelect=NO;
     }
     return self;
 }
@@ -86,6 +93,7 @@ enum {
 //    sections=[[NSMutableArray alloc]initWithObjects:mainItems,bookmarksList,otherList, nil];
     [sections replaceObjectAtIndex:lMenuListBookmarks withObject:bookmarksList];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:lMenuListBookmarks] withRowAnimation:UITableViewRowAnimationAutomatic];
+//  [self.tableView reloadData];
 }
 
 
@@ -243,10 +251,23 @@ enum {
         cell.indentationLevel=1;
         cell.textLabel.font=[UIFont systemFontOfSize:17];
     }
-    if([cell.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[cell.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")]||[cell.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]){
-        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    if([cell.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]){
+        if(locationSelect)
+            cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
+        else
+            cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
+    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")]){
+        if(videoSelect)
+            cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
+        else
+            cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
+    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]){
+        if(moreSelect)
+            cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
+        else
+            cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
     }else{
-        cell.accessoryType=UITableViewCellAccessoryNone;
+        cell.accessoryView=nil;
     }
     if(indexPath.section==lMenuListBookmarks)
         cell.imageView.image=[UIImage imageNamed:@"bookmarkIcon"];
@@ -312,24 +333,30 @@ enum {
             if([tempList containsObject:[locationItems objectAtIndex:0]]){
                 [tempList removeObjectsInArray:locationItems];
                 [tempList removeObjectsInArray:moreItems];
+                locationSelect=NO;
+                moreSelect=NO;
             }else{
                 for(int i=0;i<locationItems.count;i++)
                     [tempList insertObject:[locationItems objectAtIndex:i] atIndex:[mainList indexOfObject:selection]+i+1];
+                locationSelect=YES;
             }
         }else if([selection isEqualToString:NSLocalizedString(@"More", @"More name")]){
             if([tempList containsObject:[moreItems objectAtIndex:0]]){
                 [tempList removeObjectsInArray:moreItems];
-            }
-            else{
+                moreSelect=NO;
+            }else{
                 for(int i=0;i<moreItems.count;i++)
                     [tempList insertObject:[moreItems objectAtIndex:i] atIndex:[mainList indexOfObject:selection]+i+1];
+                moreSelect=YES;
             }
         }else if([selection isEqualToString:NSLocalizedString(@"Video", @"Video name")]){
             if([tempList containsObject:[videoItems objectAtIndex:0]]){
                 [tempList removeObjectsInArray:videoItems];
+                videoSelect=NO;
             }else{
                 for(int i=0;i<videoItems.count;i++)
                     [tempList insertObject:[videoItems objectAtIndex:i] atIndex:[mainList indexOfObject:selection]+i+1];
+                videoSelect=YES;
             }
         }
         mainList=[[NSMutableArray alloc]initWithArray:tempList];
@@ -393,7 +420,7 @@ enum {
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error for alerts")message:NSLocalizedString(@"Email unsupported", @"Email Error for alerts")delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok button for alerts")otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error for alerts")message:NSLocalizedString(@"Email unsupported, please check that you have setup an account", @"Email Error for alerts")delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok button for alerts")otherButtonTitles: nil];
             [alert show];
         }
     [self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:[otherList indexOfObject:@"Contact"] inSection:lMenuListOther] animated:YES];
