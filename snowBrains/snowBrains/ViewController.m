@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "Burstly.h"
 #import "BurstlyAdUtils.h"
+#import "Reachability.h"
 
 #define APP_ID @"CPcPR5EkQkuQeUYJLq0_Pw"
 #define BANNER_ZONE_ID @"0658158179055264121"
@@ -143,8 +144,14 @@
     [self.webview stopLoading];
     
 //    [self networkActivity];
-    
-    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+    NSURLRequest *snowbrains;
+    if([Reachability reachabilityForInternetConnection].currentReachabilityStatus==NotReachable){
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Connection Error", @"Connection Error") message:NSLocalizedString(@"You are in offline mode, will try and load cached pages",@"Offline cache message") delegate:self cancelButtonTitle:NSLocalizedString(@"OK",@"OK button") otherButtonTitles:nil];
+        [alert show];
+        [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:4];
+        snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
+    }else
+        snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
 //    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
 //    AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        [self.webview loadData:responseObject MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:url];
@@ -208,10 +215,14 @@
     [self.webview.scrollView addSubview:pull];
 }
 -(void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
+    if([Reachability reachabilityForInternetConnection].currentReachabilityStatus==NotReachable){
+        [self cancelPullToRefresh];
+    }else{
     [(UIWebView *)[self.view viewWithTag:999] reload];
     [self networkActivity];
     [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(cancelPullToRefresh) userInfo:nil repeats:NO];
     [TestFlight passCheckpoint:@"pull to refresh"];
+    }
 }
 -(void)cancelPullToRefresh{
     if([(PullToRefreshView *)[self.view viewWithTag:998] getState]==PullToRefreshViewStateLoading){
@@ -219,7 +230,7 @@
         [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Connection Error", @"Connection Error") message:NSLocalizedString(@"Could not refresh the current page, please check your internet connection",@"Could not refresh message") delegate:self cancelButtonTitle:NSLocalizedString(@"OK",@"OK button") otherButtonTitles:nil];
         [alert show];
-        [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:2];
+        [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:4];
         [self noAccessPage];
         [TestFlight passCheckpoint:@"pull to refresh load fail"];
     }
@@ -238,16 +249,19 @@
         if(errorCode==1009){
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Offline Mode",@"Offline mode") message:NSLocalizedString(@"Could not connect to the internet, displaying last viewed version",@"Offline mode message") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"OK button") otherButtonTitles:nil];
             [alert show];
-            [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:2];
+            [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:4];
             [self noAccessPage];
             [TestFlight passCheckpoint:@"offline mode"];
             return;
             
-        }
-        else if(1021>=errorCode&&errorCode>=1000){
+        }else if([Reachability reachabilityForInternetConnection].currentReachabilityStatus==NotReachable){
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"No Cache", @"No Cache") message:NSLocalizedString(@"There are no pages saved, you must connect online at least once to enable offline viewing",@"No Offline cache message") delegate:self cancelButtonTitle:NSLocalizedString(@"OK",@"OK button") otherButtonTitles:nil];
+            [alert show];
+            [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:4];
+        }else if(1021>=errorCode&&errorCode>=1000){
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Connection Error", @"Connection Error") message:NSLocalizedString(@"Could not load the requested page, please check that you have Internet Access", @"No access") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"OK button") otherButtonTitles:nil];
             [alert show];
-            [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:2];
+            [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:4];
             [self noAccessPage];
             [TestFlight passCheckpoint:@"no access"];
             return;

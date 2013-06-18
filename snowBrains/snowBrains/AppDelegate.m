@@ -97,6 +97,14 @@
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:@"buttonBackground"]];
+    
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonBackground"]],UITextAttributeTextColor,
+                                               [UIColor lightGrayColor], UITextAttributeTextShadowColor,
+                                               [NSValue valueWithUIOffset:UIOffsetMake(-1, 2)], UITextAttributeTextShadowOffset, nil];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
+    
     [SHK flushOfflineQueue];
     
     DefaultSHKConfigurator *configurator=[[MyShareKitConfig alloc]init];
