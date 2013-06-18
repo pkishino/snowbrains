@@ -56,9 +56,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.loadFigure.frame=CGRectMake(122, self.flakeAnimation.frame.origin.y+50, 76, 162);
     [self.webview setDelegate:self];
     self.webview.backgroundColor=[UIColor grayColor];
-    self.webview.scrollView.scrollsToTop=YES;
     if(!toForward){
         [self menuTap:NSLocalizedString(@"Home", @"Home")];
     }
@@ -112,6 +112,8 @@
      selector:@selector(loadAbout:)
      name:@"AboutURL"
      object:nil];
+    
+    self.webview.scrollView.scrollsToTop=YES;
 }
 -(void)loadAbout:(NSNotification *)notification{
     [self loadWithURL:[notification.userInfo valueForKey:@"AboutURL"]];
@@ -478,18 +480,6 @@
 }
 - (BOOL)shouldAutorotate
 {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
-    if (orientation == UIInterfaceOrientationLandscapeLeft||orientation==UIInterfaceOrientationLandscapeRight){
-        
-        self.loadFigure.frame=CGRectMake(202, 159, self.loadFigure.frame.size.width, self.loadFigure.frame.size.height);
-        self.bannerView.requiredContentSizeIdentifiers=[NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
-        self.bannerView.currentContentSizeIdentifier=ADBannerContentSizeIdentifierLandscape;
-    }else{
-        self.loadFigure.frame=CGRectMake(122, 237, self.loadFigure.frame.size.width, self.loadFigure.frame.size.height);
-        self.bannerView.requiredContentSizeIdentifiers=[NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
-        self.bannerView.currentContentSizeIdentifier=ADBannerContentSizeIdentifierPortrait;
-    }
     [self viewWillLayoutSubviews];
     [TestFlight passCheckpoint:@"rotated"];
     return YES;
@@ -692,7 +682,21 @@
             self.burstlyBanner.frame = bannerFrame;
         }
     }
-#endif    
+#endif
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    if (orientation == UIInterfaceOrientationLandscapeLeft||orientation==UIInterfaceOrientationLandscapeRight){
+        if(!self.loadFigure.isHidden)
+            self.loadFigure.frame=CGRectMake(202, self.flakeAnimation.frame.origin.y+50, 76, 102);
+        self.bannerView.requiredContentSizeIdentifiers=[NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
+        self.bannerView.currentContentSizeIdentifier=ADBannerContentSizeIdentifierLandscape;
+    }else{
+        if(!self.loadFigure.isHidden)
+            self.loadFigure.frame=CGRectMake(122, self.flakeAnimation.frame.origin.y+50, 76, 162);
+        self.bannerView.requiredContentSizeIdentifiers=[NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
+        self.bannerView.currentContentSizeIdentifier=ADBannerContentSizeIdentifierPortrait;
+    }
+    
     [self resizeWebView];
 }
 -(void)resizeWebView{

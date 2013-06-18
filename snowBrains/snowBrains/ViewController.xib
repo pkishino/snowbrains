@@ -89,7 +89,7 @@
 						<reference key="NSNextResponder" ref="674197399"/>
 						<int key="NSvFlags">1341</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrame">{{122, 224}, {76, 162}}</string>
+						<string key="NSFrame">{{122, 223}, {76, 162}}</string>
 						<reference key="NSSuperview" ref="674197399"/>
 						<reference key="NSNextKeyView" ref="226093892"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -133,7 +133,6 @@
 						<int key="NSvFlags">-2147482358</int>
 						<string key="NSFrame">{{0, 392}, {320, 44}}</string>
 						<reference key="NSSuperview" ref="674197399"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -382,9 +381,9 @@
 							<reference ref="974031522"/>
 							<reference ref="226093892"/>
 							<reference ref="431890916"/>
-							<reference ref="727916113"/>
 							<reference ref="398328642"/>
 							<reference ref="188696980"/>
+							<reference ref="727916113"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
