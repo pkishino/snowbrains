@@ -105,7 +105,7 @@
     [Appirater setAppId:@"642740107"];
     [Appirater setUsesUntilPrompt:5];
     [Appirater setTimeBeforeReminding:2];
-    [Appirater setDebug:YES];
+//    [Appirater setDebug:YES];
     
     return YES;
 }
