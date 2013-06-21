@@ -17,6 +17,7 @@
 #import "SHKGooglePlus.h"
 #import "MyShareKitConfig.h"
 #import "InAppSettings.h"
+#import "Appirater.h"
 
 #define WIDTH_IPHONE_5 568
 #define IS_IPHONE_5 ([[UIScreen mainScreen] bounds].size.height == WIDTH_IPHONE_5)
@@ -73,16 +74,6 @@
     [[NSUserDefaults standardUserDefaults]setValue:versionStr forKey:@"versionIdentifier"];
     [[NSUserDefaults standardUserDefaults]setValue:appName forKey:@"aboutUrl"];
     
-//    [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
-//    
-//    if (IS_IPHONE_5)
-//    {
-//        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape5"] forBarMetrics:UIBarMetricsLandscapePhone];
-//    }
-//    else
-//    {
-//        [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navBarBackground-Landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
-//    }
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-portrait"] forBarMetrics:UIBarMetricsDefault];
     
     if (IS_IPHONE_5)
@@ -98,12 +89,12 @@
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:@"buttonBackground"]];
     
-    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                               [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonBackground"]],UITextAttributeTextColor,
-                                               [UIColor lightGrayColor], UITextAttributeTextShadowColor,
-                                               [NSValue valueWithUIOffset:UIOffsetMake(-1, 2)], UITextAttributeTextShadowOffset, nil];
-    
-    [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
+//    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                               [UIColor colorWithPatternImage:[UIImage imageNamed:@"buttonBackground"]],UITextAttributeTextColor,
+//                                               [UIColor lightGrayColor], UITextAttributeTextShadowColor,
+//                                               [NSValue valueWithUIOffset:UIOffsetMake(-1, 2)], UITextAttributeTextShadowOffset, nil];
+//    
+//    [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
     
     [SHK flushOfflineQueue];
     
@@ -111,6 +102,10 @@
     [SHKConfiguration sharedInstanceWithConfigurator:configurator];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled=YES;
+    [Appirater setAppId:@"642740107"];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:YES];
     
     return YES;
 }
@@ -130,6 +125,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

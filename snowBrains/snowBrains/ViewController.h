@@ -14,10 +14,12 @@
 #import <iAd/iAd.h>
 #import "BurstlyBannerAdView.h"
 #import "BurstlyBannerViewDelegate.h"
+#import "Appirater.h"
+#import "AppiraterDelegate.h"
 
 
 
-@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,UINavigationControllerDelegate,LeftMenuViewControllerDelegate,UIActionSheetDelegate,ADBannerViewDelegate,MFMailComposeViewControllerDelegate,BurstlyBannerViewDelegate>
+@interface ViewController : UIViewController<UIWebViewDelegate,PullToRefreshViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,UINavigationControllerDelegate,LeftMenuViewControllerDelegate,UIActionSheetDelegate,ADBannerViewDelegate,MFMailComposeViewControllerDelegate,BurstlyBannerViewDelegate,AppiraterDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 @property (strong, nonatomic) IBOutlet UIImageView *loadBackground;
 @property (strong, nonatomic) IBOutlet UIImageView *loadLogo;

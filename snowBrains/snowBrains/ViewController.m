@@ -57,6 +57,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.titleView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snowLogo"]];
     self.loadFigure.frame=CGRectMake(122, self.flakeAnimation.frame.origin.y+50, 76, 162);
     [self.webview setDelegate:self];
     self.webview.backgroundColor=[UIColor grayColor];
@@ -115,6 +116,12 @@
      object:nil];
     
     self.webview.scrollView.scrollsToTop=YES;
+    [self postReview];
+}
+-(void)postReview{
+    [Appirater setDelegate:self];
+    [Appirater appLaunched:YES];
+    
 }
 -(void)loadAbout:(NSNotification *)notification{
     [self loadWithURL:[notification.userInfo valueForKey:@"AboutURL"]];
@@ -348,7 +355,6 @@
 
 -(void)menuTap:(NSString *)menuItem{
     menuSelection=menuItem;
-    self.navigationItem.title=menuItem;
     if([menuItem isEqualToString:NSLocalizedString(@"Home",@"Home")])
         [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
     else if([menuItem isEqualToString:NSLocalizedString(@"Weather",@"Weather")])
@@ -441,7 +447,7 @@
 - (IBAction)bookmarkTap:(id)sender {
     NSURL *toBookmark=self.webview.request.URL;
     if([[NSString stringWithFormat:@"%@",toBookmark] rangeOfString:@"www.snowbrains.com"].location!=NSNotFound||[[NSString stringWithFormat:@"%@",toBookmark] rangeOfString:@"http://snowbrains.com"].location!=NSNotFound){
-        BookmarkModalViewController *bookmarkAdd=[[BookmarkModalViewController alloc]initWithURL:toBookmark andCategory:self.navigationItem.title];
+        BookmarkModalViewController *bookmarkAdd=[[BookmarkModalViewController alloc]initWithURL:toBookmark andCategory:menuSelection];
         [self presentModalViewController:bookmarkAdd animated:YES];
     }else{
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", @"Wrong bookmark url error") message:NSLocalizedString(@"Sorry, this page cannot be bookmarked", @"wrong url bookmark message") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok",@"OK button") otherButtonTitles: nil];
