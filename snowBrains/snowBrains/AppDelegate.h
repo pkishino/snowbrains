@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+extern NSArray *globalData;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UIWebViewDelegate>
 

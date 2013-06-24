@@ -53,6 +53,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+   
     // Override point for customization after application launch.
     [TestFlight takeOff:@"c0b7b825-f506-4f0b-b73f-0d75286c3318"];
 //    [TestFlight setOptions:{TFOptionLogToConsole:@NO}];
@@ -73,6 +74,10 @@
     NSString *appName=[appInfo objectForKey:@"CFBundleDisplayName"];
     [[NSUserDefaults standardUserDefaults]setValue:versionStr forKey:@"versionIdentifier"];
     [[NSUserDefaults standardUserDefaults]setValue:appName forKey:@"aboutUrl"];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:[appName lowercaseString] ofType:@"plist"];
+    NSArray *globalData = [NSArray arrayWithContentsOfFile:path];
+    
     
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"header-portrait"] forBarMetrics:UIBarMetricsDefault];
     
