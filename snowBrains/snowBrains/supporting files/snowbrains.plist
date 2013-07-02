@@ -248,5 +248,31 @@
 			</dict>
 		</array>
 	</dict>
+	<dict>
+		<key>name</key>
+		<string>SnowBrains</string>
+		<key>menuColour</key>
+		<string>sideBarCellBackground</string>
+		<key>menuHeaderImage</key>
+		<string></string>
+		<key>logoImage</key>
+		<string>snowLogo</string>
+		<key>headerImage</key>
+		<string>header-portrait</string>
+		<key>headerLandscapeImage</key>
+		<string>header-landscape</string>
+		<key>headerIphone5Image</key>
+		<string>header-iPhone5</string>
+		<key>loadingImage</key>
+		<string>loadingBackground</string>
+		<key>spinnerImage</key>
+		<string>FlakeHighRes</string>
+		<key>headlessImage</key>
+		<string>SnowBrainsLogoNoHead</string>
+		<key>backgroundLogo</key>
+		<string>SnowBrains</string>
+		<key>buttonBackgroundColour</key>
+		<string>buttonBackground</string>
+	</dict>
 </array>
 </plist>
