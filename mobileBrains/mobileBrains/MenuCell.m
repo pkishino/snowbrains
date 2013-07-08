@@ -20,11 +20,11 @@
         self.menuItem=self.textLabel;
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"]valueForKey:@"menuColour"]]];
         self.menuItem.textColor = [UIColor whiteColor];
-        if(([self.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")])){
-            self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
-//            showArrowDown=NO;
-        }else
-            self.accessoryView=nil;
+//        if(([self.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]||[self.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")])){
+//            self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
+////            showArrowDown=NO;
+//        }else
+//            self.accessoryView=nil;
     }
     return self;
 }
@@ -36,12 +36,12 @@
 ////        self.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
 //        }else
     if (self.selected || self.highlighted) {
-        self.accessoryView=nil;
+//        self.accessoryView=nil;
         self.menuItem.textColor = [UIColor redColor];
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"]valueForKey:@"menuColourSelected"]]];
     }
     else {
-        self.accessoryView=nil;
+//        self.accessoryView=nil;
         self.menuItem.textColor = [UIColor whiteColor];
         self.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"]valueForKey:@"menuColour"]]];
     }

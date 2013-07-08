@@ -135,7 +135,7 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>CycleBrains</string>
+		<string>cyclebrains</string>
 		<key>id</key>
 		<string></string>
 		<key>menuColour</key>
@@ -158,8 +158,6 @@
 		<string>cyclebrains_spinner</string>
 		<key>headlessImage</key>
 		<string>cyclebrains_headless</string>
-		<key>backgroundLogo</key>
-		<string>cyclebrains_backgroundLogo</string>
 		<key>buttonBackgroundColour</key>
 		<string>cyclebrains_buttonBackground</string>
 	</dict>

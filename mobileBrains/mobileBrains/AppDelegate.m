@@ -35,6 +35,7 @@
 
 - (MFSideMenu *)sideMenu {
     UINavigationController *navigationController = [self navigationController];
+    
     LeftMenuViewController *leftSideMenuController = [[LeftMenuViewController alloc] init];
     //to add the right menu again uncomment
 //    RightMenuViewController *rightSideMenuController = [[RightMenuViewController alloc] init];
@@ -64,9 +65,6 @@
     [NSURLCache setSharedURLCache:URLCache];
     [InAppSettings registerDefaults];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [self sideMenu].navigationController;
-    [self.window makeKeyAndVisible];
     NSDictionary *appInfo = [[NSBundle mainBundle] infoDictionary];
     NSString *versionStr = [NSString stringWithFormat:@"%@ (%@)",
                             [appInfo objectForKey:@"CFBundleShortVersionString"],
@@ -81,8 +79,6 @@
     [[NSUserDefaults standardUserDefaults] setObject:globalData forKey:@"globalData"];
     NSDictionary *globalImages=[NSDictionary dictionaryWithDictionary:[globalData lastObject]];
     [[NSUserDefaults standardUserDefaults] setObject:globalImages forKey:@"globalImages"];
-    
-    
     
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"headerImage"]] forBarMetrics:UIBarMetricsDefault];
     
@@ -109,6 +105,9 @@
     [Appirater setUsesUntilPrompt:5];
     [Appirater setTimeBeforeReminding:2];
 //    [Appirater setDebug:YES];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [self sideMenu].navigationController;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

@@ -251,7 +251,7 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>SnowBrains</string>
+		<string>snowbrains</string>
 		<key>id</key>
 		<string>642740107</string>
 		<key>menuColour</key>
@@ -274,8 +274,6 @@
 		<string>snowbrains_spinner</string>
 		<key>headlessImage</key>
 		<string>snowbrains_headless</string>
-		<key>backgroundLogo</key>
-		<string>snowbrains_backgroundLogo</string>
 		<key>buttonBackgroundColour</key>
 		<string>snowbrains_buttonBackground</string>
 	</dict>

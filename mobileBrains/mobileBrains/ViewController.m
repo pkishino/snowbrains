@@ -41,6 +41,7 @@ NSString *appName;
 //        client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@"http://www.snowbrains.com/"]];
         NSDictionary *appInfo = [[NSBundle mainBundle] infoDictionary];
         appName=[appInfo objectForKey:@"CFBundleDisplayName"];
+        
     }
     return self;
 }
@@ -59,7 +60,11 @@ NSString *appName;
     [super viewDidLoad];
     self.navigationItem.titleView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"logoImage"]]];
     //add imagaes for viewcontroller.xib
-    self.loadFigure.frame=CGRectMake(122, self.flakeAnimation.frame.origin.y+50, 76, 162);
+    self.loadFigure.frame=CGRectMake(122, self.spinner.frame.origin.y+50, 76, 162);
+    self.loadFigure.image=[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"headlessImage"]];
+    self.spinner.image=[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"spinnerImage"]];
+    self.loadLogo.image=[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"logoImage"]];
+    self.loadBackground.image=[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"loadingImage"]];
     [self.webview setDelegate:self];
     self.webview.backgroundColor=[UIColor grayColor];
     if(!toForward){
@@ -69,6 +74,7 @@ NSString *appName;
     [self setupPullDownRefresh];
     //    [self setupAnimation];
     [self setupSwipe];
+    [self setupToolBar];
     [self setupSideMenu];
 #if IAD_ENABLED
     self.bannerView.delegate=self;
@@ -146,7 +152,7 @@ NSString *appName;
     }
     int new=[[NSUserDefaults standardUserDefaults]integerForKey:@"refresh_timer"];
     [[NSUserDefaults standardUserDefaults]setValue:[NSString stringWithFormat:@"%d",new] forKey:@"refresh_title"];
-    [TestFlight passCheckpoint:@"chaning settings"];
+    [TestFlight passCheckpoint:@"changing settings"];
 }
 -(void)loadWithURL:(NSURL *)url{
     [self.webview stopLoading];
@@ -178,9 +184,9 @@ NSString *appName;
 -(void)networkActivity{
     [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     [self hideSwipeControl];
-    self.flakeAnimation.hidden=NO;
+    self.spinner.hidden=NO;
     [self setupAnimation];
-    [self.flakeAnimation startAnimating];
+    [self.spinner startAnimating];
     if(!self.loadFigure.isHidden&&!toForward){
         self.loadFigure.hidden=NO;
         self.loadBackground.hidden=NO;
@@ -189,8 +195,8 @@ NSString *appName;
 }
 -(void)stopNetworkActivity{
     [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
-    [self.flakeAnimation stopAnimating];
-    self.flakeAnimation.hidden=YES;
+    [self.spinner stopAnimating];
+    self.spinner.hidden=YES;
     self.loadFigure.hidden=YES;
     self.loadBackground.hidden=YES;
     self.loadLogo.hidden=YES;
@@ -198,6 +204,9 @@ NSString *appName;
 }
 -(void)noAccessPage{
     [self webViewDidFinishLoad:nil];
+}
+-(void)setupToolBar{
+    self.toolBar.tintColor=[UIColor colorWithPatternImage:[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"buttonBackgroundColour"]]];
 }
 -(void)setupSwipe{
     
@@ -407,7 +416,7 @@ NSString *appName;
     fullRotation.toValue = [NSNumber numberWithFloat:(2*M_PI)];
     fullRotation.duration = 5.0;
     fullRotation.repeatCount = HUGE_VALF;
-    [self.flakeAnimation.layer addAnimation:fullRotation forKey:@"flakeAnimation"];
+    [self.spinner.layer addAnimation:fullRotation forKey:@"flakeAnimation"];
 }
 -(void)setupImageAnimation{
     
@@ -708,12 +717,12 @@ NSString *appName;
     
     if (orientation == UIInterfaceOrientationLandscapeLeft||orientation==UIInterfaceOrientationLandscapeRight){
         if(!self.loadFigure.isHidden)
-            self.loadFigure.frame=CGRectMake(202, self.flakeAnimation.frame.origin.y+50, 76, 102);
+            self.loadFigure.frame=CGRectMake(202, self.spinner.frame.origin.y+50, 76, 102);
         self.bannerView.requiredContentSizeIdentifiers=[NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
         self.bannerView.currentContentSizeIdentifier=ADBannerContentSizeIdentifierLandscape;
     }else{
         if(!self.loadFigure.isHidden)
-            self.loadFigure.frame=CGRectMake(122, self.flakeAnimation.frame.origin.y+50, 76, 162);
+            self.loadFigure.frame=CGRectMake(122, self.spinner.frame.origin.y+50, 76, 162);
         self.bannerView.requiredContentSizeIdentifiers=[NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
         self.bannerView.currentContentSizeIdentifier=ADBannerContentSizeIdentifierPortrait;
     }
@@ -751,7 +760,7 @@ NSString *appName;
     [self setWebview:nil];
     [self setLoadBackground:nil];
     [self setLoadFigure:nil];
-    [self setFlakeAnimation:nil];
+    [self setSpinner:nil];
     [self setToolBar:nil];
     [self setShareButton:nil];
     [self setBackButton:nil];

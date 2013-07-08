@@ -18,11 +18,19 @@ enum {
 
 @interface LeftMenuViewController(){
     NSMutableArray *sections;
+    NSMutableArray *sectionNames;
+    NSMutableArray *menuIcons;
+    NSMutableArray *globalURLS;
     
     NSMutableArray *mainList;
     NSMutableArray *bookmarksList;
     NSMutableArray *bookmarksURLS;
     NSMutableArray *otherList;
+    
+//    NSMutableArray *mainItems;
+//    NSMutableArray *locationItems;
+//    NSMutableArray *moreItems;
+//    NSMutableArray *videoItems;
     
     NSArray *mainItems;
     NSArray *locationItems;
@@ -40,9 +48,26 @@ enum {
 @implementation LeftMenuViewController
 
 @synthesize sideMenu;
-//@synthesize searchBar;
 - (id)init{
     if(self=[super init]){
+        
+        NSArray *plist=[[NSUserDefaults standardUserDefaults] objectForKey:@"globalData"];
+        sectionNames=[[NSMutableArray alloc]init];
+        menuIcons=[[NSMutableArray alloc]init];
+        globalURLS=[[NSMutableArray alloc]init];
+//        mainItems=[[NSMutableArray alloc]init];
+//        locationItems=[[NSMutableArray alloc]init];
+//        moreItems=[[NSMutableArray alloc]init];
+//        videoItems=[[NSMutableArray alloc]init];
+        sections=[[NSMutableArray alloc]init];
+        for(NSDictionary *sectionsList in plist){
+            NSString *sectionName=[sectionsList valueForKey:@"section"];
+            if(sectionName){
+                [sectionNames addObject:sectionName];
+                [self enumerateItems:[sectionsList valueForKey:@"items"]];
+            }
+        }
+        
         
         mainItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Home", @"Home name"),NSLocalizedString(@"Locations", @"Locations name"),NSLocalizedString(@"Weather", @"Weather name"),NSLocalizedString(@"Video", @"Video name"),NSLocalizedString(@"Gear", @"Gear name"),NSLocalizedString(@"Brains", @"Brains name"), nil];
         locationItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Squaw", @"Squaw name"),NSLocalizedString(@"Jackson",@"Jackson name"),NSLocalizedString(@"Whistler",@"Whistler name"),NSLocalizedString(@"Alaska",@"Alaska name"),NSLocalizedString(@"More",@"More name"), nil];
@@ -58,6 +83,23 @@ enum {
         videoSelect=NO;
     }
     return self;
+}
+-(void)enumerateItems:(NSArray*) items{
+    if(items){
+        for(NSDictionary *itemsList in items){
+            NSString *name=[itemsList valueForKey:@"name"];
+            NSURL *url=[itemsList valueForKey:@"link"];
+            NSString *icon=[itemsList valueForKey:@"icon"];
+            if(name){
+            if(url)[globalURLS addObject:[NSDictionary dictionaryWithObject:url forKey:name]];
+            if(icon)[menuIcons addObject:[NSDictionary dictionaryWithObject:icon forKey:name]];
+            }
+            BOOL subItems=[[itemsList valueForKey:@"subgroup"]boolValue];
+            if(subItems){
+                [self enumerateItems:[itemsList valueForKey:@"items"]];
+            }
+        }
+    }
 }
 -(NSMutableArray *)loadBookmarks{
     NSMutableArray *bookmarks=[[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
@@ -127,11 +169,12 @@ enum {
 //        return sectionHeaderView;
 //    }else{
         UIView* sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, [self tableView:tableView heightForHeaderInSection:section])];
-        sectionHeaderView.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+        sectionHeaderView.backgroundColor = [UIColor clearColor];
         
         UIImageView *headerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PlainTableViewSectionHeader"]];
-        headerImage.contentMode = UIViewContentModeScaleAspectFit;
-        
+        headerImage.contentMode = UIViewContentModeScaleToFill;
+        headerImage.frame=sectionHeaderView.frame;
+    
         [sectionHeaderView addSubview:headerImage];
         
         UILabel *sectionText = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, tableView.bounds.size.width - 70, 18)];
@@ -176,7 +219,7 @@ enum {
             }
             cell.textLabel.backgroundColor=[UIColor clearColor];
             cell.textLabel.text=NSLocalizedString(@"Your bookmarks will show here", @"Empty bookmark list footer");
-            cell.textLabel.textColor=[UIColor grayColor];
+            cell.textLabel.textColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"PlainTableViewSectionHeader"]];
             cell.textLabel.font=[UIFont italicSystemFontOfSize:12];
             cell.indentationLevel=2;
             cell.accessoryType=UITableViewCellAccessoryNone;
@@ -187,7 +230,7 @@ enum {
     return nil;
 }
 -(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return UITableViewAutomaticDimension;
+    return 20;
 }
 -(float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if(section==lMenuListBookmarks&&bookmarksList.count==0) return 20;
@@ -224,6 +267,9 @@ enum {
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return sections.count;
+}
+-(NSString *)getSectionName:(NSInteger)section{
+    return[sectionNames objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -270,22 +316,15 @@ enum {
         cell.accessoryView=nil;
     }
     if(indexPath.section==lMenuListBookmarks)
-        cell.imageView.image=[UIImage imageNamed:@"bookmarkIcon"];
+        cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@_bookmarkIcon",[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"name"]]];
+    else if([cell.textLabel.text isEqualToString:@"Home"])
+        cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@_home",[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"name"]]];
     else
         cell.imageView.image=[UIImage imageNamed:[cell.textLabel.text lowercaseString]];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     
     return cell;
-}
--(NSString *)getSectionName:(NSInteger)section{
-    if(section==lMenuListMain)
-        return NSLocalizedString(@"Main", @"Main name");
-    else if(section==lMenuListBookmarks)
-        return NSLocalizedString(@"Bookmarks", @"Bookmarks name");
-    else if (section==lMenuListOther)
-        return NSLocalizedString(@"Other", @"Other name");
-    return nil;
 }
 //-(int)getSectionCount:(NSInteger)section{
 //    if(section==lMenuListMain)

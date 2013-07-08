@@ -25,7 +25,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *loadBackground;
 @property (strong, nonatomic) IBOutlet UIImageView *loadLogo;
 @property (strong, nonatomic) IBOutlet UIImageView *loadFigure;
-@property (strong, nonatomic) IBOutlet UIImageView *flakeAnimation;
+@property (strong, nonatomic) IBOutlet UIImageView *spinner;
 @property (strong, nonatomic) IBOutlet UIToolbar *toolBar;
 - (IBAction)backwardTap:(id)sender;
 - (IBAction)bookmarkTap:(id)sender;

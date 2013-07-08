@@ -125,7 +125,7 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>SwellBrains</string>
+		<string>swellbrains</string>
 		<key>id</key>
 		<string></string>
 		<key>menuColour</key>
@@ -148,8 +148,6 @@
 		<string>swellbrains_spinner</string>
 		<key>headlessImage</key>
 		<string>swellbrains_headless</string>
-		<key>backgroundLogo</key>
-		<string>swellbrains_backgroundLogo</string>
 		<key>buttonBackgroundColour</key>
 		<string>swellbrains_buttonBackground</string>
 	</dict>
