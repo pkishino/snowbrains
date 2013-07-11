@@ -11,7 +11,7 @@
 				<key>name</key>
 				<string>Home</string>
 				<key>link</key>
-				<string>www.snowbrains.com</string>
+				<string>http://www.swellbrains.com/</string>
 				<key>icon</key>
 				<string>swellbrains_home</string>
 				<key>subgroup</key>
@@ -32,7 +32,7 @@
 						<key>name</key>
 						<string>Indonesia</string>
 						<key>link</key>
-						<string>www.snowbrains.com</string>
+						<string>http://swellbrains.com/category/swell/indonesia-swell/</string>
 						<key>icon</key>
 						<string>indonesia</string>
 						<key>subgroup</key>
@@ -42,9 +42,9 @@
 						<key>name</key>
 						<string>Nor Cal</string>
 						<key>link</key>
-						<string>www.snowbrains.com</string>
+						<string>http://snowbrains.com/category/swell/locations-swell/norcal/</string>
 						<key>icon</key>
-						<string>nor cal</string>
+						<string>mammoth</string>
 						<key>subgroup</key>
 						<false/>
 					</dict>
@@ -52,7 +52,7 @@
 						<key>name</key>
 						<string>So Cal</string>
 						<key>link</key>
-						<string>www.snowbrains.com</string>
+						<string>http://snowbrains.com/category/swell/locations-swell/socal/</string>
 						<key>icon</key>
 						<string>so cal</string>
 						<key>subgroup</key>
@@ -64,7 +64,7 @@
 				<key>name</key>
 				<string>Video</string>
 				<key>link</key>
-				<string></string>
+				<string>http://swellbrains.com/category/swell/video-swell/</string>
 				<key>icon</key>
 				<string>video</string>
 				<key>subgroup</key>
@@ -74,7 +74,7 @@
 				<key>name</key>
 				<string>Gear</string>
 				<key>link</key>
-				<string>www.snowbrains.com</string>
+				<string>http://swellbrains.com/category/swell/gear-swell/</string>
 				<key>icon</key>
 				<string>gear</string>
 				<key>subgroup</key>
@@ -84,7 +84,7 @@
 				<key>name</key>
 				<string>Brains</string>
 				<key>link</key>
-				<string>www.snowbrains.com</string>
+				<string>http://swellbrains.com/category/brains</string>
 				<key>icon</key>
 				<string>brains</string>
 				<key>subgroup</key>

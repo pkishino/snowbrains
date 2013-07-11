@@ -68,7 +68,7 @@ NSString *appName;
     [self.webview setDelegate:self];
     self.webview.backgroundColor=[UIColor grayColor];
     if(!toForward){
-        [self menuTap:NSLocalizedString(@"Home", @"Home")];
+        [self menuTap:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalURLS"] valueForKey:@"Home"] menuItem:@"Home"];
     }
     self.webview.allowsInlineMediaPlayback=YES;
     [self setupPullDownRefresh];
@@ -155,17 +155,25 @@ NSString *appName;
     [TestFlight passCheckpoint:@"changing settings"];
 }
 -(void)loadWithURL:(NSURL *)url{
+    NSString *path=[NSString stringWithFormat:@"%@",url];
+    if ([path rangeOfString:@"?app=1"].location==NSNotFound&&([path rangeOfString:[[NSString stringWithFormat:@"http://%@.com",appName] lowercaseString]].location!=NSNotFound||[path rangeOfString:[[NSString stringWithFormat:@"http://www.%@.com",appName] lowercaseString]].location!=NSNotFound)&&([path rangeOfString:@"/wp-"].location==NSNotFound||[path rangeOfString:@".php"].location==NSNotFound)){
+        NSRange range=NSMakeRange(0, path.length);
+        NSRange rangeOfLastDash=[path rangeOfString:@"/" options:NSBackwardsSearch range:range];
+        NSString *temp=[path substringToIndex:rangeOfLastDash.location+1];
+        temp=[path stringByReplacingCharactersInRange:rangeOfLastDash withString:@"/?app=1"];
+        url=[NSURL URLWithString:temp];
+    }
     [self.webview stopLoading];
     
 //    [self networkActivity];
-    NSURLRequest *snowbrains;
+    NSURLRequest *request;
     if([Reachability reachabilityForInternetConnection].currentReachabilityStatus==NotReachable){
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Connection Error", @"Connection Error") message:NSLocalizedString(@"You are in offline mode, will try and load cached pages",@"Offline cache message") delegate:self cancelButtonTitle:NSLocalizedString(@"OK",@"OK button") otherButtonTitles:nil];
         [alert show];
         [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:4];
-        snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
+        request=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
     }else
-        snowbrains=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
+        request=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
 //    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
 //    AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        [self.webview loadData:responseObject MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:url];
@@ -177,7 +185,7 @@ NSString *appName;
 //    [[client operationQueue] cancelAllOperations];
 //    [[client operationQueue] addOperation:operation];
     
-    [self.webview loadRequest:snowbrains];
+    [self.webview loadRequest:request];
     [TestFlight passCheckpoint:@"load page"];
     
 }
@@ -363,42 +371,43 @@ NSString *appName;
 }
 
 
--(void)menuTap:(NSString *)menuItem{
+-(void)menuTap:(NSURL *)url menuItem:(NSString *)menuItem{
     menuSelection=menuItem;
-    if([menuItem isEqualToString:NSLocalizedString(@"Home",@"Home")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Weather",@"Weather")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/weather/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Gear",@"Gear")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/gear/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Brains",@"Brains")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/brains/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Squaw",@"Squaw")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/squaw/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Jackson",@"Jackson")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/jackson/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Whistler",@"Whistler")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/whistler/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Alaska",@"Alaska")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alaska/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Japan",@"Japan")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/japan/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Alps",@"Alps")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alps/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"PNW",@"PNW")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/pacificnorthwest/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Utah",@"Utah")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/utah/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"South America",@"South America")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/southamerica/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Mammoth",@"Mammoth")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/mammoth/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Brain Videos",@"Brain Videos")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/brainvideos/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Non-Brain Videos",@"Non-Brain Videos")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/nonbrain/?app=1"]];
-    else if([menuItem isEqualToString:NSLocalizedString(@"Trailers",@"Trailers")])
-        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/trailers/?app=1"]];
+    [self loadWithURL:url];
+//    if([menuItem isEqualToString:NSLocalizedString(@"Home",@"Home")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Weather",@"Weather")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/weather/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Gear",@"Gear")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/gear/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Brains",@"Brains")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/brains/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Squaw",@"Squaw")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/squaw/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Jackson",@"Jackson")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/jackson/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Whistler",@"Whistler")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/whistler/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Alaska",@"Alaska")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alaska/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Japan",@"Japan")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/japan/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Alps",@"Alps")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alps/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"PNW",@"PNW")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/pacificnorthwest/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Utah",@"Utah")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/utah/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"South America",@"South America")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/southamerica/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Mammoth",@"Mammoth")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/mammoth/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Brain Videos",@"Brain Videos")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/brainvideos/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Non-Brain Videos",@"Non-Brain Videos")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/nonbrain/?app=1"]];
+//    else if([menuItem isEqualToString:NSLocalizedString(@"Trailers",@"Trailers")])
+//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/trailers/?app=1"]];
 }
 //    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/?app=1"]];
 

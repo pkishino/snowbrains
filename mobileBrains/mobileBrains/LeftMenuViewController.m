@@ -19,23 +19,24 @@ enum {
 @interface LeftMenuViewController(){
     NSMutableArray *sections;
     NSMutableArray *sectionNames;
-    NSMutableArray *menuIcons;
-    NSMutableArray *globalURLS;
+    NSMutableDictionary *menuIcons;
+    NSMutableDictionary *globalURLS;
+    NSMutableArray *setup;
     
     NSMutableArray *mainList;
     NSMutableArray *bookmarksList;
     NSMutableArray *bookmarksURLS;
     NSMutableArray *otherList;
     
-//    NSMutableArray *mainItems;
-//    NSMutableArray *locationItems;
-//    NSMutableArray *moreItems;
-//    NSMutableArray *videoItems;
+    NSMutableArray *mainItems;
+    NSMutableArray *locationItems;
+    NSMutableArray *moreItems;
+    NSMutableArray *videoItems;
     
-    NSArray *mainItems;
-    NSArray *locationItems;
-    NSArray *moreItems;
-    NSArray *videoItems;
+//    NSArray *mainItems;
+//    NSArray *locationItems;
+//    NSArray *moreItems;
+//    NSArray *videoItems;
     
     bool locationSelect;
     bool moreSelect;
@@ -53,30 +54,48 @@ enum {
         
         NSArray *plist=[[NSUserDefaults standardUserDefaults] objectForKey:@"globalData"];
         sectionNames=[[NSMutableArray alloc]init];
-        menuIcons=[[NSMutableArray alloc]init];
-        globalURLS=[[NSMutableArray alloc]init];
-//        mainItems=[[NSMutableArray alloc]init];
-//        locationItems=[[NSMutableArray alloc]init];
-//        moreItems=[[NSMutableArray alloc]init];
-//        videoItems=[[NSMutableArray alloc]init];
+        menuIcons=[[NSMutableDictionary alloc]init];
+        globalURLS=[[NSMutableDictionary alloc]init];
         sections=[[NSMutableArray alloc]init];
+        setup=[[NSMutableArray alloc]init];
+        
         for(NSDictionary *sectionsList in plist){
             NSString *sectionName=[sectionsList valueForKey:@"section"];
             if(sectionName){
                 [sectionNames addObject:sectionName];
-                [self enumerateItems:[sectionsList valueForKey:@"items"]];
+                [self enumerateItems:[sectionsList valueForKey:@"items"] section:sectionName];
             }
         }
+        [[NSUserDefaults standardUserDefaults] setObject:globalURLS forKey:@"globalURLS"];
         
+        mainItems=[[NSMutableArray alloc]init];
+        locationItems=[[NSMutableArray alloc]init];
+        moreItems=[[NSMutableArray alloc]init];
+        videoItems=[[NSMutableArray alloc]init];
+        otherList=[[NSMutableArray alloc]init];
+        for(NSDictionary *dict in setup){
+            NSString *key=dict.keyEnumerator.nextObject;
+            NSString *value=[dict valueForKey:key];
+            if([value isEqualToString:@"Main"])
+                [mainItems addObject:key];
+            else if([value isEqualToString:@"Locations"])
+                [locationItems addObject:key];
+            else if([value isEqualToString:@"More"])
+                [moreItems addObject:key];
+            else if([value isEqualToString:@"Video"])
+                [videoItems addObject:key];
+            else if([value isEqualToString:@"Other"])
+                [otherList addObject:key];
+        }
         
-        mainItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Home", @"Home name"),NSLocalizedString(@"Locations", @"Locations name"),NSLocalizedString(@"Weather", @"Weather name"),NSLocalizedString(@"Video", @"Video name"),NSLocalizedString(@"Gear", @"Gear name"),NSLocalizedString(@"Brains", @"Brains name"), nil];
-        locationItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Squaw", @"Squaw name"),NSLocalizedString(@"Jackson",@"Jackson name"),NSLocalizedString(@"Whistler",@"Whistler name"),NSLocalizedString(@"Alaska",@"Alaska name"),NSLocalizedString(@"More",@"More name"), nil];
-        moreItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Utah",@"Utah name"),NSLocalizedString(@"Mammoth",@"Mammoth name"),NSLocalizedString(@"PNW",@"PNW name"),NSLocalizedString(@"South America",@"South America name"),NSLocalizedString(@"Japan",@"Japan name"),NSLocalizedString(@"Alps",@"Alps name"), nil];
-        videoItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Brain Videos",@"Brain Videos name"),NSLocalizedString(@"Non-Brain Videos",@"Non-Brain Videos name"),NSLocalizedString(@"Trailers",@"Trailers name"), nil];
+//        mainItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Home", @"Home name"),NSLocalizedString(@"Locations", @"Locations name"),NSLocalizedString(@"Weather", @"Weather name"),NSLocalizedString(@"Video", @"Video name"),NSLocalizedString(@"Gear", @"Gear name"),NSLocalizedString(@"Brains", @"Brains name"), nil];
+//        locationItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Squaw", @"Squaw name"),NSLocalizedString(@"Jackson",@"Jackson name"),NSLocalizedString(@"Whistler",@"Whistler name"),NSLocalizedString(@"Alaska",@"Alaska name"),NSLocalizedString(@"More",@"More name"), nil];
+//        moreItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Utah",@"Utah name"),NSLocalizedString(@"Mammoth",@"Mammoth name"),NSLocalizedString(@"PNW",@"PNW name"),NSLocalizedString(@"South America",@"South America name"),NSLocalizedString(@"Japan",@"Japan name"),NSLocalizedString(@"Alps",@"Alps name"), nil];
+//        videoItems=[[NSArray alloc]initWithObjects:NSLocalizedString(@"Brain Videos",@"Brain Videos name"),NSLocalizedString(@"Non-Brain Videos",@"Non-Brain Videos name"),NSLocalizedString(@"Trailers",@"Trailers name"), nil];
         mainList=[[NSMutableArray alloc]initWithArray:mainItems];
         bookmarksList=[[NSMutableArray alloc]initWithObjects:@"Bookmarks dummy", nil];
         bookmarksURLS=[[NSMutableArray alloc]initWithObjects:@"Bookmarks dummy", nil];
-        otherList=[[NSMutableArray alloc]initWithObjects:NSLocalizedString(@"Settings",@"Settings name"),NSLocalizedString(@"Contact",@"Contact name"), nil];
+//        otherList=[[NSMutableArray alloc]initWithObjects:NSLocalizedString(@"Settings",@"Settings name"),NSLocalizedString(@"Contact",@"Contact name"), nil];
         sections=[[NSMutableArray alloc]initWithObjects:mainItems,bookmarksList,otherList, nil];
         locationSelect=NO;
         moreSelect=NO;
@@ -84,19 +103,23 @@ enum {
     }
     return self;
 }
--(void)enumerateItems:(NSArray*) items{
+-(void)enumerateItems:(NSArray*) items section:(NSString*)section{
     if(items){
         for(NSDictionary *itemsList in items){
             NSString *name=[itemsList valueForKey:@"name"];
-            NSURL *url=[itemsList valueForKey:@"link"];
+            NSString *url=[itemsList valueForKey:@"link"];
             NSString *icon=[itemsList valueForKey:@"icon"];
             if(name){
-            if(url)[globalURLS addObject:[NSDictionary dictionaryWithObject:url forKey:name]];
-            if(icon)[menuIcons addObject:[NSDictionary dictionaryWithObject:icon forKey:name]];
+                [setup addObject:[NSDictionary dictionaryWithObject:section forKey:name]];
+                if(url){
+                    if(url)
+                        [globalURLS setValue:url forKey:name];
+                }
+                if(icon)[menuIcons setValue:icon forKey:name];
             }
             BOOL subItems=[[itemsList valueForKey:@"subgroup"]boolValue];
             if(subItems){
-                [self enumerateItems:[itemsList valueForKey:@"items"]];
+                [self enumerateItems:[itemsList valueForKey:@"items"] section:name];
             }
         }
     }
@@ -297,17 +320,17 @@ enum {
         cell.indentationLevel=1;
         cell.textLabel.font=[UIFont systemFontOfSize:17];
     }
-    if([cell.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]){
+    if([cell.textLabel.text isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]&&locationItems.count>0){
         if(locationSelect)
             cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
         else
             cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
-    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")]){
+    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"Video", @"Video name")]&&videoItems.count>0){
         if(videoSelect)
             cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
         else
             cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseNormal"]];
-    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]){
+    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"More", @"More name")]&&moreItems.count>0){
         if(moreSelect)
             cell.accessoryView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"menuDiscloseSelected"]];
         else
@@ -317,24 +340,13 @@ enum {
     }
     if(indexPath.section==lMenuListBookmarks)
         cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@_bookmarkIcon",[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"name"]]];
-    else if([cell.textLabel.text isEqualToString:@"Home"])
-        cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@_home",[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"name"]]];
     else
-        cell.imageView.image=[UIImage imageNamed:[cell.textLabel.text lowercaseString]];
+        cell.imageView.image=[UIImage imageNamed:[menuIcons valueForKey:cell.textLabel.text]];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     
     return cell;
 }
-//-(int)getSectionCount:(NSInteger)section{
-//    if(section==lMenuListMain)
-//        return mainList.count;
-//    else if(section==lMenuListBookmarks)
-//        return 0;
-//    else if (section==lMenuListOther)
-//        return 1;
-//    return -1;
-//}
 -(void)deselectSettings:(NSNotification *)notification{
     [self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:lMenuListOther] animated:YES];
 }
@@ -348,7 +360,7 @@ enum {
     if(!self.tableView.isEditing){
     if(indexPath.section==lMenuListBookmarks){
         [self.delegate bookmarkLoad:[bookmarksURLS objectAtIndex:indexPath.row]];
-    }else if((indexPath.section==lMenuListMain)&&([selectedMenuItem isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]||[selectedMenuItem isEqualToString:NSLocalizedString(@"More", @"More name")]||[selectedMenuItem isEqualToString:NSLocalizedString(@"Video", @"Video name")])){
+    }else if((indexPath.section==lMenuListMain)&&(([selectedMenuItem isEqualToString:NSLocalizedString(@"Locations", @"Locations name")]&&locationItems.count>0)||([selectedMenuItem isEqualToString:NSLocalizedString(@"More", @"More name")]&&moreItems.count>0)||([selectedMenuItem isEqualToString:NSLocalizedString(@"Video", @"Video name")]&&videoItems.count>0))){
         [self manageSubCells:cell];
         return;
     }else if((indexPath.section==lMenuListOther)&&[selectedMenuItem isEqualToString:NSLocalizedString(@"Settings", @"Settings name")]){
@@ -356,8 +368,8 @@ enum {
         [[self.sideMenu.navigationController.viewControllers objectAtIndex:0] presentModalViewController:settings animated:YES];
     }else if((indexPath.section==lMenuListOther)&&[selectedMenuItem isEqualToString:NSLocalizedString(@"Contact", @"Contact name")]){
         [self sendMail];
-    }else{
-        [self.delegate menuTap:selectedMenuItem];
+    }else /*if(![indexPath isEqual: self.tableView.indexPathForSelectedRow])*/{
+        [self.delegate menuTap:[NSURL URLWithString:[globalURLS valueForKey:selectedMenuItem]] menuItem:selectedMenuItem];
     }
     [self.sideMenu setMenuState:MFSideMenuStateClosed];
     

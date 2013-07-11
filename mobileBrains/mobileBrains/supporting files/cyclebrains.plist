@@ -11,7 +11,7 @@
 				<key>name</key>
 				<string>Home</string>
 				<key>link</key>
-				<string>www.snowbrains.com</string>
+				<string>http://www.cyclebrains.com/</string>
 				<key>icon</key>
 				<string>cyclebrains_home</string>
 				<key>subgroup</key>
@@ -32,9 +32,9 @@
 						<key>name</key>
 						<string>Tahoe</string>
 						<key>link</key>
-						<string>www.snowbrains.com</string>
+						<string>http://cyclebrains.com/category/cycle/locations-cycle/tahoe-cycle/</string>
 						<key>icon</key>
-						<string>tahoe</string>
+						<string>mammoth</string>
 						<key>subgroup</key>
 						<false/>
 					</dict>
@@ -42,7 +42,7 @@
 						<key>name</key>
 						<string>Whistler</string>
 						<key>link</key>
-						<string>www.snowbrains.com</string>
+						<string>http://cyclebrains.com/category/cycle/locations-cycle/whistler-cycle/</string>
 						<key>icon</key>
 						<string>whistler</string>
 						<key>subgroup</key>
@@ -52,7 +52,7 @@
 						<key>name</key>
 						<string>Colorado</string>
 						<key>link</key>
-						<string>www.snowbrains.com</string>
+						<string>http://cyclebrains.com/category/cycle/locations-cycle/colorado-cycle/</string>
 						<key>icon</key>
 						<string>colorado</string>
 						<key>subgroup</key>
@@ -62,7 +62,7 @@
 						<key>name</key>
 						<string>Utah</string>
 						<key>link</key>
-						<string>www.snowbrains.com</string>
+						<string>http://cyclebrains.com/category/cycle/locations-cycle/utah-cycle/</string>
 						<key>icon</key>
 						<string>utah</string>
 						<key>subgroup</key>
@@ -74,7 +74,7 @@
 				<key>name</key>
 				<string>Video</string>
 				<key>link</key>
-				<string></string>
+				<string>http://cyclebrains.com/category/cycle/video-cycle/</string>
 				<key>icon</key>
 				<string>video</string>
 				<key>subgroup</key>
@@ -84,7 +84,7 @@
 				<key>name</key>
 				<string>Gear</string>
 				<key>link</key>
-				<string>www.snowbrains.com</string>
+				<string>http://cyclebrains.com/category/cycle/gear-cycle/</string>
 				<key>icon</key>
 				<string>gear</string>
 				<key>subgroup</key>
@@ -94,7 +94,7 @@
 				<key>name</key>
 				<string>Brains</string>
 				<key>link</key>
-				<string>www.snowbrains.com</string>
+				<string>http://cyclebrains.com/category/brains</string>
 				<key>icon</key>
 				<string>brains</string>
 				<key>subgroup</key>
