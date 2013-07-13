@@ -61,9 +61,11 @@
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>401</string>
+	<string>411</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UILaunchImageFile</key>
+	<string>cyclebrains_default</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

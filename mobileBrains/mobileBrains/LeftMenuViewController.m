@@ -234,20 +234,19 @@ enum {
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if(section==lMenuListBookmarks){
         if([self.tableView numberOfRowsInSection:lMenuListBookmarks]==0){
-            static NSString *CellIdentifier = @"Cell";
-            
-            MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            cell.textLabel.backgroundColor=[UIColor clearColor];
-            cell.textLabel.text=NSLocalizedString(@"Your bookmarks will show here", @"Empty bookmark list footer");
-            cell.textLabel.textColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"PlainTableViewSectionHeader"]];
-            cell.textLabel.font=[UIFont italicSystemFontOfSize:12];
-            cell.indentationLevel=2;
-            cell.accessoryType=UITableViewCellAccessoryNone;
-            cell.imageView.image=nil;
-            return  cell;
+//            static NSString *CellIdentifier = @"Cell";
+//            
+//            MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//            if (cell == nil) {
+//                cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//            }
+//            UIView *cell=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
+            UILabel *textLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
+            textLabel.backgroundColor=[UIColor clearColor];
+            textLabel.text=NSLocalizedString(@"            Your bookmarks will show here", @"Empty bookmark list footer");
+            textLabel.textColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"PlainTableViewSectionHeader"]];
+            textLabel.font=[UIFont italicSystemFontOfSize:12];
+            return  textLabel;
         }return nil;
     }
     return nil;
