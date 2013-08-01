@@ -138,6 +138,10 @@
 		<string>cyclebrains</string>
 		<key>id</key>
 		<string>665840444</string>
+		<key>testflight</key>
+		<string>b08d48f6-a687-4a6f-bc05-1788493b5f17</string>
+		<key>burstly</key>
+		<string></string>
 		<key>menuColour</key>
 		<string>cyclebrains_sideBarCellBackground</string>
 		<key>menuColourSelected</key>

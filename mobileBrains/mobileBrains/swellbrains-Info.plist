@@ -52,16 +52,16 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.snowbrains.mobilebrains</string>
+			<string>com.swellbrains.mobilebrains</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.snowbrains.mobilebrains</string>
+				<string>com.swellbrains.mobilebrains</string>
 			</array>
 		</dict>
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>408</string>
+	<string>412</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchImageFile</key>

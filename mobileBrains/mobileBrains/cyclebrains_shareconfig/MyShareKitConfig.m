@@ -37,7 +37,7 @@
 }
 // Enter your app's twitter account if you'd like to ask the user to follow it when logging in. (Only for xAuth)
 - (NSString*)twitterUsername {
-	return @"SnowBrains";
+	return @"CycleBrains";
 }
 - (NSString*)bitLyLogin {
 	return @"o_7jlvsd9lug";

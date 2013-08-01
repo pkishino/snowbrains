@@ -34,9 +34,9 @@
 }
 
 - (MFSideMenu *)sideMenu {
+    LeftMenuViewController *leftSideMenuController = [[LeftMenuViewController alloc] init];
     UINavigationController *navigationController = [self navigationController];
     
-    LeftMenuViewController *leftSideMenuController = [[LeftMenuViewController alloc] init];
     //to add the right menu again uncomment
 //    RightMenuViewController *rightSideMenuController = [[RightMenuViewController alloc] init];
 //    MFSideMenu *sideMenu = [MFSideMenu menuWithNavigationController:navigationController
@@ -56,8 +56,7 @@
 {
    
     // Override point for customization after application launch.
-    [TestFlight takeOff:@"c0b7b825-f506-4f0b-b73f-0d75286c3318"];
-//    [TestFlight setOptions:{TFOptionLogToConsole:@NO}];
+    
     [NSURLProtocol registerClass:[RNCachingURLProtocol class]];
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
                                                          diskCapacity:20 * 1024 * 1024
@@ -80,31 +79,31 @@
     NSDictionary *globalImages=[NSDictionary dictionaryWithDictionary:[globalData lastObject]];
     [[NSUserDefaults standardUserDefaults] setObject:globalImages forKey:@"globalImages"];
     
+    [TestFlight takeOff:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalData"] valueForKey:@"testflight"]];
+    //    [TestFlight setOptions:{TFOptionLogToConsole:@NO}];
+    
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"headerImage"]] forBarMetrics:UIBarMetricsDefault];
     
     if (IS_IPHONE_5)
-    {
         [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"headerIphone5Image"]] forBarMetrics:UIBarMetricsLandscapePhone];
-    }
     else
-    {
         [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"headerLandscapeImage"]] forBarMetrics:UIBarMetricsLandscapePhone];
-    }
     
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"barButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"buttonBackgroundColour"]]];
     
     [SHK flushOfflineQueue];
-    
     DefaultSHKConfigurator *configurator=[[MyShareKitConfig alloc]init];
     [SHKConfiguration sharedInstanceWithConfigurator:configurator];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled=YES;
+    
     [Appirater setAppId:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"id"]];
     [Appirater setUsesUntilPrompt:5];
     [Appirater setTimeBeforeReminding:2];
 //    [Appirater setDebug:YES];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [self sideMenu].navigationController;
     [self.window makeKeyAndVisible];

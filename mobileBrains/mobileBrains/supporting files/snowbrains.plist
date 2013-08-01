@@ -254,6 +254,10 @@
 		<string>snowbrains</string>
 		<key>id</key>
 		<string>642740107</string>
+		<key>testflight</key>
+		<string>c0b7b825-f506-4f0b-b73f-0d75286c3318</string>
+		<key>burstly</key>
+		<string></string>
 		<key>menuColour</key>
 		<string>snowbrains_sideBarCellBackground</string>
 		<key>menuColourSelected</key>

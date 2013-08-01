@@ -30,6 +30,7 @@ NSString *appName;
     int refreshValue;
     NSTimer *refreshTimer;
     BOOL autoRefresh;
+    BOOL offlineMode;
 }
 
 @end
@@ -67,9 +68,7 @@ NSString *appName;
     self.loadBackground.image=[UIImage imageNamed:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalImages"] valueForKey:@"loadingImage"]];
     [self.webview setDelegate:self];
     self.webview.backgroundColor=[UIColor grayColor];
-    if(!toForward){
-        [self menuTap:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalURLS"] valueForKey:@"Home"] menuItem:@"Home"];
-    }
+    
     self.webview.allowsInlineMediaPlayback=YES;
     [self setupPullDownRefresh];
     //    [self setupAnimation];
@@ -124,6 +123,9 @@ NSString *appName;
     
     self.webview.scrollView.scrollsToTop=YES;
     [self postReview];
+    if(!toForward){
+        [self menuTap:[[[NSUserDefaults standardUserDefaults]dictionaryForKey:@"globalURLS"] valueForKey:@"Home"] menuItem:@"Home"];
+    }
 }
 -(void)postReview{
     [Appirater setDelegate:self];
@@ -156,24 +158,19 @@ NSString *appName;
 }
 -(void)loadWithURL:(NSURL *)url{
     NSString *path=[NSString stringWithFormat:@"%@",url];
-    if ([path rangeOfString:@"?app=1"].location==NSNotFound&&([path rangeOfString:[[NSString stringWithFormat:@"http://%@.com",appName] lowercaseString]].location!=NSNotFound||[path rangeOfString:[[NSString stringWithFormat:@"http://www.%@.com",appName] lowercaseString]].location!=NSNotFound)&&([path rangeOfString:@"/wp-"].location==NSNotFound||[path rangeOfString:@".php"].location==NSNotFound)){
-        NSRange range=NSMakeRange(0, path.length);
-        NSRange rangeOfLastDash=[path rangeOfString:@"/" options:NSBackwardsSearch range:range];
-        NSString *temp=[path substringToIndex:rangeOfLastDash.location+1];
-        temp=[path stringByReplacingCharactersInRange:rangeOfLastDash withString:@"/?app=1"];
-        url=[NSURL URLWithString:temp];
-    }
+    if ([self linkChecker:path]){
+        url=[NSURL URLWithString:[self linkCorrecter:path]];
     [self.webview stopLoading];
     
 //    [self networkActivity];
     NSURLRequest *request;
     if([Reachability reachabilityForInternetConnection].currentReachabilityStatus==NotReachable){
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Connection Error", @"Connection Error") message:NSLocalizedString(@"You are in offline mode, will try and load cached pages",@"Offline cache message") delegate:self cancelButtonTitle:NSLocalizedString(@"OK",@"OK button") otherButtonTitles:nil];
-        [alert show];
-        [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:4];
+        offlineMode=YES;
         request=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
-    }else
+    }else{
+        offlineMode=NO;
         request=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
+    }
 //    NSURLRequest *snowbrains=[NSURLRequest requestWithURL:url];
 //    AFHTTPRequestOperation *operation=[client HTTPRequestOperationWithRequest:snowbrains success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        [self.webview loadData:responseObject MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:url];
@@ -187,9 +184,12 @@ NSString *appName;
     
     [self.webview loadRequest:request];
     [TestFlight passCheckpoint:@"load page"];
+    }
+    
     
 }
 -(void)networkActivity{
+    if(!offlineMode){
     [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     [self hideSwipeControl];
     self.spinner.hidden=NO;
@@ -200,8 +200,10 @@ NSString *appName;
         self.loadBackground.hidden=NO;
         self.loadLogo.hidden=NO;
     }
+    }
 }
 -(void)stopNetworkActivity{
+//    if(!offlineMode){
     [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
     [self.spinner stopAnimating];
     self.spinner.hidden=YES;
@@ -209,6 +211,7 @@ NSString *appName;
     self.loadBackground.hidden=YES;
     self.loadLogo.hidden=YES;
     [(PullToRefreshView *)[self.view viewWithTag:998] finishedLoading];
+//    }
 }
 -(void)noAccessPage{
     [self webViewDidFinishLoad:nil];
@@ -279,8 +282,8 @@ NSString *appName;
             [TestFlight passCheckpoint:@"offline mode"];
             return;
             
-        }else if([Reachability reachabilityForInternetConnection].currentReachabilityStatus==NotReachable){
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"No Cache", @"No Cache") message:NSLocalizedString(@"There are no pages saved, you must connect online at least once to enable offline viewing",@"No Offline cache message") delegate:self cancelButtonTitle:NSLocalizedString(@"OK",@"OK button") otherButtonTitles:nil];
+        }else if(offlineMode){
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"No Cache", @"No Cache") message:NSLocalizedString(@"You are offline and this page has not been saved yet. Only pages you have visited before can be viewed offline",@"No Offline cache message") delegate:self cancelButtonTitle:NSLocalizedString(@"OK",@"OK button") otherButtonTitles:nil];
             [alert show];
             [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:4];
         }else if(1021>=errorCode&&errorCode>=1000){
@@ -304,41 +307,55 @@ NSString *appName;
 //    }
     redirect=NO;
     requestString=[NSString stringWithFormat:@"%@",request.URL];
+    NSLog(@"%@",requestString);
     if(navigationType==UIWebViewNavigationTypeLinkClicked||navigationType==UIWebViewNavigationTypeReload){
-        if([requestString rangeOfString:@"http://www.snowbrains.com"].location==NSNotFound&&[requestString rangeOfString:@"http://snowbrains.com"].location==NSNotFound){
+        if(![self linkChecker:requestString]){
             if([requestString rangeOfString:@"youtube.com"].location!=NSNotFound){
                 [self loadYoutube:requestString];
                 return NO;
             }else{
                 //if the request is to outside of snowbrains then ask if user wants to open in safari
-                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"External site",@"External site") message:NSLocalizedString(@"The requested site is outside of Snowbrains, please press OK to load with default Browser",@"Load external message") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"Cancel button") otherButtonTitles:NSLocalizedString(@"OK",@"OK button"),nil];
+                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"External site",@"External site") message:NSLocalizedString(@"This link leads to an external site , please press OK to load with your default browser or cancel to stay here",@"Load external message") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"Cancel button") otherButtonTitles:NSLocalizedString(@"OK",@"OK button"),nil];
                 [alert show];
                 NSLog(@"%@",requestString);
                 [self noAccessPage];
                 return NO;
             }
-        }else if ([requestString rangeOfString:@"?app=1"].location==NSNotFound){
-            NSURL *redirectTo=[NSURL URLWithString:[NSString stringWithFormat:@"%@?app=1",requestString]];
-            [self loadWithURL:redirectTo];
+        }else{
+            NSURL *redirectTo=[NSURL URLWithString:[self linkCorrecter:requestString]];
             redirect=YES;
+            [self loadWithURL:redirectTo];
             return NO;
         }
-    }
-    if ([requestString rangeOfString:@"?app=1"].location==NSNotFound&&([requestString rangeOfString:@"http://snowbrains.com"].location!=NSNotFound||[requestString rangeOfString:@"http://www.snowbrains.com"].location!=NSNotFound)&&([requestString rangeOfString:@"/wp-"].location==NSNotFound||[requestString rangeOfString:@".php"].location==NSNotFound)){
-        NSRange range=NSMakeRange(0, requestString.length);
-        NSRange rangeOfLastDash=[requestString rangeOfString:@"/" options:NSBackwardsSearch range:range];
-        requestString=[requestString substringToIndex:rangeOfLastDash.location+1];
-        requestString=[requestString stringByReplacingCharactersInRange:rangeOfLastDash withString:@"/?app=1"];
-        NSLog(@"%@",requestString);
-        NSURL *redirectTo=[NSURL URLWithString:requestString];
-        [self loadWithURL:redirectTo];
-        redirect=YES;
-        return NO;
     }
     if(self.webview.request==request){
         return NO;
     }
     return YES;
+}
+-(NSString *)linkCorrecter:(NSString *)link{
+    NSLog(@"%@",link);
+    if ([link rangeOfString:@"?app=1"].location==NSNotFound&&([link rangeOfString:@"http://snowbrains.com"].location!=NSNotFound||[link rangeOfString:@"http://www.snowbrains.com"].location!=NSNotFound||[link rangeOfString:[[NSString stringWithFormat:@"http://%@.com",appName] lowercaseString]].location!=NSNotFound||[link rangeOfString:[[NSString stringWithFormat:@"http://www.%@.com",appName] lowercaseString]].location!=NSNotFound)&&([link rangeOfString:@"/wp-"].location==NSNotFound||[link rangeOfString:@".php"].location==NSNotFound)){
+        NSRange range=NSMakeRange(0, link.length);
+        NSRange rangeOfLastDash=[link rangeOfString:@"/" options:NSBackwardsSearch range:range];
+        if(rangeOfLastDash.location+1<link.length){
+            link=[NSString stringWithFormat:@"%@/?app=1",link];
+        }else{
+        link=[link substringToIndex:rangeOfLastDash.location+1];
+        link=[link stringByReplacingCharactersInRange:rangeOfLastDash withString:@"/?app=1"];
+        }
+        
+        return link;
+    }else
+        return link;
+}
+-(BOOL)linkChecker:(NSString *)link{
+    NSLog(@"%@",link);
+    if (([link rangeOfString:@"http://www.snowbrains.com"].location==NSNotFound&&[link rangeOfString:@"http://snowbrains.com"].location==NSNotFound)&&[link rangeOfString:[[NSString stringWithFormat:@"http://%@.com",appName] lowercaseString]].location==NSNotFound&&[link rangeOfString:[[NSString stringWithFormat:@"http://www.%@.com",appName] lowercaseString]].location==NSNotFound){
+        return NO;
+    }else
+        return YES;
+    
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -346,7 +363,7 @@ NSString *appName;
     [TestFlight passCheckpoint:@"launch safari"];
 }
 -(void)dismissAlertView:(UIAlertView *)alertView{
-    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+    if(alertView)[alertView dismissWithClickedButtonIndex:0 animated:YES];
 }
 -(void)loadYoutube:(NSString *)request{
     
@@ -374,45 +391,7 @@ NSString *appName;
 -(void)menuTap:(NSURL *)url menuItem:(NSString *)menuItem{
     menuSelection=menuItem;
     [self loadWithURL:url];
-//    if([menuItem isEqualToString:NSLocalizedString(@"Home",@"Home")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Weather",@"Weather")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/weather/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Gear",@"Gear")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/gear/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Brains",@"Brains")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/brains/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Squaw",@"Squaw")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/squaw/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Jackson",@"Jackson")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/jackson/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Whistler",@"Whistler")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/whistler/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Alaska",@"Alaska")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alaska/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Japan",@"Japan")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/japan/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Alps",@"Alps")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/alps/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"PNW",@"PNW")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/pacificnorthwest/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Utah",@"Utah")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/utah/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"South America",@"South America")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/southamerica/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Mammoth",@"Mammoth")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/mammoth/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Brain Videos",@"Brain Videos")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/brainvideos/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Non-Brain Videos",@"Non-Brain Videos")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/nonbrain/?app=1"]];
-//    else if([menuItem isEqualToString:NSLocalizedString(@"Trailers",@"Trailers")])
-//        [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/trailers/?app=1"]];
 }
-//    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/locations/?app=1"]];
-
-//    [self loadWithURL:[NSURL URLWithString:@"http://www.snowbrains.com/category/video/?app=1"]];
-
 -(void)search:(NSString *)searchItem{
     [self loadWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.snowbrains.com/search/%@/?app=1",searchItem]]];
     [TestFlight passCheckpoint:@"searching"];
@@ -465,7 +444,7 @@ NSString *appName;
 
 - (IBAction)bookmarkTap:(id)sender {
     NSURL *toBookmark=self.webview.request.URL;
-    if([[NSString stringWithFormat:@"%@",toBookmark] rangeOfString:@"www.snowbrains.com"].location!=NSNotFound||[[NSString stringWithFormat:@"%@",toBookmark] rangeOfString:@"http://snowbrains.com"].location!=NSNotFound){
+    if([self linkChecker:[NSString stringWithFormat:@"%@",toBookmark]]){
         BookmarkModalViewController *bookmarkAdd=[[BookmarkModalViewController alloc]initWithURL:toBookmark andCategory:menuSelection];
         [self presentModalViewController:bookmarkAdd animated:YES];
     }else{

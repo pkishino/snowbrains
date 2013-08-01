@@ -128,6 +128,10 @@
 		<string>swellbrains</string>
 		<key>id</key>
 		<string>665841846</string>
+		<key>testflight</key>
+		<string>6ea46fd8-d34d-4a32-b507-e0e77a7cf8a6</string>
+		<key>burstly</key>
+		<string></string>
 		<key>menuColour</key>
 		<string>swellbrains_sideBarCellBackground</string>
 		<key>menuColourSelected</key>
