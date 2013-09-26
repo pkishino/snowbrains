@@ -45,7 +45,7 @@
 			<string>Facebook</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb306955309438401</string>
+				<string>fb161861064016076</string>
 			</array>
 		</dict>
 		<dict>
@@ -61,7 +61,7 @@
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>422</string>
+	<string>438</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchImageFile</key>

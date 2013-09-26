@@ -17,7 +17,7 @@
 	return @"http://appstore.com/swellbrains";
 }
 - (NSString*)facebookAppId {
-	return @"306955309438401";
+	return @"161861064016076";
 }
 - (NSNumber*)forcePreIOS6FacebookPosting {
 	return [NSNumber numberWithBool:true];

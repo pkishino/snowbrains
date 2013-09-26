@@ -143,7 +143,7 @@
 		<key>burstly</key>
 		<string></string>
 		<key>menuColour</key>
-		<string>cyclebrains_sideBarCellBackground</string>
+		<string>snowbrains_sideBarCellBackground</string>
 		<key>menuColourSelected</key>
 		<string>cyclebrains_sideBarCellBackgroundSelected</string>
 		<key>menuHeaderImage</key>
@@ -163,7 +163,7 @@
 		<key>headlessImage</key>
 		<string>cyclebrains_headless</string>
 		<key>buttonBackgroundColour</key>
-		<string>cyclebrains_buttonBackground</string>
+		<string>snowbrains_buttonBackground</string>
 	</dict>
 </array>
 </plist>

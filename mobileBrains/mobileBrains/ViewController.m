@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MFSideMenu.h"
 #import "SHK.h"
+#import "ShareKit.h"
 #import "AppDelegate.h"
 #import "Burstly.h"
 #import "BurstlyAdUtils.h"
@@ -321,7 +322,8 @@ NSString *appName;
                 [self noAccessPage];
                 return NO;
             }
-        }else{
+        }
+        else{
             NSURL *redirectTo=[NSURL URLWithString:[self linkCorrecter:requestString]];
             redirect=YES;
             [self loadWithURL:redirectTo];
@@ -329,6 +331,13 @@ NSString *appName;
         }
     }
     if(self.webview.request==request){
+        return NO;
+    }
+    if ([requestString rangeOfString:@"#comment-"].location!=NSNotFound){
+        requestString=[requestString substringToIndex:[requestString rangeOfString:@"#comment-"].location];
+        NSURL *redirectTo=[NSURL URLWithString:[self linkCorrecter:requestString]];
+        redirect=YES;
+        [self loadWithURL:redirectTo];
         return NO;
     }
     return YES;
@@ -500,7 +509,10 @@ NSString *appName;
 {
     [self viewWillLayoutSubviews];
     [TestFlight passCheckpoint:@"rotated"];
-    return YES;
+    if (self.loadFigure.isHidden) {
+        return YES;
+    }
+    return NO;
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {

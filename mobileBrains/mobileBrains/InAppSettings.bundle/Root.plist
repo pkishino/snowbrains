@@ -8,7 +8,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
-			<string>©2013 SnowBrains.com</string>
+			<string>©2013 SnowBrains.com &amp; Patrick A. Ziegler</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>

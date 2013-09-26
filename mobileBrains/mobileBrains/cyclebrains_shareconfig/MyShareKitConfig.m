@@ -17,7 +17,7 @@
 	return @"http://appstore.com/cyclebrains";
 }
 - (NSString*)facebookAppId {
-	return @"306955309438401";
+	return @"1414035518819906";
 }
 - (NSNumber*)forcePreIOS6FacebookPosting {
 	return [NSNumber numberWithBool:true];

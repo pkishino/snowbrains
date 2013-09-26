@@ -14,7 +14,6 @@
 	<key>services</key>
 	<array>
 		<string>SHKTwitter</string>
-		<string>SHKGooglePlus</string>
 		<string>SHKFacebook</string>
 	</array>
 </dict>
