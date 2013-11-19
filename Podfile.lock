@@ -1,0 +1,30 @@
+PODS:
+  - DTCoreText (1.6.8):
+    - DTFoundation/Core (~> 1.5.4)
+    - DTFoundation/DTHTMLParser (~> 1.5.4)
+    - DTFoundation/UIKit (~> 1.5.4)
+  - DTFoundation/Core (1.5.4)
+  - DTFoundation/DTHTMLParser (1.5.4):
+    - DTFoundation/Core
+  - DTFoundation/UIKit (1.5.4):
+    - DTFoundation/Core
+  - Facebook-iOS-SDK (3.9.0)
+  - MagicalRecord (2.2)
+  - SDWebImage (3.5):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.5)
+
+DEPENDENCIES:
+  - DTCoreText
+  - Facebook-iOS-SDK
+  - MagicalRecord
+  - SDWebImage
+
+SPEC CHECKSUMS:
+  DTCoreText: 24f96ab529f19114533ca71922469c94fb73db4d
+  DTFoundation: 86e59f373c7a9b9f859f8a9c1debf072979eebec
+  Facebook-iOS-SDK: 5e1416dbdfc17b2620c2ca31c02e6feec042f2c1
+  MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
+  SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
+
+COCOAPODS: 0.28.0

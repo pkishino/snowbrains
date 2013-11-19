@@ -1,0 +1,5 @@
+platform :ios, '7.0'
+pod 'SDWebImage'
+pod 'DTCoreText'
+pod 'MagicalRecord'
+pod 'Facebook-iOS-SDK'
