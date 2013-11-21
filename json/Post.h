@@ -2,29 +2,25 @@
 //  Post.h
 //  json
 //
-//  Created by Patrick Ziegler on 3/8/13.
+//  Created by Patrick Ziegler on 19/11/13.
 //  Copyright (c) 2013 Patrick Ziegler. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
-@interface Post : NSObject<NSCopying>
-
-@property(nonatomic,strong)NSString *ID;
-@property(nonatomic,strong)NSString *title;
-@property(nonatomic,strong)NSString *date;
-@property(nonatomic,strong)NSString *author;
-@property(nonatomic,strong)NSString *excerpt;
-@property(nonatomic,strong)NSNumber *commentCount;
-@property(nonatomic,strong)NSURL *thumbnail;
-@property(nonatomic,strong)NSString *content;
-@property(nonatomic,strong)NSString *category;
-@property(nonatomic,strong)NSArray *attachments;
-@property(nonatomic,strong)NSURL *postUrl;
-@property(nonatomic,strong)NSString *likeID;
+#import <CoreData/CoreData.h>
 
 
--(id)initWithDictionary:(NSDictionary*)dictionary;
+@interface Post : NSManagedObject
 
+@property (nonatomic, retain) NSString * author;
+@property (nonatomic, retain) NSNumber * commentCount;
+@property (nonatomic, retain) NSString * content;
+@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSString * excerpt;
+@property (nonatomic, retain) NSString * thumbnail;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * idTag;
+@property (nonatomic, retain) NSString * postUrl;
+@property (nonatomic, retain) NSString * likeID;
 
 @end

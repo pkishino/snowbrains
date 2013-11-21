@@ -14,6 +14,7 @@
 		CDAF7C44183526BB00F8098B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDAF7C43183526BB00F8098B /* Storyboard.storyboard */; };
 		CDAF7C491838D5DC00F8098B /* FBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF7C481838D5DC00F8098B /* FBLoginViewController.m */; };
 		CDAF7C4C1839201600F8098B /* FBLoginViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF7C4B1839201600F8098B /* FBLoginViewController2.m */; };
+		CDAF7C52183BAAC600F8098B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF7C51183BAAC600F8098B /* Post.m */; };
 		CDB0FB9617ACED16005024DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FB9517ACED16005024DE /* UIKit.framework */; };
 		CDB0FB9817ACED16005024DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FB9717ACED16005024DE /* Foundation.framework */; };
 		CDB0FB9A17ACED16005024DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FB9917ACED16005024DE /* CoreGraphics.framework */; };
@@ -21,7 +22,7 @@
 		CDB0FBA217ACED17005024DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0FBA117ACED16005024DE /* main.m */; };
 		CDB0FBA617ACED17005024DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0FBA517ACED17005024DE /* AppDelegate.m */; };
 		CDB0FBAF17ACED17005024DE /* PostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0FBAE17ACED17005024DE /* PostTableViewController.m */; };
-		CDB0FBBA17AD0656005024DE /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0FBB917AD0656005024DE /* Post.m */; };
+		CDB0FBBA17AD0656005024DE /* PostObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0FBB917AD0656005024DE /* PostObject.m */; };
 		CDB0FBBE17AE8624005024DE /* PostCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0FBBD17AE8624005024DE /* PostCollection.m */; };
 		CDB0FBC617AFD4AB005024DE /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0FBC517AFD4AB005024DE /* MyCell.m */; };
 		CDB0FBC817AFD4FB005024DE /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB0FBC717AFD4FB005024DE /* MyCell.xib */; };
@@ -45,6 +46,8 @@
 		CDAF7C481838D5DC00F8098B /* FBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginViewController.m; sourceTree = "<group>"; };
 		CDAF7C4A1839201600F8098B /* FBLoginViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginViewController2.h; sourceTree = "<group>"; };
 		CDAF7C4B1839201600F8098B /* FBLoginViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginViewController2.m; sourceTree = "<group>"; };
+		CDAF7C50183BAAC600F8098B /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		CDAF7C51183BAAC600F8098B /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		CDB0FB9217ACED16005024DE /* json.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = json.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB0FB9517ACED16005024DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDB0FB9717ACED16005024DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -57,8 +60,8 @@
 		CDB0FBA517ACED17005024DE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CDB0FBAD17ACED17005024DE /* PostTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostTableViewController.h; sourceTree = "<group>"; };
 		CDB0FBAE17ACED17005024DE /* PostTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostTableViewController.m; sourceTree = "<group>"; };
-		CDB0FBB817AD0656005024DE /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
-		CDB0FBB917AD0656005024DE /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		CDB0FBB817AD0656005024DE /* PostObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostObject.h; sourceTree = "<group>"; };
+		CDB0FBB917AD0656005024DE /* PostObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostObject.m; sourceTree = "<group>"; };
 		CDB0FBBC17AE8624005024DE /* PostCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCollection.h; sourceTree = "<group>"; };
 		CDB0FBBD17AE8624005024DE /* PostCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCollection.m; sourceTree = "<group>"; };
 		CDB0FBC417AFD4AB005024DE /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
@@ -136,13 +139,15 @@
 				CDB0FBAE17ACED17005024DE /* PostTableViewController.m */,
 				CDAF7BA218328D3D00F8098B /* PostViewController.h */,
 				CDAF7BA318328D3D00F8098B /* PostViewController.m */,
-				CDB0FBB817AD0656005024DE /* Post.h */,
-				CDB0FBB917AD0656005024DE /* Post.m */,
+				CDB0FBB817AD0656005024DE /* PostObject.h */,
+				CDB0FBB917AD0656005024DE /* PostObject.m */,
 				CDAF7B9D18328CEA00F8098B /* PostAttachment.h */,
 				CDAF7B9E18328CEA00F8098B /* PostAttachment.m */,
 				CDB0FBBC17AE8624005024DE /* PostCollection.h */,
 				CDB0FBBD17AE8624005024DE /* PostCollection.m */,
 				CDB0FB9C17ACED16005024DE /* Supporting Files */,
+				CDAF7C50183BAAC600F8098B /* Post.h */,
+				CDAF7C51183BAAC600F8098B /* Post.m */,
 				CDDA5C6818309B08001F20FD /* PostModel.xcdatamodeld */,
 				CDAF7B8D1830EC8E00F8098B /* Images.xcassets */,
 			);
@@ -279,8 +284,9 @@
 				CDB0FBA617ACED17005024DE /* AppDelegate.m in Sources */,
 				CDAF7C491838D5DC00F8098B /* FBLoginViewController.m in Sources */,
 				CDB0FBAF17ACED17005024DE /* PostTableViewController.m in Sources */,
+				CDAF7C52183BAAC600F8098B /* Post.m in Sources */,
 				CDAF7BA518328D3D00F8098B /* PostViewController.m in Sources */,
-				CDB0FBBA17AD0656005024DE /* Post.m in Sources */,
+				CDB0FBBA17AD0656005024DE /* PostObject.m in Sources */,
 				CDB0FBBE17AE8624005024DE /* PostCollection.m in Sources */,
 				CDB0FBC617AFD4AB005024DE /* MyCell.m in Sources */,
 			);

@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Post;
+@class OldPost;
 
 @interface PostCollection : NSObject
-@property (nonatomic,strong)NSMutableOrderedSet* postCollection;
+@property (nonatomic,strong)NSArray* postCollection;
 
--(Post*)retrievePost:(NSString*)reference;
+-(OldPost*)retrievePost:(NSString*)reference;
 
--(NSMutableOrderedSet*)retrieveLatestPosts;
+-(NSArray*)retrieveLatestPosts;
 
 @end

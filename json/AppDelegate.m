@@ -16,13 +16,12 @@
 {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard"
                                                              bundle: nil];
-    
     self.facebookLogin=(FBLoginViewController*)[mainStoryboard
                                                        instantiateViewControllerWithIdentifier: @"FBLoginViewID"];
-    
-//    [[UIApplication sharedApplication] keyWindow].tintColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrainsTextColour"]];
     [DTCoreTextFontDescriptor asyncPreloadFontLookupTable];
     [FBProfilePictureView class];
+    [MagicalRecord setupAutoMigratingCoreDataStack];
+    
     return YES;
 }
 
@@ -56,6 +55,7 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [FBSession.activeSession close];
+    [MagicalRecord cleanUp];
 }
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

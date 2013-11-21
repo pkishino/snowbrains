@@ -7,39 +7,48 @@
 //
 
 #import "PostCollection.h"
+#import "PostObject.h"
 #import "Post.h"
 
 #define sLatestPosts [NSURL URLWithString:@"http://www.snowbrains.com/?json=get_recent_posts&dev=1&exclude=categories,tags,modified,status,slug,type"]
 
 @implementation PostCollection
 
--(Post *)retrievePost:(NSString *)reference{
-    Post *post=[self.postCollection valueForKey:reference];
-    return post;
+-(PostObject *)retrievePost:(NSString *)reference{
+    Post *post = [Post MR_findFirstByAttribute:@"idTag" withValue:reference];
+    return [[PostObject alloc]initWithPost:post];
 }
 
--(NSMutableOrderedSet*)retrieveLatestPosts{
+-(NSArray*)retrieveLatestPosts{
     NSNumberFormatter *format= [[NSNumberFormatter alloc] init];
     [format setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSMutableOrderedSet *allPosts=[NSMutableOrderedSet new];
+    NSMutableArray *allPosts=[NSMutableArray new];
     NSError *error=nil;
     NSData *data=[NSData dataWithContentsOfURL:sLatestPosts];
     if(data){
         NSDictionary *json=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSArray *items=json[@"posts"];
         [items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            Post *post=[[Post alloc] initWithDictionary:obj];
+            if(![Post MR_findFirstByAttribute:@"idTag" withValue:reference]){
+            PostObject *postObject=[[PostObject alloc] initWithDictionary:obj];
             //        NSLog(@"%@",item);
-            [allPosts setV]
-            [allPosts setValue:post forKey:post.ID];
+            [allPosts addObject:[NSDictionary dictionaryWithObject:postObject forKey:postObject.ID]];
+            Post *post=[Post MR_createEntity];
+            post.author=postObject.author;
+            post.commentCount=postObject.commentCount;
+            post.content=postObject.content;
+            post.date=postObject.date;
+            post.excerpt=postObject.excerpt;
+            post.title=postObject.title;
+            post.thumbnail=[NSString stringWithFormat:@"%@",postObject.thumbnail];
+            post.idTag=[NSString stringWithFormat:@"%@",postObject.ID];
+            post.postUrl=[NSString stringWithFormat:@"%@",postObject.postUrl];
+            post.likeID=[NSString stringWithFormat:@"%@",postObject.likeID];
+            }
         }];
     }
-    if(self.postCollection){
-        [self.postCollection unionOrderedSet:allPosts];
-        return self.postCollection;
-    }else{
-        return allPosts;
-    }
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    return [Post MR_findAll];
 }
 
 @end

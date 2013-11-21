@@ -7,7 +7,7 @@
 //
 
 #import "PostTableViewController.h"
-#import "Post.h"
+#import "PostObject.h"
 #import "PostCollection.h"
 #import "PostViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -22,7 +22,6 @@
 
 @implementation PostTableViewController{
     dispatch_queue_t queue;
-    NSDateFormatter *dateFormatter;
 }
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -45,8 +44,6 @@
     }
     [self.tableView setRowHeight:cell.frame.size.height];
     self.allPosts=[PostCollection new];
-    dateFormatter=[NSDateFormatter new];
-    [dateFormatter setDateFormat:@"yy/MM/dd"];
     
     queue=dispatch_queue_create("com.jasontest.queue",nil);
     
@@ -82,10 +79,10 @@
         cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.delegate=self;
-    NSDictionary *postData=(self.allPosts.postCollection)[indexPath.row];
-    Post *post=[postData allValues][0];
+    Post *postData=(self.allPosts.postCollection)[indexPath.row];
+    PostObject *post=[[PostObject alloc]initWithPost:postData];
     [cell.posterTitle setAttributedString:[[NSAttributedString alloc] initWithHTMLData:[post.title dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:NULL]];
-    [cell.posterDate setText:post.date];
+    [cell.posterDate setText:[NSString stringWithFormat:@"%@",post.date]];
     [cell.posterAuthor setText:post.author];
     [cell.posterExcerpt setAttributedString:[[NSAttributedString alloc] initWithHTMLData:[post.excerpt dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:NULL]];
     [cell.posterComments setBackgroundImage:[[UIImage imageNamed:@"Comments"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
