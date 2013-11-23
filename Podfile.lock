@@ -9,6 +9,7 @@ PODS:
   - DTFoundation/UIKit (1.5.4):
     - DTFoundation/Core
   - Facebook-iOS-SDK (3.9.0)
+  - JSONModel (0.10.0)
   - MagicalRecord (2.2)
   - SDWebImage (3.5):
     - SDWebImage/Core
@@ -17,6 +18,7 @@ PODS:
 DEPENDENCIES:
   - DTCoreText
   - Facebook-iOS-SDK
+  - JSONModel
   - MagicalRecord
   - SDWebImage
 
@@ -24,6 +26,7 @@ SPEC CHECKSUMS:
   DTCoreText: 24f96ab529f19114533ca71922469c94fb73db4d
   DTFoundation: 86e59f373c7a9b9f859f8a9c1debf072979eebec
   Facebook-iOS-SDK: 5e1416dbdfc17b2620c2ca31c02e6feec042f2c1
+  JSONModel: cecca3c3a9ee1a248b56f7139e2d64b85ce536ec
   MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
   SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
 

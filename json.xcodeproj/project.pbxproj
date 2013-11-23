@@ -7,14 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CDAF7B8E1830EC8E00F8098B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDAF7B8D1830EC8E00F8098B /* Images.xcassets */; };
+		CD0857F118408C88005DEB14 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0857F018408C88005DEB14 /* Images.xcassets */; };
+		CD0857F718408D2E005DEB14 /* StorageModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD0857F518408D2E005DEB14 /* StorageModel.xcdatamodeld */; };
+		CD0857FD18409CA1005DEB14 /* CommonInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0857FC18409CA1005DEB14 /* CommonInterface.m */; };
+		CD0858181840A677005DEB14 /* Attachement.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858171840A677005DEB14 /* Attachement.m */; };
+		CD08581B1840A6AC005DEB14 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = CD08581A1840A6AC005DEB14 /* Author.m */; };
+		CD08581E1840A6AC005DEB14 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = CD08581D1840A6AC005DEB14 /* Category.m */; };
+		CD0858211840A6FE005DEB14 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858201840A6FE005DEB14 /* Comment.m */; };
+		CD0858241840A760005DEB14 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858231840A760005DEB14 /* ImageData.m */; };
+		CD0858271840A761005DEB14 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858261840A761005DEB14 /* Post.m */; };
+		CD08582A1840A761005DEB14 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858291840A761005DEB14 /* Tag.m */; };
+		CD08582D1840A761005DEB14 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = CD08582C1840A761005DEB14 /* Image.m */; };
+		CDADD91B184077A80047EA0A /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD91A184077A80047EA0A /* PostModel.m */; };
+		CDADD91E184077BC0047EA0A /* AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD91D184077BC0047EA0A /* AuthorModel.m */; };
+		CDADD921184077C60047EA0A /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD920184077C60047EA0A /* TagModel.m */; };
+		CDADD924184077D40047EA0A /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD923184077D40047EA0A /* ImageModel.m */; };
+		CDADD927184077E30047EA0A /* ImageDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD926184077E30047EA0A /* ImageDataModel.m */; };
+		CDADD92A184077EC0047EA0A /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD929184077EC0047EA0A /* CategoryModel.m */; };
+		CDADD92D184077F70047EA0A /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD92C184077F70047EA0A /* CommentModel.m */; };
+		CDADD930184078010047EA0A /* AttachementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD92F184078010047EA0A /* AttachementModel.m */; };
 		CDAF7B9F18328CEA00F8098B /* PostAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF7B9E18328CEA00F8098B /* PostAttachment.m */; };
 		CDAF7BA518328D3D00F8098B /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF7BA318328D3D00F8098B /* PostViewController.m */; };
 		CDAF7BEE183504C900F8098B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAF7BED183504C900F8098B /* MediaPlayer.framework */; };
 		CDAF7C44183526BB00F8098B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDAF7C43183526BB00F8098B /* Storyboard.storyboard */; };
 		CDAF7C491838D5DC00F8098B /* FBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF7C481838D5DC00F8098B /* FBLoginViewController.m */; };
 		CDAF7C4C1839201600F8098B /* FBLoginViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF7C4B1839201600F8098B /* FBLoginViewController2.m */; };
-		CDAF7C52183BAAC600F8098B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF7C51183BAAC600F8098B /* Post.m */; };
 		CDB0FB9617ACED16005024DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FB9517ACED16005024DE /* UIKit.framework */; };
 		CDB0FB9817ACED16005024DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FB9717ACED16005024DE /* Foundation.framework */; };
 		CDB0FB9A17ACED16005024DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FB9917ACED16005024DE /* CoreGraphics.framework */; };
@@ -28,48 +45,79 @@
 		CDB0FBC817AFD4FB005024DE /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB0FBC717AFD4FB005024DE /* MyCell.xib */; };
 		CDB0FBF817AFF050005024DE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FBF717AFF050005024DE /* ImageIO.framework */; };
 		CDB0FC0B17B0EB33005024DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FC0A17B0EB33005024DE /* MapKit.framework */; };
-		CDDA5C6A18309B08001F20FD /* PostModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CDDA5C6818309B08001F20FD /* PostModel.xcdatamodeld */; };
 		E0C563E74B24415DA9F698BB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F761ABD99944187A6FD620E /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5E3F1B6FBE514A88BE32D8B9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		6F761ABD99944187A6FD620E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDAF7B8D1830EC8E00F8098B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CD0857F018408C88005DEB14 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Supporting Files/Images.xcassets"; sourceTree = "<group>"; };
+		CD0857F618408D2E005DEB14 /* StorageModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StorageModel.xcdatamodel; sourceTree = "<group>"; };
+		CD0857FB18409CA1005DEB14 /* CommonInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonInterface.h; path = JsonModels/CommonInterface.h; sourceTree = "<group>"; };
+		CD0857FC18409CA1005DEB14 /* CommonInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonInterface.m; path = JsonModels/CommonInterface.m; sourceTree = "<group>"; };
+		CD0858161840A677005DEB14 /* Attachement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachement.h; path = CoreDataModels/Attachement.h; sourceTree = "<group>"; };
+		CD0858171840A677005DEB14 /* Attachement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Attachement.m; path = CoreDataModels/Attachement.m; sourceTree = "<group>"; };
+		CD0858191840A6AC005DEB14 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Author.h; path = CoreDataModels/Author.h; sourceTree = "<group>"; };
+		CD08581A1840A6AC005DEB14 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Author.m; path = CoreDataModels/Author.m; sourceTree = "<group>"; };
+		CD08581C1840A6AC005DEB14 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Category.h; path = CoreDataModels/Category.h; sourceTree = "<group>"; };
+		CD08581D1840A6AC005DEB14 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Category.m; path = CoreDataModels/Category.m; sourceTree = "<group>"; };
+		CD08581F1840A6FE005DEB14 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = CoreDataModels/Comment.h; sourceTree = "<group>"; };
+		CD0858201840A6FE005DEB14 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = CoreDataModels/Comment.m; sourceTree = "<group>"; };
+		CD0858221840A760005DEB14 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageData.h; path = CoreDataModels/ImageData.h; sourceTree = "<group>"; };
+		CD0858231840A760005DEB14 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageData.m; path = CoreDataModels/ImageData.m; sourceTree = "<group>"; };
+		CD0858251840A761005DEB14 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = CoreDataModels/Post.h; sourceTree = "<group>"; };
+		CD0858261840A761005DEB14 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = CoreDataModels/Post.m; sourceTree = "<group>"; };
+		CD0858281840A761005DEB14 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = CoreDataModels/Tag.h; sourceTree = "<group>"; };
+		CD0858291840A761005DEB14 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = CoreDataModels/Tag.m; sourceTree = "<group>"; };
+		CD08582B1840A761005DEB14 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = CoreDataModels/Image.h; sourceTree = "<group>"; };
+		CD08582C1840A761005DEB14 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = CoreDataModels/Image.m; sourceTree = "<group>"; };
+		CDADD919184077A80047EA0A /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostModel.h; path = JsonModels/PostModel.h; sourceTree = "<group>"; };
+		CDADD91A184077A80047EA0A /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostModel.m; path = JsonModels/PostModel.m; sourceTree = "<group>"; };
+		CDADD91C184077BC0047EA0A /* AuthorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorModel.h; path = JsonModels/AuthorModel.h; sourceTree = "<group>"; };
+		CDADD91D184077BC0047EA0A /* AuthorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorModel.m; path = JsonModels/AuthorModel.m; sourceTree = "<group>"; };
+		CDADD91F184077C60047EA0A /* TagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagModel.h; path = JsonModels/TagModel.h; sourceTree = "<group>"; };
+		CDADD920184077C60047EA0A /* TagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagModel.m; path = JsonModels/TagModel.m; sourceTree = "<group>"; };
+		CDADD922184077D40047EA0A /* ImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageModel.h; path = JsonModels/ImageModel.h; sourceTree = "<group>"; };
+		CDADD923184077D40047EA0A /* ImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageModel.m; path = JsonModels/ImageModel.m; sourceTree = "<group>"; };
+		CDADD925184077E30047EA0A /* ImageDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDataModel.h; path = JsonModels/ImageDataModel.h; sourceTree = "<group>"; };
+		CDADD926184077E30047EA0A /* ImageDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDataModel.m; path = JsonModels/ImageDataModel.m; sourceTree = "<group>"; };
+		CDADD928184077EC0047EA0A /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryModel.h; path = JsonModels/CategoryModel.h; sourceTree = "<group>"; };
+		CDADD929184077EC0047EA0A /* CategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryModel.m; path = JsonModels/CategoryModel.m; sourceTree = "<group>"; };
+		CDADD92B184077F70047EA0A /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentModel.h; path = JsonModels/CommentModel.h; sourceTree = "<group>"; };
+		CDADD92C184077F70047EA0A /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentModel.m; path = JsonModels/CommentModel.m; sourceTree = "<group>"; };
+		CDADD92E184078010047EA0A /* AttachementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttachementModel.h; path = JsonModels/AttachementModel.h; sourceTree = "<group>"; };
+		CDADD92F184078010047EA0A /* AttachementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttachementModel.m; path = JsonModels/AttachementModel.m; sourceTree = "<group>"; };
 		CDAF7B9D18328CEA00F8098B /* PostAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostAttachment.h; sourceTree = "<group>"; };
 		CDAF7B9E18328CEA00F8098B /* PostAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostAttachment.m; sourceTree = "<group>"; };
-		CDAF7BA218328D3D00F8098B /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
-		CDAF7BA318328D3D00F8098B /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		CDAF7BA218328D3D00F8098B /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostViewController.h; path = ViewControllers/PostViewController.h; sourceTree = "<group>"; };
+		CDAF7BA318328D3D00F8098B /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostViewController.m; path = ViewControllers/PostViewController.m; sourceTree = "<group>"; };
 		CDAF7BED183504C900F8098B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		CDAF7C43183526BB00F8098B /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		CDAF7C471838D5DC00F8098B /* FBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginViewController.h; sourceTree = "<group>"; };
-		CDAF7C481838D5DC00F8098B /* FBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginViewController.m; sourceTree = "<group>"; };
-		CDAF7C4A1839201600F8098B /* FBLoginViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginViewController2.h; sourceTree = "<group>"; };
-		CDAF7C4B1839201600F8098B /* FBLoginViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginViewController2.m; sourceTree = "<group>"; };
-		CDAF7C50183BAAC600F8098B /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
-		CDAF7C51183BAAC600F8098B /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		CDAF7C471838D5DC00F8098B /* FBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBLoginViewController.h; path = ViewControllers/FBLoginViewController.h; sourceTree = "<group>"; };
+		CDAF7C481838D5DC00F8098B /* FBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBLoginViewController.m; path = ViewControllers/FBLoginViewController.m; sourceTree = "<group>"; };
+		CDAF7C4A1839201600F8098B /* FBLoginViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBLoginViewController2.h; path = ViewControllers/FBLoginViewController2.h; sourceTree = "<group>"; };
+		CDAF7C4B1839201600F8098B /* FBLoginViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBLoginViewController2.m; path = ViewControllers/FBLoginViewController2.m; sourceTree = "<group>"; };
 		CDB0FB9217ACED16005024DE /* json.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = json.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB0FB9517ACED16005024DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDB0FB9717ACED16005024DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CDB0FB9917ACED16005024DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		CDB0FB9D17ACED16005024DE /* json-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "json-Info.plist"; sourceTree = "<group>"; };
+		CDB0FB9D17ACED16005024DE /* json-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "json-Info.plist"; path = "Supporting Files/json-Info.plist"; sourceTree = "<group>"; };
 		CDB0FB9F17ACED16005024DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CDB0FBA117ACED16005024DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CDB0FBA317ACED17005024DE /* json-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "json-Prefix.pch"; sourceTree = "<group>"; };
+		CDB0FBA317ACED17005024DE /* json-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "json-Prefix.pch"; path = "Supporting Files/json-Prefix.pch"; sourceTree = "<group>"; };
 		CDB0FBA417ACED17005024DE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CDB0FBA517ACED17005024DE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CDB0FBAD17ACED17005024DE /* PostTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostTableViewController.h; sourceTree = "<group>"; };
-		CDB0FBAE17ACED17005024DE /* PostTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostTableViewController.m; sourceTree = "<group>"; };
+		CDB0FBAD17ACED17005024DE /* PostTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PostTableViewController.h; path = ViewControllers/PostTableViewController.h; sourceTree = "<group>"; };
+		CDB0FBAE17ACED17005024DE /* PostTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PostTableViewController.m; path = ViewControllers/PostTableViewController.m; sourceTree = "<group>"; };
 		CDB0FBB817AD0656005024DE /* PostObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostObject.h; sourceTree = "<group>"; };
 		CDB0FBB917AD0656005024DE /* PostObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostObject.m; sourceTree = "<group>"; };
 		CDB0FBBC17AE8624005024DE /* PostCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCollection.h; sourceTree = "<group>"; };
 		CDB0FBBD17AE8624005024DE /* PostCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCollection.m; sourceTree = "<group>"; };
-		CDB0FBC417AFD4AB005024DE /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
-		CDB0FBC517AFD4AB005024DE /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCell.m; sourceTree = "<group>"; };
-		CDB0FBC717AFD4FB005024DE /* MyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCell.xib; sourceTree = "<group>"; };
+		CDB0FBC417AFD4AB005024DE /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCell.h; path = Details/MyCell.h; sourceTree = "<group>"; };
+		CDB0FBC517AFD4AB005024DE /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCell.m; path = Details/MyCell.m; sourceTree = "<group>"; };
+		CDB0FBC717AFD4FB005024DE /* MyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyCell.xib; path = Details/MyCell.xib; sourceTree = "<group>"; };
 		CDB0FBF717AFF050005024DE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		CDB0FC0A17B0EB33005024DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		CDDA5C6918309B08001F20FD /* PostModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +138,70 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD0857F218408CB0005DEB14 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CDAF7C471838D5DC00F8098B /* FBLoginViewController.h */,
+				CDAF7C481838D5DC00F8098B /* FBLoginViewController.m */,
+				CDAF7C4A1839201600F8098B /* FBLoginViewController2.h */,
+				CDAF7C4B1839201600F8098B /* FBLoginViewController2.m */,
+				CDB0FBAD17ACED17005024DE /* PostTableViewController.h */,
+				CDB0FBAE17ACED17005024DE /* PostTableViewController.m */,
+				CDAF7BA218328D3D00F8098B /* PostViewController.h */,
+				CDAF7BA318328D3D00F8098B /* PostViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CDADD918184077140047EA0A /* JsonModels */ = {
+			isa = PBXGroup;
+			children = (
+				CDADD919184077A80047EA0A /* PostModel.h */,
+				CDADD91A184077A80047EA0A /* PostModel.m */,
+				CDADD91C184077BC0047EA0A /* AuthorModel.h */,
+				CDADD91D184077BC0047EA0A /* AuthorModel.m */,
+				CDADD91F184077C60047EA0A /* TagModel.h */,
+				CDADD920184077C60047EA0A /* TagModel.m */,
+				CDADD922184077D40047EA0A /* ImageModel.h */,
+				CDADD923184077D40047EA0A /* ImageModel.m */,
+				CDADD925184077E30047EA0A /* ImageDataModel.h */,
+				CDADD926184077E30047EA0A /* ImageDataModel.m */,
+				CDADD928184077EC0047EA0A /* CategoryModel.h */,
+				CDADD929184077EC0047EA0A /* CategoryModel.m */,
+				CDADD92B184077F70047EA0A /* CommentModel.h */,
+				CDADD92C184077F70047EA0A /* CommentModel.m */,
+				CDADD92E184078010047EA0A /* AttachementModel.h */,
+				CDADD92F184078010047EA0A /* AttachementModel.m */,
+				CD0857FB18409CA1005DEB14 /* CommonInterface.h */,
+				CD0857FC18409CA1005DEB14 /* CommonInterface.m */,
+			);
+			name = JsonModels;
+			sourceTree = "<group>";
+		};
+		CDADD9311840897B0047EA0A /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				CD0857F518408D2E005DEB14 /* StorageModel.xcdatamodeld */,
+				CD08582B1840A761005DEB14 /* Image.h */,
+				CD08582C1840A761005DEB14 /* Image.m */,
+				CD0858281840A761005DEB14 /* Tag.h */,
+				CD0858291840A761005DEB14 /* Tag.m */,
+				CD0858251840A761005DEB14 /* Post.h */,
+				CD0858261840A761005DEB14 /* Post.m */,
+				CD0858221840A760005DEB14 /* ImageData.h */,
+				CD0858231840A760005DEB14 /* ImageData.m */,
+				CD08581F1840A6FE005DEB14 /* Comment.h */,
+				CD0858201840A6FE005DEB14 /* Comment.m */,
+				CD08581C1840A6AC005DEB14 /* Category.h */,
+				CD08581D1840A6AC005DEB14 /* Category.m */,
+				CD0858191840A6AC005DEB14 /* Author.h */,
+				CD08581A1840A6AC005DEB14 /* Author.m */,
+				CD0858161840A677005DEB14 /* Attachement.h */,
+				CD0858171840A677005DEB14 /* Attachement.m */,
+			);
+			name = CoreDataModels;
+			sourceTree = "<group>";
+		};
 		CDB0FB8917ACED16005024DE = {
 			isa = PBXGroup;
 			children = (
@@ -131,25 +243,16 @@
 				CDB0FBA417ACED17005024DE /* AppDelegate.h */,
 				CDB0FBA517ACED17005024DE /* AppDelegate.m */,
 				CDAF7C43183526BB00F8098B /* Storyboard.storyboard */,
-				CDAF7C471838D5DC00F8098B /* FBLoginViewController.h */,
-				CDAF7C481838D5DC00F8098B /* FBLoginViewController.m */,
-				CDAF7C4A1839201600F8098B /* FBLoginViewController2.h */,
-				CDAF7C4B1839201600F8098B /* FBLoginViewController2.m */,
-				CDB0FBAD17ACED17005024DE /* PostTableViewController.h */,
-				CDB0FBAE17ACED17005024DE /* PostTableViewController.m */,
-				CDAF7BA218328D3D00F8098B /* PostViewController.h */,
-				CDAF7BA318328D3D00F8098B /* PostViewController.m */,
+				CD0857F218408CB0005DEB14 /* ViewControllers */,
 				CDB0FBB817AD0656005024DE /* PostObject.h */,
 				CDB0FBB917AD0656005024DE /* PostObject.m */,
 				CDAF7B9D18328CEA00F8098B /* PostAttachment.h */,
 				CDAF7B9E18328CEA00F8098B /* PostAttachment.m */,
 				CDB0FBBC17AE8624005024DE /* PostCollection.h */,
 				CDB0FBBD17AE8624005024DE /* PostCollection.m */,
+				CDADD9311840897B0047EA0A /* CoreDataModels */,
+				CDADD918184077140047EA0A /* JsonModels */,
 				CDB0FB9C17ACED16005024DE /* Supporting Files */,
-				CDAF7C50183BAAC600F8098B /* Post.h */,
-				CDAF7C51183BAAC600F8098B /* Post.m */,
-				CDDA5C6818309B08001F20FD /* PostModel.xcdatamodeld */,
-				CDAF7B8D1830EC8E00F8098B /* Images.xcassets */,
 			);
 			path = json;
 			sourceTree = "<group>";
@@ -157,6 +260,7 @@
 		CDB0FB9C17ACED16005024DE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CD0857F018408C88005DEB14 /* Images.xcassets */,
 				CDB0FB9D17ACED16005024DE /* json-Info.plist */,
 				CDB0FB9E17ACED16005024DE /* InfoPlist.strings */,
 				CDB0FBA117ACED16005024DE /* main.m */,
@@ -231,7 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDB0FBA017ACED16005024DE /* InfoPlist.strings in Resources */,
-				CDAF7B8E1830EC8E00F8098B /* Images.xcassets in Resources */,
+				CD0857F118408C88005DEB14 /* Images.xcassets in Resources */,
 				CDB0FBC817AFD4FB005024DE /* MyCell.xib in Resources */,
 				CDAF7C44183526BB00F8098B /* Storyboard.storyboard in Resources */,
 			);
@@ -277,16 +381,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDADD930184078010047EA0A /* AttachementModel.m in Sources */,
 				CDB0FBA217ACED17005024DE /* main.m in Sources */,
 				CDAF7C4C1839201600F8098B /* FBLoginViewController2.m in Sources */,
-				CDDA5C6A18309B08001F20FD /* PostModel.xcdatamodeld in Sources */,
+				CD0857F718408D2E005DEB14 /* StorageModel.xcdatamodeld in Sources */,
+				CDADD921184077C60047EA0A /* TagModel.m in Sources */,
 				CDAF7B9F18328CEA00F8098B /* PostAttachment.m in Sources */,
+				CD08581B1840A6AC005DEB14 /* Author.m in Sources */,
+				CDADD91B184077A80047EA0A /* PostModel.m in Sources */,
+				CD0858241840A760005DEB14 /* ImageData.m in Sources */,
+				CD08581E1840A6AC005DEB14 /* Category.m in Sources */,
 				CDB0FBA617ACED17005024DE /* AppDelegate.m in Sources */,
+				CD0858211840A6FE005DEB14 /* Comment.m in Sources */,
+				CDADD927184077E30047EA0A /* ImageDataModel.m in Sources */,
+				CD08582D1840A761005DEB14 /* Image.m in Sources */,
+				CD0858271840A761005DEB14 /* Post.m in Sources */,
 				CDAF7C491838D5DC00F8098B /* FBLoginViewController.m in Sources */,
+				CD0857FD18409CA1005DEB14 /* CommonInterface.m in Sources */,
 				CDB0FBAF17ACED17005024DE /* PostTableViewController.m in Sources */,
-				CDAF7C52183BAAC600F8098B /* Post.m in Sources */,
+				CDADD91E184077BC0047EA0A /* AuthorModel.m in Sources */,
+				CD08582A1840A761005DEB14 /* Tag.m in Sources */,
+				CDADD924184077D40047EA0A /* ImageModel.m in Sources */,
+				CDADD92A184077EC0047EA0A /* CategoryModel.m in Sources */,
 				CDAF7BA518328D3D00F8098B /* PostViewController.m in Sources */,
+				CDADD92D184077F70047EA0A /* CommentModel.m in Sources */,
 				CDB0FBBA17AD0656005024DE /* PostObject.m in Sources */,
+				CD0858181840A677005DEB14 /* Attachement.m in Sources */,
 				CDB0FBBE17AE8624005024DE /* PostCollection.m in Sources */,
 				CDB0FBC617AFD4AB005024DE /* MyCell.m in Sources */,
 			);
@@ -301,6 +421,7 @@
 				CDB0FB9F17ACED16005024DE /* en */,
 			);
 			name = InfoPlist.strings;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -380,7 +501,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "json/json-Prefix.pch";
-				INFOPLIST_FILE = "json/json-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/json/Supporting Files/json-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -402,7 +523,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "json/json-Prefix.pch";
-				INFOPLIST_FILE = "json/json-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/json/Supporting Files/json-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -435,13 +556,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CDDA5C6818309B08001F20FD /* PostModel.xcdatamodeld */ = {
+		CD0857F518408D2E005DEB14 /* StorageModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CDDA5C6918309B08001F20FD /* PostModel.xcdatamodel */,
+				CD0857F618408D2E005DEB14 /* StorageModel.xcdatamodel */,
 			);
-			currentVersion = CDDA5C6918309B08001F20FD /* PostModel.xcdatamodel */;
-			path = PostModel.xcdatamodeld;
+			currentVersion = CD0857F618408D2E005DEB14 /* StorageModel.xcdatamodel */;
+			name = StorageModel.xcdatamodeld;
+			path = CoreDataModels/StorageModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
