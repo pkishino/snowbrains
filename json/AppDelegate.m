@@ -15,15 +15,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard"
-                                                             bundle: nil];
-    self.facebookLogin=(FBLoginViewController*)[mainStoryboard
-                                                       instantiateViewControllerWithIdentifier: @"FBLoginViewID"];
+    [[AFNetworkReachabilityManager sharedManager]startMonitoring];
     [DTCoreTextFontDescriptor asyncPreloadFontLookupTable];
     [FBProfilePictureView class];
     [MagicalRecord setupAutoMigratingCoreDataStack];
     [JSONModel setGlobalKeyMapper:[[JSONKeyMapper alloc] initWithDictionary:@{@"description":@"objectDescription",@"id":@"oID"}]];
-    
+    [[AFNetworkActivityIndicatorManager sharedManager]setEnabled:YES];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
+    }];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard"
+                                                             bundle: nil];
+    self.facebookLogin=(FBLoginViewController*)[mainStoryboard
+                                                instantiateViewControllerWithIdentifier: @"FBLoginViewID"];
     return YES;
 }
 
@@ -59,6 +63,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [FBSession.activeSession close];
     [MagicalRecord cleanUp];
+    [[AFNetworkReachabilityManager sharedManager]stopMonitoring];
 }
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

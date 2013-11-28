@@ -59,16 +59,10 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                     if(self.refreshControl.isRefreshing){
-                        [self.refreshControl endRefreshing];
-                    }
-                });
+                        [self.refreshControl endRefreshing];}});
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [[[UIAlertView alloc]initWithTitle:@"error" message:[NSString stringWithFormat:@"An error occurred:%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
-                });
-            }
-        }];
-    });
+                    [[[UIAlertView alloc]initWithTitle:@"error" message:[NSString stringWithFormat:@"An error occurred:%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];});}}];});
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -90,7 +84,9 @@
     cell.delegate=self;
     Post *post=(posts)[indexPath.row];
     [cell.posterTitle setAttributedString:[[NSAttributedString alloc] initWithHTMLData:[post.title dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:NULL]];
-    [cell.posterDate setText:[NSString stringWithFormat:@"%@",post.date]];
+    [cell.posterDate setText:[NSDateFormatter localizedStringFromDate:post.date
+                                                            dateStyle:NSDateFormatterShortStyle
+                                                            timeStyle:NSDateFormatterFullStyle]];
     [cell.posterAuthor setText:post.author.name];
     [cell.posterExcerpt setAttributedString:[[NSAttributedString alloc] initWithHTMLData:[post.excerpt dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:NULL]];
     [cell.posterComments setBackgroundImage:[[UIImage imageNamed:@"Comments"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
@@ -99,7 +95,7 @@
     [cell.posterToolbar setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrains_buttonBackground"]]];
     [cell.readPostButton setTag:post.oID.integerValue];
     [cell.likePostButton setTag:post.oID.integerValue];
-    if(post.likeID){
+    if(post.likeID!=0){
         [cell toggleLiked:YES];
     }else{
         [cell toggleLiked:NO];

@@ -30,7 +30,6 @@
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:sLatestPosts];
-    
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -39,31 +38,17 @@
             }
         } else {
 //            NSLog(@"%@ %@", response, responseObject);
-            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
             NSArray *items=responseObject[@"posts"];
                 [items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                     NSError *error=nil;
                     PostModel *model=[[PostModel alloc]initWithDictionary:obj error:&error];
-//                    model.thumbnail_images.oID=model.oID;
-//                    model.thumbnail_images.full.oID=model.oID;
-//                    model.thumbnail_images.thumbnail.oID=model.oID;
-//                    model.thumbnail_images.medium.oID=model.oID;
-//                    model.thumbnail_images.large.oID=model.oID;
-//                    for (AttachmentModel *attachment in model.attachments) {
-//                        attachment.images.oID=attachment.oID;
-//                        attachment.images.full.oID=attachment.oID;
-//                        attachment.images.thumbnail.oID=attachment.oID;
-//                        attachment.images.medium.oID=attachment.oID;
-//                        attachment.images.large.oID=attachment.oID;
-//                    }
-                        Post *post=[model saveToCore];
-                        [post importValuesForKeysWithObject:model];
-                        [posts addObject:post];
+                    Post *post=[model saveToCore];
+                    if([post importValuesForKeysWithObject:model])
+                            [posts addObject:post];
                 }];
                 if (completion){
-                    completion(YES, nil,posts);
+                    completion(YES, nil,[NSArray arrayWithArray:posts]);
                 }
-            }];
         }
     }];
     [dataTask resume];

@@ -8,8 +8,18 @@
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="images" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="usedAttachment" inverseEntity="Image" syncable="YES"/>
-        <relationship name="post" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Post" inverseName="attachments" inverseEntity="Post" syncable="YES"/>
+        <relationship name="images" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="usedAttachment" inverseEntity="Image" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="images.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="post" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Post" inverseName="attachments" inverseEntity="Post" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="post.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
         <userInfo>
             <entry key="relatedByAttribute" value="oID"/>
         </userInfo>
@@ -22,8 +32,18 @@
         <attribute name="objectDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="author" inverseEntity="Comment" syncable="YES"/>
-        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="author" inverseEntity="Post" syncable="YES"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="author" inverseEntity="Comment" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="comments.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="author" inverseEntity="Post" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="posts.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
         <userInfo>
             <entry key="relatedByAttribute" value="oID"/>
         </userInfo>
@@ -34,61 +54,137 @@
         <attribute name="post_count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="categories" inverseEntity="Post" syncable="YES"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="categories" inverseEntity="Post" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="posts.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
         <userInfo>
-            <entry key="oID" value="relatedByAttribute"/>
+            <entry key="relatedByAttribute" value="oID"/>
         </userInfo>
     </entity>
     <entity name="Comment" representedClassName="Comment" parentEntity="CommonInterface" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES">
+            <userInfo>
+                <entry key="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+            </userInfo>
+        </attribute>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parent" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="comments" inverseEntity="Author" syncable="YES"/>
-        <relationship name="post" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Post" inverseName="comments" inverseEntity="Post" syncable="YES"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="comments" inverseEntity="Author" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="author.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="post" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Post" inverseName="comments" inverseEntity="Post" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="post.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
         <userInfo>
             <entry key="relatedByAttribute" value="oID"/>
         </userInfo>
     </entity>
     <entity name="CommonInterface" representedClassName="CommonInterface" isAbstract="YES" syncable="YES">
-        <attribute name="oID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
-            <userInfo>
-                <entry key="relatedByAttribute" value="oID"/>
-            </userInfo>
-        </attribute>
-    </entity>
-    <entity name="Image" representedClassName="Image" parentEntity="CommonInterface" syncable="YES">
-        <relationship name="full" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ImageData" inverseName="usedFull" inverseEntity="ImageData" syncable="YES"/>
-        <relationship name="large" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ImageData" inverseName="usedLarge" inverseEntity="ImageData" syncable="YES"/>
-        <relationship name="medium" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ImageData" inverseName="usedMedium" inverseEntity="ImageData" syncable="YES"/>
-        <relationship name="thumbnail" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ImageData" inverseName="usedThumbnail" inverseEntity="ImageData" syncable="YES"/>
-        <relationship name="usedAttachment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attachment" inverseName="images" inverseEntity="Attachment" syncable="YES"/>
-        <relationship name="usedPost" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="thumbnail_images" inverseEntity="Post" syncable="YES"/>
+        <attribute name="oID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <userInfo>
             <entry key="relatedByAttribute" value="oID"/>
         </userInfo>
     </entity>
-    <entity name="ImageData" representedClassName="ImageData" parentEntity="CommonInterface" syncable="YES">
+    <entity name="Image" representedClassName="Image" parentEntity="CommonInterface" syncable="YES">
+        <relationship name="full" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ImageData" inverseName="usedFull" inverseEntity="ImageData" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="full.url"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="large" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ImageData" inverseName="usedLarge" inverseEntity="ImageData" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="large.url"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="medium" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ImageData" inverseName="usedMedium" inverseEntity="ImageData" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="medium.url"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ImageData" inverseName="usedThumbnail" inverseEntity="ImageData" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="thumbnail.url"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="usedAttachment" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Attachment" inverseName="images" inverseEntity="Attachment" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="usedAttachment.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="usedPost" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Post" inverseName="thumbnail_images" inverseEntity="Post" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="usedPost.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <userInfo>
+            <entry key="relatedByAttribute" value="oID"/>
+        </userInfo>
+    </entity>
+    <entity name="ImageData" representedClassName="ImageData" syncable="YES">
         <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="usedFull" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="full" inverseEntity="Image" syncable="YES"/>
-        <relationship name="usedLarge" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="large" inverseEntity="Image" syncable="YES"/>
-        <relationship name="usedMedium" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="medium" inverseEntity="Image" syncable="YES"/>
-        <relationship name="usedThumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="thumbnail" inverseEntity="Image" syncable="YES"/>
+        <relationship name="usedFull" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="full" inverseEntity="Image" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="usedFull.oID"/>
+                <entry key="relatedByAttribute" value="url"/>
+            </userInfo>
+        </relationship>
+        <relationship name="usedLarge" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="large" inverseEntity="Image" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="usedLarge.oID"/>
+                <entry key="relatedByAttribute" value="url"/>
+            </userInfo>
+        </relationship>
+        <relationship name="usedMedium" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="medium" inverseEntity="Image" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="usedMedium.oID"/>
+                <entry key="relatedByAttribute" value="url"/>
+            </userInfo>
+        </relationship>
+        <relationship name="usedThumbnail" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="thumbnail" inverseEntity="Image" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="usedThumbnail.oID"/>
+                <entry key="relatedByAttribute" value="url"/>
+            </userInfo>
+        </relationship>
         <userInfo>
-            <entry key="relatedByAttribute" value="oID"/>
+            <entry key="relatedByAttribute" value="url"/>
         </userInfo>
     </entity>
     <entity name="Post" representedClassName="Post" parentEntity="CommonInterface" syncable="YES">
         <attribute name="comment_count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="comment_status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES">
+            <userInfo>
+                <entry key="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+            </userInfo>
+        </attribute>
         <attribute name="excerpt" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="likeID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES">
+            <userInfo>
+                <entry key="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+            </userInfo>
+        </attribute>
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail" optional="YES" attributeType="String" syncable="YES"/>
@@ -97,16 +193,42 @@
         <attribute name="title_plain" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Attachment" inverseName="post" inverseEntity="Attachment" syncable="YES"/>
-        <relationship name="author" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Author" inverseName="posts" inverseEntity="Author" syncable="YES">
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Attachment" inverseName="post" inverseEntity="Attachment" syncable="YES">
             <userInfo>
+                <entry key="mappedKeyName" value="attachments.oID"/>
                 <entry key="relatedByAttribute" value="oID"/>
             </userInfo>
         </relationship>
-        <relationship name="categories" optional="YES" toMany="YES" minCount="1" deletionRule="No Action" destinationEntity="Category" inverseName="posts" inverseEntity="Category" syncable="YES"/>
-        <relationship name="comments" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Comment" inverseName="post" inverseEntity="Comment" syncable="YES"/>
-        <relationship name="tags" optional="YES" toMany="YES" minCount="1" deletionRule="No Action" destinationEntity="Tag" inverseName="posts" inverseEntity="Tag" syncable="YES"/>
-        <relationship name="thumbnail_images" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Image" inverseName="usedPost" inverseEntity="Image" syncable="YES"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Author" inverseName="posts" inverseEntity="Author" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="author.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="categories" optional="YES" toMany="YES" minCount="1" deletionRule="No Action" destinationEntity="Category" inverseName="posts" inverseEntity="Category" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="categories.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Comment" inverseName="post" inverseEntity="Comment" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="comments.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="tags" optional="YES" toMany="YES" minCount="1" deletionRule="No Action" destinationEntity="Tag" inverseName="posts" inverseEntity="Tag" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="tags.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
+        <relationship name="thumbnail_images" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Image" inverseName="usedPost" inverseEntity="Image" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="thumbnail_images.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
         <userInfo>
             <entry key="relatedByAttribute" value="oID"/>
         </userInfo>
@@ -116,7 +238,12 @@
         <attribute name="post_count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="tags" inverseEntity="Post" syncable="YES"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="tags" inverseEntity="Post" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="posts.oID"/>
+                <entry key="relatedByAttribute" value="oID"/>
+            </userInfo>
+        </relationship>
         <userInfo>
             <entry key="relatedByAttribute" value="oID"/>
         </userInfo>
@@ -126,10 +253,10 @@
         <element name="Author" positionX="-362" positionY="-324" width="128" height="178"/>
         <element name="Category" positionX="-27" positionY="147" width="128" height="133"/>
         <element name="Comment" positionX="-495" positionY="153" width="128" height="148"/>
+        <element name="CommonInterface" positionX="135" positionY="-105" width="128" height="60"/>
         <element name="Image" positionX="331" positionY="108" width="128" height="133"/>
         <element name="ImageData" positionX="351" positionY="-270" width="128" height="148"/>
         <element name="Post" positionX="-72" positionY="-375" width="128" height="358"/>
         <element name="Tag" positionX="-200" positionY="171" width="128" height="118"/>
-        <element name="CommonInterface" positionX="72" positionY="-45" width="128" height="60"/>
     </elements>
 </model>

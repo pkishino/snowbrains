@@ -39,15 +39,15 @@
 		CD08588F1845A611005DEB14 /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858721845A611005DEB14 /* MagicalRecord+ShorthandSupport.m */; };
 		CD0858901845A611005DEB14 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858741845A611005DEB14 /* MagicalRecord.m */; };
 		CD0858921845A66B005DEB14 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0858911845A66B005DEB14 /* CoreData.framework */; };
-		CD085898184629CD005DEB14 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD085897184629CD005DEB14 /* ImageData.m */; };
 		CD08589B184629CE005DEB14 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = CD08589A184629CE005DEB14 /* Comment.m */; };
 		CD08589E184629CE005DEB14 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = CD08589D184629CE005DEB14 /* Attachment.m */; };
 		CD0858A1184629CE005DEB14 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858A0184629CE005DEB14 /* Author.m */; };
 		CD0858A4184629CE005DEB14 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858A3184629CE005DEB14 /* Tag.m */; };
-		CD0858A7184629CE005DEB14 /* CommonInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858A6184629CE005DEB14 /* CommonInterface.m */; };
 		CD0858AA184629CE005DEB14 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858A9184629CE005DEB14 /* Category.m */; };
 		CD0858AD184629CE005DEB14 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858AC184629CE005DEB14 /* Post.m */; };
-		CD0858B0184629CE005DEB14 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858AF184629CE005DEB14 /* Image.m */; };
+		CD0858B318477487005DEB14 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858B218477487005DEB14 /* Image.m */; };
+		CD0858BA1847855F005DEB14 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858B91847855F005DEB14 /* ImageData.m */; };
+		CD0858BD18478D06005DEB14 /* CommonInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858BC18478D06005DEB14 /* CommonInterface.m */; };
 		CDADD91B184077A80047EA0A /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD91A184077A80047EA0A /* PostModel.m */; };
 		CDADD91E184077BC0047EA0A /* AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD91D184077BC0047EA0A /* AuthorModel.m */; };
 		CDADD921184077C60047EA0A /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD920184077C60047EA0A /* TagModel.m */; };
@@ -142,8 +142,6 @@
 		CD0858751845A611005DEB14 /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		CD0858761845A611005DEB14 /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
 		CD0858911845A66B005DEB14 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		CD085896184629CD005DEB14 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageData.h; path = CoreDataModels/ImageData.h; sourceTree = "<group>"; };
-		CD085897184629CD005DEB14 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageData.m; path = CoreDataModels/ImageData.m; sourceTree = "<group>"; };
 		CD085899184629CE005DEB14 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = CoreDataModels/Comment.h; sourceTree = "<group>"; };
 		CD08589A184629CE005DEB14 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = CoreDataModels/Comment.m; sourceTree = "<group>"; };
 		CD08589C184629CE005DEB14 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = CoreDataModels/Attachment.h; sourceTree = "<group>"; };
@@ -152,14 +150,16 @@
 		CD0858A0184629CE005DEB14 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Author.m; path = CoreDataModels/Author.m; sourceTree = "<group>"; };
 		CD0858A2184629CE005DEB14 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = CoreDataModels/Tag.h; sourceTree = "<group>"; };
 		CD0858A3184629CE005DEB14 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = CoreDataModels/Tag.m; sourceTree = "<group>"; };
-		CD0858A5184629CE005DEB14 /* CommonInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonInterface.h; path = CoreDataModels/CommonInterface.h; sourceTree = "<group>"; };
-		CD0858A6184629CE005DEB14 /* CommonInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonInterface.m; path = CoreDataModels/CommonInterface.m; sourceTree = "<group>"; };
 		CD0858A8184629CE005DEB14 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Category.h; path = CoreDataModels/Category.h; sourceTree = "<group>"; };
 		CD0858A9184629CE005DEB14 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Category.m; path = CoreDataModels/Category.m; sourceTree = "<group>"; };
 		CD0858AB184629CE005DEB14 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = CoreDataModels/Post.h; sourceTree = "<group>"; };
 		CD0858AC184629CE005DEB14 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = CoreDataModels/Post.m; sourceTree = "<group>"; };
-		CD0858AE184629CE005DEB14 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = CoreDataModels/Image.h; sourceTree = "<group>"; };
-		CD0858AF184629CE005DEB14 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = CoreDataModels/Image.m; sourceTree = "<group>"; };
+		CD0858B118477487005DEB14 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = CoreDataModels/Image.h; sourceTree = "<group>"; };
+		CD0858B218477487005DEB14 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = CoreDataModels/Image.m; sourceTree = "<group>"; };
+		CD0858B81847855F005DEB14 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageData.h; path = CoreDataModels/ImageData.h; sourceTree = "<group>"; };
+		CD0858B91847855F005DEB14 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageData.m; path = CoreDataModels/ImageData.m; sourceTree = "<group>"; };
+		CD0858BB18478D06005DEB14 /* CommonInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonInterface.h; path = CoreDataModels/CommonInterface.h; sourceTree = "<group>"; };
+		CD0858BC18478D06005DEB14 /* CommonInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonInterface.m; path = CoreDataModels/CommonInterface.m; sourceTree = "<group>"; };
 		CDADD919184077A80047EA0A /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostModel.h; path = JsonModels/PostModel.h; sourceTree = "<group>"; };
 		CDADD91A184077A80047EA0A /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostModel.m; path = JsonModels/PostModel.m; sourceTree = "<group>"; };
 		CDADD91C184077BC0047EA0A /* AuthorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorModel.h; path = JsonModels/AuthorModel.h; sourceTree = "<group>"; };
@@ -393,14 +393,16 @@
 			isa = PBXGroup;
 			children = (
 				CD0857F518408D2E005DEB14 /* StorageModel.xcdatamodeld */,
-				CD0858AE184629CE005DEB14 /* Image.h */,
-				CD0858AF184629CE005DEB14 /* Image.m */,
+				CD0858BB18478D06005DEB14 /* CommonInterface.h */,
+				CD0858BC18478D06005DEB14 /* CommonInterface.m */,
+				CD0858B81847855F005DEB14 /* ImageData.h */,
+				CD0858B91847855F005DEB14 /* ImageData.m */,
+				CD0858B118477487005DEB14 /* Image.h */,
+				CD0858B218477487005DEB14 /* Image.m */,
 				CD0858AB184629CE005DEB14 /* Post.h */,
 				CD0858AC184629CE005DEB14 /* Post.m */,
 				CD0858A8184629CE005DEB14 /* Category.h */,
 				CD0858A9184629CE005DEB14 /* Category.m */,
-				CD0858A5184629CE005DEB14 /* CommonInterface.h */,
-				CD0858A6184629CE005DEB14 /* CommonInterface.m */,
 				CD0858A2184629CE005DEB14 /* Tag.h */,
 				CD0858A3184629CE005DEB14 /* Tag.m */,
 				CD08589F184629CE005DEB14 /* Author.h */,
@@ -409,8 +411,6 @@
 				CD08589D184629CE005DEB14 /* Attachment.m */,
 				CD085899184629CE005DEB14 /* Comment.h */,
 				CD08589A184629CE005DEB14 /* Comment.m */,
-				CD085896184629CD005DEB14 /* ImageData.h */,
-				CD085897184629CD005DEB14 /* ImageData.m */,
 			);
 			name = CoreDataModels;
 			sourceTree = "<group>";
@@ -611,8 +611,6 @@
 				CD0858771845A611005DEB14 /* MagicalImportFunctions.m in Sources */,
 				CD0858781845A611005DEB14 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				CDADD927184077E30047EA0A /* ImageDataModel.m in Sources */,
-				CD085898184629CD005DEB14 /* ImageData.m in Sources */,
-				CD0858A7184629CE005DEB14 /* CommonInterface.m in Sources */,
 				CD08587A1845A611005DEB14 /* NSNumber+MagicalDataImport.m in Sources */,
 				CD0858791845A611005DEB14 /* NSEntityDescription+MagicalDataImport.m in Sources */,
 				CD0858A4184629CE005DEB14 /* Tag.m in Sources */,
@@ -633,9 +631,10 @@
 				CDADD91E184077BC0047EA0A /* AuthorModel.m in Sources */,
 				CD08588B1845A611005DEB14 /* MagicalRecord+ErrorHandling.m in Sources */,
 				CDADD924184077D40047EA0A /* ImageModel.m in Sources */,
-				CD0858B0184629CE005DEB14 /* Image.m in Sources */,
+				CD0858B318477487005DEB14 /* Image.m in Sources */,
 				CD0858841845A611005DEB14 /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				CDADD92A184077EC0047EA0A /* CategoryModel.m in Sources */,
+				CD0858BD18478D06005DEB14 /* CommonInterface.m in Sources */,
 				CDAF7BA518328D3D00F8098B /* PostViewController.m in Sources */,
 				CD0858811845A611005DEB14 /* NSManagedObject+MagicalRecord.m in Sources */,
 				CDADD92D184077F70047EA0A /* CommentModel.m in Sources */,
@@ -643,6 +642,7 @@
 				CDB0FBBE17AE8624005024DE /* PostCollection.m in Sources */,
 				CD0858801845A611005DEB14 /* NSManagedObject+MagicalFinders.m in Sources */,
 				CD0858AA184629CE005DEB14 /* Category.m in Sources */,
+				CD0858BA1847855F005DEB14 /* ImageData.m in Sources */,
 				CDB0FBC617AFD4AB005024DE /* MyCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
