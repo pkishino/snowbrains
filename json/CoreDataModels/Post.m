@@ -2,12 +2,12 @@
 //  Post.m
 //  json
 //
-//  Created by Patrick Ziegler on 23/11/13.
+//  Created by Patrick Ziegler on 27/11/13.
 //  Copyright (c) 2013 Patrick Ziegler. All rights reserved.
 //
 
 #import "Post.h"
-#import "Attachement.h"
+#import "Attachment.h"
 #import "Author.h"
 #import "Category.h"
 #import "Comment.h"
@@ -18,11 +18,10 @@
 @implementation Post
 
 @dynamic comment_status;
-@dynamic commentCount;
+@dynamic comment_count;
 @dynamic content;
 @dynamic date;
 @dynamic excerpt;
-@dynamic id;
 @dynamic likeID;
 @dynamic modified;
 @dynamic slug;
@@ -33,7 +32,7 @@
 @dynamic title_plain;
 @dynamic type;
 @dynamic url;
-@dynamic attachements;
+@dynamic attachments;
 @dynamic author;
 @dynamic categories;
 @dynamic comments;

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <FBSessionTokenCachingStrategy.h>
 #import "FBLoginViewController.h"
+#import <JSONModel.h>
 
 @implementation AppDelegate
 
@@ -21,6 +22,7 @@
     [DTCoreTextFontDescriptor asyncPreloadFontLookupTable];
     [FBProfilePictureView class];
     [MagicalRecord setupAutoMigratingCoreDataStack];
+    [JSONModel setGlobalKeyMapper:[[JSONKeyMapper alloc] initWithDictionary:@{@"description":@"objectDescription",@"id":@"oID"}]];
     
     return YES;
 }

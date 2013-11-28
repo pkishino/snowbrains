@@ -2,7 +2,7 @@
 //  Tag.m
 //  json
 //
-//  Created by Patrick Ziegler on 23/11/13.
+//  Created by Patrick Ziegler on 27/11/13.
 //  Copyright (c) 2013 Patrick Ziegler. All rights reserved.
 //
 
@@ -12,10 +12,9 @@
 
 @implementation Tag
 
-@dynamic id;
+@dynamic objectDescription;
 @dynamic post_count;
 @dynamic slug;
-@dynamic tag_description;
 @dynamic title;
 @dynamic posts;
 

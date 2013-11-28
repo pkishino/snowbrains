@@ -8,8 +8,10 @@
 
 #import "JSONModel.h"
 
-@interface CommonInterface : JSONModel
+@interface CommonModelInterface : JSONModel
 
-@property (assign, nonatomic) int id;
+@property (nonatomic, retain) NSNumber<Optional> *oID;
+
+-(id)saveToCore;
 
 @end

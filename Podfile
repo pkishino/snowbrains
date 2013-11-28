@@ -1,6 +1,6 @@
 platform :ios, '7.0'
 pod 'SDWebImage'
 pod 'DTCoreText'
-pod 'MagicalRecord'
 pod 'JSONModel'
 pod 'Facebook-iOS-SDK'
+pod 'AFNetworking', '2.0.0'

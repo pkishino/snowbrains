@@ -7,13 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-@class OldPost;
+#import "PostRetriever.h"
+@class Post;
 
 @interface PostCollection : NSObject
-@property (nonatomic,strong)NSArray* postCollection;
++(id)postCollection;
 
--(OldPost*)retrievePost:(NSString*)reference;
++(Post*)retrievePost:(NSNumber*)reference;
 
--(NSArray*)retrieveLatestPosts;
++(void)retrieveLatestPostsWithCompletion:(PostCompletionHandler)completion;
+
++(NSArray*)retrieveAllPosts;
+
++(NSArray*)retrievePostsAfter:(NSDate*)date;
+
++(NSArray*)retrievePostsBefore:(NSDate *)date;
+
++(NSArray*)retrievePostsCount:(int)count;
+
++(NSArray*)retrievePostByCategory:(NSString*)category;
+
++(NSArray *)retrievePostByTag:(NSString *)tag;
+
+
 
 @end

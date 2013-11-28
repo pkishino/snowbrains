@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Patrick Ziegler. All rights reserved.
 //
 
-#import "JSONModel.h"
+#import "CommonModelInterface.h"
 #import "ImageModel.h"
-#import "AttachementModel.h"
+#import "AttachmentModel.h"
 #import "AuthorModel.h"
 #import "TagModel.h"
 #import "CommentModel.h"
@@ -17,11 +17,10 @@
 @protocol TagModel @end
 @protocol CommentModel @end
 @protocol CategoryModel @end
-@protocol AttachementModel @end
+@protocol AttachmentModel @end
 
-@interface PostModel : JSONModel
+@interface PostModel :CommonModelInterface
 
-@property (assign, nonatomic) int id;
 @property (assign, nonatomic) int comment_count;
 
 @property (strong, nonatomic) NSString* status;
@@ -43,7 +42,7 @@
 
 @property (strong, nonatomic)NSArray<TagModel>* tags;
 @property (strong, nonatomic)NSArray<CategoryModel>* categories;
-@property (strong, nonatomic)NSArray<AttachementModel,Optional>* attachements;
+@property (strong, nonatomic)NSArray<AttachmentModel,Optional>* attachments;
 @property (strong, nonatomic)NSArray<CommentModel,Optional>* comments;
 
 @end

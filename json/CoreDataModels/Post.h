@@ -2,23 +2,23 @@
 //  Post.h
 //  json
 //
-//  Created by Patrick Ziegler on 23/11/13.
+//  Created by Patrick Ziegler on 27/11/13.
 //  Copyright (c) 2013 Patrick Ziegler. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "CommonInterface.h"
 
-@class Attachement, Author, Category, Comment, Image, Tag;
+@class Attachment, Author, Category, Comment, Image, Tag;
 
-@interface Post : NSManagedObject
+@interface Post : CommonInterface
 
 @property (nonatomic, retain) NSString * comment_status;
-@property (nonatomic, retain) NSNumber * commentCount;
+@property (nonatomic, retain) NSNumber * comment_count;
 @property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * excerpt;
-@property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSNumber * likeID;
 @property (nonatomic, retain) NSDate * modified;
 @property (nonatomic, retain) NSString * slug;
@@ -29,7 +29,7 @@
 @property (nonatomic, retain) NSString * title_plain;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSString * url;
-@property (nonatomic, retain) NSSet *attachements;
+@property (nonatomic, retain) NSSet *attachments;
 @property (nonatomic, retain) Author *author;
 @property (nonatomic, retain) NSSet *categories;
 @property (nonatomic, retain) NSSet *comments;
@@ -39,10 +39,10 @@
 
 @interface Post (CoreDataGeneratedAccessors)
 
-- (void)addAttachementsObject:(Attachement *)value;
-- (void)removeAttachementsObject:(Attachement *)value;
-- (void)addAttachements:(NSSet *)values;
-- (void)removeAttachements:(NSSet *)values;
+- (void)addAttachmentsObject:(Attachment *)value;
+- (void)removeAttachmentsObject:(Attachment *)value;
+- (void)addAttachments:(NSSet *)values;
+- (void)removeAttachments:(NSSet *)values;
 
 - (void)addCategoriesObject:(Category *)value;
 - (void)removeCategoriesObject:(Category *)value;

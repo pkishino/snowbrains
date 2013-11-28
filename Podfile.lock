@@ -1,4 +1,24 @@
 PODS:
+  - AFNetworking (2.0.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.0.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.0.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.0.0)
+  - AFNetworking/Security (2.0.0)
+  - AFNetworking/Serialization (2.0.0)
+  - AFNetworking/UIKit (2.0.0):
+    - AFNetworking/NSURLConnection
   - DTCoreText (1.6.8):
     - DTFoundation/Core (~> 1.5.4)
     - DTFoundation/DTHTMLParser (~> 1.5.4)
@@ -10,24 +30,23 @@ PODS:
     - DTFoundation/Core
   - Facebook-iOS-SDK (3.9.0)
   - JSONModel (0.10.0)
-  - MagicalRecord (2.2)
   - SDWebImage (3.5):
     - SDWebImage/Core
   - SDWebImage/Core (3.5)
 
 DEPENDENCIES:
+  - AFNetworking (= 2.0.0)
   - DTCoreText
   - Facebook-iOS-SDK
   - JSONModel
-  - MagicalRecord
   - SDWebImage
 
 SPEC CHECKSUMS:
+  AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
   DTCoreText: 24f96ab529f19114533ca71922469c94fb73db4d
   DTFoundation: 86e59f373c7a9b9f859f8a9c1debf072979eebec
   Facebook-iOS-SDK: 5e1416dbdfc17b2620c2ca31c02e6feec042f2c1
   JSONModel: cecca3c3a9ee1a248b56f7139e2d64b85ce536ec
-  MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
   SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
 
 COCOAPODS: 0.28.0
