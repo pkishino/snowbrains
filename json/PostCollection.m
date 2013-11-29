@@ -21,7 +21,7 @@
     return postCollection;
 }
 +(Post *)retrievePost:(NSNumber*)reference{
-    return [Post findFirstByAttribute:@"id" withValue:reference];
+    return [Post findFirstByAttribute:@"oID" withValue:reference];
 }
 
 +(void)retrieveLatestPostsWithCompletion:(PostCompletionHandler)completion{

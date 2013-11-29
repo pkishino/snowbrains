@@ -22,7 +22,6 @@
 @end
 
 @implementation PostTableViewController{
-//    dispatch_queue_t queue;
     NSArray* posts;
 }
 - (id)initWithStyle:(UITableViewStyle)style
@@ -46,9 +45,11 @@
     }
     [self.tableView setRowHeight:cell.frame.size.height];
     
-//    queue=dispatch_queue_create("retrieveQueue",nil);
-    
-    [self retrieveData];
+    dispatch_async(sBgQueue,^{
+        posts=[PostCollection retrieveAllPosts];
+        dispatch_async(dispatch_get_main_queue(),^{
+            [self.tableView reloadData];});
+    });
 }
 
 -(void)retrieveData{
@@ -95,7 +96,7 @@
     [cell.posterToolbar setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrains_buttonBackground"]]];
     [cell.readPostButton setTag:post.oID.integerValue];
     [cell.likePostButton setTag:post.oID.integerValue];
-    if(post.likeID!=0){
+    if(post.likeID.intValue!=0){
         [cell toggleLiked:YES];
     }else{
         [cell toggleLiked:NO];
@@ -136,19 +137,9 @@
     [postView setContent:post.content];
     [self.navigationController pushViewController:postView animated:YES];
 }
+
 -(void)likePost:(id)sender{
-    if ([FBSession.activeSession.permissions
-         indexOfObject:@"publish_actions"] == NSNotFound) {
-        [FBSession.activeSession
-         requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
-         defaultAudience:FBSessionDefaultAudienceFriends
-         completionHandler:^(FBSession *session, NSError *error) {
-             if (!error) {
-                 // re-call assuming we now have the permission
-                 [self likePost:sender];
-             }
-         }];
-    }else{
+    [self runFaceBookBlock:^{
         NSInteger tag=((UIBarButtonItem *)sender).tag;
         Post *post=[PostCollection retrievePost:[NSNumber numberWithInteger:tag]];
         NSMutableDictionary<FBGraphObject> *action = [FBGraphObject graphObject];
@@ -163,23 +154,49 @@
                                          if(!error){
                                              NSString *resultId=[(NSDictionary*)result valueForKey:@"id"];
                                              [post setLikeID:[NSNumber numberWithInteger:resultId.integerValue]];
+                                             [self.tableView reloadData];
                                          }
                                      }];
-    }
+    }];
 }
 -(void)unlikePost:(id)sender{
-    NSInteger tag=((UIBarButtonItem *)sender).tag;
-    Post *post=[PostCollection retrievePost:[NSNumber numberWithInteger:tag]];
-    [FBRequestConnection startWithGraphPath:post.likeID.stringValue
-                                 parameters:nil
-                                 HTTPMethod:@"DELETE"
-                          completionHandler:^(FBRequestConnection *connection,
-                                              id result,
-                                              NSError *error) {
-                              if(!error){
-                                  [post setLikeID:nil];
-                              }
-                          }];
+    [self runFaceBookBlock:^{
+        NSInteger tag=((UIBarButtonItem *)sender).tag;
+        Post *post=[PostCollection retrievePost:[NSNumber numberWithInteger:tag]];
+        [FBRequestConnection startWithGraphPath:post.likeID.stringValue
+                                     parameters:nil
+                                     HTTPMethod:@"DELETE"
+                              completionHandler:^(FBRequestConnection *connection,
+                                                  id result,
+                                                  NSError *error) {
+                                  if(!error){
+                                      [post setLikeID:nil];
+                                      [self.tableView reloadData];
+                                  }
+                              }];
+    }];
+    
+}
+-(void)runFaceBookBlock:(void(^)(void))completion{
+    if([[FBSession activeSession]isOpen]){
+        if ([FBSession.activeSession.permissions
+         indexOfObject:@"publish_actions"] == NSNotFound) {
+        [FBSession.activeSession
+         requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
+         defaultAudience:FBSessionDefaultAudienceFriends
+         completionHandler:^(FBSession *session, NSError *error) {
+             if(!error&&completion){
+                 completion();
+             }
+         }];
+        }
+    }else{
+        [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"] defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+            if(!error&&completion&&status==FBSessionStateOpen){
+                completion();
+            }
+        }];
+    }
 }
 - (void)didReceiveMemoryWarning
 {

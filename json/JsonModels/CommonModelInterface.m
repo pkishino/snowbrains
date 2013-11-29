@@ -9,5 +9,6 @@
 #import "CommonModelInterface.h"
 
 @implementation CommonModelInterface
+-(id)saveToCore{return self;}
 
 @end

@@ -19,15 +19,15 @@
 
 +(NSArray*)retrieveAllPosts;
 
-+(NSArray*)retrievePostsAfter:(NSDate*)date;
-
-+(NSArray*)retrievePostsBefore:(NSDate *)date;
-
-+(NSArray*)retrievePostsCount:(int)count;
-
-+(NSArray*)retrievePostByCategory:(NSString*)category;
-
-+(NSArray *)retrievePostByTag:(NSString *)tag;
+//+(NSArray*)retrievePostsAfter:(NSDate*)date;
+//
+//+(NSArray*)retrievePostsBefore:(NSDate *)date;
+//
+//+(NSArray*)retrievePostsCount:(int)count;
+//
+//+(NSArray*)retrievePostByCategory:(NSString*)category;
+//
+//+(NSArray *)retrievePostByTag:(NSString *)tag;
 
 
 
