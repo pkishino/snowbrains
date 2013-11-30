@@ -43,7 +43,7 @@ DEPENDENCIES:
   - JSONModel
   - MagicalRecord
   - MBProgressHUD
-  - SDWebImage
+  - SDWebImage (= 3.5)
 
 SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845

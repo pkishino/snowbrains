@@ -17,13 +17,15 @@
     NSMutableSet *mediaPlayers;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
++(id)initWithPost{
+    static PostViewController *pvc=nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken,^{
+        pvc=[[PostViewController alloc]init];
+        pvc
+    });
+    return pvc;
+    
 }
 -(void)loadView{
     [super loadView];

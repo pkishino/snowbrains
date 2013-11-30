@@ -20,37 +20,22 @@
 @end
 
 @implementation PostTableViewController{
-    NSArray* posts;
+    NSMutableOrderedSet* posts;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.tableView setDelegate:self];
-    static NSString *CellIdentifier = @"CustomCellReuseID";
     [self.tableView registerNib:[UINib nibWithNibName:@"MyCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CellIdentifier];
-    MyCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    [self.tableView setRowHeight:cell.frame.size.height];
-    
-    dispatch_async(sBgQueue,^{
-        posts=[PostCollection retrieveAllPosts];
-        if(posts.count>0){
-        dispatch_async(dispatch_get_main_queue(),^{
-            [self.tableView reloadData];});
-        }else{
-            [self retrieveData];
-        }
-    });
+    [self.tableView setRowHeight:[MyCell getHeight]];
 }
 
--(void)retrieveData{
+-(void)retrieveLatestData{
     dispatch_async(sBgQueue, ^{
         [PostCollection retrieveLatestPostsWithCompletion:^(BOOL success, NSError *error, NSArray *array) {
             if(!error){
-                posts=array;
+                [posts addObjectsFromArray:array];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                     if(self.refreshControl.isRefreshing){
@@ -58,6 +43,17 @@
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[[UIAlertView alloc]initWithTitle:@"error" message:[NSString stringWithFormat:@"An error occurred:%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];});}}];});
+}
+-(void)retrieveData{
+    dispatch_async(sBgQueue,^{
+        posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
+        if(posts.count>0){
+            dispatch_async(dispatch_get_main_queue(),^{
+                [self.tableView reloadData];});
+        }else{
+            [self retrieveLatestData];
+        }
+    });
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -69,8 +65,6 @@
     return [posts count];
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *CellIdentifier = @"CustomCellReuseID";
     
     MyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -93,7 +87,7 @@
 }
 
 - (IBAction)pulledToRefresh:(id)sender {
-    [self retrieveData];
+    [self retrieveLatestData];
 }
 
 #pragma MyCelldelegate

@@ -10,6 +10,9 @@
 #import "Post.h"
 #import "Author.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+
+static NSString *CellIdentifier = @"CustomCellReuseID";
+
 @interface MyCell : UITableViewCell
 @property (strong,nonatomic) id delegate;
 @property (weak, nonatomic) IBOutlet UIImageView *posterThumb;
@@ -31,11 +34,13 @@
 -(void)toggleLiked:(BOOL)status;
 -(id)loadWithPost:(Post*)post;
 
++(int)getHeight;
+
 @end
 @protocol MyCellDelegate
 
--(void)readPost:(id)sender;
--(void)likePost:(id)sender withCompletion:(void (^)(BOOL success))completion;
--(void)unlikePost:(id)sender withCompletion:(void (^)(BOOL success))completion;
+-(void)readPost:(NSInteger)tag;
+-(void)likePost:(NSInteger)tag withCompletion:(void (^)(BOOL success))completion;
+-(void)unlikePost:(NSInteger)tag withCompletion:(void (^)(BOOL success))completion;
 
 @end

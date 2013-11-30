@@ -10,6 +10,9 @@
 #import <FacebookSDK.h>
 bool liked;
 @implementation MyCell
++(int)getHeight{
+    return [[MyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier].frame.size.height;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

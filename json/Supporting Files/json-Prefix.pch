@@ -4,7 +4,7 @@
 
 #import <Availability.h>
 
-#ifndef __IPHONE_4_0
+#ifndef __IPHONE_7_0
 #warning "This project uses features only available in iOS SDK 4.0 and later."
 #endif
 
@@ -15,6 +15,7 @@
     #import <DTCoreText.h>
     #import <AFNetworkActivityIndicatorManager.h>
     #import <AFNetworkReachabilityManager.h>
-#define MR_SHORTHAND
-#import "CoreData+MagicalRecord.h"
+    #define MR_SHORTHAND
+    #import <CoreData+MagicalRecord.h>
+    #import <MBProgressHUD.h>
 #endif

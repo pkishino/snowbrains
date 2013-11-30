@@ -15,4 +15,5 @@
 @property (strong,nonatomic)NSString* content;
 @property (strong,nonatomic)NSURL *lastActionLink;
 
++(id)initWithPost:(Post*)post;
 @end

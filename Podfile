@@ -1,5 +1,5 @@
 platform :ios, '7.0'
-pod 'SDWebImage'
+pod 'SDWebImage','3.5'
 pod 'DTCoreText'
 pod 'JSONModel'
 pod 'Facebook-iOS-SDK'
