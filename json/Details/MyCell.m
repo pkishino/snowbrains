@@ -1,5 +1,5 @@
 //
-//  MyCell.m
+//  Myself.m
 //  json
 //
 //  Created by Patrick Ziegler on 5/8/13.
@@ -19,6 +19,28 @@ bool liked;
     return self;
 }
 
+-(id)loadWithPost:(Post *)post{
+    [self.posterTitle setAttributedString:[[NSAttributedString alloc] initWithHTMLData:[post.title dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:NULL]];
+    [self.posterDate setText:[NSDateFormatter localizedStringFromDate:post.date
+                                                            dateStyle:NSDateFormatterShortStyle
+                                                            timeStyle:NSDateFormatterFullStyle]];
+    [self.posterAuthor setText:post.author.name];
+    [self.posterExcerpt setAttributedString:[[NSAttributedString alloc] initWithHTMLData:[post.excerpt dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:NULL]];
+    [self.posterComments setBackgroundImage:[[UIImage imageNamed:@"Comments"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [self.posterComments setTitle:post.comment_count.stringValue forState:UIControlStateNormal];
+    [self.posterComments.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.posterToolbar setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrains_buttonBackground"]]];
+    [self.readPostButton setTag:post.oID.integerValue];
+    [self.likePostButton setTag:post.oID.integerValue];
+    if(post.likeID.intValue!=0){
+        [self toggleLiked:YES];
+    }else{
+        [self toggleLiked:NO];
+    }
+    [self.posterThumb setImageWithURL:[NSURL URLWithString:post.thumbnail] placeholderImage:[UIImage imageNamed:@"mediumMobile"]];
+    return self;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
@@ -30,11 +52,13 @@ bool liked;
 
 - (IBAction)likeClicked:(id)sender {
     if(!liked){
-        [self toggleLiked:YES];
-        [self.delegate likePost:sender];
+        [self.delegate likePost:sender withCompletion:^(BOOL success) {
+            [self toggleLiked:success];
+        }];
     }else{
-        [self toggleLiked:NO];
-        [self.delegate unlikePost:sender];
+        [self.delegate unlikePost:sender withCompletion:^(BOOL success) {
+            [self toggleLiked:success];
+        }];
     }
 }
 -(void)toggleLiked:(BOOL)status{
@@ -53,4 +77,5 @@ bool liked;
         [self.posterTitle setHidden:![self isSelected]];
         [self.posterAuthor setHidden:![self isSelected]];
 }
+
 @end

@@ -10,7 +10,7 @@
 #import <AFURLSessionManager.h>
 
 
-@interface SpeedTestViewController : UIViewController
+@interface SpeedTestViewController : UIViewController<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *result0;
 @property (strong, nonatomic) IBOutlet UITextField *result1;
 @property (strong, nonatomic) IBOutlet UITextField *result2;
@@ -33,5 +33,13 @@
 @property (strong, nonatomic) IBOutlet UITextField *label5;
 
 @property (strong, nonatomic) IBOutlet UILabel *loopLabel;
+@property (strong, nonatomic) IBOutlet UILabel *errorLabel;
+
+@property (strong, nonatomic) IBOutlet UITextField *loopCount;
+
+@property (strong, nonatomic) IBOutlet UISegmentedControl *jsonType;
+@property (strong, nonatomic) IBOutlet UIButton *startButton;
+@property (strong, nonatomic) IBOutlet UIButton *stopButton;
+
 
 @end

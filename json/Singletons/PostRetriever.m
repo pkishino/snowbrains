@@ -21,8 +21,8 @@
 +(void)stopHarvesting{
     
 }
-+(BOOL)createBackgroundFetch{
-    return YES;
++(void)backgroundFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    
 }
 +(void)getLatestPostRequestWithCompletion:(PostCompletionHandler)completion{
     NSMutableArray *posts=[NSMutableArray array];

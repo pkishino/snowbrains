@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Post.h"
+#import "Author.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 @interface MyCell : UITableViewCell
 @property (strong,nonatomic) id delegate;
 @property (weak, nonatomic) IBOutlet UIImageView *posterThumb;
@@ -27,11 +29,13 @@
 
 -(void)toggleExcerpt;
 -(void)toggleLiked:(BOOL)status;
+-(id)loadWithPost:(Post*)post;
+
 @end
 @protocol MyCellDelegate
 
 -(void)readPost:(id)sender;
--(void)likePost:(id)sender;
--(void)unlikePost:(id)sender;
+-(void)likePost:(id)sender withCompletion:(void (^)(BOOL success))completion;
+-(void)unlikePost:(id)sender withCompletion:(void (^)(BOOL success))completion;
 
 @end

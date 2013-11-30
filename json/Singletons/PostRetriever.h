@@ -14,7 +14,7 @@ typedef void (^PostCompletionHandler)(BOOL success, NSError *error,NSArray *arra
 
 +(void)startHarvesting;
 +(void)stopHarvesting;
-+(BOOL)createBackgroundFetch;
++(void)backgroundFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 +(void)getLatestPostRequestWithCompletion:(PostCompletionHandler)completion;
 
 @end

@@ -28,7 +28,7 @@
     [PostRetriever getLatestPostRequestWithCompletion:completion];
 }
 +(NSArray *)retrieveAllPosts{
-    return [Post findAll];
+    return [Post findAllSortedBy:@"date" ascending:NO];
 }
 
 @end

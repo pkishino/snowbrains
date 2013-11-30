@@ -46,6 +46,7 @@
 		CDB0FBC817AFD4FB005024DE /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB0FBC717AFD4FB005024DE /* MyCell.xib */; };
 		CDB0FBF817AFF050005024DE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FBF717AFF050005024DE /* ImageIO.framework */; };
 		CDB0FC0B17B0EB33005024DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FC0A17B0EB33005024DE /* MapKit.framework */; };
+		CDD49603184A18F100C1D362 /* FBActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD49602184A18F100C1D362 /* FBActionBlock.m */; };
 		E0C563E74B24415DA9F698BB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F761ABD99944187A6FD620E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,8 @@
 		CDB0FBC717AFD4FB005024DE /* MyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyCell.xib; path = Details/MyCell.xib; sourceTree = "<group>"; };
 		CDB0FBF717AFF050005024DE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		CDB0FC0A17B0EB33005024DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CDD49601184A18F100C1D362 /* FBActionBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBActionBlock.h; path = Tools/FBActionBlock.h; sourceTree = "<group>"; };
+		CDD49602184A18F100C1D362 /* FBActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBActionBlock.m; path = Tools/FBActionBlock.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +271,7 @@
 				CDB0FBA417ACED17005024DE /* AppDelegate.h */,
 				CDB0FBA517ACED17005024DE /* AppDelegate.m */,
 				CDAF7C43183526BB00F8098B /* Storyboard.storyboard */,
+				CDD49604184A190E00C1D362 /* Tools */,
 				CD0858371844D131005DEB14 /* TableViewCell */,
 				CD0857F218408CB0005DEB14 /* ViewControllers */,
 				CD0858361844D126005DEB14 /* DataRetrieveSingletons */,
@@ -288,6 +292,15 @@
 				CDB0FBA317ACED17005024DE /* json-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CDD49604184A190E00C1D362 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				CDD49601184A18F100C1D362 /* FBActionBlock.h */,
+				CDD49602184A18F100C1D362 /* FBActionBlock.m */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +442,7 @@
 				CDADD92D184077F70047EA0A /* CommentModel.m in Sources */,
 				CDB0FBBE17AE8624005024DE /* PostCollection.m in Sources */,
 				CD0858AA184629CE005DEB14 /* Category.m in Sources */,
+				CDD49603184A18F100C1D362 /* FBActionBlock.m in Sources */,
 				CD0858BA1847855F005DEB14 /* ImageData.m in Sources */,
 				CDB0FBC617AFD4AB005024DE /* MyCell.m in Sources */,
 			);
@@ -475,7 +489,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -501,7 +515,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;

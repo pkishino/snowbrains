@@ -31,6 +31,7 @@ PODS:
   - Facebook-iOS-SDK (3.9.0)
   - JSONModel (0.10.0)
   - MagicalRecord (2.2)
+  - MBProgressHUD (0.8)
   - SDWebImage (3.5):
     - SDWebImage/Core
   - SDWebImage/Core (3.5)
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - Facebook-iOS-SDK
   - JSONModel
   - MagicalRecord
+  - MBProgressHUD
   - SDWebImage
 
 SPEC CHECKSUMS:
@@ -50,6 +52,7 @@ SPEC CHECKSUMS:
   Facebook-iOS-SDK: 5e1416dbdfc17b2620c2ca31c02e6feec042f2c1
   JSONModel: cecca3c3a9ee1a248b56f7139e2d64b85ce536ec
   MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
 
 COCOAPODS: 0.28.0

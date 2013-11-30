@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MyCell.h"
+#import "FBActionBlock.h"
 
 @interface PostTableViewController : UITableViewController<MyCellDelegate>
 

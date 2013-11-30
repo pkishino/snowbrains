@@ -10,6 +10,7 @@
 #import <FBSessionTokenCachingStrategy.h>
 #import "FBLoginViewController.h"
 #import <JSONModel.h>
+#import "PostRetriever.h"
 
 @implementation AppDelegate
 
@@ -28,9 +29,16 @@
                                                              bundle: nil];
     self.facebookLogin=(FBLoginViewController*)[mainStoryboard
                                                 instantiateViewControllerWithIdentifier: @"FBLoginViewID"];
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     return YES;
 }
-
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    if([AFNetworkReachabilityManager sharedManager].isReachable){
+        [PostRetriever backgroundFetchWithCompletionHandler:completionHandler];
+    }else{
+        completionHandler(UIBackgroundFetchResultFailed);
+    }
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

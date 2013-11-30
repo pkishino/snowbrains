@@ -10,8 +10,6 @@
 #import "PostCollection.h"
 #import "PostViewController.h"
 #import "Post.h"
-#import "Author.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 #import <FacebookSDK.h>
 
 
@@ -23,14 +21,6 @@
 
 @implementation PostTableViewController{
     NSArray* posts;
-}
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -47,8 +37,12 @@
     
     dispatch_async(sBgQueue,^{
         posts=[PostCollection retrieveAllPosts];
+        if(posts.count>0){
         dispatch_async(dispatch_get_main_queue(),^{
             [self.tableView reloadData];});
+        }else{
+            [self retrieveData];
+        }
     });
 }
 
@@ -83,28 +77,7 @@
         cell = [[MyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.delegate=self;
-    Post *post=(posts)[indexPath.row];
-    [cell.posterTitle setAttributedString:[[NSAttributedString alloc] initWithHTMLData:[post.title dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:NULL]];
-    [cell.posterDate setText:[NSDateFormatter localizedStringFromDate:post.date
-                                                            dateStyle:NSDateFormatterShortStyle
-                                                            timeStyle:NSDateFormatterFullStyle]];
-    [cell.posterAuthor setText:post.author.name];
-    [cell.posterExcerpt setAttributedString:[[NSAttributedString alloc] initWithHTMLData:[post.excerpt dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:NULL]];
-    [cell.posterComments setBackgroundImage:[[UIImage imageNamed:@"Comments"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [cell.posterComments setTitle:post.comment_count.stringValue forState:UIControlStateNormal];
-    [cell.posterComments.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [cell.posterToolbar setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrains_buttonBackground"]]];
-    [cell.readPostButton setTag:post.oID.integerValue];
-    [cell.likePostButton setTag:post.oID.integerValue];
-    if(post.likeID.intValue!=0){
-        [cell toggleLiked:YES];
-    }else{
-        [cell toggleLiked:NO];
-    }
-    [cell.posterThumb setImageWithURL:[NSURL URLWithString:post.thumbnail] placeholderImage:[UIImage imageNamed:@"mediumMobile"]];
-
-    return cell;
-    
+    return [cell loadWithPost:(posts)[indexPath.row]];
 }
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -116,12 +89,6 @@
         return nil;
 
     }
-    return indexPath;
-}
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-- (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     return indexPath;
 }
 
@@ -138,65 +105,33 @@
     [self.navigationController pushViewController:postView animated:YES];
 }
 
--(void)likePost:(id)sender{
-    [self runFaceBookBlock:^{
-        NSInteger tag=((UIBarButtonItem *)sender).tag;
-        Post *post=[PostCollection retrievePost:[NSNumber numberWithInteger:tag]];
-        NSMutableDictionary<FBGraphObject> *action = [FBGraphObject graphObject];
-        action[@"object"] = [NSString stringWithFormat:@"%@",post.url];
-        
-        [FBRequestConnection startForPostWithGraphPath:@"me/og.likes"
-                                           graphObject:action
-                                     completionHandler:^(FBRequestConnection *connection,
-                                                         id result,
-                                                         NSError *error) {
-                                         NSLog(@"%@",error);
-                                         if(!error){
-                                             NSString *resultId=[(NSDictionary*)result valueForKey:@"id"];
-                                             [post setLikeID:[NSNumber numberWithInteger:resultId.integerValue]];
-                                             [self.tableView reloadData];
-                                         }
-                                     }];
-    }];
-}
--(void)unlikePost:(id)sender{
-    [self runFaceBookBlock:^{
-        NSInteger tag=((UIBarButtonItem *)sender).tag;
-        Post *post=[PostCollection retrievePost:[NSNumber numberWithInteger:tag]];
-        [FBRequestConnection startWithGraphPath:post.likeID.stringValue
-                                     parameters:nil
-                                     HTTPMethod:@"DELETE"
-                              completionHandler:^(FBRequestConnection *connection,
-                                                  id result,
-                                                  NSError *error) {
-                                  if(!error){
-                                      [post setLikeID:nil];
-                                      [self.tableView reloadData];
-                                  }
-                              }];
-    }];
-    
-}
--(void)runFaceBookBlock:(void(^)(void))completion{
-    if([[FBSession activeSession]isOpen]){
-        if ([FBSession.activeSession.permissions
-         indexOfObject:@"publish_actions"] == NSNotFound) {
-        [FBSession.activeSession
-         requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
-         defaultAudience:FBSessionDefaultAudienceFriends
-         completionHandler:^(FBSession *session, NSError *error) {
-             if(!error&&completion){
-                 completion();
-             }
-         }];
+-(void)likePost:(id)sender withCompletion:(void (^)(BOOL))completion{
+    NSInteger tag=((UIBarButtonItem *)sender).tag;
+    Post *post=[PostCollection retrievePost:[NSNumber numberWithInteger:tag]];
+    [FBActionBlock performFBLike:YES onItem:post withCompletion:^(NSError *error, id result) {
+        NSLog(@"%@",error);
+        if(!error){
+            NSString *resultId=[(NSDictionary*)result valueForKey:@"id"];
+            [post setLikeID:[NSNumber numberWithInteger:resultId.integerValue]];
+            completion(YES);
+            [self.tableView reloadData];
+        }else{
+            completion(NO);
         }
-    }else{
-        [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"] defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-            if(!error&&completion&&status==FBSessionStateOpen){
-                completion();
-            }
-        }];
-    }
+    }];
+}
+-(void)unlikePost:(id)sender withCompletion:(void (^)(BOOL))completion{
+    NSInteger tag=((UIBarButtonItem *)sender).tag;
+    Post *post=[PostCollection retrievePost:[NSNumber numberWithInteger:tag]];
+    [FBActionBlock performFBLike:NO onItem:post withCompletion:^(NSError *error, id result) {
+        if(!error){
+            [post setLikeID:nil];
+            completion(NO);
+            [self.tableView reloadData];
+        }else{
+            completion(YES);
+        }
+    }];
 }
 - (void)didReceiveMemoryWarning
 {
