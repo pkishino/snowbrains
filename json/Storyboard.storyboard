@@ -82,12 +82,11 @@
                                                 <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                             </state>
                                         </button>
-                                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D6s-ig-Nbm" customClass="DTAttributedTextView">
+                                        <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D6s-ig-Nbm" customClass="DTAttributedTextView">
                                             <rect key="frame" x="0.0" y="30" width="263" height="104"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g0b-4p-fLy" customClass="DTAttributedLabel">
+                                        <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g0b-4p-fLy" customClass="DTAttributedLabel">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>

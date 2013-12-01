@@ -8,7 +8,7 @@
 
 #import "PostCollection.h"
 #import "Post.h"
-
+#import "Author.h"
 
 @implementation PostCollection
 
@@ -31,15 +31,19 @@
     return [Post findAllSortedBy:@"date" ascending:NO];
 }
 +(NSArray*)retrievePostsAfter:(NSDate*)date{
-    
+    NSPredicate*pred=[NSPredicate predicateWithFormat:@"date>=%@",date];
+    return [Post findAllWithPredicate:pred];
 }
 
 +(NSArray*)retrievePostsBefore:(NSDate *)date{
-    
+    NSPredicate*pred=[NSPredicate predicateWithFormat:@"date<=%@",date];
+    return [Post findAllWithPredicate:pred];
 }
 
 +(NSArray*)retrievePostsCount:(int)count{
-    
+    NSFetchRequest *request=[Post requestAllSortedBy:@"date" ascending:NO];
+    [request setFetchLimit:count];
+    return [Post executeFetchRequest:request];
 }
 
 +(NSArray*)retrievePostByCategory:(NSString*)categoryName{
@@ -51,7 +55,9 @@
 }
 
 +(NSArray*)retrievePostsByAuthor:(NSString*)authorName{
-    
+    NSPredicate*pred=[NSPredicate predicateWithFormat:@"author.name=%@",authorName];
+    return [Post findAllWithPredicate:pred];
+
 }
 
 @end

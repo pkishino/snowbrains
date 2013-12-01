@@ -78,9 +78,7 @@
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MyCell *cell =(MyCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     if([cell isSelected]){
-        [tableView.delegate tableView:tableView willDeselectRowAtIndexPath:indexPath];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [tableView.delegate tableView:tableView didDeselectRowAtIndexPath:indexPath];
         return nil;
     }
     return indexPath;
