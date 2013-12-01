@@ -10,8 +10,9 @@
 #import "Post.h"
 #import "Author.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "PostCollection.h"
 
-static NSString *CellIdentifier = @"CustomCellReuseID";
+static NSString *CellIdentifier = @"MyCellID";
 
 @interface MyCell : UITableViewCell
 @property (strong,nonatomic) id delegate;
@@ -28,19 +29,13 @@ static NSString *CellIdentifier = @"CustomCellReuseID";
 
 - (IBAction)readPostClicked:(id)sender;
 
-- (IBAction)likeClicked:(id)sender;
-
 -(void)toggleExcerpt;
 -(void)toggleLiked:(BOOL)status;
 -(id)loadWithPost:(Post*)post;
 
-+(int)getHeight;
-
 @end
 @protocol MyCellDelegate
 
--(void)readPost:(NSInteger)tag;
--(void)likePost:(NSInteger)tag withCompletion:(void (^)(BOOL success))completion;
--(void)unlikePost:(NSInteger)tag withCompletion:(void (^)(BOOL success))completion;
+-(void)readPost:(Post*)post;
 
 @end

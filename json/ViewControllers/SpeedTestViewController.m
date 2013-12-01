@@ -43,7 +43,7 @@
 {
     [super viewDidLoad];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [configuration setHTTPAdditionalHeaders:[NSDictionary dictionaryWithObjectsAndKeys:@"gzip, deflate",@"Accept-Encoding", nil] ];
+    [configuration setHTTPAdditionalHeaders:@{@"Accept-Encoding": @"gzip, deflate"} ];
     sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     results=[NSMutableArray array];
     loop=1;
@@ -66,7 +66,7 @@
     [results removeAllObjects];
     for (int i=0; i<6; i++) {
         NSNumber *value=[self valueForKeyPath:[NSString stringWithFormat:@"label%d.text",i]];
-        [results addObject:value.intValue>=1?value:[NSNumber numberWithInt:1]];
+        [results addObject:value.intValue>=1?value:@1];
         [self setValue:nil forKeyPath:[NSString stringWithFormat:@"avg%d.text",i]];
     }
     if(!self.loopCount.text.intValue>=1){
@@ -84,7 +84,7 @@
     }
     if(item!=6){
         start=[NSDate date];
-        url = [NSURL URLWithString:[NSString stringWithFormat:posts,[results objectAtIndex:item]]];
+        url = [NSURL URLWithString:[NSString stringWithFormat:posts,results[item]]];
         request = [NSURLRequest requestWithURL:url];
         
         task = [sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {

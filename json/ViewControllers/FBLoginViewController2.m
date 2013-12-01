@@ -35,7 +35,7 @@
 }
 -(void)loadSession{
     NSArray *permissions =
-    [NSArray arrayWithObjects:@"email", @"user_photos", @"friends_photos", nil];
+    @[@"email", @"user_photos", @"friends_photos"];
     
     [FBSession openActiveSessionWithReadPermissions:permissions
                                        allowLoginUI:YES

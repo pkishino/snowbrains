@@ -17,12 +17,12 @@
     NSMutableSet *mediaPlayers;
 }
 
-+(id)initWithPost{
++(id)initWithPost:(Post*)post{
     static PostViewController *pvc=nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,^{
         pvc=[[PostViewController alloc]init];
-        pvc
+        [pvc setContent:post.content];
     });
     return pvc;
     
@@ -71,7 +71,7 @@
 		}
 	};
 	
-	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:1.0], NSTextSizeMultiplierDocumentOption, [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
+	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@1.0f, NSTextSizeMultiplierDocumentOption, [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
                                     @"Times New Roman", DTDefaultFontFamily,  @"purple", DTDefaultLinkColor, @"red", DTDefaultLinkHighlightColor, callBackBlock, DTWillFlushBlockCallBack, nil];
 	
 	
@@ -96,8 +96,8 @@
 {
 	NSDictionary *attributes = [string attributesAtIndex:0 effectiveRange:NULL];
 	
-	NSURL *URL = [attributes objectForKey:DTLinkAttribute];
-	NSString *identifier = [attributes objectForKey:DTGUIDAttribute];
+	NSURL *URL = attributes[DTLinkAttribute];
+	NSString *identifier = attributes[DTGUIDAttribute];
 	
 	
 	DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:frame];
@@ -150,7 +150,7 @@
 		}
 		
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_2
-		NSString *airplayAttr = [attachment.attributes objectForKey:@"x-webkit-airplay"];
+		NSString *airplayAttr = (attachment.attributes)[@"x-webkit-airplay"];
 		if ([airplayAttr isEqualToString:@"allow"])
 		{
 			if ([player respondsToSelector:@selector(setAllowsAirPlay:)])
@@ -160,7 +160,7 @@
 		}
 #endif
 		
-		NSString *controlsAttr = [attachment.attributes objectForKey:@"controls"];
+		NSString *controlsAttr = (attachment.attributes)[@"controls"];
 		if (controlsAttr)
 		{
 			player.controlStyle = MPMovieControlStyleEmbedded;
@@ -170,7 +170,7 @@
 			player.controlStyle = MPMovieControlStyleNone;
 		}
 		
-		NSString *loopAttr = [attachment.attributes objectForKey:@"loop"];
+		NSString *loopAttr = (attachment.attributes)[@"loop"];
 		if (loopAttr)
 		{
 			player.repeatMode = MPMovieRepeatModeOne;
@@ -180,7 +180,7 @@
 			player.repeatMode = MPMovieRepeatModeNone;
 		}
 		
-		NSString *autoplayAttr = [attachment.attributes objectForKey:@"autoplay"];
+		NSString *autoplayAttr = (attachment.attributes)[@"autoplay"];
 		if (autoplayAttr)
 		{
 			player.shouldAutoplay = YES;
@@ -264,7 +264,7 @@
 	else if ([attachment isKindOfClass:[DTObjectTextAttachment class]])
 	{
 		// somecolorparameter has a HTML color
-		NSString *colorName = [attachment.attributes objectForKey:@"somecolorparameter"];
+		NSString *colorName = (attachment.attributes)[@"somecolorparameter"];
 		UIColor *someColor = DTColorCreateWithHTMLName(colorName);
 		
 		UIView *someView = [[UIView alloc] initWithFrame:frame];

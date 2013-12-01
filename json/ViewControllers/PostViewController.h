@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <DTAttributedTextView.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
+#import "Post.h"
 
 @interface PostViewController : UIViewController<DTLazyImageViewDelegate,DTAttributedTextContentViewDelegate,UIActionSheetDelegate>
 @property (strong,nonatomic)NSString* content;

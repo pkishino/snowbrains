@@ -43,10 +43,11 @@
 		CDB0FBAF17ACED17005024DE /* PostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0FBAE17ACED17005024DE /* PostTableViewController.m */; };
 		CDB0FBBE17AE8624005024DE /* PostCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0FBBD17AE8624005024DE /* PostCollection.m */; };
 		CDB0FBC617AFD4AB005024DE /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0FBC517AFD4AB005024DE /* MyCell.m */; };
-		CDB0FBC817AFD4FB005024DE /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB0FBC717AFD4FB005024DE /* MyCell.xib */; };
 		CDB0FBF817AFF050005024DE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FBF717AFF050005024DE /* ImageIO.framework */; };
 		CDB0FC0B17B0EB33005024DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB0FC0A17B0EB33005024DE /* MapKit.framework */; };
 		CDD49603184A18F100C1D362 /* FBActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD49602184A18F100C1D362 /* FBActionBlock.m */; };
+		CDD49609184B3E0300C1D362 /* ErrorAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD49608184B3E0300C1D362 /* ErrorAlert.m */; };
+		CDD4960C184B42D700C1D362 /* SetupInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4960B184B42D700C1D362 /* SetupInitializer.m */; };
 		E0C563E74B24415DA9F698BB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F761ABD99944187A6FD620E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -119,11 +120,14 @@
 		CDB0FBBD17AE8624005024DE /* PostCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCollection.m; sourceTree = "<group>"; };
 		CDB0FBC417AFD4AB005024DE /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCell.h; path = Details/MyCell.h; sourceTree = "<group>"; };
 		CDB0FBC517AFD4AB005024DE /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCell.m; path = Details/MyCell.m; sourceTree = "<group>"; };
-		CDB0FBC717AFD4FB005024DE /* MyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyCell.xib; path = Details/MyCell.xib; sourceTree = "<group>"; };
 		CDB0FBF717AFF050005024DE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		CDB0FC0A17B0EB33005024DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CDD49601184A18F100C1D362 /* FBActionBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBActionBlock.h; path = Tools/FBActionBlock.h; sourceTree = "<group>"; };
 		CDD49602184A18F100C1D362 /* FBActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBActionBlock.m; path = Tools/FBActionBlock.m; sourceTree = "<group>"; };
+		CDD49607184B3E0300C1D362 /* ErrorAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ErrorAlert.h; path = Tools/ErrorAlert.h; sourceTree = "<group>"; };
+		CDD49608184B3E0300C1D362 /* ErrorAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ErrorAlert.m; path = Tools/ErrorAlert.m; sourceTree = "<group>"; };
+		CDD4960A184B42D700C1D362 /* SetupInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetupInitializer.h; path = Tools/SetupInitializer.h; sourceTree = "<group>"; };
+		CDD4960B184B42D700C1D362 /* SetupInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetupInitializer.m; path = Tools/SetupInitializer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,16 +151,10 @@
 		CD0857F218408CB0005DEB14 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CDAF7C471838D5DC00F8098B /* FBLoginViewController.h */,
-				CDAF7C481838D5DC00F8098B /* FBLoginViewController.m */,
-				CDAF7C4A1839201600F8098B /* FBLoginViewController2.h */,
-				CDAF7C4B1839201600F8098B /* FBLoginViewController2.m */,
 				CDB0FBAD17ACED17005024DE /* PostTableViewController.h */,
 				CDB0FBAE17ACED17005024DE /* PostTableViewController.m */,
 				CDAF7BA218328D3D00F8098B /* PostViewController.h */,
 				CDAF7BA318328D3D00F8098B /* PostViewController.m */,
-				CD08582E1841DE96005DEB14 /* SpeedTestViewController.h */,
-				CD08582F1841DE96005DEB14 /* SpeedTestViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -177,7 +175,6 @@
 			children = (
 				CDB0FBC417AFD4AB005024DE /* MyCell.h */,
 				CDB0FBC517AFD4AB005024DE /* MyCell.m */,
-				CDB0FBC717AFD4FB005024DE /* MyCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -270,11 +267,9 @@
 			children = (
 				CDB0FBA417ACED17005024DE /* AppDelegate.h */,
 				CDB0FBA517ACED17005024DE /* AppDelegate.m */,
-				CDAF7C43183526BB00F8098B /* Storyboard.storyboard */,
 				CDD49604184A190E00C1D362 /* Tools */,
-				CD0858371844D131005DEB14 /* TableViewCell */,
-				CD0857F218408CB0005DEB14 /* ViewControllers */,
 				CD0858361844D126005DEB14 /* DataRetrieveSingletons */,
+				CDD49605184AF41300C1D362 /* UI items */,
 				CDADD9311840897B0047EA0A /* CoreDataModels */,
 				CDADD918184077140047EA0A /* JsonModels */,
 				CDB0FB9C17ACED16005024DE /* Supporting Files */,
@@ -299,8 +294,36 @@
 			children = (
 				CDD49601184A18F100C1D362 /* FBActionBlock.h */,
 				CDD49602184A18F100C1D362 /* FBActionBlock.m */,
+				CDD49607184B3E0300C1D362 /* ErrorAlert.h */,
+				CDD49608184B3E0300C1D362 /* ErrorAlert.m */,
+				CDD4960A184B42D700C1D362 /* SetupInitializer.h */,
+				CDD4960B184B42D700C1D362 /* SetupInitializer.m */,
 			);
 			name = Tools;
+			sourceTree = "<group>";
+		};
+		CDD49605184AF41300C1D362 /* UI items */ = {
+			isa = PBXGroup;
+			children = (
+				CDAF7C43183526BB00F8098B /* Storyboard.storyboard */,
+				CD0858371844D131005DEB14 /* TableViewCell */,
+				CD0857F218408CB0005DEB14 /* ViewControllers */,
+				CDD49606184B372600C1D362 /* TestControllers */,
+			);
+			name = "UI items";
+			sourceTree = "<group>";
+		};
+		CDD49606184B372600C1D362 /* TestControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD08582E1841DE96005DEB14 /* SpeedTestViewController.h */,
+				CD08582F1841DE96005DEB14 /* SpeedTestViewController.m */,
+				CDAF7C471838D5DC00F8098B /* FBLoginViewController.h */,
+				CDAF7C481838D5DC00F8098B /* FBLoginViewController.m */,
+				CDAF7C4A1839201600F8098B /* FBLoginViewController2.h */,
+				CDAF7C4B1839201600F8098B /* FBLoginViewController2.m */,
+			);
+			name = TestControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,7 +393,6 @@
 			files = (
 				CDB0FBA017ACED16005024DE /* InfoPlist.strings in Resources */,
 				CD0857F118408C88005DEB14 /* Images.xcassets in Resources */,
-				CDB0FBC817AFD4FB005024DE /* MyCell.xib in Resources */,
 				CDAF7C44183526BB00F8098B /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +439,8 @@
 			files = (
 				CD08583A1844DA0D005DEB14 /* PostRetriever.m in Sources */,
 				CDADD930184078010047EA0A /* AttachmentModel.m in Sources */,
+				CDD4960C184B42D700C1D362 /* SetupInitializer.m in Sources */,
+				CDD49609184B3E0300C1D362 /* ErrorAlert.m in Sources */,
 				CDB0FBA217ACED17005024DE /* main.m in Sources */,
 				CD0858A1184629CE005DEB14 /* Author.m in Sources */,
 				CDAF7C4C1839201600F8098B /* FBLoginViewController2.m in Sources */,

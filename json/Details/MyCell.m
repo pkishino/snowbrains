@@ -7,12 +7,8 @@
 //
 
 #import "MyCell.h"
-#import <FacebookSDK.h>
 bool liked;
 @implementation MyCell
-+(int)getHeight{
-    return [[MyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier].frame.size.height;
-}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -50,18 +46,26 @@ bool liked;
     [self toggleExcerpt];
 }
 - (IBAction)readPostClicked:(id)sender {
-    [self.delegate readPost:sender];
+    NSInteger tag=((UIBarButtonItem*)sender).tag;
+    [self.delegate readPost:[PostCollection retrievePost:@(tag)]];
 }
 
 - (IBAction)likeClicked:(id)sender {
+    NSInteger tag=((UIBarButtonItem*)sender).tag;
+    Post* post=[PostCollection retrievePost:@(tag)];
     if(!liked){
-        [self.delegate likePost:sender withCompletion:^(BOOL success) {
-            [self toggleLiked:success];
-        }];
+        [FBActionBlock performFBLike:YES onItem:post withCompletion:^(NSError *error, id result) {
+            if(!error){
+                NSString *resultId=[(NSDictionary*)result valueForKey:@"id"];
+                [post setLikeID:@(resultId.integerValue)];
+                [self toggleLiked:YES];
+            }}];
     }else{
-        [self.delegate unlikePost:sender withCompletion:^(BOOL success) {
-            [self toggleLiked:success];
-        }];
+        [FBActionBlock performFBLike:NO onItem:post withCompletion:^(NSError *error, id result) {
+            if(!error){
+                [post setLikeID:nil];
+                [self toggleLiked:NO];
+            }}];
     }
 }
 -(void)toggleLiked:(BOOL)status{

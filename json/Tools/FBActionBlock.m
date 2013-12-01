@@ -22,7 +22,7 @@
         if ([FBSession.activeSession.permissions
              indexOfObject:@"publish_actions"] == NSNotFound) {
             [FBSession.activeSession
-             requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
+             requestNewPublishPermissions:@[@"publish_actions"]
              defaultAudience:FBSessionDefaultAudienceFriends
              completionHandler:^(FBSession *session, NSError *error) {
                  if(!error&&completion){
@@ -31,7 +31,7 @@
              }];
         }
     }else{
-        [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"] defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+        [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"] defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
             if(!error&&completion&&status==FBSessionStateOpen){
                 completion();
             }

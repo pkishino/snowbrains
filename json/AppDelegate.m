@@ -8,28 +8,16 @@
 
 #import "AppDelegate.h"
 #import <FBSessionTokenCachingStrategy.h>
+
 #import "FBLoginViewController.h"
-#import <JSONModel.h>
 #import "PostRetriever.h"
+#import "SetupInitializer.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[AFNetworkReachabilityManager sharedManager]startMonitoring];
-    [DTCoreTextFontDescriptor asyncPreloadFontLookupTable];
-    [FBProfilePictureView class];
-    [MagicalRecord setupAutoMigratingCoreDataStack];
-    [JSONModel setGlobalKeyMapper:[[JSONKeyMapper alloc] initWithDictionary:@{@"description":@"objectDescription",@"id":@"oID"}]];
-    [[AFNetworkActivityIndicatorManager sharedManager]setEnabled:YES];
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
-    }];
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard"
-                                                             bundle: nil];
-    self.facebookLogin=(FBLoginViewController*)[mainStoryboard
-                                                instantiateViewControllerWithIdentifier: @"FBLoginViewID"];
-    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    [SetupInitializer setup];
     return YES;
 }
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
@@ -108,7 +96,11 @@
                           completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
                               // Forward any errors to the FBLoginView delegate.
                               if (error) {
-                                  [self.facebookLogin loginView:nil handleError:error];
+                                  UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard"
+                                                                                           bundle: nil];
+                                  FBLoginViewController *login=(FBLoginViewController*)[mainStoryboard
+                                                                              instantiateViewControllerWithIdentifier: @"FBLoginViewID"];
+                                  [login loginView:nil handleError:error];
                               }
                           }];
 }

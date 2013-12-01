@@ -9,11 +9,10 @@
 #import "PostTableViewController.h"
 #import "PostCollection.h"
 #import "PostViewController.h"
-#import "Post.h"
-#import <FacebookSDK.h>
-
 
 #define sBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
+@class Post;
 
 @interface PostTableViewController ()
 
@@ -27,29 +26,31 @@
 {
     [super viewDidLoad];
     [self.tableView setDelegate:self];
-    [self.tableView registerNib:[UINib nibWithNibName:@"MyCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CellIdentifier];
-    [self.tableView setRowHeight:[MyCell getHeight]];
+    [self retrieveData];
 }
 
+-(void)mainThreadReload{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.tableView reloadData];
+        if(self.refreshControl.isRefreshing){
+            [self.refreshControl endRefreshing];}});
+}
 -(void)retrieveLatestData{
     dispatch_async(sBgQueue, ^{
         [PostCollection retrieveLatestPostsWithCompletion:^(BOOL success, NSError *error, NSArray *array) {
             if(!error){
                 [posts addObjectsFromArray:array];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                    if(self.refreshControl.isRefreshing){
-                        [self.refreshControl endRefreshing];}});
-            }else{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [[[UIAlertView alloc]initWithTitle:@"error" message:[NSString stringWithFormat:@"An error occurred:%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];});}}];});
+                [self mainThreadReload];
+            }else{[ErrorAlert postError:error];
+    }}];});
 }
 -(void)retrieveData{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(sBgQueue,^{
         posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
         if(posts.count>0){
-            dispatch_async(dispatch_get_main_queue(),^{
-                [self.tableView reloadData];});
+            [self mainThreadReload];
         }else{
             [self retrieveLatestData];
         }
@@ -81,7 +82,6 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [tableView.delegate tableView:tableView didDeselectRowAtIndexPath:indexPath];
         return nil;
-
     }
     return indexPath;
 }
@@ -91,42 +91,10 @@
 }
 
 #pragma MyCelldelegate
--(void)readPost:(id)sender{
-    NSInteger tag=((UIBarButtonItem *)sender).tag;
-    Post *post=[PostCollection retrievePost:[NSNumber numberWithInteger:tag]];
-    PostViewController *postView=[[PostViewController alloc]init];
-    [postView setContent:post.content];
-    [self.navigationController pushViewController:postView animated:YES];
+-(void)readPost:(Post*)post{
+    [self.navigationController pushViewController:[PostViewController initWithPost:post] animated:YES];
 }
 
--(void)likePost:(id)sender withCompletion:(void (^)(BOOL))completion{
-    NSInteger tag=((UIBarButtonItem *)sender).tag;
-    Post *post=[PostCollection retrievePost:[NSNumber numberWithInteger:tag]];
-    [FBActionBlock performFBLike:YES onItem:post withCompletion:^(NSError *error, id result) {
-        NSLog(@"%@",error);
-        if(!error){
-            NSString *resultId=[(NSDictionary*)result valueForKey:@"id"];
-            [post setLikeID:[NSNumber numberWithInteger:resultId.integerValue]];
-            completion(YES);
-            [self.tableView reloadData];
-        }else{
-            completion(NO);
-        }
-    }];
-}
--(void)unlikePost:(id)sender withCompletion:(void (^)(BOOL))completion{
-    NSInteger tag=((UIBarButtonItem *)sender).tag;
-    Post *post=[PostCollection retrievePost:[NSNumber numberWithInteger:tag]];
-    [FBActionBlock performFBLike:NO onItem:post withCompletion:^(NSError *error, id result) {
-        if(!error){
-            [post setLikeID:nil];
-            completion(NO);
-            [self.tableView reloadData];
-        }else{
-            completion(YES);
-        }
-    }];
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

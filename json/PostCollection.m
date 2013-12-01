@@ -30,5 +30,28 @@
 +(NSArray *)retrieveAllPosts{
     return [Post findAllSortedBy:@"date" ascending:NO];
 }
++(NSArray*)retrievePostsAfter:(NSDate*)date{
+    
+}
+
++(NSArray*)retrievePostsBefore:(NSDate *)date{
+    
+}
+
++(NSArray*)retrievePostsCount:(int)count{
+    
+}
+
++(NSArray*)retrievePostByCategory:(NSString*)categoryName{
+    
+}
+
++(NSArray*)retrievePostsByTag:(NSString *)tagName{
+    
+}
+
++(NSArray*)retrievePostsByAuthor:(NSString*)authorName{
+    
+}
 
 @end
