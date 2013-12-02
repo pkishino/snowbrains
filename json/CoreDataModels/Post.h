@@ -2,7 +2,7 @@
 //  Post.h
 //  json
 //
-//  Created by Patrick Ziegler on 27/11/13.
+//  Created by Patrick Ziegler on 2/12/13.
 //  Copyright (c) 2013 Patrick Ziegler. All rights reserved.
 //
 
@@ -14,8 +14,8 @@
 
 @interface Post : CommonInterface
 
-@property (nonatomic, retain) NSString * comment_status;
 @property (nonatomic, retain) NSNumber * comment_count;
+@property (nonatomic, retain) NSString * comment_status;
 @property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * excerpt;

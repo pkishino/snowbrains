@@ -2,7 +2,7 @@
 //  Post.m
 //  json
 //
-//  Created by Patrick Ziegler on 27/11/13.
+//  Created by Patrick Ziegler on 2/12/13.
 //  Copyright (c) 2013 Patrick Ziegler. All rights reserved.
 //
 
@@ -17,8 +17,8 @@
 
 @implementation Post
 
-@dynamic comment_status;
 @dynamic comment_count;
+@dynamic comment_status;
 @dynamic content;
 @dynamic date;
 @dynamic excerpt;

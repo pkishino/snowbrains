@@ -179,7 +179,7 @@
             </userInfo>
         </attribute>
         <attribute name="excerpt" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="likeID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="likeID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="modified" optional="YES" attributeType="Date" syncable="YES">
             <userInfo>
                 <entry key="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>

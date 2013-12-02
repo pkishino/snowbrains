@@ -27,36 +27,47 @@
              completionHandler:^(FBSession *session, NSError *error) {
                  if(!error&&completion){
                      completion();
+                 }else{
+                     [ErrorAlert postError:error];
                  }
              }];
+        }else{
+            completion();
         }
     }else{
         [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"] defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
             if(!error&&completion&&status==FBSessionStateOpen){
                 completion();
+            }else{
+                [ErrorAlert postError:error];
             }
         }];
     }
 }
 +(void)performFBLike:(BOOL)like onItem:(Post*)post withCompletion:(FBCompletionHandler)completion{
-    if(like){
-        NSMutableDictionary<FBGraphObject> *action = [FBGraphObject graphObject];
-        action[@"object"] = [NSString stringWithFormat:@"%@",post.url];
-        
-        [FBRequestConnection startForPostWithGraphPath:@"me/og.likes"
-                                           graphObject:action
-                                     completionHandler:^(FBRequestConnection *connection,
-                                                         id result,
-                                                         NSError *error) {
-                                         completion(error,result);}];
-    }else{
-        [FBRequestConnection startWithGraphPath:post.likeID.stringValue
-                                     parameters:nil
-                                     HTTPMethod:@"DELETE"
-                              completionHandler:^(FBRequestConnection *connection,
-                                                  id result,
-                                                  NSError *error) {
-                                  completion(error,result);}];
-    }
+    [FBActionBlock runFaceBookBlock:^{
+        if(like){
+            NSMutableDictionary<FBGraphObject> *action = [FBGraphObject graphObject];
+            action[@"object"] = [NSString stringWithFormat:@"%@",post.url];
+            
+            [FBRequestConnection startForPostWithGraphPath:@"me/og.likes"
+                                               graphObject:action
+                                         completionHandler:^(FBRequestConnection *connection,
+                                                             id result,
+                                                             NSError *error) {
+                                                 completion(error,result);
+                                         }];
+        }else{
+            [FBRequestConnection startWithGraphPath:post.likeID.stringValue
+                                         parameters:nil
+                                         HTTPMethod:@"DELETE"
+                                  completionHandler:^(FBRequestConnection *connection,
+                                                      id result,
+                                                      NSError *error) {
+                                          completion(error,result);
+                                  }];
+        }
+    }];
+    
 }
 @end

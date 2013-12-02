@@ -38,9 +38,9 @@
 }
 -(void)retrieveLatestData{
     dispatch_async(sBgQueue, ^{
-        [PostCollection retrieveLatestPostsWithCompletion:^(BOOL success, NSError *error, NSArray *array) {
-            if(!error){
-                [posts addObjectsFromArray:array];
+        [PostCollection retrieveLatestPostsWithCompletion:^(BOOL success, NSError *error) {
+            posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
+            if(posts.count>0){
                 [self mainThreadReload];
             }else{[ErrorAlert postError:error];
     }}];});

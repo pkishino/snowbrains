@@ -17,10 +17,10 @@
 		CD0858A1184629CE005DEB14 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858A0184629CE005DEB14 /* Author.m */; };
 		CD0858A4184629CE005DEB14 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858A3184629CE005DEB14 /* Tag.m */; };
 		CD0858AA184629CE005DEB14 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858A9184629CE005DEB14 /* Category.m */; };
-		CD0858AD184629CE005DEB14 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858AC184629CE005DEB14 /* Post.m */; };
 		CD0858B318477487005DEB14 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858B218477487005DEB14 /* Image.m */; };
 		CD0858BA1847855F005DEB14 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858B91847855F005DEB14 /* ImageData.m */; };
 		CD0858BD18478D06005DEB14 /* CommonInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858BC18478D06005DEB14 /* CommonInterface.m */; };
+		CD108423184CD61E006FFCBD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CD108422184CD61E006FFCBD /* Post.m */; };
 		CDADD91B184077A80047EA0A /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD91A184077A80047EA0A /* PostModel.m */; };
 		CDADD91E184077BC0047EA0A /* AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD91D184077BC0047EA0A /* AuthorModel.m */; };
 		CDADD921184077C60047EA0A /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD920184077C60047EA0A /* TagModel.m */; };
@@ -72,14 +72,14 @@
 		CD0858A3184629CE005DEB14 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = CoreDataModels/Tag.m; sourceTree = "<group>"; };
 		CD0858A8184629CE005DEB14 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Category.h; path = CoreDataModels/Category.h; sourceTree = "<group>"; };
 		CD0858A9184629CE005DEB14 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Category.m; path = CoreDataModels/Category.m; sourceTree = "<group>"; };
-		CD0858AB184629CE005DEB14 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = CoreDataModels/Post.h; sourceTree = "<group>"; };
-		CD0858AC184629CE005DEB14 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = CoreDataModels/Post.m; sourceTree = "<group>"; };
 		CD0858B118477487005DEB14 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = CoreDataModels/Image.h; sourceTree = "<group>"; };
 		CD0858B218477487005DEB14 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = CoreDataModels/Image.m; sourceTree = "<group>"; };
 		CD0858B81847855F005DEB14 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageData.h; path = CoreDataModels/ImageData.h; sourceTree = "<group>"; };
 		CD0858B91847855F005DEB14 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageData.m; path = CoreDataModels/ImageData.m; sourceTree = "<group>"; };
 		CD0858BB18478D06005DEB14 /* CommonInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonInterface.h; path = CoreDataModels/CommonInterface.h; sourceTree = "<group>"; };
 		CD0858BC18478D06005DEB14 /* CommonInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonInterface.m; path = CoreDataModels/CommonInterface.m; sourceTree = "<group>"; };
+		CD108421184CD61E006FFCBD /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = CoreDataModels/Post.h; sourceTree = "<group>"; };
+		CD108422184CD61E006FFCBD /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = CoreDataModels/Post.m; sourceTree = "<group>"; };
 		CDADD919184077A80047EA0A /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostModel.h; path = JsonModels/PostModel.h; sourceTree = "<group>"; };
 		CDADD91A184077A80047EA0A /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostModel.m; path = JsonModels/PostModel.m; sourceTree = "<group>"; };
 		CDADD91C184077BC0047EA0A /* AuthorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorModel.h; path = JsonModels/AuthorModel.h; sourceTree = "<group>"; };
@@ -208,14 +208,14 @@
 			isa = PBXGroup;
 			children = (
 				CD0857F518408D2E005DEB14 /* StorageModel.xcdatamodeld */,
+				CD108421184CD61E006FFCBD /* Post.h */,
+				CD108422184CD61E006FFCBD /* Post.m */,
 				CD0858BB18478D06005DEB14 /* CommonInterface.h */,
 				CD0858BC18478D06005DEB14 /* CommonInterface.m */,
 				CD0858B81847855F005DEB14 /* ImageData.h */,
 				CD0858B91847855F005DEB14 /* ImageData.m */,
 				CD0858B118477487005DEB14 /* Image.h */,
 				CD0858B218477487005DEB14 /* Image.m */,
-				CD0858AB184629CE005DEB14 /* Post.h */,
-				CD0858AC184629CE005DEB14 /* Post.m */,
 				CD0858A8184629CE005DEB14 /* Category.h */,
 				CD0858A9184629CE005DEB14 /* Category.m */,
 				CD0858A2184629CE005DEB14 /* Tag.h */,
@@ -444,11 +444,11 @@
 				CDB0FBA217ACED17005024DE /* main.m in Sources */,
 				CD0858A1184629CE005DEB14 /* Author.m in Sources */,
 				CDAF7C4C1839201600F8098B /* FBLoginViewController2.m in Sources */,
+				CD108423184CD61E006FFCBD /* Post.m in Sources */,
 				CD0857F718408D2E005DEB14 /* StorageModel.xcdatamodeld in Sources */,
 				CD08589B184629CE005DEB14 /* Comment.m in Sources */,
 				CDADD921184077C60047EA0A /* TagModel.m in Sources */,
 				CD08589E184629CE005DEB14 /* Attachment.m in Sources */,
-				CD0858AD184629CE005DEB14 /* Post.m in Sources */,
 				CDADD91B184077A80047EA0A /* PostModel.m in Sources */,
 				CDB0FBA617ACED17005024DE /* AppDelegate.m in Sources */,
 				CDADD927184077E30047EA0A /* ImageDataModel.m in Sources */,

@@ -25,7 +25,6 @@
     
 }
 +(void)getLatestPostRequestWithCompletion:(PostCompletionHandler)completion{
-    NSMutableArray *posts=[NSMutableArray array];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
@@ -34,7 +33,7 @@
         if (error) {
             NSLog(@"Error: %@", error);
             if (completion){
-                completion(NO, error,nil);
+                completion(NO, error);
             }
         } else {
 //            NSLog(@"%@ %@", response, responseObject);
@@ -43,11 +42,10 @@
                     NSError *error=nil;
                     PostModel *model=[[PostModel alloc]initWithDictionary:obj error:&error];
                     Post *post=[model saveToCore];
-                    if([post importValuesForKeysWithObject:model])
-                            [posts addObject:post];
+                    [post importValuesForKeysWithObject:model];
                 }];
                 if (completion){
-                    completion(YES, nil,[NSArray arrayWithArray:posts]);
+                    completion(YES, nil);
                 }
         }
     }];

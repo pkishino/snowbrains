@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFURLSessionManager.h>
-typedef void (^PostCompletionHandler)(BOOL success, NSError *error,NSArray *array);
+typedef void (^PostCompletionHandler)(BOOL success, NSError *error);
 
 @interface PostRetriever : NSObject
 

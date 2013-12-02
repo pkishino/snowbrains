@@ -7,6 +7,7 @@
 //
 
 #import "MyCell.h"
+#import "ErrorAlert.h"
 bool liked;
 @implementation MyCell
 
@@ -52,13 +53,26 @@ bool liked;
 
 - (IBAction)likeClicked:(id)sender {
     NSInteger tag=((UIBarButtonItem*)sender).tag;
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
     Post* post=[PostCollection retrievePost:@(tag)];
     if(!liked){
         [FBActionBlock performFBLike:YES onItem:post withCompletion:^(NSError *error, id result) {
             if(!error){
-                NSString *resultId=[(NSDictionary*)result valueForKey:@"id"];
-                [post setLikeID:@(resultId.integerValue)];
+                [f setNumberStyle:NSNumberFormatterNoStyle];
+                NSNumber* number=[f numberFromString:[(NSDictionary*)result valueForKey:@"id"]];
+                [post setLikeID:number];
                 [self toggleLiked:YES];
+            }else{
+                if(((NSNumber*)[error.userInfo valueForKey:@"com.facebook.sdk:HTTPStatusCode"]).intValue==400){
+                    NSString *message=[[[[error.userInfo valueForKey:@"com.facebook.sdk:ParsedJSONResponseKey"]valueForKey:@"body"]valueForKey:@"error"]valueForKey:@"message"];
+                    NSArray *words=[message componentsSeparatedByString:@" "];
+                    [f setNumberStyle:NSNumberFormatterNoStyle];
+                    NSNumber* number=[f numberFromString:words.lastObject];
+                    [post setLikeID:number];
+                    [self toggleLiked:YES];
+                }else{
+                [ErrorAlert postError:error];
+                }
             }}];
     }else{
         [FBActionBlock performFBLike:NO onItem:post withCompletion:^(NSError *error, id result) {
