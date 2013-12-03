@@ -12,8 +12,6 @@
 
 #define sBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
-@class Post;
-
 @interface PostTableViewController ()
 
 @end
@@ -89,8 +87,11 @@
 }
 
 #pragma MyCelldelegate
--(void)readPost:(Post*)post{
-    [self.navigationController pushViewController:[PostViewController initWithPost:post] animated:YES];
+-(void)pushViewController:(UIViewController *)vc{
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)presentViewController:(UIViewController*)vc{
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

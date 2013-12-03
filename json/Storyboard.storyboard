@@ -58,7 +58,11 @@
                                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="QFw-0u-WRI"/>
                                                 <barButtonItem style="plain" systemItem="compose" id="nwQ-Pw-ubG"/>
                                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="3eA-iC-jXR"/>
-                                                <barButtonItem systemItem="action" id="rc9-eP-bI9"/>
+                                                <barButtonItem systemItem="action" id="rc9-eP-bI9">
+                                                    <connections>
+                                                        <action selector="shareClicked:" destination="hhz-N6-1Ub" id="j1E-LS-r9J"/>
+                                                    </connections>
+                                                </barButtonItem>
                                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="hiR-Aq-NGW"/>
                                                 <barButtonItem image="Unliked" id="KOv-kN-iKB">
                                                     <connections>
@@ -114,6 +118,7 @@
                                     <outlet property="posterTitle" destination="g0b-4p-fLy" id="EUl-qP-EFt"/>
                                     <outlet property="posterToolbar" destination="cNa-rX-Wnz" id="tU2-zX-TBE"/>
                                     <outlet property="readPostButton" destination="RKd-nm-ILN" id="2vO-a3-6b3"/>
+                                    <outlet property="sharePostButton" destination="rc9-eP-bI9" id="11Z-f9-mZB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

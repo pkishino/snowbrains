@@ -18,15 +18,11 @@
 }
 
 +(id)initWithPost:(Post*)post{
-    static PostViewController *pvc=nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken,^{
-        pvc=[[PostViewController alloc]init];
-        [pvc setContent:post.content];
-    });
+    PostViewController* pvc=[[PostViewController alloc]init];
+    [pvc setContent:post.content];
     return pvc;
-    
 }
+
 -(void)loadView{
     [super loadView];
 	

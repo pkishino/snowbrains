@@ -360,7 +360,7 @@
 					CDB0FB9117ACED16005024DE = {
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.iOS = {
 								enabled = 0;

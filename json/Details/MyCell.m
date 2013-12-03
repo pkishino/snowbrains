@@ -8,6 +8,7 @@
 
 #import "MyCell.h"
 #import "ErrorAlert.h"
+#import "PostViewController.h"
 bool liked;
 @implementation MyCell
 
@@ -30,8 +31,7 @@ bool liked;
     [self.posterComments setTitle:post.comment_count.stringValue forState:UIControlStateNormal];
     [self.posterComments.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.posterToolbar setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrains_buttonBackground"]]];
-    [self.readPostButton setTag:post.oID.integerValue];
-    [self.likePostButton setTag:post.oID.integerValue];
+    [self setTag: post.oID.integerValue];
     if(post.likeID.intValue!=0){
         [self toggleLiked:YES];
     }else{
@@ -47,14 +47,14 @@ bool liked;
     [self toggleExcerpt];
 }
 - (IBAction)readPostClicked:(id)sender {
-    NSInteger tag=((UIBarButtonItem*)sender).tag;
-    [self.delegate readPost:[PostCollection retrievePost:@(tag)]];
+    Post* post=[PostCollection retrievePost:@(self.tag)];
+    [self.delegate pushViewController:[PostViewController initWithPost:post]];
 }
 
 - (IBAction)likeClicked:(id)sender {
-    NSInteger tag=((UIBarButtonItem*)sender).tag;
     NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-    Post* post=[PostCollection retrievePost:@(tag)];
+    Post* post=[PostCollection retrievePost:@(self.tag)];
+    if(post){
     if(!liked){
         [FBActionBlock performFBLike:YES onItem:post withCompletion:^(NSError *error, id result) {
             if(!error){
@@ -81,6 +81,7 @@ bool liked;
                 [self toggleLiked:NO];
             }}];
     }
+ }
 }
 -(void)toggleLiked:(BOOL)status{
     if(status){
@@ -90,6 +91,13 @@ bool liked;
         [self.likePostButton setImage:[UIImage imageNamed:@"Unliked"]];
         liked=NO;
     }
+}
+- (IBAction)shareClicked:(id)sender{
+    Post *post=[PostCollection retrievePost:@(self.tag)];
+    NSArray *shareItems=@[@"SnowBrains is awesome!",[NSURL URLWithString:post.url]];
+    UIActivityViewController *shareAction=[[UIActivityViewController alloc]initWithActivityItems:shareItems applicationActivities:nil];
+    [self.delegate presentViewController:shareAction];
+    
 }
 -(void)toggleExcerpt{
         [self.posterDim setHidden:![self isSelected]];
