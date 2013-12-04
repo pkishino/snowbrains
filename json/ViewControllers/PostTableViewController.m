@@ -37,22 +37,24 @@
 -(void)retrieveLatestData{
     dispatch_async(sBgQueue, ^{
         [PostCollection retrieveLatestPostsWithCompletion:^(BOOL success, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
             posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
             if(posts.count>0){
                 [self mainThreadReload];
             }else{[ErrorAlert postError:error];
+            };
     }}];});
 }
 -(void)retrieveData{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(sBgQueue,^{
+//    dispatch_async(sBgQueue,^{
         posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
         if(posts.count>0){
             [self mainThreadReload];
         }else{
             [self retrieveLatestData];
         }
-    });
+//    });
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
