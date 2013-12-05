@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <FacebookSDK.h>
-#import "Post.h"
 
 typedef void (^FBCompletionHandler)(NSError *error,id result);
 
 @interface FBActionBlock : NSObject
 +(id)fbActionBlock;
 +(void)runFaceBookBlock:(void(^)(void))completion;
-+(void)performFBLike:(BOOL)like onItem:(Post*)post withCompletion:(FBCompletionHandler)completion;
++(void)performFBLikeonItem:(NSString*)url withCompletion:(FBCompletionHandler)completion;
++(void)performFBUnLikeonItem:(NSString*)likeID withCompletion:(FBCompletionHandler)completion;
 
 @end

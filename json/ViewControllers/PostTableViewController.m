@@ -41,9 +41,10 @@
             posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
             if(posts.count>0){
                 [self mainThreadReload];
-            }else{[ErrorAlert postError:error];
-            };
-    }}];});
+            }else{
+                [ErrorAlert postError:error];
+            }
+        });}];});
 }
 -(void)retrieveData{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];

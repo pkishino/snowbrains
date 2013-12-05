@@ -56,32 +56,39 @@ bool liked;
     Post* post=[PostCollection retrievePost:@(self.tag)];
     if(post){
     if(!liked){
-        [FBActionBlock performFBLike:YES onItem:post withCompletion:^(NSError *error, id result) {
+        [FBActionBlock performFBLikeonItem:post.url withCompletion:^(NSError *error, id result) {
             if(!error){
                 [f setNumberStyle:NSNumberFormatterNoStyle];
                 NSNumber* number=[f numberFromString:[(NSDictionary*)result valueForKey:@"id"]];
-                [post setLikeID:number];
                 [self toggleLiked:YES];
+                [self setLikeId:number];
             }else{
                 if(((NSNumber*)[error.userInfo valueForKey:@"com.facebook.sdk:HTTPStatusCode"]).intValue==400){
                     NSString *message=[[[[error.userInfo valueForKey:@"com.facebook.sdk:ParsedJSONResponseKey"]valueForKey:@"body"]valueForKey:@"error"]valueForKey:@"message"];
                     NSArray *words=[message componentsSeparatedByString:@" "];
                     [f setNumberStyle:NSNumberFormatterNoStyle];
                     NSNumber* number=[f numberFromString:words.lastObject];
-                    [post setLikeID:number];
                     [self toggleLiked:YES];
+                    [self setLikeId:number];
                 }else{
                 [ErrorAlert postError:error];
                 }
             }}];
     }else{
-        [FBActionBlock performFBLike:NO onItem:post withCompletion:^(NSError *error, id result) {
+        [FBActionBlock performFBUnLikeonItem:post.likeID.stringValue withCompletion:^(NSError *error, id result) {
             if(!error){
-                [post setLikeID:nil];
                 [self toggleLiked:NO];
+                [self setLikeId:nil];
             }}];
     }
  }
+}
+-(void)setLikeId:(NSNumber*)number{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        Post* post=[PostCollection retrievePost:@(self.tag)];
+        [post setLikeID:number];
+    });
+    
 }
 -(void)toggleLiked:(BOOL)status{
     if(status){

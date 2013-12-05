@@ -44,11 +44,10 @@
         }];
     }
 }
-+(void)performFBLike:(BOOL)like onItem:(Post*)post withCompletion:(FBCompletionHandler)completion{
++(void)performFBLikeonItem:(NSString*)url withCompletion:(FBCompletionHandler)completion{
     [FBActionBlock runFaceBookBlock:^{
-        if(like){
             NSMutableDictionary<FBGraphObject> *action = [FBGraphObject graphObject];
-            action[@"object"] = [NSString stringWithFormat:@"%@",post.url];
+            action[@"object"] = [NSString stringWithFormat:@"%@",url];
             
             [FBRequestConnection startForPostWithGraphPath:@"me/og.likes"
                                                graphObject:action
@@ -57,17 +56,19 @@
                                                              NSError *error) {
                                                  completion(error,result);
                                          }];
-        }else{
-            [FBRequestConnection startWithGraphPath:post.likeID.stringValue
-                                         parameters:nil
-                                         HTTPMethod:@"DELETE"
-                                  completionHandler:^(FBRequestConnection *connection,
-                                                      id result,
-                                                      NSError *error) {
-                                          completion(error,result);
-                                  }];
-        }
     }];
     
+}
++(void)performFBUnLikeonItem:(NSString *)likeID withCompletion:(FBCompletionHandler)completion{
+    [FBActionBlock runFaceBookBlock:^{
+        [FBRequestConnection startWithGraphPath:likeID
+                                     parameters:nil
+                                     HTTPMethod:@"DELETE"
+                              completionHandler:^(FBRequestConnection *connection,
+                                                  id result,
+                                                  NSError *error) {
+                                  completion(error,result);
+                              }];
+    }];
 }
 @end

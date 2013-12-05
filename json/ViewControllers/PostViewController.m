@@ -13,7 +13,6 @@
 
 
 @implementation PostViewController{
-    DTAttributedTextView *contentView;
     NSMutableSet *mediaPlayers;
 }
 
@@ -25,20 +24,16 @@
 
 -(void)loadView{
     [super loadView];
-	
-	CGRect frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height);
-    contentView=[[DTAttributedTextView alloc]initWithFrame:frame];
-    [contentView setTextDelegate:self];
-    [contentView setShouldDrawImages:YES];
-    [contentView setShouldDrawLinks:NO];
-    [self.view addSubview:contentView];
+//    [self.contentView setTextDelegate:self];
+    [self.contentView setShouldDrawImages:YES];
+    [self.contentView setShouldDrawLinks:NO];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [contentView setShouldDrawImages:YES];
-    [contentView setAttributedString:[self attributedStringForView]];
+    [self.contentView setShouldDrawImages:YES];
+    [self.contentView setAttributedString:[self attributedStringForView]];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -88,7 +83,7 @@
 }
 #pragma mark Custom Views on Text
 
-- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextcontentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame
 {
 	NSDictionary *attributes = [string attributesAtIndex:0 effectiveRange:NULL];
 	
@@ -102,11 +97,11 @@
 	button.GUID = identifier;
 	
 	// get image with normal link text
-	UIImage *normalImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
+	UIImage *normalImage = [attributedTextcontentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
 	[button setImage:normalImage forState:UIControlStateNormal];
 	
 	// get image for highlighted link text
-	UIImage *highlightImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
+	UIImage *highlightImage = [attributedTextcontentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
 	[button setImage:highlightImage forState:UIControlStateHighlighted];
 	
 	// use normal push action for opening URL
@@ -119,7 +114,7 @@
 	return button;
 }
 
-- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame
+- (UIView *)attributedTextcontentView:(DTAttributedTextContentView *)attributedTextcontentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame
 {
 	if ([attachment isKindOfClass:[DTVideoTextAttachment class]])
 	{
@@ -209,7 +204,7 @@
             BOOL didUpdate = NO;
             
             // update all attachments that matchin this URL (possibly multiple images with same size)
-            for (DTTextAttachment *oneAttachment in [contentView.attributedTextContentView.layoutFrame textAttachmentsWithPredicate:pred])
+            for (DTTextAttachment *oneAttachment in [self.contentView.attributedTextContentView.layoutFrame textAttachmentsWithPredicate:pred])
             {
                 // update attachments that have no original size, that also sets the display size
                 if (CGSizeEqualToSize(oneAttachment.originalSize, CGSizeZero))
@@ -223,7 +218,7 @@
             if (didUpdate)
             {
                 // layout might have changed due to image sizes
-                [contentView relayoutText];
+                [self.contentView relayoutText];
             }
         }];
 		// if there is a hyperlink then add a link button on top of this image
@@ -254,6 +249,7 @@
 	{
 		DTWebVideoView *videoView = [[DTWebVideoView alloc] initWithFrame:frame];
 		videoView.attachment = attachment;
+        videoView.delegate=self;
 		
 		return videoView;
 	}
@@ -277,7 +273,7 @@
 	return nil;
 }
 
-- (BOOL)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame
+- (BOOL)attributedTextcontentView:(DTAttributedTextContentView *)attributedTextcontentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame
 {
 	UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(frame,1,1) cornerRadius:10];
     
@@ -317,7 +313,7 @@
 			
 			if (fragment)
 			{
-				[contentView scrollToAnchorNamed:fragment animated:NO];
+				[self.contentView scrollToAnchorNamed:fragment animated:NO];
 			}
 		}
 	}
@@ -343,6 +339,16 @@
 	{
 		[[UIApplication sharedApplication] openURL:[self.lastActionLink absoluteURL]];
 	}
+}
+
+#pragma mark DTWebViewDelegate
+
+-(BOOL)videoView:(DTWebVideoView *)videoView shouldOpenExternalURL:(NSURL *)url{
+    if (NSNotFound != [[url absoluteString] rangeOfString:@"player.vimeo.com/video"].location)
+	{
+		return YES;
+	}
+    return NO;
 }
 
 #pragma mark Properties

@@ -12,9 +12,10 @@
 #import <MediaPlayer/MPMoviePlayerController.h>
 #import "Post.h"
 
-@interface PostViewController : UIViewController<DTLazyImageViewDelegate,DTAttributedTextContentViewDelegate,UIActionSheetDelegate>
+@interface PostViewController : UIViewController<DTLazyImageViewDelegate,DTAttributedTextContentViewDelegate,UIActionSheetDelegate,DTWebVideoViewDelegate>
 @property (strong,nonatomic)NSString* content;
 @property (strong,nonatomic)NSURL *lastActionLink;
+@property (strong, nonatomic) IBOutlet DTAttributedTextView *contentView;
 
 +(id)initWithPost:(Post*)post;
 @end

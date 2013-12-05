@@ -178,11 +178,25 @@
                     <view key="view" contentMode="scaleToFill" id="1DL-Gg-WlV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9VF-Sd-qmw" customClass="DTAttributedTextView">
+                                <rect key="frame" x="12" y="81" width="295" height="428"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="textDelegate" destination="ujC-iW-Dwb" id="ntQ-DB-pUZ"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
                     <navigationItem key="navigationItem" id="4NW-Gq-lhP"/>
+                    <connections>
+                        <outlet property="contenView" destination="9VF-Sd-qmw" id="Bwq-Li-dmq"/>
+                        <outlet property="contentView" destination="9VF-Sd-qmw" id="hIh-mG-Jn3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0jc-Vp-X43" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

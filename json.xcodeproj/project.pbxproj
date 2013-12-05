@@ -179,6 +179,13 @@
 			name = TableViewCell;
 			sourceTree = "<group>";
 		};
+		CDA02C611850BDDC007B93DF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		CDADD918184077140047EA0A /* JsonModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +274,7 @@
 			children = (
 				CDB0FBA417ACED17005024DE /* AppDelegate.h */,
 				CDB0FBA517ACED17005024DE /* AppDelegate.m */,
+				CDA02C611850BDDC007B93DF /* Categories */,
 				CDD49604184A190E00C1D362 /* Tools */,
 				CD0858361844D126005DEB14 /* DataRetrieveSingletons */,
 				CDD49605184AF41300C1D362 /* UI items */,
