@@ -48,14 +48,12 @@
 }
 -(void)retrieveData{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    dispatch_async(sBgQueue,^{
         posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
         if(posts.count>0){
             [self mainThreadReload];
         }else{
             [self retrieveLatestData];
         }
-//    });
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -95,6 +93,12 @@
 }
 -(void)presentViewController:(UIViewController*)vc{
     [self presentViewController:vc animated:YES completion:nil];
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"PostViewSegue"]){
+        PostViewController* postView=segue.destinationViewController;
+        postView.content=(NSString*)sender;
+    }
 }
 
 - (void)didReceiveMemoryWarning

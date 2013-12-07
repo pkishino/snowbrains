@@ -48,7 +48,7 @@ bool liked;
 }
 - (IBAction)readPostClicked:(id)sender {
     Post* post=[PostCollection retrievePost:@(self.tag)];
-    [self.delegate pushViewController:[PostViewController initWithPost:post]];
+    [self.delegate performSegueWithIdentifier:@"PostViewSegue" sender:post.content];
 }
 
 - (IBAction)likeClicked:(id)sender {
@@ -76,10 +76,11 @@ bool liked;
             }}];
     }else{
         [FBActionBlock performFBUnLikeonItem:post.likeID.stringValue withCompletion:^(NSError *error, id result) {
-            if(!error){
+//            if(!error){
                 [self toggleLiked:NO];
                 [self setLikeId:nil];
-            }}];
+//            }
+         }];
     }
  }
 }

@@ -16,26 +16,22 @@
     NSMutableSet *mediaPlayers;
 }
 
-+(id)initWithPost:(Post*)post{
-    PostViewController* pvc=[[PostViewController alloc]init];
-    [pvc setContent:post.content];
-    return pvc;
-}
-
 -(void)loadView{
     [super loadView];
-//    [self.contentView setTextDelegate:self];
+    [self.contentView.layer setCornerRadius:10.0f];
     [self.contentView setShouldDrawImages:YES];
-    [self.contentView setShouldDrawLinks:NO];
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self.contentView setShouldDrawImages:YES];
+    [self.contentView setShouldDrawLinks:NO];
+//    [self.contentView setContentInset:UIEdgeInsetsMake(0, 5, 0, self.contentView.bounds.size.width-5)];
     [self.contentView setAttributedString:[self attributedStringForView]];
     
-    // Do any additional setup after loading the view from its nib.
 }
 - (NSAttributedString *)attributedStringForView
 {
@@ -83,7 +79,7 @@
 }
 #pragma mark Custom Views on Text
 
-- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextcontentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame
 {
 	NSDictionary *attributes = [string attributesAtIndex:0 effectiveRange:NULL];
 	
@@ -97,11 +93,11 @@
 	button.GUID = identifier;
 	
 	// get image with normal link text
-	UIImage *normalImage = [attributedTextcontentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
+	UIImage *normalImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
 	[button setImage:normalImage forState:UIControlStateNormal];
 	
 	// get image for highlighted link text
-	UIImage *highlightImage = [attributedTextcontentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
+	UIImage *highlightImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
 	[button setImage:highlightImage forState:UIControlStateHighlighted];
 	
 	// use normal push action for opening URL
@@ -114,7 +110,7 @@
 	return button;
 }
 
-- (UIView *)attributedTextcontentView:(DTAttributedTextContentView *)attributedTextcontentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame
 {
 	if ([attachment isKindOfClass:[DTVideoTextAttachment class]])
 	{
@@ -273,7 +269,7 @@
 	return nil;
 }
 
-- (BOOL)attributedTextcontentView:(DTAttributedTextContentView *)attributedTextcontentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame
+- (BOOL)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame
 {
 	UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(frame,1,1) cornerRadius:10];
     
@@ -343,13 +339,13 @@
 
 #pragma mark DTWebViewDelegate
 
--(BOOL)videoView:(DTWebVideoView *)videoView shouldOpenExternalURL:(NSURL *)url{
-    if (NSNotFound != [[url absoluteString] rangeOfString:@"player.vimeo.com/video"].location)
-	{
-		return YES;
-	}
-    return NO;
-}
+//-(BOOL)videoView:(DTWebVideoView *)videoView shouldOpenExternalURL:(NSURL *)url{
+//    if (NSNotFound != [[url absoluteString] rangeOfString:@"player.vimeo.com/video"].location)
+//	{
+//		return NO;
+//	}
+//    return YES;
+//}
 
 #pragma mark Properties
 

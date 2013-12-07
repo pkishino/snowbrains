@@ -21,6 +21,7 @@
 		CD0858BA1847855F005DEB14 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858B91847855F005DEB14 /* ImageData.m */; };
 		CD0858BD18478D06005DEB14 /* CommonInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858BC18478D06005DEB14 /* CommonInterface.m */; };
 		CD108423184CD61E006FFCBD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CD108422184CD61E006FFCBD /* Post.m */; };
+		CDA02C651852E09F007B93DF /* DTWebVideoView+SnowBrains.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA02C641852E09F007B93DF /* DTWebVideoView+SnowBrains.m */; };
 		CDADD91B184077A80047EA0A /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD91A184077A80047EA0A /* PostModel.m */; };
 		CDADD91E184077BC0047EA0A /* AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD91D184077BC0047EA0A /* AuthorModel.m */; };
 		CDADD921184077C60047EA0A /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD920184077C60047EA0A /* TagModel.m */; };
@@ -80,6 +81,8 @@
 		CD0858BC18478D06005DEB14 /* CommonInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonInterface.m; path = CoreDataModels/CommonInterface.m; sourceTree = "<group>"; };
 		CD108421184CD61E006FFCBD /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = CoreDataModels/Post.h; sourceTree = "<group>"; };
 		CD108422184CD61E006FFCBD /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = CoreDataModels/Post.m; sourceTree = "<group>"; };
+		CDA02C631852E09F007B93DF /* DTWebVideoView+SnowBrains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DTWebVideoView+SnowBrains.h"; path = "Categories/DTWebVideoView+SnowBrains.h"; sourceTree = "<group>"; };
+		CDA02C641852E09F007B93DF /* DTWebVideoView+SnowBrains.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DTWebVideoView+SnowBrains.m"; path = "Categories/DTWebVideoView+SnowBrains.m"; sourceTree = "<group>"; };
 		CDADD919184077A80047EA0A /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostModel.h; path = JsonModels/PostModel.h; sourceTree = "<group>"; };
 		CDADD91A184077A80047EA0A /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostModel.m; path = JsonModels/PostModel.m; sourceTree = "<group>"; };
 		CDADD91C184077BC0047EA0A /* AuthorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorModel.h; path = JsonModels/AuthorModel.h; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 		CDA02C611850BDDC007B93DF /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				CDA02C631852E09F007B93DF /* DTWebVideoView+SnowBrains.h */,
+				CDA02C641852E09F007B93DF /* DTWebVideoView+SnowBrains.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 				CDD4960C184B42D700C1D362 /* SetupInitializer.m in Sources */,
 				CDD49609184B3E0300C1D362 /* ErrorAlert.m in Sources */,
 				CDB0FBA217ACED17005024DE /* main.m in Sources */,
+				CDA02C651852E09F007B93DF /* DTWebVideoView+SnowBrains.m in Sources */,
 				CD0858A1184629CE005DEB14 /* Author.m in Sources */,
 				CDAF7C4C1839201600F8098B /* FBLoginViewController2.m in Sources */,
 				CD108423184CD61E006FFCBD /* Post.m in Sources */,

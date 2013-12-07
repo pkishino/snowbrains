@@ -17,5 +17,4 @@
 @property (strong,nonatomic)NSURL *lastActionLink;
 @property (strong, nonatomic) IBOutlet DTAttributedTextView *contentView;
 
-+(id)initWithPost:(Post*)post;
 @end
