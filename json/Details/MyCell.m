@@ -9,6 +9,7 @@
 #import "MyCell.h"
 #import "ErrorAlert.h"
 #import "PostViewController.h"
+#import "CommentPoster.h"
 bool liked;
 @implementation MyCell
 
@@ -22,11 +23,18 @@ bool liked;
 
 -(id)loadWithPost:(Post *)post{
     [self.posterTitle setAttributedString:[[NSAttributedString alloc] initWithHTMLData:[post.title dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:NULL]];
-    [self.posterDate setText:[NSDateFormatter localizedStringFromDate:post.date
-                                                            dateStyle:NSDateFormatterShortStyle
-                                                            timeStyle:NSDateFormatterFullStyle]];
-    [self.posterAuthor setText:post.author.name];
+    [self.posterTitle setNumberOfLines:1];
+    [self.posterTitle setLineBreakMode:NSLineBreakByTruncatingTail];
+    [self.posterTitle sizeToFit];
+    [self.posterTitle setCenter:CGPointMake(self.center.x, self.posterTitle.center.y)];
+    [self.posterDate setText:[NSDateFormatter localizedStringFromDate:post.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle]];
     [self.posterExcerpt setAttributedString:[[NSAttributedString alloc] initWithHTMLData:[post.excerpt dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:NULL]];
+    [self.posterExcerpt setNumberOfLines:5];
+    [self.posterExcerpt setLineBreakMode:NSLineBreakByTruncatingTail];
+    [self.posterExcerpt sizeToFit];
+    [self.posterExcerpt setCenter:CGPointMake(self.center.x, self.posterExcerpt.center.y)];
+    
+    [self.posterAuthor setText:post.author.name];
     [self.posterComments setBackgroundImage:[[UIImage imageNamed:@"Comments"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [self.posterComments setTitle:post.comment_count.stringValue forState:UIControlStateNormal];
     [self.posterComments.titleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -38,6 +46,8 @@ bool liked;
         [self toggleLiked:NO];
     }
     [self.posterThumb setImageWithURL:[NSURL URLWithString:post.thumbnail] placeholderImage:[UIImage imageNamed:@"mediumMobile"]];
+    
+    [self.posterCommentView.layer setCornerRadius:10.0f];
     return self;
 }
 
@@ -49,6 +59,24 @@ bool liked;
 - (IBAction)readPostClicked:(id)sender {
     Post* post=[PostCollection retrievePost:@(self.tag)];
     [self.delegate performSegueWithIdentifier:@"PostViewSegue" sender:post.content];
+}
+-(IBAction)writeCommentClicked:(id)sender{
+    [self.posterCommentView setHidden:NO];
+}
+-(IBAction)postCommentClicked:(id)sender{
+    NSDictionary *postComment=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:self.tag],@"post_id",self.posterCommentText.text,@"content", nil];
+    [CommentPoster postComment:postComment andCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            [self.posterCommentText setText:nil];
+            [self.posterCommentView setHidden:YES];
+        }else{
+            [ErrorAlert postError:error];
+        }
+    }];
+}
+- (IBAction)cancelCommentClicked:(id)sender {
+    [self.posterCommentText setText:nil];
+    [self.posterCommentView setHidden:YES];
 }
 
 - (IBAction)likeClicked:(id)sender {
@@ -76,10 +104,8 @@ bool liked;
             }}];
     }else{
         [FBActionBlock performFBUnLikeonItem:post.likeID.stringValue withCompletion:^(NSError *error, id result) {
-//            if(!error){
                 [self toggleLiked:NO];
                 [self setLikeId:nil];
-//            }
          }];
     }
  }
@@ -109,10 +135,11 @@ bool liked;
 }
 -(void)toggleExcerpt{
         [self.posterDim setHidden:![self isSelected]];
-        [self.posterExcerpt setHidden:![self isSelected]];
-        [self.posterComments setHidden:![self isSelected]];
-        [self.posterTitle setHidden:![self isSelected]];
-        [self.posterAuthor setHidden:![self isSelected]];
+//        [self.posterExcerpt setHidden:![self isSelected]];
+//        [self.posterComments setHidden:![self isSelected]];
+//        [self.posterTitle setHidden:![self isSelected]];
+//        [self.posterAuthor setHidden:![self isSelected]];
+//        [self.posterDate setHidden:![self isSelected]];
 }
 
 @end

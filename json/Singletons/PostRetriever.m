@@ -8,10 +8,9 @@
 
 #import "PostRetriever.h"
 #import "PostModel.h"
-#import "ImageModel.h"
-#import "AttachmentModel.h"
 #import "Post.h"
 #define sLatestPosts [NSURL URLWithString:@"http://snowbrains.com/?json=get_recent_posts&count=10"]
+#define sBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 @implementation PostRetriever
 
@@ -25,6 +24,7 @@
     
 }
 +(void)getLatestPostRequestWithCompletion:(PostCompletionHandler)completion{
+    dispatch_async(sBgQueue, ^{
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
@@ -50,6 +50,7 @@
         }
     }];
     [dataTask resume];
+    });
 }
 
 @end

@@ -21,14 +21,18 @@ static NSString *CellIdentifier = @"MyCellID";
 @property (weak, nonatomic) IBOutlet UILabel *posterDate;
 @property (weak, nonatomic) IBOutlet UILabel *posterAuthor;
 @property (weak, nonatomic) IBOutlet UIButton *posterComments;
-@property (weak, nonatomic) IBOutlet DTAttributedTextView *posterExcerpt;
+@property (weak, nonatomic) IBOutlet DTAttributedLabel *posterExcerpt;
 @property (weak, nonatomic) IBOutlet UIView *posterDim;
 
 
+@property (strong, nonatomic) IBOutlet UIView *posterCommentView;
+@property (strong, nonatomic) IBOutlet UITextView *posterCommentText;
+@property (strong, nonatomic) IBOutlet UIButton *posterCommentPost;
+@property (strong, nonatomic) IBOutlet UIButton *posterCommentCancel;
+
+
 @property (weak, nonatomic) IBOutlet UIToolbar *posterToolbar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *readPostButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *likePostButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sharePostButton;
 
 - (IBAction)readPostClicked:(id)sender;
 

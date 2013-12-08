@@ -22,6 +22,7 @@
 		CD0858BD18478D06005DEB14 /* CommonInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858BC18478D06005DEB14 /* CommonInterface.m */; };
 		CD108423184CD61E006FFCBD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CD108422184CD61E006FFCBD /* Post.m */; };
 		CDA02C651852E09F007B93DF /* DTWebVideoView+SnowBrains.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA02C641852E09F007B93DF /* DTWebVideoView+SnowBrains.m */; };
+		CDA02C6918543F48007B93DF /* CommentPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA02C6818543F48007B93DF /* CommentPoster.m */; };
 		CDADD91B184077A80047EA0A /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD91A184077A80047EA0A /* PostModel.m */; };
 		CDADD91E184077BC0047EA0A /* AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD91D184077BC0047EA0A /* AuthorModel.m */; };
 		CDADD921184077C60047EA0A /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDADD920184077C60047EA0A /* TagModel.m */; };
@@ -83,6 +84,8 @@
 		CD108422184CD61E006FFCBD /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = CoreDataModels/Post.m; sourceTree = "<group>"; };
 		CDA02C631852E09F007B93DF /* DTWebVideoView+SnowBrains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DTWebVideoView+SnowBrains.h"; path = "Categories/DTWebVideoView+SnowBrains.h"; sourceTree = "<group>"; };
 		CDA02C641852E09F007B93DF /* DTWebVideoView+SnowBrains.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DTWebVideoView+SnowBrains.m"; path = "Categories/DTWebVideoView+SnowBrains.m"; sourceTree = "<group>"; };
+		CDA02C6718543F48007B93DF /* CommentPoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentPoster.h; path = Singletons/CommentPoster.h; sourceTree = "<group>"; };
+		CDA02C6818543F48007B93DF /* CommentPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentPoster.m; path = Singletons/CommentPoster.m; sourceTree = "<group>"; };
 		CDADD919184077A80047EA0A /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostModel.h; path = JsonModels/PostModel.h; sourceTree = "<group>"; };
 		CDADD91A184077A80047EA0A /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostModel.m; path = JsonModels/PostModel.m; sourceTree = "<group>"; };
 		CDADD91C184077BC0047EA0A /* AuthorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorModel.h; path = JsonModels/AuthorModel.h; sourceTree = "<group>"; };
@@ -162,15 +165,17 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		CD0858361844D126005DEB14 /* DataRetrieveSingletons */ = {
+		CD0858361844D126005DEB14 /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
 				CDB0FBBC17AE8624005024DE /* PostCollection.h */,
 				CDB0FBBD17AE8624005024DE /* PostCollection.m */,
 				CD0858381844DA0D005DEB14 /* PostRetriever.h */,
 				CD0858391844DA0D005DEB14 /* PostRetriever.m */,
+				CDA02C6718543F48007B93DF /* CommentPoster.h */,
+				CDA02C6818543F48007B93DF /* CommentPoster.m */,
 			);
-			name = DataRetrieveSingletons;
+			name = Singletons;
 			sourceTree = "<group>";
 		};
 		CD0858371844D131005DEB14 /* TableViewCell */ = {
@@ -281,7 +286,7 @@
 				CDB0FBA517ACED17005024DE /* AppDelegate.m */,
 				CDA02C611850BDDC007B93DF /* Categories */,
 				CDD49604184A190E00C1D362 /* Tools */,
-				CD0858361844D126005DEB14 /* DataRetrieveSingletons */,
+				CD0858361844D126005DEB14 /* Singletons */,
 				CDD49605184AF41300C1D362 /* UI items */,
 				CDADD9311840897B0047EA0A /* CoreDataModels */,
 				CDADD918184077140047EA0A /* JsonModels */,
@@ -476,6 +481,7 @@
 				CD0858B318477487005DEB14 /* Image.m in Sources */,
 				CDADD92A184077EC0047EA0A /* CategoryModel.m in Sources */,
 				CD0858BD18478D06005DEB14 /* CommonInterface.m in Sources */,
+				CDA02C6918543F48007B93DF /* CommentPoster.m in Sources */,
 				CDAF7BA518328D3D00F8098B /* PostViewController.m in Sources */,
 				CDADD92D184077F70047EA0A /* CommentModel.m in Sources */,
 				CDB0FBBE17AE8624005024DE /* PostCollection.m in Sources */,

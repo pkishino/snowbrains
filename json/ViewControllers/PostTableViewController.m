@@ -10,8 +10,6 @@
 #import "PostCollection.h"
 #import "PostViewController.h"
 
-#define sBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-
 @interface PostTableViewController ()
 
 @end
@@ -35,7 +33,6 @@
             [self.refreshControl endRefreshing];}});
 }
 -(void)retrieveLatestData{
-    dispatch_async(sBgQueue, ^{
         [PostCollection retrieveLatestPostsWithCompletion:^(BOOL success, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
@@ -44,7 +41,7 @@
             }else{
                 [ErrorAlert postError:error];
             }
-        });}];});
+        });}];
 }
 -(void)retrieveData{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];

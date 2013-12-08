@@ -29,7 +29,7 @@
     
     [self.contentView setShouldDrawImages:YES];
     [self.contentView setShouldDrawLinks:NO];
-//    [self.contentView setContentInset:UIEdgeInsetsMake(0, 5, 0, self.contentView.bounds.size.width-5)];
+    [self.contentView setContentInset:UIEdgeInsetsMake(5, 5, 5, 5)];
     [self.contentView setAttributedString:[self attributedStringForView]];
     
 }
@@ -39,7 +39,7 @@
 	// Create attributed string from HTML
     NSData *data = [self.content dataUsingEncoding:NSUTF8StringEncoding];
     
-	CGSize maxImageSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height - 20.0);
+	CGSize maxImageSize = CGSizeMake(self.view.bounds.size.width-20, self.view.bounds.size.height - 20.0);
 	
 	// example for setting a willFlushCallback, that gets called before elements are written to the generated attributed string
 	void (^callBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement *element) {
@@ -59,7 +59,7 @@
 	};
 	
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@1.0f, NSTextSizeMultiplierDocumentOption, [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
-                                    @"Times New Roman", DTDefaultFontFamily,  @"purple", DTDefaultLinkColor, @"red", DTDefaultLinkHighlightColor, callBackBlock, DTWillFlushBlockCallBack, nil];
+                                    @"Times New Roman", DTDefaultFontFamily,  @"black", DTDefaultLinkColor, @"red", DTDefaultLinkHighlightColor, callBackBlock, DTWillFlushBlockCallBack, nil];
 	
 	
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
@@ -189,7 +189,8 @@
 	{
 		// if the attachment has a hyperlinkURL then this is currently ignored
 		UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-		
+		[imageView.layer setCornerRadius:10.0f];
+        [imageView setClipsToBounds:YES];
 		// sets the image if there is one
 		[imageView setImageWithURL:attachment.contentURL placeholderImage:[UIImage imageNamed:@"mediumMobile"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             NSURL *url = attachment.contentURL;
@@ -218,26 +219,26 @@
             }
         }];
 		// if there is a hyperlink then add a link button on top of this image
-//		if (attachment.hyperLinkURL)
-//		{
-//			// NOTE: this is a hack, you probably want to use your own image view and touch handling
-//			// also, this treats an image with a hyperlink by itself because we don't have the GUID of the link parts
-//			imageView.userInteractionEnabled = YES;
-//			
-//			DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:imageView.bounds];
-//			button.URL = attachment.hyperLinkURL;
-//			button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
-//			button.GUID = attachment.hyperLinkGUID;
-//			
-//			// use normal push action for opening URL
+		if (attachment.hyperLinkURL)
+		{
+			// NOTE: this is a hack, you probably want to use your own image view and touch handling
+			// also, this treats an image with a hyperlink by itself because we don't have the GUID of the link parts
+			imageView.userInteractionEnabled = YES;
+			
+			DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:imageView.bounds];
+			button.URL = attachment.hyperLinkURL;
+			button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
+			button.GUID = attachment.hyperLinkGUID;
+			
+			// use normal push action for opening URL
 //			[button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
-//			
-//			// demonstrate combination with long press
-//			UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
-//			[button addGestureRecognizer:longPress];
-//			
-//			[imageView addSubview:button];
-//		}
+			
+			// demonstrate combination with long press
+			UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
+			[button addGestureRecognizer:longPress];
+			
+			[imageView addSubview:button];
+		}
 		
 		return imageView;
 	}

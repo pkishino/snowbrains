@@ -22,25 +22,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OBB-9H-7YU">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </imageView>
-                                        <view hidden="YES" alpha="0.80000000000000027" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7G-al-2V1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhy-BJ-vwa">
-                                            <rect key="frame" x="15" y="135" width="135" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </label>
                                         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.84999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cNa-rX-Wnz">
-                                            <rect key="frame" x="0.0" y="155" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="156" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <items>
                                                 <barButtonItem systemItem="bookmarks" id="RKd-nm-ILN">
@@ -49,7 +36,11 @@
                                                     </connections>
                                                 </barButtonItem>
                                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="QFw-0u-WRI"/>
-                                                <barButtonItem style="plain" systemItem="compose" id="nwQ-Pw-ubG"/>
+                                                <barButtonItem style="plain" systemItem="compose" id="nwQ-Pw-ubG">
+                                                    <connections>
+                                                        <action selector="writeCommentClicked:" destination="hhz-N6-1Ub" id="KFE-wK-p2u"/>
+                                                    </connections>
+                                                </barButtonItem>
                                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="3eA-iC-jXR"/>
                                                 <barButtonItem systemItem="action" id="rc9-eP-bI9">
                                                     <connections>
@@ -64,38 +55,97 @@
                                                 </barButtonItem>
                                             </items>
                                         </toolbar>
-                                        <button hidden="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0L-HX-Z0V">
-                                            <rect key="frame" x="280" y="122" width="39" height="30"/>
+                                        <view hidden="YES" alpha="0.90000000000000036" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7G-al-2V1">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="156"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <size key="titleShadowOffset" width="1" height="-1"/>
-                                            <state key="normal" title="0" backgroundImage="Comments">
-                                                <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
-                                                <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </state>
-                                        </button>
-                                        <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D6s-ig-Nbm" customClass="DTAttributedTextView">
-                                            <rect key="frame" x="0.0" y="30" width="263" height="104"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhy-BJ-vwa" userLabel="Author">
+                                                    <rect key="frame" x="92" y="137" width="135" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtH-Me-nl3" userLabel="Date">
+                                                    <rect key="frame" x="7" y="137" width="64" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                </label>
+                                                <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0L-HX-Z0V" userLabel="Comments">
+                                                    <rect key="frame" x="278" y="123" width="39" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" title="0" backgroundImage="Comments">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </state>
+                                                </button>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D6s-ig-Nbm" userLabel="Excerpt" customClass="DTAttributedLabel">
+                                                    <rect key="frame" x="39" y="30" width="242" height="90"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g0b-4p-fLy" userLabel="Title" customClass="DTAttributedLabel">
+                                                    <rect key="frame" x="7" y="0.0" width="306" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g0b-4p-fLy" customClass="DTAttributedLabel">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6k4-v5-OpQ">
+                                            <rect key="frame" x="16" y="14" width="288" height="173"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i2G-aO-oU4">
+                                                    <rect key="frame" x="0.0" y="13" width="288" height="131"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                                </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wnt-QC-gXu">
+                                                    <rect key="frame" x="237" y="147" width="51" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Post"/>
+                                                    <connections>
+                                                        <action selector="postCommentClicked:" destination="hhz-N6-1Ub" eventType="touchUpInside" id="Rbo-X1-SiL"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhi-yD-wQa">
+                                                    <rect key="frame" x="0.0" y="145" width="57" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Cancel"/>
+                                                    <connections>
+                                                        <action selector="cancelCommentClicked:" destination="hhz-N6-1Ub" eventType="touchUpInside" id="Dqz-y3-n5v"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="likePostButton" destination="KOv-kN-iKB" id="mz4-5k-Jqt"/>
                                     <outlet property="posterAuthor" destination="Lhy-BJ-vwa" id="sNM-2O-0Q7"/>
+                                    <outlet property="posterCommentCancel" destination="rhi-yD-wQa" id="RHh-H2-5fj"/>
+                                    <outlet property="posterCommentPost" destination="Wnt-QC-gXu" id="avu-xk-oRs"/>
+                                    <outlet property="posterCommentText" destination="i2G-aO-oU4" id="vLq-kB-WUe"/>
+                                    <outlet property="posterCommentView" destination="6k4-v5-OpQ" id="WE7-Le-xi3"/>
                                     <outlet property="posterComments" destination="h0L-HX-Z0V" id="6Lj-uk-7Jc"/>
+                                    <outlet property="posterDate" destination="GtH-Me-nl3" id="ych-C1-DBe"/>
                                     <outlet property="posterDim" destination="U7G-al-2V1" id="C4X-qs-EUp"/>
                                     <outlet property="posterExcerpt" destination="D6s-ig-Nbm" id="krL-Gs-4PK"/>
                                     <outlet property="posterThumb" destination="OBB-9H-7YU" id="TOZ-PO-fot"/>
                                     <outlet property="posterTitle" destination="g0b-4p-fLy" id="EUl-qP-EFt"/>
                                     <outlet property="posterToolbar" destination="cNa-rX-Wnz" id="tU2-zX-TBE"/>
-                                    <outlet property="readPostButton" destination="RKd-nm-ILN" id="2vO-a3-6b3"/>
-                                    <outlet property="sharePostButton" destination="rc9-eP-bI9" id="11Z-f9-mZB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -156,9 +206,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHE-L3-xBs" customClass="DTAttributedTextView">
+                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHE-L3-xBs" customClass="DTAttributedTextView">
                                 <rect key="frame" x="5" y="70" width="310" height="450"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="textDelegate" destination="Rg9-dW-235" id="8Uy-Jx-YNP"/>
                                 </connections>
