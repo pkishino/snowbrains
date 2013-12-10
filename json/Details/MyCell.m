@@ -9,7 +9,6 @@
 #import "MyCell.h"
 #import "ErrorAlert.h"
 #import "PostViewController.h"
-#import "CommentPoster.h"
 bool liked;
 @implementation MyCell
 
@@ -61,22 +60,7 @@ bool liked;
     [self.delegate performSegueWithIdentifier:@"PostViewSegue" sender:post.content];
 }
 -(IBAction)writeCommentClicked:(id)sender{
-    [self.posterCommentView setHidden:NO];
-}
--(IBAction)postCommentClicked:(id)sender{
-    NSDictionary *postComment=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:self.tag],@"post_id",self.posterCommentText.text,@"content", nil];
-    [CommentPoster postComment:postComment andCompletion:^(BOOL success, NSError *error) {
-        if (success) {
-            [self.posterCommentText setText:nil];
-            [self.posterCommentView setHidden:YES];
-        }else{
-            [ErrorAlert postError:error];
-        }
-    }];
-}
-- (IBAction)cancelCommentClicked:(id)sender {
-    [self.posterCommentText setText:nil];
-    [self.posterCommentView setHidden:YES];
+    [self.delegate performSegueWithIdentifier:@"PostCommentSegue" sender:[NSNumber numberWithInteger:self.tag]];
 }
 
 - (IBAction)likeClicked:(id)sender {
@@ -135,11 +119,6 @@ bool liked;
 }
 -(void)toggleExcerpt{
         [self.posterDim setHidden:![self isSelected]];
-//        [self.posterExcerpt setHidden:![self isSelected]];
-//        [self.posterComments setHidden:![self isSelected]];
-//        [self.posterTitle setHidden:![self isSelected]];
-//        [self.posterAuthor setHidden:![self isSelected]];
-//        [self.posterDate setHidden:![self isSelected]];
 }
 
 @end

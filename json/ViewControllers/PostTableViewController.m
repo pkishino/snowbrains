@@ -9,6 +9,8 @@
 #import "PostTableViewController.h"
 #import "PostCollection.h"
 #import "PostViewController.h"
+#import "PostCommentViewController.h"
+#import <LMModalSegue.h>
 
 @interface PostTableViewController ()
 
@@ -95,6 +97,10 @@
     if([segue.identifier isEqualToString:@"PostViewSegue"]){
         PostViewController* postView=segue.destinationViewController;
         postView.content=(NSString*)sender;
+    }
+    if([segue.identifier isEqualToString:@"PostCommentSegue"]){
+        PostCommentViewController* commentView=((UINavigationController*)segue.destinationViewController).viewControllers[0];
+        commentView.post_id=(NSNumber*)sender;
     }
 }
 

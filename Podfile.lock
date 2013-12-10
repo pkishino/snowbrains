@@ -30,8 +30,12 @@ PODS:
     - DTFoundation/Core
   - Facebook-iOS-SDK (3.9.0)
   - JSONModel (0.10.0)
+  - LMAlertView (0.0.1):
+    - RBBAnimation (~> 0.3.0)
   - MagicalRecord (2.2)
   - MBProgressHUD (0.8)
+  - MFSideMenu (0.5.4)
+  - RBBAnimation (0.3.0)
   - SDWebImage (3.5):
     - SDWebImage/Core
   - SDWebImage/Core (3.5)
@@ -41,8 +45,10 @@ DEPENDENCIES:
   - DTCoreText
   - Facebook-iOS-SDK
   - JSONModel
+  - LMAlertView
   - MagicalRecord
   - MBProgressHUD
+  - MFSideMenu
   - SDWebImage (= 3.5)
 
 SPEC CHECKSUMS:
@@ -51,8 +57,11 @@ SPEC CHECKSUMS:
   DTFoundation: 86e59f373c7a9b9f859f8a9c1debf072979eebec
   Facebook-iOS-SDK: 5e1416dbdfc17b2620c2ca31c02e6feec042f2c1
   JSONModel: cecca3c3a9ee1a248b56f7139e2d64b85ce536ec
+  LMAlertView: a82572c80b0922bc0e3121aff12abae40a9afba5
   MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
+  MFSideMenu: f59e25c080097a701e108459c207fb22e1f62c30
+  RBBAnimation: e7f31ed62f760f3caf120b5d943267bd9a8e1f64
   SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
 
 COCOAPODS: 0.28.0

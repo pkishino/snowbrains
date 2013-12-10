@@ -6,3 +6,5 @@ pod 'Facebook-iOS-SDK', :inhibit_warnings => true
 pod 'AFNetworking', '2.0.0', :inhibit_warnings => true
 pod 'MagicalRecord', :inhibit_warnings => true
 pod 'MBProgressHUD', :inhibit_warnings => true
+pod 'MFSideMenu', :inhibit_warnings=>true
+pod 'LMAlertView'

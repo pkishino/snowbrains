@@ -13,12 +13,9 @@
 @implementation CommentPoster
 
 +(void)postComment:(NSDictionary *)details andCompletion:(CommentCompletionHandler)completion{
-    NSString *name=[[NSUserDefaults standardUserDefaults]valueForKey:@"name"];
-    NSString *email=[[NSUserDefaults standardUserDefaults]valueForKey:@"email"];
-    if(name&&email){
     dispatch_async(sBgQueue, ^{
         NSMutableDictionary *parameters=[NSMutableDictionary dictionaryWithDictionary:details];
-        [parameters addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"submit_comment",@"json",name,@"name",email,@"email", nil]];
+        [parameters addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"submit_comment",@"json", nil]];
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         
         NSURLSessionDataTask *dataTask = [manager POST:sURL parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -29,12 +26,10 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"%@ %@",task, error);
             if (completion){
-                completion(NO, nil);
+                completion(NO, error);
             }
         }];
         [dataTask resume];
     });
-    }else{
-    }
 }
 @end
