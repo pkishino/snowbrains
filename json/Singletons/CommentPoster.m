@@ -21,12 +21,16 @@
         NSURLSessionDataTask *dataTask = [manager POST:sURL parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             NSLog(@"%@ %@",task, responseObject);
             if (completion){
+                dispatch_async(dispatch_get_main_queue(), ^{
                 completion(YES, nil);
+                });
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"%@ %@",task, error);
             if (completion){
+                dispatch_async(dispatch_get_main_queue(), ^{
                 completion(NO, error);
+                });
             }
         }];
         [dataTask resume];

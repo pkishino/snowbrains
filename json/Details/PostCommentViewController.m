@@ -66,6 +66,7 @@
 
 -(IBAction)postButtonTapped:(id)sender{
     NSDictionary *postComment=[NSDictionary dictionaryWithObjectsAndKeys:self.post_id,@"post_id",self.commentTextView.text,@"content",[defaultUser valueForKey:@"name"],@"name",[defaultUser valueForKey:@"email"],@"email", nil];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [CommentPoster postComment:postComment andCompletion:^(BOOL success, NSError *error) {
         if (success) {
             [self.commentTextView resignFirstResponder];
@@ -73,6 +74,7 @@
         }else{
             [ErrorAlert postError:error];
         }
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];
 }
 
