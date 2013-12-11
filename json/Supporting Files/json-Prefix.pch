@@ -18,7 +18,10 @@
     #define MR_SHORTHAND
     #import <CoreData+MagicalRecord.h>
     #import <MBProgressHUD.h>
+    #import <JVFloatLabeledTextField.h>
+    #import <JVFloatLabeledTextView.h>
 
     #import "ErrorAlert.h"
     #import "FBActionBlock.h"
+
 #endif

@@ -344,45 +344,13 @@
         <scene sceneID="tG0-ft-vni">
             <objects>
                 <tableViewController autoresizesArchivedViewToFullSize="NO" id="B8l-J1-TCw" customClass="NewUserViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wib-XS-erX">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wib-XS-erX">
                         <rect key="frame" x="0.0" y="44" width="290" height="206"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="RE3-e2-U4I">
                             <rect key="frame" x="0.0" y="0.0" width="290" height="206"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Default" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4AO-3P-uB6">
-                                    <rect key="frame" x="95" y="20" width="175" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="B8l-J1-TCw" id="ZGY-wj-aws"/>
-                                    </connections>
-                                </textField>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYg-aG-fsY">
-                                    <rect key="frame" x="20" y="25" width="46" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="default@email.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PJs-h8-zAY">
-                                    <rect key="frame" x="95" y="66" width="175" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="B8l-J1-TCw" id="WDI-NN-r58"/>
-                                    </connections>
-                                </textField>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYB-Tp-iAr">
-                                    <rect key="frame" x="20" y="71" width="42" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <sections>
@@ -413,8 +381,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="290" height="250"/>
                     <connections>
-                        <outlet property="emailTextView" destination="PJs-h8-zAY" id="5cI-WH-D0y"/>
-                        <outlet property="nameTextView" destination="4AO-3P-uB6" id="XQA-Jc-chB"/>
+                        <outlet property="headerView" destination="RE3-e2-U4I" id="HLx-gI-oNW"/>
                         <outlet property="saveButton" destination="b99-1f-lIB" id="Lba-B7-Y5W"/>
                     </connections>
                 </tableViewController>

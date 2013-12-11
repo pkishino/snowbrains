@@ -19,49 +19,87 @@ PODS:
   - AFNetworking/Serialization (2.0.0)
   - AFNetworking/UIKit (2.0.0):
     - AFNetworking/NSURLConnection
+  - CSNotificationView (0.3.3)
   - DTCoreText (1.6.8):
     - DTFoundation/Core (~> 1.5.4)
     - DTFoundation/DTHTMLParser (~> 1.5.4)
     - DTFoundation/UIKit (~> 1.5.4)
+  - DTFoundation (1.5.4):
+    - DTFoundation/AppKit
+    - DTFoundation/Core
+    - DTFoundation/DTASN1
+    - DTFoundation/DTAWS
+    - DTFoundation/DTHTMLParser
+    - DTFoundation/DTReachability
+    - DTFoundation/DTSidePanel
+    - DTFoundation/DTSidePanel
+    - DTFoundation/DTSQLite
+    - DTFoundation/DTUTI
+    - DTFoundation/DTZipArchive
+    - DTFoundation/UIKit
+    - DTFoundation/UIKit_BlocksAdditions
   - DTFoundation/Core (1.5.4)
+  - DTFoundation/DTASN1 (1.5.4):
+    - DTFoundation/Core
+  - DTFoundation/DTAWS (1.5.4):
+    - DTFoundation/Core
   - DTFoundation/DTHTMLParser (1.5.4):
     - DTFoundation/Core
+  - DTFoundation/DTReachability (1.5.4)
+  - DTFoundation/DTSidePanel (1.5.4):
+    - DTFoundation/UIKit
+  - DTFoundation/DTSQLite (1.5.4)
+  - DTFoundation/DTUTI (1.5.4)
+  - DTFoundation/DTZipArchive (1.5.4):
+    - DTFoundation/DTZipArchive/Minizip
+  - DTFoundation/DTZipArchive/Minizip (1.5.4)
   - DTFoundation/UIKit (1.5.4):
+    - DTFoundation/Core
+  - DTFoundation/UIKit_BlocksAdditions (1.5.4):
     - DTFoundation/Core
   - Facebook-iOS-SDK (3.9.0)
   - JSONModel (0.10.0)
+  - JVFloatLabeledTextField (0.0.5)
   - LMAlertView (0.0.1):
     - RBBAnimation (~> 0.3.0)
   - MagicalRecord (2.2)
   - MBProgressHUD (0.8)
-  - MFSideMenu (0.5.4)
   - RBBAnimation (0.3.0)
+  - RESideMenu (3.3.1)
   - SDWebImage (3.5):
     - SDWebImage/Core
   - SDWebImage/Core (3.5)
+  - TWSReleaseNotesView (1.2.0)
 
 DEPENDENCIES:
   - AFNetworking (= 2.0.0)
+  - CSNotificationView
   - DTCoreText
+  - DTFoundation
   - Facebook-iOS-SDK
   - JSONModel
+  - JVFloatLabeledTextField
   - LMAlertView
   - MagicalRecord
   - MBProgressHUD
-  - MFSideMenu
+  - RESideMenu
   - SDWebImage (= 3.5)
+  - TWSReleaseNotesView
 
 SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
+  CSNotificationView: f14352657afe7255be9fb2446eb99d5914b97b5d
   DTCoreText: 24f96ab529f19114533ca71922469c94fb73db4d
   DTFoundation: 86e59f373c7a9b9f859f8a9c1debf072979eebec
   Facebook-iOS-SDK: 5e1416dbdfc17b2620c2ca31c02e6feec042f2c1
   JSONModel: cecca3c3a9ee1a248b56f7139e2d64b85ce536ec
+  JVFloatLabeledTextField: 7daac42f450476dc9cfa5b23645e8661b868994b
   LMAlertView: a82572c80b0922bc0e3121aff12abae40a9afba5
   MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  MFSideMenu: f59e25c080097a701e108459c207fb22e1f62c30
   RBBAnimation: e7f31ed62f760f3caf120b5d943267bd9a8e1f64
+  RESideMenu: dcd3af0b8fcdc32e2d306ecc6d6a20b928248105
   SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
+  TWSReleaseNotesView: ea7e62a767f0d690c2e8de2ca5e6311bd66d29d7
 
 COCOAPODS: 0.28.0

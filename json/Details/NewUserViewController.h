@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewUserViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
+@interface NewUserViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic, strong) IBOutlet UIView *headerView;
-@property (nonatomic, strong) IBOutlet UITextField *nameTextView;
-@property (nonatomic, strong) IBOutlet UITextField *emailTextView;
+@property (nonatomic, strong) JVFloatLabeledTextField *nameTextView;
+@property (nonatomic, strong) JVFloatLabeledTextField *emailTextView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *saveButton;
 
 @end
