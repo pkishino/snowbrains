@@ -21,6 +21,8 @@
 		CD0858BA1847855F005DEB14 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858B91847855F005DEB14 /* ImageData.m */; };
 		CD0858BD18478D06005DEB14 /* CommonInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0858BC18478D06005DEB14 /* CommonInterface.m */; };
 		CD108423184CD61E006FFCBD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CD108422184CD61E006FFCBD /* Post.m */; };
+		CD30F6DA1859FA0300850218 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30F6D91859FA0300850218 /* CommentCell.m */; };
+		CD30F6DD185A009F00850218 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30F6DC185A009F00850218 /* CommentViewController.m */; };
 		CDA02C651852E09F007B93DF /* DTWebVideoView+SnowBrains.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA02C641852E09F007B93DF /* DTWebVideoView+SnowBrains.m */; };
 		CDA02C6918543F48007B93DF /* CommentPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA02C6818543F48007B93DF /* CommentPoster.m */; };
 		CDA02C6C1855DC55007B93DF /* PostCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA02C6B1855DC55007B93DF /* PostCommentViewController.m */; };
@@ -87,6 +89,10 @@
 		CD0858BC18478D06005DEB14 /* CommonInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonInterface.m; path = CoreDataModels/CommonInterface.m; sourceTree = "<group>"; };
 		CD108421184CD61E006FFCBD /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = CoreDataModels/Post.h; sourceTree = "<group>"; };
 		CD108422184CD61E006FFCBD /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = CoreDataModels/Post.m; sourceTree = "<group>"; };
+		CD30F6D81859FA0300850218 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentCell.h; path = Details/CommentCell.h; sourceTree = "<group>"; };
+		CD30F6D91859FA0300850218 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentCell.m; path = Details/CommentCell.m; sourceTree = "<group>"; };
+		CD30F6DB185A009F00850218 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentViewController.h; path = ViewControllers/CommentViewController.h; sourceTree = "<group>"; };
+		CD30F6DC185A009F00850218 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentViewController.m; path = ViewControllers/CommentViewController.m; sourceTree = "<group>"; };
 		CDA02C631852E09F007B93DF /* DTWebVideoView+SnowBrains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DTWebVideoView+SnowBrains.h"; path = "Categories/DTWebVideoView+SnowBrains.h"; sourceTree = "<group>"; };
 		CDA02C641852E09F007B93DF /* DTWebVideoView+SnowBrains.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DTWebVideoView+SnowBrains.m"; path = "Categories/DTWebVideoView+SnowBrains.m"; sourceTree = "<group>"; };
 		CDA02C6718543F48007B93DF /* CommentPoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentPoster.h; path = Singletons/CommentPoster.h; sourceTree = "<group>"; };
@@ -172,6 +178,8 @@
 				CDB0FBAE17ACED17005024DE /* PostTableViewController.m */,
 				CDAF7BA218328D3D00F8098B /* PostViewController.h */,
 				CDAF7BA318328D3D00F8098B /* PostViewController.m */,
+				CD30F6DB185A009F00850218 /* CommentViewController.h */,
+				CD30F6DC185A009F00850218 /* CommentViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -192,11 +200,21 @@
 		CD0858371844D131005DEB14 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				CDB0FBC417AFD4AB005024DE /* MyCell.h */,
-				CDB0FBC517AFD4AB005024DE /* MyCell.m */,
+				CD30F6D71859F9E200850218 /* Cells */,
 				CDA02C771855ED40007B93DF /* CommentBox */,
 			);
 			name = Details;
+			sourceTree = "<group>";
+		};
+		CD30F6D71859F9E200850218 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CDB0FBC417AFD4AB005024DE /* MyCell.h */,
+				CDB0FBC517AFD4AB005024DE /* MyCell.m */,
+				CD30F6D81859FA0300850218 /* CommentCell.h */,
+				CD30F6D91859FA0300850218 /* CommentCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		CDA02C611850BDDC007B93DF /* Categories */ = {
@@ -485,6 +503,7 @@
 				CD08583A1844DA0D005DEB14 /* PostRetriever.m in Sources */,
 				CDADD930184078010047EA0A /* AttachmentModel.m in Sources */,
 				CDD4960C184B42D700C1D362 /* SetupInitializer.m in Sources */,
+				CD30F6DA1859FA0300850218 /* CommentCell.m in Sources */,
 				CDD49609184B3E0300C1D362 /* ErrorAlert.m in Sources */,
 				CDB0FBA217ACED17005024DE /* main.m in Sources */,
 				CDA02C651852E09F007B93DF /* DTWebVideoView+SnowBrains.m in Sources */,
@@ -511,6 +530,7 @@
 				CDADD92A184077EC0047EA0A /* CategoryModel.m in Sources */,
 				CD0858BD18478D06005DEB14 /* CommonInterface.m in Sources */,
 				CDA02C6918543F48007B93DF /* CommentPoster.m in Sources */,
+				CD30F6DD185A009F00850218 /* CommentViewController.m in Sources */,
 				CDAF7BA518328D3D00F8098B /* PostViewController.m in Sources */,
 				CDADD92D184077F70047EA0A /* CommentModel.m in Sources */,
 				CDB0FBBE17AE8624005024DE /* PostCollection.m in Sources */,

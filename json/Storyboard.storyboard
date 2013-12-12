@@ -86,6 +86,9 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="viewCommentsClicked:" destination="hhz-N6-1Ub" eventType="touchUpInside" id="z2E-ji-TOd"/>
+                                                    </connections>
                                                 </button>
                                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D6s-ig-Nbm" userLabel="Excerpt" customClass="DTAttributedLabel">
                                                     <rect key="frame" x="39" y="30" width="242" height="90"/>
@@ -155,11 +158,66 @@
                     <connections>
                         <segue destination="Rg9-dW-235" kind="push" identifier="PostViewSegue" id="nSl-V5-j6g"/>
                         <segue destination="eF3-sv-MMq" kind="custom" identifier="PostCommentSegue" customClass="LMModalSegue" id="BHD-iV-IqO"/>
+                        <segue destination="fFw-H5-VZ4" kind="push" identifier="ViewCommentsSegue" id="Rq5-Xc-PFK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKh-TD-bQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="468" y="0.0"/>
+        </scene>
+        <!--Comment View Controller - Comments-->
+        <scene sceneID="5ew-Ud-MsF">
+            <objects>
+                <tableViewController id="fFw-H5-VZ4" customClass="CommentViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="160" sectionHeaderHeight="22" sectionFooterHeight="22" id="f1e-NL-kNh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCellID" rowHeight="160" id="Jwk-Dy-dr9" customClass="CommentCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="160"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jwk-Dy-dr9" id="Xvq-Nm-LeO">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Jk-Sa-XyU" customClass="DTAttributedTextView">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="830-ib-ayb">
+                                            <rect key="frame" x="5" y="138" width="101" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCJ-jQ-IC0">
+                                            <rect key="frame" x="215" y="138" width="100" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="Author" destination="830-ib-ayb" id="O5r-sa-T1F"/>
+                                    <outlet property="Date" destination="GCJ-jQ-IC0" id="GLt-5H-dX0"/>
+                                    <outlet property="commentView" destination="9Jk-Sa-XyU" id="xzc-Pc-BU2"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fFw-H5-VZ4" id="TyI-R0-3yF"/>
+                            <outlet property="delegate" destination="fFw-H5-VZ4" id="Sxd-KF-ovI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Comments" id="C2M-7g-44R"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="okc-RE-ai5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1706" y="370"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="cVi-1j-pcx">

@@ -37,6 +37,11 @@ bool liked;
     [self.posterComments setBackgroundImage:[[UIImage imageNamed:@"Comments"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [self.posterComments setTitle:post.comment_count.stringValue forState:UIControlStateNormal];
     [self.posterComments.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    if (post.comment_count.intValue>0) {
+        [self.posterComments setEnabled:YES];
+    }else{
+        [self.posterComments setEnabled:NO];
+    }
     [self.posterToolbar setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrains_buttonBackground"]]];
     [self setTag: post.oID.integerValue];
     if(post.likeID.intValue!=0){
@@ -54,6 +59,10 @@ bool liked;
 {
     [super setSelected:selected animated:animated];
     [self toggleExcerpt];
+}
+- (IBAction)viewCommentsClicked:(id)sender {
+    Post* post=[PostCollection retrievePost:@(self.tag)];
+    [self.delegate performSegueWithIdentifier:@"ViewCommentsSegue" sender:post.comments];
 }
 - (IBAction)readPostClicked:(id)sender {
     Post* post=[PostCollection retrievePost:@(self.tag)];
