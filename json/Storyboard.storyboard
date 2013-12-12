@@ -240,8 +240,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="None" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jjs-Ef-e7g">
-                                                    <rect key="frame" x="214" y="11" width="41" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Select..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jjs-Ef-e7g">
+                                                    <rect key="frame" x="192" y="11" width="63" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -294,7 +294,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userCell" textLabel="uSd-Ia-rtJ" detailTextLabel="ffu-Uj-QkG" style="IBUITableViewCellStyleSubtitle" id="IYA-CG-J9T">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="4" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="userCell" textLabel="uSd-Ia-rtJ" detailTextLabel="ffu-Uj-QkG" style="IBUITableViewCellStyleSubtitle" id="IYA-CG-J9T">
                                 <rect key="frame" x="0.0" y="22" width="290" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IYA-CG-J9T" id="ECB-BR-abV">
@@ -339,6 +339,9 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="290" height="250"/>
+                    <connections>
+                        <outlet property="addNewButton" destination="uxX-oA-MK4" id="OCK-gy-Sqn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-bc-CCi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="w5a-a6-30c" userLabel="Exit" sceneMemberID="exit"/>

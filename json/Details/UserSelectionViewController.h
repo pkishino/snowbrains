@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UserSelectionViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *addNewButton;
 
 @end

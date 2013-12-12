@@ -10,8 +10,9 @@
 static NSString *CellIdentifier = @"userCell";
 
 @interface UserSelectionViewController (){
-    NSArray *users;
+    NSMutableArray *users;
     NSDictionary *defaultUser;
+    BOOL once;
 }
 
 @end
@@ -24,24 +25,18 @@ static NSString *CellIdentifier = @"userCell";
     defaultUser=[[NSUserDefaults standardUserDefaults] valueForKey:@"defaultUser"];
     NSArray*userCounts=(NSArray*)[[NSUserDefaults standardUserDefaults] valueForKey:@"users"];
     if(!userCounts&&defaultUser){
-        userCounts=[NSArray arrayWithObject:defaultUser];
+        userCounts=[NSMutableArray arrayWithObject:defaultUser];
     }
-    users=[NSArray arrayWithArray:userCounts];
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-	if(users.count==0){
-//        [self performSegueWithIdentifier:@"newUser" sender:self];
-    }
+    users=[NSMutableArray arrayWithArray:userCounts];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if(users.count==0){
-//        [self performSegueWithIdentifier:@"newUser" sender:self];
+    if(users.count==0&&!once){
+        once=YES;
+        [self performSegueWithIdentifier:@"newUser" sender:nil];
     }
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -81,5 +76,20 @@ static NSString *CellIdentifier = @"userCell";
 }
 -(BOOL)canPerformUnwindSegueAction:(SEL)action fromViewController:(UIViewController *)fromViewController withSender:(id)sender{
     return NO;
+}
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle==UITableViewCellEditingStyleDelete){
+        if([users[indexPath.row][@"name"]isEqualToString:defaultUser[@"name"]]){
+            defaultUser=nil;
+            [[NSUserDefaults standardUserDefaults]setValue:nil forKey:@"defaultUser"];
+        }
+        
+        [users removeObjectAtIndex:indexPath.row];
+        [self.tableView reloadData];
+        [[NSUserDefaults standardUserDefaults]setValue:users forKey:@"users"];
+    }
 }
 @end
