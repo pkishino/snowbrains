@@ -7,7 +7,7 @@
 //
 
 #import "PostCommentViewController.h"
-#import "CommentPoster.h"
+#import "HttpRequests.h"
 #import "ErrorAlert.h"
 
 @interface PostCommentViewController (){
@@ -67,7 +67,7 @@
 -(IBAction)postButtonTapped:(id)sender{
     NSDictionary *postComment=[NSDictionary dictionaryWithObjectsAndKeys:self.post_id,@"post_id",self.commentTextView.text,@"content",[defaultUser valueForKey:@"name"],@"name",[defaultUser valueForKey:@"email"],@"email", nil];
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    [CommentPoster postComment:postComment andCompletion:^(BOOL success, NSError *error) {
+    [HttpRequests postComment:postComment andCompletion:^(BOOL success, NSError *error) {
         if (success) {
             [self.commentTextView resignFirstResponder];
             [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];

@@ -17,6 +17,8 @@
 
 +(void)retrieveLatestPostsWithCompletion:(PostCompletionHandler)completion;
 
++(Post*)retrieveLatestPost;
+
 +(NSArray*)retrieveAllPosts;
 
 +(NSArray*)retrievePostsAfter:(NSDate*)date;

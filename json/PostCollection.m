@@ -23,6 +23,9 @@
 +(Post *)retrievePost:(NSNumber*)reference{
     return [Post findFirstByAttribute:@"oID" withValue:reference];
 }
++(Post *)retrieveLatestPost{
+    return [Post findFirstOrderedByAttribute:@"date" ascending:NO];
+}
 
 +(void)retrieveLatestPostsWithCompletion:(PostCompletionHandler)completion{
     [PostRetriever getLatestPostRequestWithCompletion:completion];

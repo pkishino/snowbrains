@@ -26,6 +26,8 @@
     [super viewDidLoad];
     [self.tableView setDelegate:self];
     [self retrieveData];
+    [self.view setTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrainsTextColour"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrains_buttonBackground"]]];
 }
 
 -(void)mainThreadReload{

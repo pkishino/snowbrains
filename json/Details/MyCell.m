@@ -39,8 +39,10 @@ bool liked;
     [self.posterComments.titleLabel setTextAlignment:NSTextAlignmentCenter];
     if (post.comment_count.intValue>0) {
         [self.posterComments setEnabled:YES];
+        [self.posterComments setTintColor:nil];
     }else{
         [self.posterComments setEnabled:NO];
+        [self.posterComments setTintColor:[UIColor grayColor]];
     }
     [self.posterToolbar setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrains_buttonBackground"]]];
     [self setTag: post.oID.integerValue];
