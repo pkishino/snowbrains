@@ -25,20 +25,27 @@
 {
     [super viewDidLoad];
     [self.tableView setDelegate:self];
-    [self retrieveData];
+    
     [self.view setTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrainsTextColour"]]];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrains_buttonBackground"]]];
+    self.navigationItem.titleView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snowbrains_logo"]];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newPosts) name:@"NewPostsAvailable" object:nil];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self retrieveData];
 }
 
 -(void)mainThreadReload{
     dispatch_async(dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         [self.tableView reloadData];
         if(self.refreshControl.isRefreshing){
             [self.refreshControl endRefreshing];}});
 }
 -(void)retrieveLatestData{
-        [PostCollection retrieveLatestPostsWithCompletion:^(BOOL success, NSError *error) {
+    [PostCollection retrieveLatestPostsWithCompletion:^(BOOL success, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
             if(posts.count>0){
@@ -49,13 +56,13 @@
         });}];
 }
 -(void)retrieveData{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
-        if(posts.count>0){
-            [self mainThreadReload];
-        }else{
-            [self retrieveLatestData];
-        }
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    posts=[NSMutableOrderedSet orderedSetWithArray:[PostCollection retrieveAllPosts]];
+    if(posts.count>0){
+        [self mainThreadReload];
+    }else{
+        [self retrieveLatestData];
+    }
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

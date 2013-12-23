@@ -50,11 +50,11 @@
 }
 
 +(NSArray*)retrievePostByCategory:(NSString*)categoryName{
-    
+    return nil;
 }
 
 +(NSArray*)retrievePostsByTag:(NSString *)tagName{
-    
+    return nil;
 }
 
 +(NSArray*)retrievePostsByAuthor:(NSString*)authorName{

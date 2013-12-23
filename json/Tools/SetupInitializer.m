@@ -21,14 +21,12 @@
 }
 +(void)setup{
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
+    [[AFNetworkActivityIndicatorManager sharedManager]setEnabled:YES];
     [DTCoreTextFontDescriptor asyncPreloadFontLookupTable];
     [FBProfilePictureView class];
     [MagicalRecord setupAutoMigratingCoreDataStack];
     [JSONModel setGlobalKeyMapper:[[JSONKeyMapper alloc] initWithDictionary:@{@"description":@"objectDescription",@"id":@"oID"}]];
-    [[AFNetworkActivityIndicatorManager sharedManager]setEnabled:YES];
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
-    }];
+
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     [[UIToolbar appearance]setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrains_buttonBackground"]]];
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snowbrainsTextColour"]]];
