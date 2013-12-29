@@ -25,14 +25,18 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         
         NSURLSessionDataTask *dataTask = [manager POST:sURL parameters:details success:^(NSURLSessionDataTask *task, id responseObject) {
+#ifdef DEBUG
             NSLog(@"%@ %@",task, responseObject);
+#endif
             if (completion){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completion(YES, nil,responseObject);
                 });
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+#ifdef DEBUG
             NSLog(@"%@ %@",task, error);
+#endif
             if (completion){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completion(NO, error,nil);
@@ -48,14 +52,18 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         
         NSURLSessionDataTask *dataTask = [manager GET:sURL parameters:details success:^(NSURLSessionDataTask *task, id responseObject) {
+#ifdef DEBUG
             NSLog(@"%@ %@",task, responseObject);
+#endif
             if (completion){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completion(YES, nil,responseObject);
                 });
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+#ifdef DEBUG
             NSLog(@"%@ %@",task, error);
+#endif
             if (completion){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completion(NO, error,nil);

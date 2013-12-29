@@ -11,5 +11,6 @@
 @interface ErrorAlert : NSObject
 +(id)errorAlert;
 +(void)postError:(NSError*)error;
++(void)postText:(NSString*)error;
 
 @end

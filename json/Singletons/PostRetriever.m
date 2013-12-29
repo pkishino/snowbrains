@@ -10,9 +10,7 @@
 #import "PostModel.h"
 #import "Post.h"
 #import "HttpRequests.h"
-//#define sLatestPosts [NSURL URLWithString:@"http://snowbrains.com/?json=get_recent_posts&count=10"]
-//#define sBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-
+const NSString* limit=@"10";
 @implementation PostRetriever
 
 +(void)startHarvesting{
@@ -31,8 +29,12 @@
     }];
 }
 +(void)getLatestPostRequestWithCompletion:(PostCompletionHandler)completion{
-    
-    [HttpRequests getJson:[NSDictionary dictionaryWithObjectsAndKeys:@"get_recent_posts",@"json",@"10",@"count", nil] andCompletion:^(BOOL success, NSError *error, id responseObject) {
+    [PostRetriever getPostsRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"get_recent_posts",@"json",limit,@"count", nil] withCompletion:completion];
+}
++(void)getPostsRequestWithParameters:(NSDictionary *)parameters withCompletion:(PostCompletionHandler)completion{
+    NSMutableDictionary *modParameters=[NSMutableDictionary dictionaryWithDictionary:parameters];
+    [modParameters addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"get_posts",@"json",limit,@"count", nil]];
+    [HttpRequests getJson:modParameters andCompletion:^(BOOL success, NSError *error, id responseObject) {
         if (error) {
             NSLog(@"Error: %@", error);
             if (completion){

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AFURLSessionManager.h>
+
 typedef void (^PostCompletionHandler)(BOOL success, NSError *error);
 
 @interface PostRetriever : NSObject
@@ -16,5 +16,6 @@ typedef void (^PostCompletionHandler)(BOOL success, NSError *error);
 +(void)stopHarvesting;
 +(void)backgroundFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 +(void)getLatestPostRequestWithCompletion:(PostCompletionHandler)completion;
++(void)getPostsRequestWithParameters:(NSDictionary*)parameters withCompletion:(PostCompletionHandler)completion;
 
 @end

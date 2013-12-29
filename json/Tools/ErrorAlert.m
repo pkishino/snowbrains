@@ -19,6 +19,9 @@
         return errorAlert;
 }
 +(void)postError:(NSError *)error{
+    [ErrorAlert postText:[NSString stringWithFormat:@"%@",error]];
+}
++(void)postText:(NSString *)error{
     dispatch_async(dispatch_get_main_queue(), ^{
         [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"error",nil) message:[NSString stringWithFormat:NSLocalizedString(@"An error occurred:%@",nil),error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];});
 }
