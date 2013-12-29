@@ -8,6 +8,7 @@
 
 #import "SetupInitializer.h"
 #import <JSONModel.h>
+#import <TestFlight.h>
 
 @implementation SetupInitializer
 
@@ -20,6 +21,7 @@
     return setupInitializer;
 }
 +(void)setup{
+    [TestFlight takeOff:@"c0b7b825-f506-4f0b-b73f-0d75286c3318"];
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
     [[AFNetworkActivityIndicatorManager sharedManager]setEnabled:YES];
     [DTCoreTextFontDescriptor asyncPreloadFontLookupTable];

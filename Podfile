@@ -12,3 +12,4 @@ pod 'LMAlertView', :inhibit_warnings => true
 pod 'JVFloatLabeledTextField', :inhibit_warnings => true
 pod 'CSNotificationView', :inhibit_warnings => true
 pod 'TWSReleaseNotesView', :inhibit_warnings => true
+pod 'TestFlightSDK','2.1.3', :inhibit_warnings => true

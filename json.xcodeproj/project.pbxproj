@@ -58,6 +58,7 @@
 		CDD49603184A18F100C1D362 /* FBActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD49602184A18F100C1D362 /* FBActionBlock.m */; };
 		CDD49609184B3E0300C1D362 /* ErrorAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD49608184B3E0300C1D362 /* ErrorAlert.m */; };
 		CDD4960C184B42D700C1D362 /* SetupInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4960B184B42D700C1D362 /* SetupInitializer.m */; };
+		CDF688811870027D00189B10 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF688801870027D00189B10 /* AdSupport.framework */; };
 		E0C563E74B24415DA9F698BB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F761ABD99944187A6FD620E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +155,7 @@
 		CDD49608184B3E0300C1D362 /* ErrorAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ErrorAlert.m; path = Tools/ErrorAlert.m; sourceTree = "<group>"; };
 		CDD4960A184B42D700C1D362 /* SetupInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetupInitializer.h; path = Tools/SetupInitializer.h; sourceTree = "<group>"; };
 		CDD4960B184B42D700C1D362 /* SetupInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetupInitializer.m; path = Tools/SetupInitializer.m; sourceTree = "<group>"; };
+		CDF688801870027D00189B10 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDF688811870027D00189B10 /* AdSupport.framework in Frameworks */,
 				CDAF7BEE183504C900F8098B /* MediaPlayer.framework in Frameworks */,
 				CDB0FC0B17B0EB33005024DE /* MapKit.framework in Frameworks */,
 				CDB0FBF817AFF050005024DE /* ImageIO.framework in Frameworks */,
@@ -314,6 +317,7 @@
 		CDB0FB9417ACED16005024DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDF688801870027D00189B10 /* AdSupport.framework */,
 				CDAF7BED183504C900F8098B /* MediaPlayer.framework */,
 				CDB0FC0A17B0EB33005024DE /* MapKit.framework */,
 				CDB0FBF717AFF050005024DE /* ImageIO.framework */,
@@ -636,6 +640,10 @@
 				GCC_PREFIX_HEADER = "json/Supporting Files/json-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/json/Supporting Files/json-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Patrick/Desktop/devtests/TestFlightSDK2,
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -657,6 +665,10 @@
 				GCC_PREFIX_HEADER = "json/Supporting Files/json-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/json/Supporting Files/json-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Patrick/Desktop/devtests/TestFlightSDK2,
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv7 armv7s arm64";
